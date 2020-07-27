@@ -1,0 +1,53 @@
+body{
+
+	padding: 0px;
+	margin: 0px;
+
+}
+
+
+#Div1{ 
+	float: left;  
+	background-color: #ADD8E6;	
+	height: 600px;
+	width: 100px;
+	border: 1pt solid #000;
+	 
+	
+}
+
+#Div2{
+	float: left; 
+	background-color: #98FB98;	
+	height: 100px;
+	width: 150px;
+	border: 1pt solid #000;
+
+}
+#Div3{
+    
+	background-color: #F0E68C;	
+	height: 100px;
+	width: 400px;
+	border: 1pt solid #000;
+
+
+}
+#Div4{
+     
+	background-color:  #D8BFD8;	
+	height: 230px;
+	
+	border: 1pt solid #000;
+	margin-left: 110px;
+
+
+
+}
+#Div5{ 
+	clear: both;
+	background-color:  #EEE8AA;	
+	height: 100px;
+	  
+
+}

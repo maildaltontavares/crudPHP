@@ -1,0 +1,65 @@
+body{
+	background-color: #e6ffff;
+}
+
+#topo{
+	width: 100%;
+	height: 200px;	
+	
+	z-index: 1;
+	background-image: url(edificios.jpg);
+
+}
+.topo{
+	height: 30px;	
+	background-color: #000; 
+	color: #ffffff;
+	font-size: 30px;
+	font-style: arial;
+	font-weight: bold;
+	text-align: justify;	
+	padding: 5px;
+	text-decoration: none;
+	position: absolute;
+	top: 30px;	
+
+}
+#cad{
+	z-index: 2;	
+	left: 1000px;
+	 
+	
+}
+
+#Login{
+	z-index: 2;
+	left: 800px;
+	left: 60%;
+	 
+	
+}
+#menu{
+	
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	background-color:  #ffffb3;
+
+
+
+}
+ 
+#menu a {
+	display: table-cell;
+	height: 40px;
+    width: 130px;   
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    background-color:  #ffffb3;
+}
+
+#menu a:hover{
+	 background-color: #ffffff;
+
+}

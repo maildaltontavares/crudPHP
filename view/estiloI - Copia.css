@@ -1,0 +1,229 @@
+body{
+	margin:0 auto;
+	padding: 0px;
+	width: 1200px;
+ 	background-color: #DCDCDC; /*#87CEFA*/
+	overflow: scroll;
+	overflow-x:hidden;
+	background-image: url("Preto.jpg"); 
+	background-repeat: repeat-x; 
+}
+ 
+
+#logo_topo{
+	width: 320px;
+	height: 111px;
+	background-color: #000;
+	background-image: url("LogoVirtuaX.jpg");
+	float: left;
+	margin-top: 1px;
+	position: 
+
+}
+
+.btmenu{
+	text-decoration: none;
+	display: table-cell;
+	width: 100px;
+	height: 30px;
+	margin: 0px;
+	padding: 1px 5px 1px 5px;
+	background-color: #222;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 10px;
+	color: #bbb;
+	font-family: Arial;
+	font-size: 15px;
+	cursor: pointer;
+	border: 0px;
+
+
+}
+ 
+
+.btmenu:hover{
+	background-color: #c22;
+	color: #FFF;
+	text-decoration: none;
+
+}
+
+#menu{
+    width: 659px;
+    height: 105px;    
+    display: table-cell;
+    vertical-align: middle;
+    padding: 20px 0px 0px 80px;   
+    
+    /*border:  2px solid #FFF;*/
+
+
+}
+
+#slider{
+ /*background-color: #e7e7e7;*/
+ width: 100%;
+ height: 290px;
+ border: 0px;
+ margin: 11px 0px 0px 0px; 
+ padding: 0px;
+ /*position: absolute;*/
+ left: 2px;   
+ /*195*/
+}
+
+#ed1,#ed2,#ed3{
+
+	opacity: 0;
+	filter: alpha(opacity=0);
+	position: absolute;
+
+}
+
+#buscador{
+	width: 1200px;
+	margin: 550px 0px 10px 0px;
+
+
+}
+
+#fbuscador{
+	display: flex;
+	border: 3px solid #ccc;
+	border-radius: 15px;
+	padding: 10px;
+
+}
+
+.divbusca{
+	width: 306px;
+	display: inline;
+}
+
+label{
+	display: block;
+}
+
+.titulo{
+	font-size: 22px;
+	color:	##363636;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 10px 0px;
+}
+
+#destaques{
+	display: flex;
+	padding: 15px 0px;
+	background-color: #FFF;
+	margin-bottom: 10px;
+
+
+}
+
+.destaques{
+	margin: auto;
+	padding: 15px;
+	
+	/*border-radius: 	100%;*/
+}
+
+.destaques:hover{
+	/*background:  #c22;*/
+	background:  #FFF;
+}
+
+#destaq{
+	background-color: #FFF;
+	border:  2px solid #FFF;
+
+}
+
+footer{
+	background: #2B2E38;
+	padding: 1px 20px;
+	margin: 15x 0px 0px 0px;
+	color: #ccc;	
+	height: 50px;
+}
+
+footer a{
+	text-decoration: 	none;	 
+	color: #cc1;	
+
+}
+
+#local{
+    border: 3px solid #ccc;
+    margin-bottom: 10PX;
+	
+}
+
+#localizacao{
+	display: flex;
+	border:3p solid #FFF; 
+
+
+}
+
+.localizacao{ 
+	
+	height: 180PX; 	
+	border: 3px solid #ccc;
+	margin: auto;
+	padding: 20px;
+
+}
+
+#endereco{
+	width: 400px;
+} 
+
+#Horario{
+   width: 500px;
+   
+
+}
+#Horario p{
+    letter-spacing: 1px;
+    line-height: 2px;
+    color:#F00;
+    font-weight: bold;
+
+}
+
+
+#secoes{
+	/*position: absolute; */
+	display: flex;
+	margin:521px 150px 0px 0px;
+	border:3p solid #020;
+	width: 604px;
+
+}
+.secoes a {
+	text-decoration: none;
+}
+
+.secoes {
+ 
+	background-color: 	#B0E0E6;
+	height: 50px;
+	width: 150px;
+	border: 1px solid #ccc;
+	margin:0px auto;
+	padding: 10px ;
+	text-align: center;
+	color: #000;
+	font-weight: bolder;
+
+ 
+
+}
+
+.secoes:hover{
+	background-color: #c22;
+	color: #FFF;
+	cursor: pointer;
+
+}

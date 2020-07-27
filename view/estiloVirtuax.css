@@ -1,0 +1,30 @@
+
+  #cabecalho{
+      display: flex;
+      margin: 0px 20px 5px 5px;
+  }
+
+  #modelo,.cTitulo{
+   /* border: 2px solid #FFF;*/
+  }
+
+   .cTitulo{
+    width: 60%;
+  }
+
+  .cabecalho{
+    display: flex;
+  }
+
+  .paramBt{
+    height: 40px;
+    width: 80px;
+    margin-left: 5px;
+    margin-top: 25px;
+    
+  }
+
+  .grupoBotoes{
+    width: 15%;    
+    display: flex;   
+  }   
