@@ -37,6 +37,32 @@
   $i_flag3 = '';
   $desc_flag3 = '';
 
+  $num1 = '';
+  $i_num1 = '';
+  $desc_num1 ='';
+  
+  $num2 = '';
+  $i_num2 = '';
+  $desc_num2 ='';  
+
+  $num3 = '';
+  $i_num3 = '';
+  $desc_num3 ='';  
+
+  $data1='';
+  $i_data1 = '';
+  $desc_data1 ='';
+
+  $data2='';
+  $i_data2 = '';
+  $desc_data2 ='';  
+
+  $data3='';
+  $i_data3 = '';
+  $desc_data3 ='';  
+
+
+
   if (isset($_GET['Altera'])):
      $Altera = "S";
      
@@ -46,7 +72,7 @@
      $paramtpCtr = new paramtpCtr();   
      $p_paramtp = $paramtpCtr->buscaParamTb($_GET['Id']);   
      
-     //ar_dump($p_paramtp);
+     //var_dump($p_paramtp);
 
 
       if(!empty($p_paramtp)): 
@@ -100,6 +126,55 @@
           $i_flag3= '';
         endif;   
         $desc_flag3 = $p_paramtp[0]['desc_flag3']; 
+
+        $num1      = $p_paramtp[0]['num1']; 
+        if($num1== 'S'):
+          $i_num1= 'checked';
+        else:  
+          $i_num1= '';
+        endif;   
+        $desc_num1 = $p_paramtp[0]['desc_num1']; 
+
+        $num2      = $p_paramtp[0]['num2']; 
+        if($num2== 'S'):
+          $i_num2= 'checked';
+        else:  
+          $i_num2= '';
+        endif;   
+        $desc_num2 = $p_paramtp[0]['desc_num2']; 
+
+        $num3      = $p_paramtp[0]['num3']; 
+        if($num3== 'S'):
+          $i_num3= 'checked';
+        else:  
+          $i_num3= '';
+        endif;   
+        $desc_num3 = $p_paramtp[0]['desc_num3']; 
+
+        $data1      = $p_paramtp[0]['data1']; 
+        if($data1== 'S'):
+          $i_data1= 'checked';
+        else:  
+          $i_data1= '';
+        endif;   
+        $desc_data1 = $p_paramtp[0]['desc_data1']; 
+
+        $data2      = $p_paramtp[0]['data2']; 
+        if($data2== 'S'):
+          $i_data2= 'checked';
+        else:  
+          $i_data2= '';
+        endif;   
+        $desc_data2 = $p_paramtp[0]['desc_data2']; 
+
+        $data3      = $p_paramtp[0]['data3']; 
+        if($data3== 'S'):
+          $i_data3= 'checked';
+        else:  
+          $i_data3= '';
+        endif;   
+        $desc_data3 = $p_paramtp[0]['desc_data3']; 
+
       endif;  
   endif; 
 
@@ -163,8 +238,58 @@
               else:
                 $flag3 = 'N';
                 $i_flag3 = '';                  
+              endif ;   
+
+              if(isset($_POST['i_num1'])):
+                $num1= 'S';
+                $i_num1 = 'checked';                
+              else:
+                $num1 = 'N';
+                $i_num1 = '';                  
+              endif ;  
+
+              if(isset($_POST['i_num2'])):
+                $num2= 'S';
+                $i_num2 = 'checked';                
+              else:
+                $num2 = 'N';
+                $i_num2 = '';                  
+              endif ;                
+
+              if(isset($_POST['i_num3'])):
+                $num3= 'S';
+                $i_num3 = 'checked';                
+              else:
+                $num3 = 'N';
+                $i_num3 = '';                  
+              endif ;  
+
+              if(isset($_POST['i_data1'])):
+                $data1= 'S';
+                $i_data1 = 'checked';                
+              else:
+                $data1 = 'N';
+                $i_data1 = '';                  
+              endif ;  
+
+
+              if(isset($_POST['i_data2'])):
+                $data2= 'S';
+                $i_data2 = 'checked';                
+              else:
+                $data2 = 'N';
+                $i_data2 = '';                  
               endif ;  
                   
+              if(isset($_POST['i_data3'])):
+                $data3= 'S';
+                $i_data3 = 'checked';                
+              else:
+                $data3 = 'N';
+                $i_data3 = '';                  
+              endif ;  
+
+
               $erros = array(); 
 
               if(isset($_POST['desc_str1']) and !EMPTY($_POST['desc_str1'])):            
@@ -228,13 +353,74 @@
                   $flag3 = ''; 
               endif; 
 
+
+              if(isset($_POST['desc_num1']) and !EMPTY($_POST['desc_num1'])):    
+                  $desc_num1 = filter_input(INPUT_POST, 'desc_num1',FILTER_SANITIZE_STRING);  
+                  
+                  if(!filter_var($desc_num1,FILTER_SANITIZE_STRING)):
+                      $erros[] = "Descrição numerico 1 inválida!";              
+                  endif; 
+              else:
+                  $num1 = ''; 
+              endif;               
+
+              if(isset($_POST['desc_num2']) and !EMPTY($_POST['desc_num2'])):    
+                  $desc_num2 = filter_input(INPUT_POST, 'desc_num2',FILTER_SANITIZE_STRING);  
+                  
+                  if(!filter_var($desc_num2,FILTER_SANITIZE_STRING)):
+                      $erros[] = "Descrição numerico 2 inválida!";              
+                  endif; 
+              else:
+                  $num2 = ''; 
+              endif;               
+
  
+              if(isset($_POST['desc_num3']) and !EMPTY($_POST['desc_num3'])):    
+                  $desc_num3 = filter_input(INPUT_POST, 'desc_num3',FILTER_SANITIZE_STRING);  
+                  
+                  if(!filter_var($desc_num3,FILTER_SANITIZE_STRING)):
+                      $erros[] = "Descrição numerico 3 inválida!";              
+                  endif; 
+              else:
+                  $num3 = ''; 
+              endif;  
+
+              if(isset($_POST['desc_data1']) and !EMPTY($_POST['desc_data1'])):    
+                  $desc_data1 = filter_input(INPUT_POST, 'desc_data1',FILTER_SANITIZE_STRING);  
+                  
+                  if(!filter_var($desc_data1,FILTER_SANITIZE_STRING)):
+                      $erros[] = "Descrição data 1 inválida!";              
+                  endif; 
+              else:
+                  $data1 = ''; 
+              endif;  
+
+              if(isset($_POST['desc_data2']) and !EMPTY($_POST['desc_data2'])):    
+                  $desc_data2 = filter_input(INPUT_POST, 'desc_data2',FILTER_SANITIZE_STRING);  
+                  
+                  if(!filter_var($desc_data2,FILTER_SANITIZE_STRING)):
+                      $erros[] = "Descrição data 2 inválida!";              
+                  endif; 
+              else:
+                  $data2 = ''; 
+              endif;  
+
+              if(isset($_POST['desc_data3']) and !EMPTY($_POST['desc_data3'])):    
+                  $desc_data3 = filter_input(INPUT_POST, 'desc_data3',FILTER_SANITIZE_STRING);  
+                  
+                  if(!filter_var($desc_data3,FILTER_SANITIZE_STRING)):
+                      $erros[] = "Descrição data 3 inválida!";              
+                  endif; 
+              else:
+                  $data3 = ''; 
+              endif;    
+
               if (empty($erros)):  // Nao tem erros de digitacao
 
                   $paramtpCtr = new paramtpCtr();  
                   if ($Altera == "N"):
 
-                      if ($paramtpCtr->create($id_tp,$str1,$desc_str1,$str2,$desc_str2,$str3,$desc_str3,$flag1,$desc_flag1,$flag2,$desc_flag2,$flag3,$desc_flag3)== 'OK'):  
+                      if ($paramtpCtr->create($id_tp,$str1,$desc_str1,$str2,$desc_str2,$str3,$desc_str3,$flag1,$desc_flag1,$flag2,$desc_flag2,$flag3,$desc_flag3,$num1,$desc_num1,$num2,$desc_num2,$num3,$desc_num3,$data1,$desc_data1,$data2,$desc_data2,$data3,$desc_data3 )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
                    
                           //header('Location:principal.php');   
@@ -244,7 +430,7 @@
 
                   else: 
                       
-                      if ($paramtpCtr->update($id,$id_tp,$str1,$desc_str1,$str2,$desc_str2,$str3,$desc_str3,$flag1,$desc_flag1,$flag2,$desc_flag2,$flag3,$desc_flag3)== 'OK'):  
+                      if ($paramtpCtr->update($id,$id_tp,$str1,$desc_str1,$str2,$desc_str2,$str3,$desc_str3,$flag1,$desc_flag1,$flag2,$desc_flag2,$flag3,$desc_flag3,$num1,$desc_num1,$num2,$desc_num2,$num3,$desc_num3,$data1,$desc_data1,$data2,$desc_data2,$data3,$desc_data3 )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>'; 
                                             
                           //header('Location:principal.php');   
@@ -390,6 +576,68 @@
 
           <label class="form-check-label" for="desc_flag3">Descrição Flag 3 </label>
           <input id="desc_flag3" name ="desc_flag3" type="text" class="form-control"   value="<?php  echo $desc_flag3;  ?>"   > 
+
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="num1" name="i_num1" <?php echo $i_num1; ?>
+            <label class="form-check-label" for="num1">
+              Numérico 1 (integer)
+            </label>
+          </div>  
+
+          <label class="form-check-label" for="desc_num1">Descrição Numerico 1 </label>
+          <input id="desc_num1" name ="desc_num1" type="text" class="form-control"   value="<?php  echo $desc_num1;  ?>"   > 
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="num2" name="i_num2" <?php echo $i_num2; ?>
+            <label class="form-check-label" for="num2">
+              Numérico 2 (integer)
+            </label>
+          </div>  
+
+          <label class="form-check-label" for="desc_num2">Descrição Numerico 2 </label>
+          <input id="desc_num2" name ="desc_num2" type="text" class="form-control"   value="<?php  echo $desc_num2;  ?>"   > 
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="num3" name="i_num3" <?php echo $i_num3; ?>
+            <label class="form-check-label" for="num3">
+              Numérico 3 (integer)
+            </label>
+          </div>  
+
+          <label class="form-check-label" for="desc_num3">Descrição Numerico3 </label>
+          <input id="desc_num3" name ="desc_num3" type="text" class="form-control"   value="<?php  echo $desc_num3;  ?>"   > 
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="data1" name="i_data1" <?php echo $i_data1; ?>
+            <label class="form-check-label" for="data1">
+              Data 1 
+            </label>
+          </div>  
+
+          <label class="form-check-label" for="desc_data1">Descrição Data 1 </label>
+          <input id="desc_data1" name ="desc_data1" type="text" class="form-control"   value="<?php  echo $desc_data1;  ?>"   > 
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="data2" name="i_data2" <?php echo $i_data2; ?>
+            <label class="form-check-label" for="data2">
+              Data 2 
+            </label>
+          </div>  
+
+          <label class="form-check-label" for="desc_data1">Descrição Data 2 </label>
+          <input id="desc_data2" name ="desc_data2" type="text" class="form-control"   value="<?php  echo $desc_data2;  ?>"   > 
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="data3" name="i_data3" <?php echo $i_data3; ?>
+            <label class="form-check-label" for="data3">
+              Data 3 
+            </label>
+          </div>  
+
+          <label class="form-check-label" for="desc_data3">Descrição Data 3 </label>
+          <input id="desc_data3" name ="desc_data3" type="text" class="form-control"   value="<?php  echo $desc_data3;  ?>"   > 
+
 
         </div> 
 

@@ -25,7 +25,7 @@
 			return $paramtpDao->buscaParamTb($paramtp); 
 		 }  
 
-		public function update($p_id,$p_idTp,$p_str1,$p_descStr1,$p_str2,$p_descStr2 ,$p_str3,$p_descStr3,$p_flag1,$p_descFlag1,$p_flag2,$p_descFlag2,$p_flag3,$p_descFlag3 ){
+		public function update($p_id,$p_idTp,$p_str1,$p_descStr1,$p_str2,$p_descStr2 ,$p_str3,$p_descStr3,$p_flag1,$p_descFlag1,$p_flag2,$p_descFlag2,$p_flag3,$p_descFlag3,$p_num1,$p_descNum1,$p_num2,$p_descNum2,$p_num3,$p_descNum3,$p_data1,$p_descData1,$p_data2,$p_descData2,$p_data3,$p_descData3 ){
 
  
 			// Prepara Bean ParamTp
@@ -45,16 +45,33 @@
 			$paramtp->setDescFlag2($p_descFlag2); 		
 			$paramtp->setFlag3($p_flag3); 
 			$paramtp->setDescFlag3($p_descFlag3); 	 
+			$paramtp->setNum1($p_num1); 
+			$paramtp->setDescNum1($p_descNum1); 	
+
+
+			$paramtp->setNum2($p_num2); 
+			$paramtp->setDescNum2($p_descNum2); 	
+			$paramtp->setNum3($p_num3); 
+			$paramtp->setDescNum3($p_descNum3); 	
+
+
+			$paramtp->setData1($p_data1); 
+			$paramtp->setDescData1($p_descData1); 
+			$paramtp->setData2($p_data2); 
+			$paramtp->setDescData2($p_descData2); 	
+ 			$paramtp->setData3($p_data3); 
+			$paramtp->setDescData3($p_descData3); 	
+
 			//  Vzalida ParamTp
 
-
+			//var_dump($paramtp);
 			$paramtpDao = new paramtpDao();    
 			$r = $paramtpDao->update($paramtp); 
 			return  $r;  
 		 }
                                  
 
-		public function create($p_idTp,$p_str1,$p_descStr1,$p_str2,$p_descStr2 ,$p_str3,$p_descStr3,$p_flag1,$p_descFlag1,$p_flag2,$p_descFlag2,$p_flag3,$p_descFlag3){
+		public function create($p_idTp,$p_str1,$p_descStr1,$p_str2,$p_descStr2 ,$p_str3,$p_descStr3,$p_flag1,$p_descFlag1,$p_flag2,$p_descFlag2,$p_flag3,$p_descFlag3,$p_num1,$p_descNum1,$p_num2,$p_descNum2,$p_num3,$p_descNum3,$p_data1,$p_descData1,$p_data2,$p_descData2,$p_data3,$p_descData3){
 
 			//var_dump($p_flag3);
 			//var_dump($p_descStr2);
@@ -74,6 +91,21 @@
 			$paramtp->setDescFlag2($p_descFlag2); 		
 			$paramtp->setFlag3($p_flag3); 
 			$paramtp->setDescFlag3($p_descFlag3); 	 
+			$paramtp->setNum1($p_num1); 
+			$paramtp->setDescNum1($p_descNum1); 	
+			$paramtp->setNum2($p_num2); 
+			$paramtp->setDescNum2($p_descNum2); 	
+			$paramtp->setNum3($p_num3); 
+			$paramtp->setDescNum3($p_descNum3); 	
+			$paramtp->setData1($p_data1); 
+			$paramtp->setDescData1($p_descData1); 
+			$paramtp->setData2($p_data2); 
+			$paramtp->setDescData2($p_descData2); 	
+ 			$paramtp->setData3($p_data3); 
+			$paramtp->setDescData3($p_descData3); 	
+
+
+
 			//  Vzalida ParamTp
  /*
 			var_dump($paramtp->getIdTp()); 

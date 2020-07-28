@@ -36,8 +36,29 @@
 			$sql = $sql . ' d0003_desc_flag1 desc_flag1 ,';
 			$sql = $sql . ' d0003_flag2 flag2,';
 			$sql = $sql . ' d0003_desc_flag2  desc_flag2,';
+			
 			$sql = $sql . ' d0003_flag3 flag3,';
 			$sql = $sql . ' d0003_desc_flag3 desc_flag3,';
+
+			$sql = $sql . ' d0003_num1 num1,';
+			$sql = $sql . ' d0003_desc_num1 desc_num1,';
+
+			$sql = $sql . ' d0003_num2 num2,';
+			$sql = $sql . ' d0003_desc_num2 desc_num2,';
+
+			$sql = $sql . ' d0003_num3 num3,';
+			$sql = $sql . ' d0003_desc_num3 desc_num3,';
+
+			$sql = $sql . ' d0003_data1 data1,';
+			$sql = $sql . ' d0003_desc_data1 desc_data1,';
+			
+			$sql = $sql . ' d0003_data2 data2,';
+			$sql = $sql . ' d0003_desc_data2 desc_data2,';
+
+			$sql = $sql . ' d0003_data3 data3,';
+			$sql = $sql . ' d0003_desc_data3 desc_data3,';
+
+
 			$sql = $sql . ' d0003_id id  '  ;
 			$sql = $sql . ' FROM public."E0003_config_tp" ctp';
 			$sql = $sql . ' where d0003_id = ?';
@@ -77,11 +98,31 @@
 			$sql = $sql . ' d0003_flag2 = ?, ';
 			$sql = $sql . ' d0003_desc_flag2 = ?, ';
 			$sql = $sql . ' d0003_flag3 = ?, ';
-			$sql = $sql . ' d0003_desc_flag3 = ? ';
+			$sql = $sql . ' d0003_desc_flag3 = ?, ';
 
+			$sql = $sql . ' d0003_num1 = ?,';
+			$sql = $sql . ' d0003_desc_num1 = ?, ';
+ 			$sql = $sql . ' d0003_num2 = ?,';
+			$sql = $sql . ' d0003_desc_num2 = ?,';
+
+			$sql = $sql . ' d0003_num3 = ?,';
+			$sql = $sql . ' d0003_desc_num3 = ?,';
+
+			$sql = $sql . ' d0003_data1 = ?,';
+			$sql = $sql . ' d0003_desc_data1 = ?,';
+			
+			$sql = $sql . ' d0003_data2 = ?,';
+			$sql = $sql . ' d0003_desc_data2 = ?,';
+
+			$sql = $sql . ' d0003_data3 = ?,';
+			$sql = $sql . ' d0003_desc_data3 = ? '; 			
+ 
 			$sql = $sql . ' where d0003_id = ? '; 
 
 			//var_dump($t);
+
+
+
 
 
 			$stmt = Conexao::getConn()->prepare($sql); 
@@ -92,17 +133,40 @@
 			$stmt->bindValue(4,$t->getStr2()); 
 			$stmt->bindValue(5,$t->getDescStr2()); 			
 			$stmt->bindValue(6,$t->getStr3()); 
-			$stmt->bindValue(7,$t->getDescStr3()); 			
-			
-
-
+			$stmt->bindValue(7,$t->getDescStr3()); 
 			$stmt->bindValue(8,$t->getFlag1()); 
 			$stmt->bindValue(9,$t->getDescFlag1()); 			
 			$stmt->bindValue(10,$t->getFlag2()); 
 			$stmt->bindValue(11,$t->getDescFlag2()); 		
 			$stmt->bindValue(12,$t->getFlag3()); 
 			$stmt->bindValue(13,$t->getDescFlag3()); 
-			$stmt->bindValue(14,$t->getId()); 
+
+			$stmt->bindValue(14,$t->getNum1()); 
+    		$stmt->bindValue(15,$t->getDescNum1()); 
+
+ 
+			$stmt->bindValue(16,$t->getNum2()); 
+			$stmt->bindValue(17,$t->getDescNum2()); 
+
+
+
+			$stmt->bindValue(18,$t->getNum3()); 
+			$stmt->bindValue(19,$t->getDescNum3()); 
+
+			$stmt->bindValue(20,$t->getData1()); 
+			$stmt->bindValue(21,$t->getDescData1()); 
+			$stmt->bindValue(22,$t->getData2()); 
+			$stmt->bindValue(23,$t->getDescData2()); 			
+			$stmt->bindValue(24,$t->getData3()); 
+			$stmt->bindValue(25,$t->getDescData3()); 	
+
+    		//var_dump($t->getData3());
+    		//var_dump($t->getDescData3());
+
+ 
+			$stmt->bindValue(26,$t->getId()); 
+
+            //var_dump($t);
 
 			$stmt->execute();  
 			return 'OK';
@@ -128,9 +192,32 @@
 			$sql = $sql . ' d0003_flag2 , ';
 			$sql = $sql . ' d0003_desc_flag2 , ';
 			$sql = $sql . ' d0003_flag3 , ';
-			$sql = $sql . ' d0003_desc_flag3'; 
+			$sql = $sql . ' d0003_desc_flag3,'; 
+
+
+			$sql = $sql . ' d0003_num1,';
+			$sql = $sql . ' d0003_desc_num1,';
+
+			$sql = $sql . ' d0003_num2,';
+			$sql = $sql . ' d0003_desc_num2,';
+
+			$sql = $sql . ' d0003_num3,';
+			$sql = $sql . ' d0003_desc_num3,';
+
+			$sql = $sql . ' d0003_data1,';
+			$sql = $sql . ' d0003_desc_data1,';
+			
+			$sql = $sql . ' d0003_data2,';
+			$sql = $sql . ' d0003_desc_data2,';
+
+			$sql = $sql . ' d0003_data3,';
+			$sql = $sql . ' d0003_desc_data3'; 
+
+
 			$sql = $sql . ' )' ; 
-			$sql = $sql . '    values (?,?,?,?,?,?,?,?,?,?,?,?,?)';  
+			$sql = $sql . '    values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';  
+
+
 
     		//var_dump($sql);
 
@@ -148,8 +235,20 @@
 			$stmt->bindValue(10,$t->getFlag2()); 
 			$stmt->bindValue(11,$t->getDescFlag2()); 		
 			$stmt->bindValue(12,$t->getFlag3()); 
-			$stmt->bindValue(13,$t->getDescFlag3()); 
+			$stmt->bindValue(13,$t->getDescFlag3());  
+			$stmt->bindValue(14,$t->getNum1()); 
+			$stmt->bindValue(15,$t->getDescNum1());  
+			$stmt->bindValue(16,$t->getNum2()); 
+			$stmt->bindValue(17,$t->getDescNum2()); 
+			$stmt->bindValue(18,$t->getNum3()); 
+			$stmt->bindValue(19,$t->getDescNum3()); 
 
+			$stmt->bindValue(20,$t->getData1()); 
+			$stmt->bindValue(21,$t->getDescData1()); 
+			$stmt->bindValue(22,$t->getData2()); 
+			$stmt->bindValue(23,$t->getDescData2()); 			
+			$stmt->bindValue(24,$t->getData3()); 
+			$stmt->bindValue(25,$t->getDescData3()); 			
 
 /*			$stmt->bindValue(14,$t->getDescTabPad()); 
   
@@ -191,6 +290,25 @@
 			$sql = $sql . ' d0003_flag3 flag3,';
 			$sql = $sql . ' d0003_desc_flag3 desc_flag3,';
 			$sql = $sql . ' d0003_id id ,'  ;
+
+			$sql = $sql . ' d0003_num1 num1,';
+			$sql = $sql . ' d0003_desc_num1 desc_num1,';
+
+			$sql = $sql . ' d0003_num2 num2,';
+			$sql = $sql . ' d0003_desc_num2 desc_num2,';
+
+			$sql = $sql . ' d0003_num3 num3,';
+			$sql = $sql . ' d0003_desc_num3 desc_num3,';
+
+			$sql = $sql . ' d0003_data1 data1,';
+			$sql = $sql . ' d0003_desc_data1 desc_data1,';
+			
+			$sql = $sql . ' d0003_data2 data2,';
+			$sql = $sql . ' d0003_desc_data2 desc_data2,';
+
+			$sql = $sql . ' d0003_data3 data3,';
+			$sql = $sql . ' d0003_desc_data3 desc_data3,'; 
+
 			$sql = $sql . ' d0001_descricao nome_grupo '  ;
 			$sql = $sql . ' FROM public."E0003_config_tp" ctp, public."E0001_tabela_padrao" tp ';
 			$sql = $sql . ' where tp.d0001_id = ctp.d0001_id '; 
@@ -231,6 +349,26 @@
 			$sql = $sql . ' d0003_desc_flag2  desc_flag2,';
 			$sql = $sql . ' d0003_flag3 flag3,';
 			$sql = $sql . ' d0003_desc_flag3 desc_flag3,';
+
+			$sql = $sql . ' d0003_num1 num1,';
+			$sql = $sql . ' d0003_desc_num1 desc_num1,';
+
+			$sql = $sql . ' d0003_num2 num2,';
+			$sql = $sql . ' d0003_desc_num2 desc_num2,';
+
+			$sql = $sql . ' d0003_num3 num3,';
+			$sql = $sql . ' d0003_desc_num3 desc_num3,';
+
+			$sql = $sql . ' d0003_data1 data1,';
+			$sql = $sql . ' d0003_desc_data1 desc_data1,';
+			
+			$sql = $sql . ' d0003_data2 data2,';
+			$sql = $sql . ' d0003_desc_data2 desc_data2,';
+
+			$sql = $sql . ' d0003_data3 data3,';
+			$sql = $sql . ' d0003_desc_data3 desc_data3,';
+
+
 			$sql = $sql . ' d0003_id id ,'  ;
 			$sql = $sql . ' d0001_descricao nome_grupo '  ;
 			$sql = $sql . ' FROM public."E0003_config_tp" ctp, public."E0001_tabela_padrao" tp ';

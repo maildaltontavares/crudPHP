@@ -24,7 +24,126 @@
 		private $flag3;
 		private $descFlag3; 
 
+		private $num1;
+		private $descNum1; 
+
+		private $num2;
+		private $descNum2; 
+       
+        private $num3;
+		private $descNum3; 		
+
+        private $data1;
+		private $descData1; 	
+
+        private $data2;
+		private $descData2; 	
+
+        private $data3;
+		private $descData3; 	
+
 		private $descTabPad; 
+
+		public function setDescData3($descData3){
+			$this->descData3 = $descData3;
+		}
+
+		public function getDescData3(){
+			return $this->descData3;
+		}
+
+		public function setData3($data3){
+			$this->data3 = $data3;
+		}
+
+		public function getData3(){
+			return $this->data3;
+		}
+
+
+		public function setDescData2($descData2){
+			$this->descData2 = $descData2;
+		}
+
+		public function getDescData2(){
+			return $this->descData2;
+		}
+
+		public function setData2($data2){
+			$this->data2 = $data2;
+		}
+
+		public function getData2(){
+			return $this->data2;
+		}
+
+		public function setDescData1($descData1){
+			$this->descData1 = $descData1;
+		}
+
+		public function getDescData1(){
+			return $this->descData1;
+		}
+
+
+		public function setData1($data1){
+			$this->data1 = $data1;
+		}
+
+		public function getData1(){
+			return $this->data1;
+		}
+
+		public function setNum1($num1){
+			$this->num1 = $num1;
+		}
+
+		public function getNum1(){
+			return $this->num1;
+		}
+
+
+		public function setNum2($num2){
+			$this->num2 = $num2;
+		}
+
+		public function getNum2(){
+			return $this->num2;
+		}	
+		
+		public function setNum3($num3){
+			$this->num3 = $num3;
+		}
+
+		public function getNum3(){
+			return $this->num3;
+		}	
+
+		public function setDescNum3($descNum3){
+			$this->descNum3 = $descNum3;
+		}
+
+		public function getDescNum3(){
+			return $this->descNum3;
+		}	
+
+
+		public function setDescNum2($descNum2){
+			$this->descNum2 = $descNum2;
+		}
+
+		public function getDescNum2(){
+			return $this->descNum2;
+		}	
+
+
+		public function setDescNum1($descNum1){
+			$this->descNum1 = $descNum1;
+		}
+
+		public function getDescNum1(){
+			return $this->descNum1;
+		}	 
 
 		public function setDescTabPad($descTabPad){
 			$this->descTabPad = $descTabPad;
