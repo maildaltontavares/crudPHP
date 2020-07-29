@@ -181,7 +181,7 @@
             <li> <a href="#">Shopping</a>
 
                     <ul>
-                         <li> <a href="#">Tabelas</a> </li>
+                         <li> <a href="lista_tabela.php">Tabelas</a> </li>
                          <li> <a href="lista_tp.php">Grupo Tabelas</a> </li>
                          <li> <a href="lista_paramtp.php">Parametrização Tabelas</a> </li>
                          
