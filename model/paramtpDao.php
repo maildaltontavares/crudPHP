@@ -20,6 +20,68 @@
 		 
 		}
 
+
+		public function buscaParamTbPd(ParamTp $t)
+		{
+  
+ 
+			$sql = 'SELECT ';
+   			$sql = $sql . ' ctp.d0001_id id_tp, ';
+			$sql = $sql . ' d0003_str1 str1,';
+			$sql = $sql . ' d0003_desc_str1 desc_str1 ,';
+			$sql = $sql . ' d0003_str2  str2,';
+			$sql = $sql . ' d0003_desc_str2  desc_str2,';
+			$sql = $sql . ' d0003_str3  str3,';
+			$sql = $sql . ' d0003_desc_str3  desc_str3,'			;
+			$sql = $sql . ' d0003_flag1  flag1,';
+			$sql = $sql . ' d0003_desc_flag1 desc_flag1 ,';
+			$sql = $sql . ' d0003_flag2 flag2,';
+			$sql = $sql . ' d0003_desc_flag2  desc_flag2,';
+			
+			$sql = $sql . ' d0003_flag3 flag3,';
+			$sql = $sql . ' d0003_desc_flag3 desc_flag3,';
+
+			$sql = $sql . ' d0003_num1 num1,';
+			$sql = $sql . ' d0003_desc_num1 desc_num1,';
+
+			$sql = $sql . ' d0003_num2 num2,';
+			$sql = $sql . ' d0003_desc_num2 desc_num2,';
+
+			$sql = $sql . ' d0003_num3 num3,';
+			$sql = $sql . ' d0003_desc_num3 desc_num3,';
+
+			$sql = $sql . ' d0003_data1 data1,';
+			$sql = $sql . ' d0003_desc_data1 desc_data1,';
+			
+			$sql = $sql . ' d0003_data2 data2,';
+			$sql = $sql . ' d0003_desc_data2 desc_data2,';
+
+			$sql = $sql . ' d0003_data3 data3,';
+			$sql = $sql . ' d0003_desc_data3 desc_data3,';
+
+
+			$sql = $sql . ' d0003_id id  '  ;
+			$sql = $sql . ' FROM public."E0003_config_tp" ctp';
+			$sql = $sql . ' where d0001_id = ?';
+			$stmt = Conexao::getConn()->prepare($sql); 
+			$stmt->bindValue(1,$t->getIdTp());
+
+			//var_dump($sql);
+
+			$stmt->execute();  
+			
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}
+
+
 		public function buscaParamTb(ParamTp $t)
 		{
   
@@ -64,9 +126,6 @@
 			$sql = $sql . ' where d0003_id = ?';
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$t->getId());
-
-			//var_dump($sql);
-
 			$stmt->execute();  
 			
 			if($stmt->rowCount() > 0):

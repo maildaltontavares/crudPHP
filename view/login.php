@@ -46,7 +46,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
       include "topo.php";
     ?>
 
-  </header>
+ </header>
 
   
   <section id="main">    
@@ -73,7 +73,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
 
               $usuarioCtr = new UsuarioCtr(); 
           
-              var_dump($usuarioCtr);
+              //var_dump($usuarioCtr);
         
 
 

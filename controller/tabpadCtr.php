@@ -17,9 +17,26 @@
 
 		}		
 
+		public function buscatpSigla($p_sigla){
+
+           // echo 'Aqquiiii';
+            
+
+			$tabpad = new TabPad();  
+			$tabpad->setSigla($p_sigla);
+
+            //var_dump($tabpad->getSigla());
+
+			$tabpadDao = new tabpadDao();  
+			return $tabpadDao->buscatpSigla($tabpad); 
+
+
+		 } 
+
+
 		public function buscatabpad($p_id){
 
-			$tabpad = new TabPad();
+			$tabpad = new TabPad();  
 			$tabpad->setId($p_id);
 
 			$tabpadDao = new tabpadDao();  
@@ -29,13 +46,24 @@
 		 } 
 
 
-		public function update($p_id,$p_tabpad){
+		public function buscaTpCad(){
+
+			
+			$tabpadDao = new tabpadDao();  
+			return $tabpadDao->buscaTpCad();
+			
+
+		 }  
+
+
+		public function update($p_id,$p_tabpad,$p_sigla){
 
 
 			// Prepara Bean tabpad
 			$tabpad = new TabPad();
 			$tabpad->setId($p_id);
 			$tabpad->setNome($p_tabpad); 
+			$tabpad->setSigla($p_sigla); 
 
 			//  Vzalida tabpad
 			$tabpadDao = new tabpadDao();
@@ -44,13 +72,13 @@
 		 }
 
 
-		public function create($p_tabpad){
+		public function create($p_tabpad,$p_sigla){
 
 
 			// Prepara Bean tabpad
 			$tabpad = new TabPad();
 			$tabpad->setNome($p_tabpad);  
-
+			$tabpad->setSigla($p_sigla);  
 			$tabpadDao = new tabpadDao();
 			$r = $tabpadDao->create($tabpad); 
 			return  $r;  

@@ -24,9 +24,9 @@
  
 			$sql = 'SELECT ';
    			$sql = $sql . ' ctp.d0001_id id_tp, ';
-			$sql = $sql . ' d0004_str1 str1,';
-			$sql = $sql . ' d0004_str2  str2,';
-			$sql = $sql . ' d0004_str3  str3,';
+			$sql = $sql . ' d0004_string1 str1,';
+			$sql = $sql . ' d0004_string2  str2,';
+			$sql = $sql . ' d0004_string3  str3,';
 			$sql = $sql . ' d0004_flag1  flag1,';
 			$sql = $sql . ' d0004_flag2 flag2,';			
 			$sql = $sql . ' d0004_flag3 flag3,';
@@ -63,18 +63,21 @@
 		{ 
 		 
 			$sql = 'update public."E0004_tabela" set d0001_id=?, ';
-			$sql = $sql . ' d0004_str1 = ?, ';
-			$sql = $sql . ' d0004_str2 = ?, ';
-			$sql = $sql . ' d0004_str3 = ?, ';	
+			$sql = $sql . ' d0004_string1 = ?, ';
+			$sql = $sql . ' d0004_string2 = ?, ';
+			$sql = $sql . ' d0004_string3 = ?, ';	
 			$sql = $sql . ' d0004_flag1 = ?, ';
 			$sql = $sql . ' d0004_flag2 = ?, ';
-			$sql = $sql . ' d0004_flag3 = ?, ';
+			$sql = $sql . ' d0004_flag3 = ?  ';
+
+/*			
 			$sql = $sql . ' d0004_num1 = ?,';
  			$sql = $sql . ' d0004_num2 = ?,';
 			$sql = $sql . ' d0004_num3 = ?,';
 			$sql = $sql . ' d0004_data1 = ?,';
 			$sql = $sql . ' d0004_data2 = ?,';
 			$sql = $sql . ' d0004_data3 = ?';
+*/
 			$sql = $sql . ' where d0004_id = ? '; 
 
 
@@ -87,6 +90,7 @@
 			$stmt->bindValue(5,$t->getFlag1()); 
 			$stmt->bindValue(6,$t->getFlag2()); 
 			$stmt->bindValue(7,$t->getFlag3()); 
+/*
 			$stmt->bindValue(8,$t->getNum1()); 
 			$stmt->bindValue(9,$t->getNum2()); 
 			$stmt->bindValue(10,$t->getNum3()); 
@@ -95,6 +99,8 @@
 			$stmt->bindValue(13,$t->getData3());  
  
 			$stmt->bindValue(14,$t->getId()); 
+*/
+  			$stmt->bindValue(8,$t->getId()); 
 
             //var_dump($t);
 
@@ -111,12 +117,15 @@
 		                       
 			$sql = 'Insert into public."E0004_tabela" (';
 			$sql = $sql . ' d0001_id , ';
-			$sql = $sql . ' d0004_str1,  ';			
-			$sql = $sql . ' d0004_str2 , ';
-			$sql = $sql . ' d0004_str3 , ';
+			$sql = $sql . ' d0004_string1,  ';			
+			$sql = $sql . ' d0004_string2 , ';
+			$sql = $sql . ' d0004_string3 , ';
 			$sql = $sql . ' d0004_flag1 , ';
 			$sql = $sql . ' d0004_flag2 , ';
-			$sql = $sql . ' d0004_flag3 , ';
+			$sql = $sql . ' d0004_flag3   ';
+
+/*
+
 			$sql = $sql . ' d0004_num1,';
 			$sql = $sql . ' d0004_num2,';
 			$sql = $sql . ' d0004_num3,';
@@ -125,8 +134,9 @@
      		$sql = $sql . ' d0004_data3';
 			$sql = $sql . ' )' ; 
 			$sql = $sql . '    values (?,?,?,?,?,?,?,?,?,?,?,?,?)';  
-
-
+*/
+			$sql = $sql . ' )' ; 
+			$sql = $sql . '    values (?,?,?,?,?,?,?)';  
 
     		//var_dump($sql);
 
@@ -139,13 +149,14 @@
 			$stmt->bindValue(5,$t->getFlag1()); 
 			$stmt->bindValue(6,$t->getFlag2()); 
 			$stmt->bindValue(7,$t->getFlag3()); 
+/*			
 			$stmt->bindValue(8,$t->getNum1()); 
 			$stmt->bindValue(9,$t->getNum2()); 
 			$stmt->bindValue(10,$t->getNum3()); 
 			$stmt->bindValue(11,$t->getData1()); 
 			$stmt->bindValue(12,$t->getData2()); 
 			$stmt->bindValue(13,$t->getData3()); 
-
+*/
 
 /*			$stmt->bindValue(14,$t->getDescTabPad()); 
   
@@ -170,13 +181,14 @@
 		}
 
 
-		public function read()
+		public function read(Tabela $t)
 		{ 
 			$sql = 'SELECT ';
+            $sql = $sql . ' ctp.d0004_id id, ';
    			$sql = $sql . ' ctp.d0001_id id_tp, ';
-			$sql = $sql . ' d0004_str1 str1,';
-			$sql = $sql . ' d0004_str2  str2,';
-			$sql = $sql . ' d0004_str3  str3,';
+			$sql = $sql . ' d0004_string1 str1,';
+			$sql = $sql . ' d0004_string2  str2,';
+			$sql = $sql . ' d0004_string3  str3,';
 			$sql = $sql . ' d0004_flag1  flag1,';
 			$sql = $sql . ' d0004_flag2 flag2,';			
 			$sql = $sql . ' d0004_flag3 flag3,';
@@ -186,15 +198,16 @@
 		    $sql = $sql . ' d0004_data1 data1,';	
 			$sql = $sql . ' d0004_data2 data2,';
 			$sql = $sql . ' d0004_data3 data3,';
+			$sql = $sql . ' tp.d0001_sigla sigla,';			
 			$sql = $sql . ' d0001_descricao nome_grupo '  ;
 			$sql = $sql . ' FROM public."E0004_tabela" ctp, public."E0001_tabela_padrao" tp ';
-			$sql = $sql . ' where tp.d0001_id = ctp.d0001_id '; 
-			$sql = $sql . '  order by d0001_descricao ';
+			$sql = $sql . ' where tp.d0001_id = ctp.d0001_id and tp.d0001_sigla = ? '; 
+			$sql = $sql . '  order by d0004_string1 ';
 
 			//var_dump($sql);
 
 			$stmt = Conexao::getConn()->prepare($sql); 
-			
+			$stmt->bindValue(1,$t->getSigla());
 			$stmt->execute();  
 			if($stmt->rowCount() > 0):
 				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
@@ -209,14 +222,17 @@
 		public function readF(Tabela $t)
 		{
  		 
+
+
 			//$sql = 'Select * from usuario';
 			$prim_filtro = false;
 
 			$sql = 'SELECT ';
+            $sql = $sql . ' ctp.d0004_id id, ';			
    			$sql = $sql . ' ctp.d0001_id id_tp, ';
-			$sql = $sql . ' d0004_str1 str1,';
-			$sql = $sql . ' d0004_str2  str2,';
-			$sql = $sql . ' d0004_str3  str3,';
+			$sql = $sql . ' d0004_string1 str1,';
+			$sql = $sql . ' d0004_string2  str2,';
+			$sql = $sql . ' d0004_string3  str3,';
 			$sql = $sql . ' d0004_flag1  flag1,';
 			$sql = $sql . ' d0004_flag2 flag2,';			
 			$sql = $sql . ' d0004_flag3 flag3,';
@@ -228,28 +244,29 @@
 			$sql = $sql . ' d0004_data3 data3,';
 			$sql = $sql . ' d0001_descricao nome_grupo '  ;
 			$sql = $sql . ' FROM public."E0004_tabela" ctp, public."E0001_tabela_padrao" tp ';
-			$sql = $sql . ' where tp.d0001_id = ctp.d0001_id '; 
- 
+			$sql = $sql . ' where tp.d0001_id = ctp.d0001_id and tp.d0001_sigla = ? ';  
 			
-
-			if (!empty($t->getDescTabPad())):
+			$prim_filtro = false;
+			if (!empty($t->getStr1())):
 				$sql  = $sql . ' and ';
 			endif;
 
-			if(!empty($t->getDescTabPad())):
-				$sql =  $sql .  '  d0001_descricao like ? ';
+			if(!empty($t->getStr1())):
+				$sql =  $sql .  '  d0004_string1 like ? ';
 				$prim_filtro = True;
 			endif; 
 
-            $sql = $sql . '  order by d0001_descricao ';
+            $sql = $sql . '  order by d0004_string1 ';
 			
 			$stmt = Conexao::getConn()->prepare($sql);
 
-			$prim_filtro = false;
+			//var_dump($sql);
 			$bind = 1;
+            $stmt->bindValue($bind,$t->getSigla());
+			$bind++; 
 
-			if(!empty($t->getDescTabPad())):
-				$stmt->bindValue(1,$t->getDescTabPad());;
+			if(!empty($t->getStr1())):
+				$stmt->bindValue($bind,$t->getStr1());
 				$prim_filtro = True;
 				$bind++;
 			endif; 

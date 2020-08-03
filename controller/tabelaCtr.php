@@ -17,7 +17,7 @@
 
 		}		
 
-		public function buscatabela($p_id){
+		public function buscaTabela($p_id){
 
 			$tabela = new tabela();
 			$tabela->setId($p_id);
@@ -61,6 +61,8 @@
 
 
 			// Prepara Bean tabela
+
+			//var_dump($p_idTp);
 			$tabela = new Tabela(); 
 			$tabela->setIdTp($p_idTp); 
 			$tabela->setStr1($p_str1); 
@@ -76,6 +78,8 @@
 			$tabela->setData2($p_data2); 
  			$tabela->setData3($p_data3); 
 
+ 			//var_dump($tabela);
+
 			$TabelaDao = new TabelaDao();
 			$r = $TabelaDao->create($tabela); 
 			return  $r;  
@@ -83,21 +87,26 @@
  
 
 
-		public function listatabela(){
+		public function listatabela($p_sigla){
 
+			$tabela = new Tabela(); 
+			$tabela->setSigla($p_sigla);   
+
+			//var_dump($tabela->getSigla($p_sigla));
 			
 			$TabelaDao = new TabelaDao();  
-			return $TabelaDao->read();
+			return $TabelaDao->read($tabela);
 			
 
 		 } 
 
 
-		public function listaTabelaF($p_tabela){
+		public function listaTabelaF($p_conteudo,$p_sigla){
 
 			// Prepara Bean tabela
 			$tabela = new Tabela(); 
-			$tabela->setDescTabPad($p_tabela);   
+			$tabela->setStr1($p_conteudo);  
+			$tabela->setSigla($p_sigla);    
 			 
 			$TabelaDao = new TabelaDao();
 			return $TabelaDao->readF($tabela);

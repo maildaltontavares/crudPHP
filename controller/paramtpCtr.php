@@ -14,12 +14,26 @@
 			$paramtpDao = new paramtpDao();  
 			return $paramtpDao->delete($paramtp); 
 
-		}		
+		}	
+
+
+		public function buscaParamTbPd($p_idTp){
+
+			$paramtp = new ParamTp();
+			$paramtp->setIdTp($p_idTp);
+
+			//var_dump($paramtp);
+
+			$paramtpDao = new paramtpDao();   
+			return $paramtpDao->buscaParamTbPd($paramtp); 
+		 }  
 
 		public function buscaParamTb($p_id){
 
 			$paramtp = new ParamTp();
 			$paramtp->setId($p_id);
+
+			//var_dump($paramtp);
 
 			$paramtpDao = new paramtpDao();   
 			return $paramtpDao->buscaParamTb($paramtp); 

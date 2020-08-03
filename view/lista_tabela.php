@@ -4,14 +4,45 @@
 
   require_once '../config.php';
   require_once ROOT_PATH . '/controller/tabelaCtr.php';  
+  require_once ROOT_PATH . '/controller/tabpadCtr.php';    
   
 
   if(!isset($_SESSION['user'])):
   	header('Location:login.php');  
   endif;	
 
+  include_once "menu.php"; 
+  
+  $id = 0;
+  $nometabpad = '';
+  $sigla  = ''; 
+  
+  if ((!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) )     ): 
+   	   
+       if(isset($_GET['idTp'])): //Executa apenas a primeira vez
+	       $tabpadCtr = new tabpadCtr();   
+	       $p_tabpad = $tabpadCtr->buscatabpad($_GET['idTp']);  
+	       $_SESSION['tabelaAtual'] = $p_tabpad[0]['sigla'];  
+	      // var_dump($_SESSION['tabelaAtual']);  
+	    else:
+	       $tabpadCtr = new tabpadCtr();   
+	       $tb =  $_SESSION['tabelaAtual'] ;
+	       $p_tabpad = $tabpadCtr->buscatpSigla($tb);   	       
+	   endif;    
 
-  include_once "menu.php";
+  else:
+       $tabpadCtr = new tabpadCtr();   
+       $tb =  $_SESSION['tabelaAtual'] ;
+       $p_tabpad = $tabpadCtr->buscatpSigla($tb);   
+  endif;	  
+
+  if(!empty($p_tabpad)): 
+     $id = $p_tabpad[0]['id'];  
+     $nometabpad = $p_tabpad[0]['descricao'];    
+     $sigla = $p_tabpad[0]['sigla'];    
+  endif;   
+
+  
 
   ?>  
    <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
@@ -27,7 +58,7 @@
 		<?php   
 
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabelas</h1>'; 
-		echo '<h1 class="p-3 mb-2 text-dark">Tabelas</h1>'; 
+		echo '<h1 class="p-3 mb-2 text-dark">Tabela de ' . $nometabpad .  '</h1>'; 
 
 		ECHO '
 		<div class="row">
@@ -35,8 +66,8 @@
 
 			    <form class="form-inline" >
 			      <div class="form-group mx-sm-3 mb-2">
-			          <label for="nomecateg">Nome da Tabela >> </label>	
-			          <input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por Nome">		       
+			          <label  >Descrição >> </label>	
+			          <input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por Descrição">		       
 			      </div>  
 
 			      <button type="submit" class="btn btn-primary mb-2" name = "pesquisar"> Pesquisar </button>
@@ -61,8 +92,9 @@
 			  <thead>
 			    <tr>
 			      <th scope="col">id</th>
-			      <th scope="col">Grupo</th>
 			      <th scope="col">Descrição</th>
+			      <th scope="col">Tabela</th>
+
  
 			      <th scope="col-2">Ação</th>
 
@@ -74,12 +106,13 @@
 
 		if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ):
 			 
-			foreach($tabela->listaTabela() as $p_tabela):
+			foreach($tabela->listaTabela($sigla) as $p_tabela):
 
 				echo '<tr>' .
 				      '<th scope="row">' . $p_tabela['id'] . '</th>' .
-				      '<td>' .  $p_tabela['descricao_grupo']      . '</td> ' .
 				      '<td>' .  $p_tabela['str1']      . '</td> ' .
+				      '<td>' .  $p_tabela['nome_grupo']      . '</td> ' .
+				      
 				  
 	          		  '<td><a href="tabelaCad.php?Id='  . $p_tabela['id'] . '&Altera=S'  . '">Alterar</a> </td>' .
 	                  '<td><a href="excluirTabela.php?Id=' . $p_tabela['id'] . '">Excluir</a> </td>'.
@@ -93,12 +126,13 @@
 
 		elseif(isset($_GET['pesquisar'])):
 
-			foreach($tabela->listaTabelaF($_GET['p_nome']) as $p_tabela):
+			foreach($tabela->listaTabelaF($_GET['p_nome'],$sigla) as $p_tabela):
 
 				echo '<tr>' .
 				      '<th scope="row">' . $p_tabela['id'] . '</th>' .
-				      '<td>' .  $p_tabela['descricao_grupo']      . '</td> ' .
 				      '<td>' .  $p_tabela['str1']      . '</td> ' . 
+				      '<td>' .  $p_tabela['nome_grupo']      . '</td> ' .
+				     
 				      '<td><a href="tabelaCad.php?Id='  . $p_tabela['id'] . '&Altera=S'  . '">Alterar</a> </td>' .
 	                  '<td><a href="excluirtabela.php?Id=' . $p_tabela['id'] . '">Excluir</a> </td>'.
 				     // '<td><button  type="submit" name="excluir" onclick=excluir("'. $p_tabela['id'] . '")>Excluir</button> </td>'.  

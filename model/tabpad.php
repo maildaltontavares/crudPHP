@@ -5,6 +5,7 @@
 
 		private $Id;
 		private $nome;
+		private $sigla;
 	 
 
 		public function setId($Id){
@@ -22,6 +23,14 @@
 		public function getNome(){
 			return $this->nome;
 		}
+
+		public function setSigla($sigla){
+			$this->sigla = $sigla;
+		}
+
+		public function getSigla(){
+			return $this->sigla;
+		}				
 		 
 
 
