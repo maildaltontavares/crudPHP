@@ -1,0 +1,11 @@
+Figura pagina login
+MD5 para a senha
+divisao por loja
+implemetar a seguranca
+Paginacao
+Controle de transações
+Pictures
+Validações
+Publicar
+Responsivo
+
