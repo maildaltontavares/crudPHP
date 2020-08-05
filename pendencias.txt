@@ -14,3 +14,5 @@ Setar como administrador
 
 
 set HOMEDRIVE=C:\Program Files\heroku\client\node_modules\netrc-parser\lib
+
+GIT PUSH HEROKU MASTER
