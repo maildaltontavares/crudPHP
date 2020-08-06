@@ -1,13 +1,14 @@
 Figura pagina login
 MD5 para a senha
 divisao por loja
-implemetar a seguranca
+implementar a seguranca
 Paginacao
 Controle de transações
 Pictures
 Validações
 Publicar
 Responsivo
+Figuras vetoriais
 
 
 Setar como administrador
@@ -16,3 +17,5 @@ Setar como administrador
 set HOMEDRIVE=C:\Program Files\heroku\client\node_modules\netrc-parser\lib
 
 GIT PUSH HEROKU MASTER
+ 
+git push -u crudphp master

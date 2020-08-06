@@ -84,37 +84,39 @@
                     color:#aaa;
                     }
                 @media (max-width: 500px) {
-                .menu{
-                    margin-left:-100%;
-                    transition:all .4s;
-                    }
-                label[for='bt_menu']{
-                    display:block;
-                    }
-                .menu>ul{
-                    margin-left:0;
-                    }
-                .menu{
-                    margin-top:5px;
-                    }
-                .menu ul li{
-                    width:100%;
-                    float:none;
-                    }
-                .menu ul ul{
-                    position:static;
-                    overflow:hidden;
-                    max-height:0;
-                    transition:all .4s;
-                    }
-                .menu ul li:hover ul{
-                    height:auto;
-                    max-height:200px;
-                    transition:all .4s;
-                    }
-                #bt_menu:checked ~ .menu{
-                    margin-left:0;
-                    }
+                    .menu{
+                        margin-left:-100%;
+                        transition:all .4s;
+                        max-width: 330px;
+                        }
+                    label[for='bt_menu']{
+                        display:block;
+                        }
+                    .menu>ul{
+                        margin-left:0;
+                        }
+                    .menu{
+                        margin-top:5px;
+                        }
+                    .menu ul li{
+                        width:100%;
+                        max-width: 330px;
+                        float:none;
+                        }
+                    .menu ul ul{
+                        position:static;
+                        overflow:hidden;
+                        max-height:0;
+                        transition:all .4s;
+                        }
+                    .menu ul li:hover ul{
+                        height:auto;
+                        max-height:200px;
+                        transition:all .4s;
+                        }
+                    #bt_menu:checked ~ .menu{
+                        margin-left:0;
+                        }
                 }
     </style> 
 
@@ -158,7 +160,7 @@
             <li> <a href="#">Movimentacoes</a>
 
                     <ul>
-                         <li> <a href="logon.php">Tipo de Movimento</a> </li>
+                         <li> <a href="">Tipo de Movimento</a> </li>
                          <li> <a href="">Gerencial</a> </li>
                          <li> <a href="">Fiscal</a> </li>
 
@@ -171,7 +173,7 @@
             <li> <a href="#">Relatórios</a>
 
                     <ul>
-                         <li> <a href="">Movimentações</a> </li>
+                         <li> <a href="#">Movimentações</a> </li>
          
                     </ul>
              </li>

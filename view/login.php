@@ -52,6 +52,9 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
 
         if(isset($_POST['login'])):
  
+
+          var_dump($_POST['login']);
+
           $erros = array();
 
           $username = filter_input(INPUT_POST, 'username',FILTER_SANITIZE_SPECIAL_CHARS); 
@@ -92,7 +95,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
           endif;  
         endif; 
 
-      ?>     
+      ?>       
    <body> 
   <div   class="blocos">
       <section id="logo_topo"> </section>  
@@ -106,24 +109,26 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
     <div class="blocos1">
 
         <div id="formp" class="text-center">
-        <form class="form-signin">
-            <img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-            <label for="inputEmail" class="sr-only">Usuario</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputPassword" class="sr-only">Senha</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <div class="checkbox mb-3">
-              <label>
-                <input type="checkbox" value="remember-me"> Esqueci a senha
-              </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
-        </form>
+            <form class="form-signin" method="POST">
+                <!--<img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+                <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+               
+                <label for="username" class="sr-only">Usuario</label>
+                <input type="text" name="username" class="form-control" placeholder="Usuário" required autofocus>
+               
+                <label for="senha" class="sr-only">Senha</label>
+                <input type="password"  name="senha" class="form-control" placeholder="Senha" required>
+                
+                <div class="checkbox mb-3">
+                  <label>
+                    <input type="checkbox" value=""> Esqueci a senha
+                  </label>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block" name="login" type="submit">Entrar</button>
+                <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+            </form>
         </div>  
-
-
    
     </div>
         
