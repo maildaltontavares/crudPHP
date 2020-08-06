@@ -65,8 +65,9 @@
                     /* cor do corpo do menu */
                     }
                 #bt_menu{
-                    display: none;
+                    display: none; 
                     }
+                
                 label[for='bt_menu']{
                     padding:5px;
                     background-color:#222;
@@ -78,6 +79,7 @@
                     display:none;
                     width:50px;
                     height:50px;
+                    margin-top: 12px;
                     }
                 label[for='bt_menu']:hover{
                     background-color:#f4f4f4;
