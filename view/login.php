@@ -50,10 +50,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
 
       <?php
 
-        if(isset($_POST['login'])):
- 
-
-          var_dump($_POST['login']);
+        if(isset($_POST['login'])): 
 
           $erros = array();
 
