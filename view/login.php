@@ -10,46 +10,44 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
   //session_start(); 
 ?> 
 
+
+
 <!DOCTYPE html>
-<html>
-<head>
-  <title>VirtuaX - Shopping Virtual</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<html>  
+    <head>
 
-    <style type="text/css">
-      
-        #container{
-            position: relative;
-            top: 100px; 
-            left:100px;             
-            padding:40px;
-             
-        }
-      /*  #login,#loginh1{
-          background-color: #836FFF;
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="generator" content="Jekyll v4.0.1">
+        <title>VirtuaX - Shopping Virtual</title> 
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+
+        <!-- Bootstrap core CSS -->
+        <link href="../assets/dist/css/bootstrap.css" rel="stylesheet">
+
+        <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+          }
+
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+         </style>
+        <!-- Custom styles for this template -->
+         <link href="signin.css" rel="stylesheet">
           
-        }*/
+    </head> 
 
-        #lb_username,.btn-primary,#lb_passw{
-          position: relative;
-          top:8px;
-        }
-
-    </style>
-
-</head>
-<body>
-
-  <header>
-    
-    <?php
-      include "topo.php";
-    ?>
-
- </header>
-
-  
-  <section id="main">    
       <?php
 
         if(isset($_POST['login'])):
@@ -91,50 +89,46 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
                   echo '<div class="alert alert-primary" role="alert"><li>' . $erro  . '</li></div>';  
               endforeach;  
 
-          endif;
+          endif;  
         endif; 
 
-      ?> 
+      ?>     
+   <body> 
+  <div   class="blocos">
+      <section id="logo_topo"> </section>  
 
-    <form method="POST">
-      
-      <div class = 'container' id="container">   
+  </div>
 
-                <div class="row" >
-                        <div class="col-3"> </div>
-                        <div class="col-3" id="login"><h1 id="loginh1" >Login</h1></div>
-                </div>
 
-                <div class="row">                         
-                        <div class="col-3"> </div>     
-                        <div class="col-3"><label for="exampleInputEmail1" id="lb_username">Usuario</label></div>
-                </div>   
+  
 
-                <div class="row">      
-                        <div class="col-3"> </div>    
-                        <div class="col-3"><input name="username" type="text" class="form-control"  ></div> 
-                </div>     
 
-                <div class="row">                         
-                        <div class="col-3"> </div>     
-                        <div class="col-3"><label for="exampleInputPassword1" id="lb_passw">Senha</label></div>
-                </div>   
+    <div class="blocos1">
 
-                <div class="row">      
-                        <div class="col-3"> </div>    
-                        <div class="col-3"><input type="password"  name="senha" class="form-control" id="exampleInputPassword1"></div> 
-                </div>                                          
+        <div id="formp" class="text-center">
+        <form class="form-signin">
+            <img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+            <label for="inputEmail" class="sr-only">Usuario</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Senha</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <div class="checkbox mb-3">
+              <label>
+                <input type="checkbox" value="remember-me"> Esqueci a senha
+              </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+        </form>
+        </div>  
+
+
+   
+    </div>
+        
+   </body>
     
 
-                <div class="row">
-                        <div class="col-3"> </div>
-                        <div class="col-3"><button type="submit" name= "login" class="btn btn-primary">Entrar</button></div>
-                </div>     
-      </div>        
-
-    </form>
-  </section>  
  
-
-</body>
 </html>
