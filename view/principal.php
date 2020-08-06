@@ -12,9 +12,9 @@
   endif;
  */
 
-  if(!isset($_SESSION['user'])):
-  	header('Location:login.php');  
-  endif;	
+ // if(!isset($_SESSION['user'])):
+  //	header('Location:login.php');  
+ // endif;	
 
 
   include_once "menu.php";
