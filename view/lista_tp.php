@@ -10,7 +10,7 @@
   	header('Location:login.php');  
   endif;	
 
-  include_once "menuHome.php";
+  include_once "menuPrincipal.php";
   include_once "menu.php";
 
   ?>  
@@ -38,7 +38,7 @@
 
 			    <form class="form-inline" >
 			      <div class="form-group mx-sm-3 mb-2">
-			          <label for="nomecateg">Nome do Grupo >> </label>	
+			           
 			          <input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por Nome">		       
 			      </div>  
 

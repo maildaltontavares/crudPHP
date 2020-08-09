@@ -80,6 +80,8 @@ body {
     line-height: 1.4;
   }
 
+ 
+
   .featurette-heading {
     font-size: 50px;
   }
@@ -89,4 +91,15 @@ body {
   .featurette-heading {
     margin-top: 7rem;
   }
+
+
+
+}
+
+@media (max-width: 330px) {
+  .carousel-inner {
+  margin-top: 88px;
+  font-size: 1.25rem;
+   }  
+
 }

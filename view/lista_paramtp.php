@@ -10,7 +10,7 @@
   	header('Location:login.php');  
   endif;	
 
-  include_once "menuHome.php";
+  include_once "menuPrincipal.php";
   include_once "menu.php";
 
   ?>  
@@ -23,7 +23,7 @@
 
     </style>
  
-	<div class="container">  
+	<div class="container"  style="">  
 		<?php   
 
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabpads</h1>'; 
@@ -35,7 +35,7 @@
 
 			    <form class="form-inline" >
 			      <div class="form-group mx-sm-3 mb-2">
-			          <label for="nomecateg">Nome do Grupo >> </label>	
+	 
 			          <input type="text" class="form-control"  name="p_nome" placeholder="Pesquise nome do grupo">		       
 			      </div>  
 

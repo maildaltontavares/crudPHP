@@ -11,7 +11,7 @@
   	header('Location:login.php');  
   endif;	
   
-  include_once "menuHome.php";
+  include_once "menuPrincipal.php";
   include_once "menu.php"; 
   
   $id = 0;

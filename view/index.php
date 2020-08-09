@@ -28,12 +28,17 @@
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
+
+        .carousel-inner {
+        margin-top: 300px;
+      }
+
+
       }
     </style>
     <!-- Custom styles for this template -->
     <link href="carousel.css" rel="stylesheet">
-    <link href="pricing.css" rel="stylesheet">
-  </head>
+      </head>
   <body>
     
 

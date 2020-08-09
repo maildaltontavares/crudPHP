@@ -89,7 +89,7 @@
                     .menu{
                         margin-left:-100%;
                         transition:all .4s;
-                        max-width: 330px;
+                        max-width: 340px;
                         }
                     label[for='bt_menu']{
                         display:block;
@@ -98,11 +98,11 @@
                         margin-left:0;
                         }
                     .menu{
-                        margin-top:5px;
+                        margin-top:0px;
                         }
                     .menu ul li{
                         width:100%;
-                        max-width: 330px;
+                        max-width: 340px;
                         float:none;
                         }
                     .menu ul ul{
@@ -126,7 +126,7 @@
   </head> 
 
 
-<body style="margin-top: 90px;">
+<body>
 
     <header>
 
