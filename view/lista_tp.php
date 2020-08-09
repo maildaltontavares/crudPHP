@@ -15,18 +15,9 @@
 
   ?>  
    <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
-
-  	<style type="text/css">
-  		.container{
-  			/*position: absolute;
-  			top:180px;
-  			left: 50px;*/
-  			z-index: 1; 	
-  		}
-
-    </style>
  
-	<div class="container">  
+ <body>
+	<div class="container" >  
 		<?php   
 
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabpads</h1>'; 
@@ -129,3 +120,5 @@
   include_once "footer.php";
 
 ?>  
+
+</body>

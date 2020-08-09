@@ -10,7 +10,7 @@
        header('Location:login.php');  
        exit();      
    endif;  
-   include "menuHome.php";
+   include_once "menuPrincipal.php";
    include_once "menu.php"; 
     $_SESSION['tabelaAtual'] ='';  
 
