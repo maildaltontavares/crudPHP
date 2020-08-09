@@ -9,6 +9,7 @@
      
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/pricing/">
 
     <!-- Bootstrap core CSS -->
 <link href="../assets/dist/css/bootstrap.css" rel="stylesheet">
@@ -31,8 +32,12 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="carousel.css" rel="stylesheet">
+    <link href="pricing.css" rel="stylesheet">
   </head>
   <body>
+    
+
+
     <header>
 
       <?php

@@ -21,7 +21,7 @@
 
  
 <?php
-  include_once "menuHome.php";
+  include_once "menuPrincipal.php";
   include_once "menu.php";
   
   include_once "footer.php";

@@ -1,9 +1,13 @@
+  
+ 
+
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="  background-image: url('Preto2.png'); 
-  background-repeat: repeat-x; "> <img src="LogoVirtuaX3.png">
-    <!--<a class="navbar-brand" href="index.php">Home</a> -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  background-repeat: repeat-x; background-color: #000; ">  
+    <a class="navbar-brand" href="index.php"><img src="LogoVirtuaX4.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> 
+    <span class="navbar-toggler-icon"></span>
+    </button> 
+
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">  
         <li class="nav-item active">
@@ -18,17 +22,14 @@
           <a class="nav-link" href="#">Eventos <span class="sr-only"> </span></a>
         </li>   
 
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Contato <span class="sr-only"> </span></a>
-        </li>  
 
         <li class="nav-item active">
           <a class="nav-link" href="login.php">Login <span class="sr-only"> </span></a>
         </li>         
  
-        <a class="navbar-brand" href="index.php">Home</a> 
+        
 
-        <!--
+        
 
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
@@ -36,7 +37,7 @@
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
-        -->
+        
 
 
       </ul>
@@ -46,3 +47,4 @@
       </form>
     </div>
   </nav>
+
