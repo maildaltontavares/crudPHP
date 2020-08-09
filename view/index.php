@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.0.1">
-    <title>Carousel Template · Bootstrap</title>
+     
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
 
@@ -34,57 +34,12 @@
   </head>
   <body>
     <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="  background-image: url('Preto.jpg'); 
-  background-repeat: repeat-x; "> <img src="LogoVirtuaX.jpg">
-    <a class="navbar-brand" href="login.php">Login</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Lojas <span class="sr-only"> </span></a>
-        </li>
 
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Promoções <span class="sr-only"> </span></a>
-        </li>        
+      <?php
+        include "menuHome.php";
+      ?>
 
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Eventos <span class="sr-only"> </span></a>
-        </li>  
-
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Contato <span class="sr-only"> </span></a>
-        </li>  
-
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Contato <span class="sr-only"> </span></a>
-        </li>  
-
-
-        <!--
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-        -->
-
-
-      </ul>
-      <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
-</header>
+   </header>
 
 <main role="main">
 
@@ -94,12 +49,14 @@
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
       <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
+       
        <!--
-
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        
         <div class="container">
           <div class="carousel-caption text-left">
             <h1>Example headline.</h1>
@@ -115,7 +72,9 @@
       <div class="carousel-item">  
           <img id="ed1" src="Shopping4.png"/> 
       </div>
-
+      <div class="carousel-item">  
+          <img id="ed1" src="ed2.jpg"/> 
+      </div>
 
       <div class="carousel-item">
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAhttp://localhost:8080/crudphp/view/Shopping6.pngspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>

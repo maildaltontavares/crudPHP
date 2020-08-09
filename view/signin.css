@@ -1,10 +1,13 @@
+ .blocos1 {
  
- 
+  margin-top: 3rem;
+}
 .blocos {
   background-color: #000;  
   height: 117px;
   background-image: url("Preto.jpg"); 
-  background-repeat: repeat-x;  
+  background-repeat: repeat-x; 
+
 }
  
  .blocos ,.blocos1{

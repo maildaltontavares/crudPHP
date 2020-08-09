@@ -11,6 +11,7 @@
   endif;  
 
 
+  include "menuHome.php";
   include_once "menu.php"; 
 
   $Altera = "N"; 

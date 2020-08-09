@@ -16,7 +16,12 @@
   	header('Location:login.php');  
   endif;	
 
+?>
 
+
+ 
+<?php
+  include_once "menuHome.php";
   include_once "menu.php";
   
   include_once "footer.php";

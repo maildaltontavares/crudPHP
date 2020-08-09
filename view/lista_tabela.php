@@ -10,7 +10,8 @@
   if(!isset($_SESSION['user'])):
   	header('Location:login.php');  
   endif;	
-
+  
+  include_once "menuHome.php";
   include_once "menu.php"; 
   
   $id = 0;

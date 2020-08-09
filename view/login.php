@@ -23,6 +23,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
         <title>VirtuaX - Shopping Virtual</title> 
 
         <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
 
         <!-- Bootstrap core CSS -->
         <link href="../assets/dist/css/bootstrap.css" rel="stylesheet">
@@ -45,6 +46,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
          </style>
         <!-- Custom styles for this template -->
          <link href="signin.css" rel="stylesheet">
+         <link href="carousel.css" rel="stylesheet">
           
     </head> 
 
@@ -93,14 +95,13 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
         endif; 
 
       ?>       
-   <body> 
-  <div   class="blocos">
-      <section id="logo_topo"> </section>  
-
-  </div>
-
-
-  
+ 
+ 
+    <header>
+      <?php
+        include "menuHome.php";
+      ?>
+    </header>
 
 
     <div class="blocos1">
@@ -128,8 +129,13 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
         </div>  
    
     </div>
-        
-   </body>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script></body>
+
+
     
 
  
