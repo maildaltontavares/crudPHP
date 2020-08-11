@@ -28,11 +28,7 @@
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
-
-        .carousel-inner {
-        margin-top: 300px;
-      }
-
+ 
 
       }
     </style>
@@ -62,11 +58,12 @@
       <li data-target="#myCarousel" data-slide-to="4"></li>
     </ol>
     <div class="carousel-inner">
+ 
       <div class="carousel-item active">
        
-       <!--
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
-        
+       
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/><img id="ed1" src="Shopping6.svg" height="100%" width="100%"/></svg>
+        <!--
         <div class="container">
           <div class="carousel-caption text-left">
             <h1>Example headline.</h1>
@@ -75,12 +72,12 @@
           </div>
         </div>
        -->
-          <img id="ed1" src="Shopping6.png"/>
+          <img id="ed1" src="Shopping6.svg" height="100%" width="100%"/>
 
       </div>
 
       <div class="carousel-item">  
-          <img id="ed1" src="Shopping4.png"/> 
+          <img id="ed1" src="Shopping4.png" height="100%" width="100%"/> 
       </div>
       <div class="carousel-item">  
           <img id="ed1" src="ed2.jpg"/> 

@@ -7,7 +7,7 @@
     <a class="p-2 " href="#" style="font-color: #FFF; text-decoration: none; ">Lojas</a>
     <a class="p-2 " href="#" style="font-color: #FFF; text-decoration: none; ">Promoções</a>
     <a class="p-2 " href="#" style="font-color: #FFF; text-decoration: none; ">Eventos</a>
-    <a class="p-2 " href="index.php" style="font-color: #FFF; text-decoration: none; ">Home</a>
+    <a class="p-2 " href="Index.php" style="font-color: #FFF; text-decoration: none; ">Home</a>
  
   </nav>
   <!--<a class="btn btn-outline-primary" href="#">Sign up</a>   -->
