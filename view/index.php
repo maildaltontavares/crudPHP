@@ -77,10 +77,10 @@
       </div>
 
       <div class="carousel-item">  
-          <img id="ed1" src="Shopping4.png" height="100%" width="100%"/> 
+          <img id="ed1" src="ed11.jpg" height="100%" width="100%"/> 
       </div>
       <div class="carousel-item">  
-          <img id="ed1" src="ed2.jpg"  height="100%"; width="100%"/> 
+          <img id="ed1" src="Ed10.jpg"  height="100%"; width="100%"/> 
       </div>
 
       <div class="carousel-item">

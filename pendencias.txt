@@ -1,4 +1,7 @@
-Figura pagina login
+Figura pagina login- ok
+Publicar - ok 
+Figuras vetoriais
+
 MD5 para a senha
 divisao por loja
 implementar a seguranca
@@ -6,9 +9,8 @@ Paginacao
 Controle de transações
 Pictures
 Validações
-Publicar
 Responsivo
-Figuras vetoriais
+
 
 
 Setar como administrador
