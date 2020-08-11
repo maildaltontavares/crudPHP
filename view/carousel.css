@@ -100,9 +100,11 @@ body {
   .carousel-inner   {
  
   font-size: 1.25rem;
+ 
    } 
 .carousel-item {
   height: 17rem;
+  margin-top: 55px;
 }
  .carousel-item > img {
   position: absolute;
@@ -110,6 +112,7 @@ body {
   left: 0;
   min-width: 100%;
   height: 17rem; 
+
 }
 
 }
