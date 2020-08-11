@@ -33,7 +33,7 @@ body {
   top: 0;
   left: 0;
   min-width: 100%;
-  height: 32rem;
+  height: 32rem; 
 }
 
 
@@ -97,9 +97,19 @@ body {
 }
 
 @media (max-width: 380px) {
-  .carousel-inner .carousel-item  {
-   margin-top: 1rem;
+  .carousel-inner   {
+ 
   font-size: 1.25rem;
-   }  
+   } 
+.carousel-item {
+  height: 17rem;
+}
+ .carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 17rem; 
+}
 
 }

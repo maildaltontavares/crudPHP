@@ -58,12 +58,12 @@
       <li data-target="#myCarousel" data-slide-to="4"></li>
     </ol>
     <div class="carousel-inner">
- 
+
       <div class="carousel-item active">
        
-       
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/><img id="ed1" src="Shopping6.svg" height="100%" width="100%"/></svg>
-        <!--
+       <!--
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        
         <div class="container">
           <div class="carousel-caption text-left">
             <h1>Example headline.</h1>
@@ -72,7 +72,7 @@
           </div>
         </div>
        -->
-          <img id="ed1" src="Shopping6.svg" height="100%" width="100%"/>
+          <img id="ed1" src="Shopping6.svg" height="100%"; width="100%"/>
 
       </div>
 
@@ -103,7 +103,11 @@
           </div>
         </div>
       </div>
+
+
+
     </div>
+   
     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
