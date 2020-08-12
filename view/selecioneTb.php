@@ -26,8 +26,9 @@
 
 <script> 
   var vAltera = <?php echo isset($_POST['selecioneTab'])?$_POST['selecioneTab']:'Nada';  ?>;   
-  $(document).ready(function() {     
-      window.open("lista_tabela.php?idTp=" + vAltera ,"_self" );  
+  $(document).ready(function() {  
+      window.open("index.php","_self" );
+      /* window.open("lista_tabela.php?idTp=" + vAltera ,"_self" );   */
   });  
 </script>
 
@@ -54,15 +55,27 @@
           <div class="form-group col-md-8"> 
 
           <label for="selecioneTab">Selecione a tabela que deseja manter</label>  
-          <select class="form-control" id="selecioneTab" name="selecioneTab" > 
+          <select class="form-control" id="selecioneTab" name="selecioneTab" >  
+          
           <?php
 
               $tabpad = new tabpadCtr();
-              foreach($tabpad->buscaTpCad() as $p_tabpad):        
-                    echo " <option value='" . $p_tabpad['id']  . "' > " . $p_tabpad['descricao']  . "</option>";   
+
+              foreach($tabpad->listatabpad() as $p_tabpad): 
+
+                  if ($p_tabpad['id'] ==  $_POST['selecioneTab'] ):
+                    echo ' <option value=' . $p_tabpad['id']  . ' selected >' . $p_tabpad['descricao']  .'</option>';  
+                  else:  
+                    echo ' <option value=' . $p_tabpad['id']  . ' >' . $p_tabpad['descricao']  .'</option>';  
+                  endif;  
               endforeach;
-          ?>
+
+          ?> 
+
           </select> 
+
+         
+
 
 
           </div> 
