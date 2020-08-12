@@ -11,9 +11,7 @@
   	header('Location:login.php');  
   endif;	
   
-  include_once "menuPrincipal.php";
-  include_once "menu.php"; 
-  
+   
 
   ?>  
    <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
