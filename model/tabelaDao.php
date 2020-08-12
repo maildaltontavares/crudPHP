@@ -165,15 +165,9 @@
 			var_dump($t->getStr1()); 
 			var_dump($t->getDescStr1());  
  */			
-	        //var_dump($stmt);
-
-			try {
-				$stmt->execute(); 
-			} catch (Exception $e) {
-			    return $e->getMessage();
-			    //var_dump($e->getMessage());
-			}
-
+	        //var_dump($stmt); 
+			 $stmt->execute(); 
+			 
 			//var_dump('OK');
 
 			return 'OK';
