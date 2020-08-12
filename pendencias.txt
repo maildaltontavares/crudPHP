@@ -21,3 +21,6 @@ set HOMEDRIVE=C:\Program Files\heroku\client\node_modules\netrc-parser\lib
 GIT PUSH HEROKU MASTER
  
 git push -u crudphp master
+
+
+erro na chamada do aqrquivo .php - letra inicial minusvcula
