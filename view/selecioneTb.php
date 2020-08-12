@@ -27,8 +27,8 @@
 <script> 
   var vAltera = <?php echo isset($_POST['selecioneTab'])?$_POST['selecioneTab']:'Nada';  ?>;   
   $(document).ready(function() {  
-      window.open("index.php","_self" );
-      /* window.open("lista_tabela.php?idTp=" + vAltera ,"_self" );   */
+      //window.open("index.php","_self" );
+       window.open("listaExe.php?idTp=" + vAltera ,"_self" ); 
   });  
 </script>
 
