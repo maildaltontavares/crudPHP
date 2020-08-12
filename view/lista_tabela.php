@@ -67,7 +67,7 @@
 
 			    <form class="form-inline" >
 			      <div class="form-group mx-sm-3 mb-2">
-			          <label  >Descrição >> </label>	
+			
 			          <input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por Descrição">		       
 			      </div>  
 
