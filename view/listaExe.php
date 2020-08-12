@@ -4,7 +4,7 @@
 
   require_once '../config.php';
   //require_once ROOT_PATH . '/controller/tabelaCtr.php';  
- // require_once ROOT_PATH . '/controller/tabpadCtr.php';    
+ require_once ROOT_PATH . '/controller/tabpadCtr.php';    
   
 
   if(!isset($_SESSION['user'])):
