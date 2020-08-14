@@ -120,11 +120,11 @@
 		}
 
 
-		public function read()
+		public function read($numPg)
 		{
  		 
 			//$sql = 'Select * from usuario';
-			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" order by d0001_descricao';
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" order by d0001_descricao LIMIT ' .QTDE_REGISTROS . ' OFFSET ' . $numPg  ;
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
 			$stmt->execute();  
@@ -138,9 +138,11 @@
 		 
 		}
 
-		public function readF(TabPad $t)
+		public function readF(TabPad $t,$numPg)
 		{
  		 
+ 
+
 			//$sql = 'Select * from usuario';
 			$prim_filtro = false;
 
@@ -153,10 +155,9 @@
 			if(!empty($t->getNome())):
 				$sql =  $sql .  ' d0001_descricao like ? ';
 				$prim_filtro = True;
-			endif; 
+			endif;  
 
-
-            $sql  = $sql . ' order by d0001_descricao';
+            $sql  = $sql . ' order by d0001_descricao  LIMIT ' . QTDE_REGISTROS . ' OFFSET ' . $numPg;
 
 			$stmt = Conexao::getConn()->prepare($sql);
 
@@ -183,6 +184,47 @@
 		}		
 
 
+
+
+		public function totRegistros(TabPad $t)
+		{
+ 		 
+			//$sql = 'Select * from usuario';
+			$prim_filtro = false;
+
+			$sql = 'SELECT count(*) totReg  FROM public."E0001_tabela_padrao"';
+
+			if (!empty($t->getNome()) and  $t->getNome() != ''    ):
+				$sql  = $sql . ' where ';
+			endif;
+
+			if(!empty($t->getNome()) and  $t->getNome() != '' ):
+				$sql =  $sql .  ' d0001_descricao like ? ';
+				$prim_filtro = True;
+			endif;  
+ 
+   
+			$stmt = Conexao::getConn()->prepare($sql);
+
+	 
+			$bind = 1;
+
+			if(!empty($t->getNome())  and  $t->getNome() != '' ):
+				$stmt->bindValue($bind,$t->getNome());;
+				$prim_filtro = True;
+				$bind++;
+			endif;  
+
+			$stmt->execute();  
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}		
 
 
 

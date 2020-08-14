@@ -86,17 +86,17 @@
  
 
 
-		public function listatabpad(){
+		public function listatabpad($numPg){
 
 			
 			$tabpadDao = new tabpadDao();  
-			return $tabpadDao->read();
+			return $tabpadDao->read($numPg);
 			
 
 		 } 
 
 
-		public function listatabpadF($p_tabpad){
+		public function listatabpadF($p_tabpad,$numPg){
 
 			// Prepara Bean tabpad
 			$tabpad = new TabPad();
@@ -104,10 +104,25 @@
 			$tabpad->setNome($p_tabpad);
 			 
 			$tabpadDao = new tabpadDao();
-			return $tabpadDao->readF($tabpad);
+			return $tabpadDao->readF($tabpad,$numPg);
 			
 
 		 } 
+
+		public function totRegistros($p_tabpad){ 
+
+			// Prepara Bean tabpad
+			$tabpad = new TabPad();
+			$tabpad->setNome($p_tabpad);
+			 
+			$tabpadDao = new tabpadDao();
+			return $tabpadDao->totRegistros($tabpad);
+			
+			
+
+		 } 
+
+		
 
 
 	}	 

@@ -1,6 +1,12 @@
 Figura pagina login- ok
 Publicar - ok 
-Figuras vetoriais
+Figuras vetoriais -ok
+
+
+Upper nas pesquisas
+Login por email
+tirar a senha da primeira tela
+recuperar senha
 
 MD5 para a senha
 divisao por loja
@@ -10,6 +16,8 @@ Controle de transações
 Pictures
 Validações
 Responsivo
+Phpexcel
+Por a impressao p primeira tela
 
 
 
