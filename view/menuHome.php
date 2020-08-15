@@ -26,7 +26,7 @@
         </li>   
 
         <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home <span class="sr-only"> </span></a>
+          <a class="nav-link" href="logout.php">Home <span class="sr-only"> </span></a>
         </li>    
         
         <li class="nav-item active">

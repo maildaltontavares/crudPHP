@@ -84,7 +84,14 @@
 			return  $r;  
 		 }
  
+		public function leTodas(){
 
+			
+			$tabpadDao = new tabpadDao();  
+			return $tabpadDao->leTodas();
+			
+
+		 } 
 
 		public function listatabpad($numPg){
 

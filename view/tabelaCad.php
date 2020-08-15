@@ -511,7 +511,7 @@
 
               $tabpad = new tabpadCtr();
 
-              foreach($tabpad->listatabpad() as $p_tabpad):
+              foreach($tabpad->leTodas() as $p_tabpad):
                   if ($p_tabpad['id'] == $id_tp or $p_tabpad['sigla'] == $sigla):
                     echo ' <option value=' . $p_tabpad['id']  . ' selected >' . $p_tabpad['descricao']  .'</option>';  
                   else:  

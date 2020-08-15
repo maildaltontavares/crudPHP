@@ -43,9 +43,9 @@
 		public function buscatpSigla(TabPad $t)
 		{
  
-			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" where d0001_sigla = ?';
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" where upper(d0001_sigla) = ?';
 			$stmt = Conexao::getConn()->prepare($sql); 
-			$stmt->bindValue(1,$t->getSigla());
+			$stmt->bindValue(1,strtoupper($t->getSigla()));
 
 			$stmt->execute();  
 			
@@ -119,6 +119,24 @@
 		 
 		}
 
+		public function leTodas()
+		{
+ 		 
+			//$sql = 'Select * from usuario';
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" order by d0001_descricao' ;
+			$stmt = Conexao::getConn()->prepare($sql); 
+			
+			$stmt->execute();  
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}
+
 
 		public function read($numPg)
 		{
@@ -153,7 +171,7 @@
 			endif;
 
 			if(!empty($t->getNome())):
-				$sql =  $sql .  ' d0001_descricao like ? ';
+				$sql =  $sql .  ' upper(d0001_descricao) like ? ';
 				$prim_filtro = True;
 			endif;  
 
@@ -165,7 +183,7 @@
 			$bind = 1;
 
 			if(!empty($t->getNome())):
-				$stmt->bindValue($bind,$t->getNome());;
+				$stmt->bindValue($bind,strtoupper($t->getNome()));
 				$prim_filtro = True;
 				$bind++;
 			endif; 
@@ -199,7 +217,7 @@
 			endif;
 
 			if(!empty($t->getNome()) and  $t->getNome() != '' ):
-				$sql =  $sql .  ' d0001_descricao like ? ';
+				$sql =  $sql .  ' upper(d0001_descricao) like ? ';
 				$prim_filtro = True;
 			endif;  
  
@@ -210,7 +228,7 @@
 			$bind = 1;
 
 			if(!empty($t->getNome())  and  $t->getNome() != '' ):
-				$stmt->bindValue($bind,$t->getNome());;
+				$stmt->bindValue($bind,strtoupper($t->getNome()));
 				$prim_filtro = True;
 				$bind++;
 			endif;  

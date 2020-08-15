@@ -1,0 +1,37 @@
+Figura pagina login- ok
+Publicar - ok 
+Figuras vetoriais -ok
+Responsivo - ok;
+
+
+Paginacao
+Upper nas pesquisas
+Controle de transações
+Melhorar layouts;
+por um link sobre a descricao apra consulta
+
+Login por email
+tirar a senha da primeira tela
+recuperar senha
+MD5 para a senha
+divisao por loja
+implementar a seguranca
+Pictures
+Validações
+Phpexcel
+Por a impressao p primeira tela
+Melhorar exclusão
+
+
+Como criar janela modal com formulário cadastrar com JavaScript - youtube
+Setar como administrador
+
+
+set HOMEDRIVE=C:\Program Files\heroku\client\node_modules\netrc-parser\lib
+
+GIT PUSH HEROKU MASTER
+ 
+git push -u crudphp master
+
+
+erro na chamada do aqrquivo .php - letra inicial minusvcula
