@@ -6,9 +6,15 @@ Responsivo - ok;
 
 Paginacao
 Upper nas pesquisas
+Corrigir o limpar todos - limpar o filtro
+
 Controle de transações
 Melhorar layouts;
 por um link sobre a descricao apra consulta
+Por a impressao p primeira tela
+Melhorar exclusão
+Gravar campos data e numerico
+
 
 Login por email
 tirar a senha da primeira tela
@@ -19,8 +25,7 @@ implementar a seguranca
 Pictures
 Validações
 Phpexcel
-Por a impressao p primeira tela
-Melhorar exclusão
+
 
 
 Como criar janela modal com formulário cadastrar com JavaScript - youtube
@@ -30,6 +35,7 @@ Setar como administrador
 set HOMEDRIVE=C:\Program Files\heroku\client\node_modules\netrc-parser\lib
 
 GIT PUSH HEROKU MASTER
+git push heroku master
  
 git push -u crudphp master
 

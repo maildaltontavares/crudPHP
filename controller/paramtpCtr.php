@@ -147,21 +147,32 @@
  
 
 
-		public function listaParamTb(){  
+		public function listaParamTb($numPg){  
 			$paramtpDao = new paramtpDao();  
-			return $paramtpDao->read();  
+			return $paramtpDao->read($numPg);  
 		 } 
 
 
-		public function listaParamTbF($p_tabpad){ 
+		public function listaParamTbF($p_tabpad,$numPg){ 
  
 			$paramtp = new ParamTp(); 
 			$paramtp->setDescTabPad($p_tabpad);   
 
 			$paramtpDao = new paramtpDao(); 
-			return $paramtpDao->readF($paramtp); 
+			return $paramtpDao->readF($paramtp,$numPg); 
 
 		 } 
+
+
+		public function totRegistros($p_tabpad){ 
+ 
+			$paramtp = new ParamTp(); 
+			$paramtp->setDescTabPad($p_tabpad);   
+
+			$paramtpDao = new paramtpDao(); 
+			return $paramtpDao->totRegistros($paramtp); 
+
+		 } 		 
 
 
 	}	 

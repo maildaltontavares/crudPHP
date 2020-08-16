@@ -84,11 +84,11 @@
 			return  $r;  
 		 }
  
-		public function leTodas(){
+		public function lerTodas(){
 
 			
 			$tabpadDao = new tabpadDao();  
-			return $tabpadDao->leTodas();
+			return $tabpadDao->lerTodas();
 			
 
 		 } 

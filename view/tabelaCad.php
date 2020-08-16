@@ -32,12 +32,14 @@
   $data2='';
   $data3='';
   $sigla = $_SESSION['tabelaAtual'];
+  $nometabpad = '';
 
   $tabpadCtr = new tabpadCtr();      
   $p_tabpad = $tabpadCtr->buscatpSigla($sigla);
   
   if(!empty($p_tabpad)): 
     $id_tp = $p_tabpad[0]['id'];
+    $nometabpad = $p_tabpad[0]['descricao'];   
   else:
     exit();  
   endif; 
@@ -488,7 +490,11 @@
 
     <div id='modelo'>
         <div class="cabecalho">
-            <h1 class="p-3 mb-2  text-dark cTitulo">Tabelas</h1>
+ 
+            <?php
+                echo '<h1 class="p-3 mb-2 text-dark">Tabela de ' . $nometabpad .  '</h1>'; 
+            ?>
+
             <div id="grupoBotoes">
                <a href="tabelaCad.php" class="btn btn-primary paramBt">Novo</a>                       
                <button type="submit" name= "gravar" class="btn btn-primary paramBt">Gravar</button>
@@ -511,7 +517,7 @@
 
               $tabpad = new tabpadCtr();
 
-              foreach($tabpad->leTodas() as $p_tabpad):
+              foreach($tabpad->lerTodas() as $p_tabpad):
                   if ($p_tabpad['id'] == $id_tp or $p_tabpad['sigla'] == $sigla):
                     echo ' <option value=' . $p_tabpad['id']  . ' selected >' . $p_tabpad['descricao']  .'</option>';  
                   else:  

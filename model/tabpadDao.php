@@ -119,7 +119,7 @@
 		 
 		}
 
-		public function leTodas()
+		public function lerTodas()
 		{
  		 
 			//$sql = 'Select * from usuario';

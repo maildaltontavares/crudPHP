@@ -332,7 +332,7 @@
 		}
 
 
-		public function read()
+		public function read($numPg)
 		{ 
 			$sql = 'SELECT ';
    			$sql = $sql . ' ctp.d0001_id id_tp, ';
@@ -371,7 +371,7 @@
 			$sql = $sql . ' d0001_descricao nome_grupo '  ;
 			$sql = $sql . ' FROM public."E0003_config_tp" ctp, public."E0001_tabela_padrao" tp ';
 			$sql = $sql . ' where tp.d0001_id = ctp.d0001_id '; 
-			$sql = $sql . '  order by d0001_descricao ';
+			$sql = $sql . '  order by d0001_descricao  LIMIT ' .QTDE_REGISTROS . ' OFFSET ' . $numPg  ;
 
 			//var_dump($sql);
 
@@ -388,7 +388,7 @@
 		 
 		}
 
-		public function readF(ParamTp $t)
+		public function readF(ParamTp $t,$numPg)
 		{
  		 
 			//$sql = 'Select * from usuario';
@@ -439,11 +439,11 @@
 			endif;
 
 			if(!empty($t->getDescTabPad())):
-				$sql =  $sql .  '  d0001_descricao like ? ';
+				$sql =  $sql .  '   upper(d0001_descricao) like ? ';
 				$prim_filtro = True;
 			endif; 
 
-            $sql = $sql . '  order by d0001_descricao ';
+            $sql = $sql . '  order by d0001_descricao   LIMIT ' . QTDE_REGISTROS . ' OFFSET ' . $numPg;
 			
 			$stmt = Conexao::getConn()->prepare($sql);
 
@@ -451,7 +451,7 @@
 			$bind = 1;
 
 			if(!empty($t->getDescTabPad())):
-				$stmt->bindValue(1,$t->getDescTabPad());;
+				$stmt->bindValue(1,strtoupper($t->getDescTabPad()));
 				$prim_filtro = True;
 				$bind++;
 			endif; 
@@ -468,7 +468,47 @@
 		 
 		}		
 
+		public function totRegistros(ParamTp $t )
+		{
+ 		 
+			//$sql = 'Select * from usuario';
+			$prim_filtro = false;
 
+			$sql = 'SELECT count(*) totReg ';
+			$sql = $sql . ' FROM public."E0003_config_tp" ctp, public."E0001_tabela_padrao" tp ';
+			$sql = $sql . ' where tp.d0001_id = ctp.d0001_id ';
+			
+
+			if(!empty($t->getDescTabPad())  and  $t->getDescTabPad() != '' ):
+				$sql  = $sql . ' and ';
+			endif;
+
+			if(!empty($t->getDescTabPad())  and  $t->getDescTabPad() != '' ):
+				$sql =  $sql .  '   upper(d0001_descricao) like ? ';
+				$prim_filtro = True;
+			endif;  
+			
+			$stmt = Conexao::getConn()->prepare($sql);
+
+			$prim_filtro = false;
+			$bind = 1;
+
+			if(!empty($t->getDescTabPad())  and  $t->getDescTabPad() != '' ):
+				$stmt->bindValue(1,strtoupper($t->getDescTabPad()));
+				$prim_filtro = True;
+				$bind++;
+			endif; 
+ 
+			$stmt->execute();  
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}	
 
 
 

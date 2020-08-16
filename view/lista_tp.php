@@ -142,21 +142,21 @@
 
 		//Paginação 
 
-		 if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ): 
+			 if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ): 
 
-	         if($_SESSION['arg1Tp'] ==''):
-	          	$aValor = $tabpad->totRegistros(''); 
-	         else:
-	          	$aValor = $tabpad->totRegistros($_SESSION['arg1Tp']); 
-	         endif;
+		         if($_SESSION['arg1Tp'] ==''):
+		          	$aValor = $tabpad->totRegistros(''); 
+		         else:
+		          	$aValor = $tabpad->totRegistros($_SESSION['arg1Tp']); 
+		         endif;
 
-		 elseif(isset($_GET['pesquisar'])):  
-		     $aValor = $tabpad->totRegistros($_SESSION['arg1Tp']);  
-		 endif;
+			 elseif(isset($_GET['pesquisar'])):  
+			     $aValor = $tabpad->totRegistros($_SESSION['arg1Tp']);  
+			 endif;
 
-		 include_once "paginas.php";
+			 include_once "paginas.php";
 
-        		 ?>
+         ?>
 
 		 <div class='box-paginacao'>     
 			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light' href="lista_tp.php?page=<?=$primeira_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Primeira Página"><<</a>    
@@ -175,12 +175,6 @@
 			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light' href="lista_tp.php?page=<?=$proxima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Próxima Página">></a>    
 			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light ' href="lista_tp.php?page=<?=$ultima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Última Página">>></a>    
 		 </div>   
-
-
-
-
-
-
 
 
  	</div>

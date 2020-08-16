@@ -87,7 +87,7 @@
  
 
 
-		public function listatabela($p_sigla){
+		public function listatabela($p_sigla,$numPg){
 
 			$tabela = new Tabela(); 
 			$tabela->setSigla($p_sigla);   
@@ -95,13 +95,13 @@
 			//var_dump($tabela->getSigla($p_sigla));
 			
 			$TabelaDao = new TabelaDao();  
-			return $TabelaDao->read($tabela);
+			return $TabelaDao->read($tabela,$numPg);
 			
 
 		 } 
 
 
-		public function listaTabelaF($p_conteudo,$p_sigla){
+		public function listaTabelaF($p_conteudo,$p_sigla,$numPg){
 
 			// Prepara Bean tabela
 			$tabela = new Tabela(); 
@@ -109,10 +109,24 @@
 			$tabela->setSigla($p_sigla);    
 			 
 			$TabelaDao = new TabelaDao();
-			return $TabelaDao->readF($tabela);
+			return $TabelaDao->readF($tabela,$numPg);
 			
 
 		 } 
+
+		public function totRegistros($p_conteudo,$p_sigla){
+
+			// Prepara Bean tabela
+			$tabela = new Tabela(); 
+			$tabela->setStr1($p_conteudo);  
+			$tabela->setSigla($p_sigla);    
+			 
+			$TabelaDao = new TabelaDao();
+			return $TabelaDao->totRegistros($tabela);
+			
+
+		 } 
+
 
 
 	}	 

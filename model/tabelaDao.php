@@ -175,7 +175,7 @@
 		}
 
 
-		public function read(Tabela $t)
+		public function read(Tabela $t,$numPg)
 		{ 
 			$sql = 'SELECT ';
             $sql = $sql . ' ctp.d0004_id id, ';
@@ -196,7 +196,7 @@
 			$sql = $sql . ' d0001_descricao nome_grupo '  ;
 			$sql = $sql . ' FROM public."E0004_tabela" ctp, public."E0001_tabela_padrao" tp ';
 			$sql = $sql . ' where tp.d0001_id = ctp.d0001_id and tp.d0001_sigla = ? '; 
-			$sql = $sql . '  order by d0004_string1 ';
+			$sql = $sql . '  order by d0004_string1  LIMIT ' .QTDE_REGISTROS . ' OFFSET ' . $numPg  ;
 
 			//var_dump($sql);
 
@@ -213,7 +213,7 @@
 		 
 		}
 
-		public function readF(Tabela $t)
+		public function readF(Tabela $t,$numPg)
 		{
  		 
 
@@ -246,11 +246,11 @@
 			endif;
 
 			if(!empty($t->getStr1())):
-				$sql =  $sql .  '  d0004_string1 like ? ';
+				$sql =  $sql .  '   upper(d0004_string1) like ? ';
 				$prim_filtro = True;
 			endif; 
 
-            $sql = $sql . '  order by d0004_string1 ';
+            $sql = $sql . '  order by d0004_string1   LIMIT ' . QTDE_REGISTROS . ' OFFSET ' . $numPg;
 			
 			$stmt = Conexao::getConn()->prepare($sql);
 
@@ -260,7 +260,7 @@
 			$bind++; 
 
 			if(!empty($t->getStr1())):
-				$stmt->bindValue($bind,$t->getStr1());
+				$stmt->bindValue($bind,strtoupper($t->getStr1()));
 				$prim_filtro = True;
 				$bind++;
 			endif; 
@@ -278,7 +278,49 @@
 		}		
 
 
+		public function totRegistros(Tabela $t)
+		{
+ 		 
+			//$sql = 'Select * from usuario';
+			$prim_filtro = false;
 
+			$sql = 'SELECT count(*) totReg  FROM public."E0004_tabela" ctp, public."E0001_tabela_padrao" tp ';
+			$sql = $sql . ' where tp.d0001_id = ctp.d0001_id and tp.d0001_sigla = ? ';  
+
+			$prim_filtro = false;
+			if (!empty($t->getStr1())  and  $t->getStr1() != '' ):
+				$sql  = $sql . ' and ';
+			endif;
+
+			if(!empty($t->getStr1()) and  $t->getStr1() != '' ):
+				$sql =  $sql .  ' upper(d0004_string1) like ? ';
+				$prim_filtro = True;
+			endif;  
+ 
+   
+			$stmt = Conexao::getConn()->prepare($sql);
+
+			$bind = 1;
+            $stmt->bindValue($bind,$t->getSigla());
+			$bind++; 
+
+			if(!empty($t->getStr1())  and  $t->getStr1() != '' ):
+				$stmt->bindValue($bind,strtoupper($t->getStr1()));
+				$prim_filtro = True;
+				$bind++;
+			endif; 
+  
+
+			$stmt->execute();  
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}
 
 
 	}
