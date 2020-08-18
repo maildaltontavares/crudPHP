@@ -178,12 +178,11 @@
               endif;  
 
               if(isset($_POST['data1']) and !EMPTY($_POST['data1'])):    
-                  $data1 = filter_input(INPUT_POST, 'data1',FILTER_SANITIZE_STRING);  
-                  
-                  if(!filter_var($data1,FILTER_SANITIZE_STRING)):
-                      $erros[] = "Descrição data 1 inválida!";              
+                  $data1 = $_POST['data1'];   
+                  if(  !filter_var (preg_replace("([^0-9/] | [^0-9-])","",$_POST['data1']))  ):
+                      $erros[] = "Data 1 inválida!";              
                   endif; 
-              else:
+              else: 
                   $data1 = ''; 
               endif;  
 
@@ -549,7 +548,7 @@
           <input id="flag3" name ="flag3" type="text" class="form-control"   value="<?php  echo $flag3;  ?>"   >  
 
           <label class="form-check-label paramLb" for="num1" id="lbNum1" >Descrição Numerico 1 </label>
-          <input id="num1" name ="num1" type="text" class="form-control"   value="<?php  echo $num1;  ?>"   >  
+          <input id="num1" name ="num1" type="number" min="1" max="999" class="form-control"   value="<?php  echo $num1;  ?>"   >  
 
           <label class="form-check-label paramLb" for="num2" id="lbNum2" >Descrição Numerico 2 </label>
           <input id="num2" name ="num2" type="text" class="form-control"   value="<?php  echo $num2;  ?>"   >  
@@ -558,13 +557,13 @@
           <input id="num3" name ="num3" type="text" class="form-control"   value="<?php  echo $num3;  ?>"   >  
 
           <label class="form-check-label paramLb" for="data1"  id="lbData1" >Descrição Data 1 </label>
-          <input id="data1" name ="data1" type="text" class="form-control"   value="<?php  echo $data1;  ?>"   >  
+          <input id="data1" name ="data1" type="date" class="form-control"   value="<?php  echo $data1;  ?>"   >  
 
           <label class="form-check-label paramLb" for="data2" id="lbData2" >>Descrição Data 2 </label>
-          <input id="data2" name ="data2" type="text" class="form-control"   value="<?php  echo $data2;  ?>"   > 
+          <input id="data2" name ="data2" type="date" class="form-control"   value="<?php  echo $data2;  ?>"   > 
 
           <label class="form-check-label paramLb" for="data3" id="lbData3" >>Descrição Data 3 </label>
-          <input id="data3" name ="data3" type="text" class="form-control"   value="<?php  echo $data3;  ?>"   > 
+          <input id="data3" name ="data3" type="date" class="form-control"   value="<?php  echo $data3;  ?>"   > 
 
 
         </div> 

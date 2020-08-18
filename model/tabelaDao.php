@@ -68,13 +68,14 @@
 			$sql = $sql . ' d0004_string3 = ?, ';	
 			$sql = $sql . ' d0004_flag1 = ?, ';
 			$sql = $sql . ' d0004_flag2 = ?, ';
-			$sql = $sql . ' d0004_flag3 = ?  ';
-
-/*			
+			$sql = $sql . ' d0004_flag3 = ?,  ';		
 			$sql = $sql . ' d0004_num1 = ?,';
+/*				
  			$sql = $sql . ' d0004_num2 = ?,';
 			$sql = $sql . ' d0004_num3 = ?,';
-			$sql = $sql . ' d0004_data1 = ?,';
+*/			
+			$sql = $sql . ' d0004_data1 = ?';
+/*			
 			$sql = $sql . ' d0004_data2 = ?,';
 			$sql = $sql . ' d0004_data3 = ?';
 */
@@ -90,19 +91,26 @@
 			$stmt->bindValue(5,$t->getFlag1()); 
 			$stmt->bindValue(6,$t->getFlag2()); 
 			$stmt->bindValue(7,$t->getFlag3()); 
-/*
+
 			$stmt->bindValue(8,$t->getNum1()); 
+/*			
 			$stmt->bindValue(9,$t->getNum2()); 
 			$stmt->bindValue(10,$t->getNum3()); 
-			$stmt->bindValue(11,$t->getData1()); 
+*/			if($t->getData1()!=''):
+			   	$stmt->bindValue(9,$t->getData1()); 
+			else:
+				$stmt->bindValue(9,null); 
+			endif;		
+/*			
 			$stmt->bindValue(12,$t->getData2()); 
 			$stmt->bindValue(13,$t->getData3());  
  
 			$stmt->bindValue(14,$t->getId()); 
 */
-  			$stmt->bindValue(8,$t->getId()); 
+  			$stmt->bindValue(10,$t->getId()); 
 
             //var_dump($t);
+    
 
 			$stmt->execute();  
 			return 'OK';

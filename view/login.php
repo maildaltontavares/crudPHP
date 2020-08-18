@@ -56,11 +56,10 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
 
           $erros = array();
 
-          $username = filter_input(INPUT_POST, 'username',FILTER_SANITIZE_SPECIAL_CHARS); 
-          if(!filter_var($username,FILTER_SANITIZE_STRING)):
-              $erros[] = "Usuario inválido!";
-              
-          endif;    
+          $email = filter_input(INPUT_POST, 'email',FILTER_SANITIZE_EMAIL); 
+          if(!filter_var($email,FILTER_SANITIZE_EMAIL)):
+              $erros[] = "E-mail inválido!";              
+          endif;  
 
           $pwd = $_POST['senha'];
 
@@ -71,22 +70,20 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
 
           if (empty($erros)):  // Nao tem erros de digitacao
 
-              $usuarioCtr = new UsuarioCtr(); 
-          
-              //var_dump($usuarioCtr);
-        
+              $usuarioCtr = new UsuarioCtr();   
 
-
-              if ($usuarioCtr->validaUsuario($username,$pwd)== 'OK'):  
-                  $_SESSION['user'] = $username;
+              if ($usuarioCtr->validaUsuario($email,$pwd)== 'OK'):  
+ 
+                  $_SESSION['user'] = $email;
                   //echo '<div class="alert alert-primary" role="alert"><li>' . $_SESSION['user']  . '</li></div>';
                   header('Location:principal.php');   
               else:  
-                  echo '<div class="alert alert-primary" role="alert"><li>' . "Usuario ou senha inválido!!"  . '</li></div>';                  
+ 
+                  echo '<div class="alert alert-primary" role="alert"><li>' . "E-mail ou senha inválido!!"  . '</li></div>';                  
               endif;  
 
           else:
-
+ 
               foreach ($erros as $erro):                 
                   echo '<div class="alert alert-primary" role="alert"><li>' . $erro  . '</li></div>';  
               endforeach;  
@@ -111,8 +108,8 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
                 <!--<img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
                 <h1 class="h3 mb-3 font-weight-normal">Login</h1>
                
-                <label for="username" class="sr-only">Usuario</label>
-                <input type="text" name="username" class="form-control" placeholder="Usuário" required autofocus>
+                <label for="email" class="sr-only">E-mail</label>
+                <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus>
                
                 <label for="senha" class="sr-only">Senha</label>
                 <input type="password"  name="senha" class="form-control" placeholder="Senha" required>

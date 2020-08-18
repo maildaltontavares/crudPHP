@@ -1,29 +1,31 @@
-Figura pagina login- ok
-Publicar - ok 
-Figuras vetoriais -ok
+Figura pagina login- ok;
+Publicar - ok; 
+Figuras vetoriais -ok;
 Responsivo - ok;
+Paginacao - cadastro dee usuarios - ok;
+Upper nas pesquisas - ok;
+Corrigir o limpar todos - limpar o filtro - ok;
 
 
-Paginacao
-Upper nas pesquisas
-Corrigir o limpar todos - limpar o filtro
+Gravar campos data e numerico;
+Pictures;
+Validações;
+
+
+Corrigir a visualizacao da mensagem de email ou senha invalida
 
 Controle de transações
 Melhorar layouts;
 por um link sobre a descricao apra consulta
 Por a impressao p primeira tela
 Melhorar exclusão
-Gravar campos data e numerico
-
-
-Login por email
-tirar a senha da primeira tela
+Exibir o usuario logado
 recuperar senha
 MD5 para a senha
 divisao por loja
 implementar a seguranca
-Pictures
-Validações
+
+
 Phpexcel
 
 

@@ -46,9 +46,9 @@
  		 
 			//$sql = 'Select * from usuario';
 			//$sql = 'SELECT * FROM public."S0001_usuario" where d0001_nome = ? and d0001_senha = ?';
-			$sql = 'SELECT  d0001_nome nome,d0001_senha senha  FROM public."S0001_usuario" where d0001_nome = ?';
+			$sql = 'SELECT  d0001_nome nome,d0001_senha senha  FROM public."S0001_usuario" where d0001_email = ?';
 			$stmt = Conexao::getConn()->prepare($sql); 
-			$stmt->bindValue(1,$u->getNome());
+			$stmt->bindValue(1,$u->getEmail());
 			//$stmt->bindValue(2,$u->getSenha());
 			$stmt->execute();  
 			
@@ -107,11 +107,11 @@
 		}
 
 
-		public function read()
+		public function read($numPg)
 		{
  		 
 			//$sql = 'Select * from usuario';
-			$sql = 'SELECT  d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel   FROM public."S0001_usuario"'; 
+			$sql = 'SELECT  d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel   FROM public."S0001_usuario" order by d0001_nome LIMIT ' .QTDE_REGISTROS . ' OFFSET ' . $numPg  ; 
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
 			$stmt->execute();  
@@ -125,7 +125,7 @@
 		 
 		}
 
-		public function readF(Usuario $u)
+		public function readF(Usuario $u,$numPg)
 		{
  		 
 			//$sql = 'Select * from usuario';
@@ -134,39 +134,41 @@
 			$sql = 'SELECT  d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel   FROM public."S0001_usuario"';
 
  
-			if (!empty($u->getNome()) or !empty($u->getEmail())):
+			if(!empty($u->getNome()) and  $u->getNome() != ''  ):
 				$sql  = $sql . ' where ';
 			endif;
 
 			if(!empty($u->getNome())):
-				$sql =  $sql .  ' d0001_nome like ? ';
+				$sql =  $sql .  ' upper(d0001_nome) like ? ';
 				$prim_filtro = True;
 			endif;
 
 
-			if(!empty($u->getEmail())):
+			if(!empty($u->getEmail())  and  $u->getEmail() != '' ):	
 				if($prim_filtro):
-					$sql =  $sql . ' and d0001_email like ? ';
+					$sql =  $sql . ' and upper(d0001_email) like ? ';
 				else:
-					$sql =  $sql . ' d0001_email like ? ';
+					$sql =  $sql . ' upper(d0001_email) like ? ';
 					$prim_filtro = True;
 				endif;		
 			endif;
+
+			 $sql  = $sql . ' order by d0001_nome  LIMIT ' . QTDE_REGISTROS . ' OFFSET ' . $numPg;
  
 			$stmt = Conexao::getConn()->prepare($sql);
  
 			$prim_filtro = false;
 			$bind = 1;
 
-			if(!empty($u->getNome())):
-				$stmt->bindValue($bind,$u->getNome());;
+			if(!empty($u->getNome()) and  $u->getNome() != ''  ):
+				$stmt->bindValue($bind,strtoupper($u->getNome()));
 				$prim_filtro = True;
 				$bind++;
 			endif;
 
 
-			if(!empty($u->getEmail())):				 
-				$stmt->bindValue($bind,$u->getEmail());				 
+			if(!empty($u->getEmail())  and  $u->getEmail() != '' ):				 
+				$stmt->bindValue($bind,strtoupper($u->getEmail()));				 
 			endif; 
  
 
@@ -182,6 +184,67 @@
 
 		 
 		}	 
+
+		public function totRegistros(Usuario $u)
+		{
+ 		 
+			//$sql = 'Select * from usuario';
+			$prim_filtro = false;
+
+			$sql = 'SELECT count(*) totReg  FROM public."S0001_usuario" ';
+
+ 
+			if(!empty($u->getNome()) and  $u->getNome() != ''  ):
+				$sql  = $sql . ' where ';
+			endif;
+
+			if(!empty($u->getNome())):
+				$sql =  $sql .  ' upper(d0001_nome) like ? ';
+				$prim_filtro = True;
+			endif;
+
+
+			if(!empty($u->getEmail())  and  $u->getEmail() != '' ):	
+				if($prim_filtro):
+					$sql =  $sql . ' and upper(d0001_email) like ? ';
+				else:
+					$sql =  $sql . ' upper(d0001_email) like ? ';
+					$prim_filtro = True;
+				endif;		
+			endif;
+
+		 
+ 
+			$stmt = Conexao::getConn()->prepare($sql);
+ 
+			$prim_filtro = false;
+			$bind = 1;
+
+			if(!empty($u->getNome()) and  $u->getNome() != ''  ):
+				$stmt->bindValue($bind,strtoupper($u->getNome()));
+				$prim_filtro = True;
+				$bind++;
+			endif;
+
+
+			if(!empty($u->getEmail())  and  $u->getEmail() != '' ):				 
+				$stmt->bindValue($bind,strtoupper($u->getEmail()));				 
+			endif; 
+ 
+
+ 			$stmt->execute();  
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				//var_dump($resultado);
+				return $resultado;	
+			else:
+				//var_dump(111);
+				return [];				
+			endif;
+
+		 
+		}	
+
 
 	}
 

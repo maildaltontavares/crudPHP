@@ -15,10 +15,15 @@
    include_once "confPaginacao.php"; 
 
   if(isset($_GET['p_nome'])):
-     $_SESSION['arg1Tp'] = $_GET['p_nome'];
+     $p_nome = filter_input(INPUT_GET, 'p_nome',FILTER_SANITIZE_STRING);   
+     $_SESSION['arg1Tp'] = filter_var($p_nome,FILTER_SANITIZE_STRING); 
   else:  
      $_SESSION['arg1Tp'] = '';
    endif;
+
+   if (isset($_GET['pesquisa_todos'])):
+   	   $_SESSION['arg1Tp'] = '';
+   endif;	   
 
   ?>  
   <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">

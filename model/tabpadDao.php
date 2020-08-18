@@ -166,11 +166,11 @@
 
 			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao"';
 
-			if (!empty($t->getNome())):
+			if (!empty($t->getNome())   and  $t->getNome() != '' ):
 				$sql  = $sql . ' where ';
 			endif;
 
-			if(!empty($t->getNome())):
+			if (!empty($t->getNome())   and  $t->getNome() != '' ):
 				$sql =  $sql .  ' upper(d0001_descricao) like ? ';
 				$prim_filtro = True;
 			endif;  
@@ -182,7 +182,7 @@
 	 
 			$bind = 1;
 
-			if(!empty($t->getNome())):
+			if (!empty($t->getNome())   and  $t->getNome() != '' ):
 				$stmt->bindValue($bind,strtoupper($t->getNome()));
 				$prim_filtro = True;
 				$bind++;

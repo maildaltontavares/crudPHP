@@ -68,16 +68,16 @@
 
 
 
-		public function validaUsuario($p_usuario,$senha){
+		public function validaUsuario($p_email,$senha){
 
 
 			// Prepara Bean usuario
 			$usuario = new Usuario();
-			$usuario->setNome($p_usuario);
+			$usuario->setEmail($p_email);
 			$usuario->setSenha($senha);
 
-		 
-
+		    //var_dump('ssss');
+		    //var_dump($usuario);
 			//  Vzalida usuario
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->validaUsuario($usuario); 
@@ -85,16 +85,16 @@
 		 }
 
 
-		public function listaUsuario(){
+		public function listaUsuario($numPg){
 
 			$usuarioDao = new UsuarioDao();
-			return $usuarioDao->read();
+			return $usuarioDao->read($numPg);
 			
 
 		 } 
 
 
-		public function listaUsuarioF($p_usuario,$email){
+		public function listaUsuarioF($p_usuario,$email,$numPg){
 
 			// Prepara Bean usuario
 			$usuario = new Usuario();
@@ -103,10 +103,26 @@
 			$usuario->setEmail($email);
 
 			$usuarioDao = new UsuarioDao();
-			return $usuarioDao->readF($usuario);
+			return $usuarioDao->readF($usuario,$numPg);
 			
 
 		 } 
+		public function totRegistros($p_usuario,$email){ 
+
+			// Prepara Bean tabpad
+
+			$usuario = new Usuario();
+
+			$usuario->setNome($p_usuario);
+			$usuario->setEmail($email);
+
+			$usuarioDao = new UsuarioDao(); 
+			return $usuarioDao->totRegistros($usuario);
+			
+			
+
+		 } 
+
 
 
 	}	 
