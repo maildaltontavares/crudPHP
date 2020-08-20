@@ -25,9 +25,9 @@
   $flag1 = '';
   $flag2 = '';
   $flag3 = '';
-  $num1 = '';
-  $num2 = '';
-  $num3 = '';
+  $num1 = 0;
+  $num2 = 0;
+  $num3 = 0;
   $data1='';
   $data2='';
   $data3='';
@@ -149,32 +149,34 @@
               if(isset($_POST['num1']) and !EMPTY($_POST['num1'])):    
                   $num1 = filter_input(INPUT_POST, 'num1',FILTER_SANITIZE_NUMBER_INT);  
                   
+                  //var_dump($num1 );
+
                   if(!filter_var($num1,FILTER_SANITIZE_NUMBER_INT)):
                       $erros[] = "Numerico 1 inválido!";              
                   endif; 
               else:
-                  $num1 = ''; 
+                  $num1 = 0; 
               endif;               
 
-              if(isset($_POST['num2']) and !EMPTY($_POST['num2'])):    
-                  $num2 = filter_input(INPUT_POST, 'num2',FILTER_SANITIZE_NUMBER_FLOAT);  
+              if(isset($_POST['num2']) and !EMPTY($_POST['num2'])):                  
+                  $num2 = $_POST['num2'] ;//filter_input(INPUT_POST, 'num2',FILTER_SANITIZE_NUMBER_FLOAT);  
                   
                   if(!filter_var($num2,FILTER_SANITIZE_NUMBER_FLOAT)):
                       $erros[] = "Numerico 2 inválido!";              
                   endif; 
               else:
-                  $num2 = ''; 
+                  $num2 = 0; 
               endif;               
 
  
               if(isset($_POST['num3']) and !EMPTY($_POST['num3'])):    
-                  $num3 = filter_input(INPUT_POST, 'num3',FILTER_SANITIZE_NUMBER_FLOAT);  
+                  $num3 = $_POST['num3']; //filter_input(INPUT_POST, 'num3',FILTER_SANITIZE_NUMBER_FLOAT);  
                   
                   if(!filter_var($num3,FILTER_SANITIZE_NUMBER_FLOAT)):
                       $erros[] = "Numerico 3 inválido!";              
                   endif; 
               else:
-                  $num3 = ''; 
+                  $num3 = 0; 
               endif;  
 
               if(isset($_POST['data1']) and !EMPTY($_POST['data1'])):    
@@ -187,7 +189,7 @@
               endif;  
 
               if(isset($_POST['data2']) and !EMPTY($_POST['data2'])):    
-                  $data2 = filter_input(INPUT_POST, 'data2',FILTER_SANITIZE_STRING);  
+                  $data2 = $_POST['data2']; //filter_input(INPUT_POST, 'data2',FILTER_SANITIZE_STRING);  
                   
                   if(!filter_var($data2,FILTER_SANITIZE_STRING)):
                       $erros[] = "Descrição data 2 inválida!";              
@@ -197,7 +199,7 @@
               endif;  
 
               if(isset($_POST['data3']) and !EMPTY($_POST['data3'])):    
-                  $data3 = filter_input(INPUT_POST, 'data3',FILTER_SANITIZE_STRING);  
+                  $data3 = $_POST['data3']; //filter_input(INPUT_POST, 'data3',FILTER_SANITIZE_STRING);  
                   
                   if(!filter_var($data3,FILTER_SANITIZE_STRING)):
                       $erros[] = "Descrição data 3 inválida!";              
@@ -260,11 +262,11 @@
   $vFlag3 = '';
   $vDesc_flag3 = '';
 
-  $vNum1 = '';
+  $vNum1 = 0;
   $vDesc_num1 ='';
-  $vNum2 = '';
+  $vNum2 = 0;
   $vDesc_num2 ='';
-  $vNum3 = '';
+  $vNum3 = 0;
   $vDesc_num3 ='';
 
   $vData1='';   
@@ -348,8 +350,34 @@
 
 <script> 
  
-  
-  $(document).ready(function() {  
+ 
+   function validaNum(p) {
+      var x, text;  
+      x =  p;
+     
+      // If x is Not a Number or less than one or greater than 10
+      if (isNaN(x) || x < 1 || x > 1000000) {
+        text = "Número Inválido";
+        alert(text);
+      }
+    
+    } 
+
+  $(document).ready(function(){
+
+ 
+          $('#num2').focusout(function() {
+              validaNum($('#num2').val());
+          });
+
+          $('#num2').change(function() {  
+             this.value = parseFloat(this.value).toFixed(2);
+          });
+        
+          $('#num3').focusout(function() {
+              validaNum($('#num3').val());
+          }); 
+        
 
         var jsStr1       =  "<?=$vStr1?>";       
         var jsDesc_str1  =  "<?=$vDesc_str1?>";  
@@ -480,7 +508,6 @@
          }   
 
   });  
- 
 </script>
  <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
 
@@ -548,13 +575,13 @@
           <input id="flag3" name ="flag3" type="text" class="form-control"   value="<?php  echo $flag3;  ?>"   >  
 
           <label class="form-check-label paramLb" for="num1" id="lbNum1" >Descrição Numerico 1 </label>
-          <input id="num1" name ="num1" type="number" min="1" max="999" class="form-control"   value="<?php  echo $num1;  ?>"   >  
+          <input id="num1" name ="num1" type="number" min="0" max="999" class="form-control"   value="<?php  echo $num1;  ?>"   >  
 
           <label class="form-check-label paramLb" for="num2" id="lbNum2" >Descrição Numerico 2 </label>
-          <input id="num2" name ="num2" type="text" class="form-control"   value="<?php  echo $num2;  ?>"   >  
+          <input id="num2" name ="num2" step="0.01" type="number" class="form-control"   value="<?php  echo $num2;  ?>"   >  
 
           <label class="form-check-label paramLb" for="num3" id="lbNum3" >Descrição Numerico3 </label>
-          <input id="num3" name ="num3" type="text" class="form-control"   value="<?php  echo $num3;  ?>"   >  
+          <input id="num3" name ="num3" type="number" step="any"  class="form-control"   value="<?php  echo $num3;  ?>"   >  
 
           <label class="form-check-label paramLb" for="data1"  id="lbData1" >Descrição Data 1 </label>
           <input id="data1" name ="data1" type="date" class="form-control"   value="<?php  echo $data1;  ?>"   >  

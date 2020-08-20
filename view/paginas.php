@@ -13,7 +13,11 @@
 		 
 		 /* Cálcula qual será a página anterior em relação a página atual em exibição */   
 		 $pagina_anterior = ($pagina_atual > 1) ? $pagina_atual -1 : 0 ;   
-		   
+		 
+		 if($pagina_anterior==0):
+		 	$pagina_atual=1;
+		 endif;
+
 		 /* Cálcula qual será a proxima página em relação a página atual em exibição */   
 		 $proxima_pagina = ($pagina_atual < $ultima_pagina) ? $pagina_atual +1 : 0 ;  
 		   

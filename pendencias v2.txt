@@ -5,13 +5,10 @@ Responsivo - ok;
 Paginacao - cadastro dee usuarios - ok;
 Upper nas pesquisas - ok;
 Corrigir o limpar todos - limpar o filtro - ok;
+Gravar campos data e numerico; ok;
+Pictures; ok; 
 
-
-Gravar campos data e numerico;
-Pictures;
 Validações;
-
-
 Corrigir a visualizacao da mensagem de email ou senha invalida
 
 Controle de transações
