@@ -1,24 +1,19 @@
-Figura pagina login- ok;
-Publicar - ok; 
-Figuras vetoriais -ok;
-Responsivo - ok;
-Paginacao - cadastro dee usuarios - ok;
-Upper nas pesquisas - ok;
-Corrigir o limpar todos - limpar o filtro - ok;
-Gravar campos data e numerico; ok;
-Pictures; ok; 
-
-Validações;
-Corrigir a visualizacao da mensagem de email ou senha invalida
-
-Controle de transações
+replicar inclusoes duplicadas;
+Validações; Valida caso marque string1 p por a descricao; e vice versa
+Controle de transações;
+Melhorar exclusão;
 Melhorar layouts;
-por um link sobre a descricao apra consulta
+
+
+MD5 para a senha
+
+Corrigir a visualizacao da mensagem de email ou senha invalida;
+por um link sobre a descricao pra consulta
 Por a impressao p primeira tela
-Melhorar exclusão
+
 Exibir o usuario logado
 recuperar senha
-MD5 para a senha
+
 divisao por loja
 implementar a seguranca
 
@@ -40,3 +35,21 @@ git push -u crudphp master
 
 
 erro na chamada do aqrquivo .php - letra inicial minusvcula
+
+
+Figura pagina login- ok;
+Publicar - ok; 
+Figuras vetoriais -ok;
+Responsivo - ok;
+Paginacao - cadastro dee usuarios - ok;
+Upper nas pesquisas - ok;
+Corrigir o limpar todos - limpar o filtro - ok;
+Gravar campos data e numerico; ok;
+Pictures; ok; 
+Inclusões duplicadas; ok;
+
+
+
+
+
+

@@ -14,8 +14,7 @@
 
   include_once "menuPrincipal.php";
   include_once "menu.php"; 
-
-  $Altera = "N"; 
+  
 
   $id = 0;
  
@@ -43,7 +42,9 @@
   else:
     exit();  
   endif; 
- 
+  
+  $Altera = "N"; 
+   
   if (isset($_GET['Altera'])):
      $Altera = "S";
      
@@ -84,15 +85,16 @@
 
               $erros = array(); 
 
-              if(isset($_POST['str1']) and !EMPTY($_POST['str1'])):            
-                  $str1 = filter_input(INPUT_POST, 'str1',FILTER_SANITIZE_STRING);  
-
-                  //var_dump($nometabpad);
-                  if(!filter_var($str1,FILTER_SANITIZE_STRING)):
+              if(isset($_POST['str1']) and !EMPTY($_POST['str1']) and $str1 != '') :            
+                  $str1 = filter_input(INPUT_POST, 'str1',FILTER_SANITIZE_STRING);   
+                  
+                  if(!filter_var($str1,FILTER_SANITIZE_STRING) or $str1 == ''):
                       $erros[] = "Descrição campo 1 inválida!";              
-                  endif;   
-              else:
-                  $str1 = ''; 
+                  endif;    
+
+              else: 
+                      $erros[] = "Descrição campo 1 inválida!"; 
+                      $str1 = ''; 
               endif;  
 
               if(isset($_POST['str2']) and !EMPTY($_POST['str2'])):    
@@ -214,25 +216,26 @@
                   if ($Altera == "N"):
 
 
-                      //var_dump('XX');
-                      //var_dump($id_tp);
-
-                      if ($tabelaCtr->create($id_tp,$str1,$str2,$str3,$flag1, $flag2,$flag3, $num1,$num2 ,$num3,$data1, $data2,$data3 )== 'OK'):  
+                      if ($tabelaCtr->create($id_tp,$str1,$str2,$str3,$flag1, $flag2,$flag3, $num1,$num2 ,$num3,$data1, $data2,$data3 )== 'OK'):
+                  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
+                          $_SESSION['gravou'] = "S";
+                          //echo '<script> alert("Registro gravado com sucesso!");</script> '; 
                    
-                          //header('Location:principal.php');   
                       else:  
-                          echo '<div class="alert alert-primary" role="alert"><li>' . "Parametrização inválida!!"  . '</li></div>';                  
+                          echo '<div class="alert alert-primary" role="alert"><li>' . "Parametrização inválida!!"  . '</li></div>';  
+                          $_SESSION['gravou'] = "N";                
                       endif;  
 
                   else: 
                       
                       if ($tabelaCtr->update($id,$id_tp,$str1,$str2,$str3,$flag1, $flag2,$flag3, $num1,$num2 ,$num3,$data1, $data2,$data3 )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>'; 
+                          $_SESSION['gravou'] = "S";
                                             
                           //header('Location:principal.php');   
                       else:  
-                          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';                  
+                          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';$_SESSION['gravou'] = "N";                  
                       endif;  
 
                   endif;    
@@ -356,15 +359,36 @@
       x =  p;
      
       // If x is Not a Number or less than one or greater than 10
-      if (isNaN(x) || x < 1 || x > 1000000) {
+      if (isNaN(x) || x < 0 || x > 1000000) {
         text = "Número Inválido";
         alert(text);
       }
     
     } 
 
-  $(document).ready(function(){
+  $(document).ready(function(){  
+          
+          var vGrava    = "<?=((isset($_POST['gravar']))?"S":"N");?>";  
+          var vCommit   = "<?=((isset($_SESSION['gravou']))?"S":"N");?>";
+          var vAlterac  = "<?=((isset($_GET['Altera']   ))?"S":"N");?>";  
 
+          if(vCommit=="S") {      
+               vCommit = "<?=$_SESSION['gravou']?>";
+          } 
+
+          if(vGrava=="S"){    
+
+               <?php $_SESSION['gravou'] = "N";?>
+
+               if(vCommit=="S"){
+                  //alert('Registro gravado com sucesso!');
+                  $('#btGravar').attr('disabled', true); 
+
+                  if(vAlterac=="S"){
+                    $('#btGravar').attr('disabled', false);
+                  }  
+               }  
+          }  
  
           $('#num2').focusout(function() {
               validaNum($('#num2').val());
@@ -377,7 +401,7 @@
           $('#num3').focusout(function() {
               validaNum($('#num3').val());
           }); 
-        
+ 
 
         var jsStr1       =  "<?=$vStr1?>";       
         var jsDesc_str1  =  "<?=$vDesc_str1?>";  
@@ -522,10 +546,11 @@
             ?>
 
             <div id="grupoBotoes">
-               <a href="tabelaCad.php" class="btn btn-primary paramBt">Novo</a>                       
-               <button type="submit" name= "gravar" class="btn btn-primary paramBt">Gravar</button>
-               <a href="lista_tabela.php" class="btn btn-primary  paramBt">Voltar</a> 
-               <a href="lista_tabela.php" class="btn btn-primary  paramBt">Imprimir</a> 
+               <a href="tabelaCad.php" class="btn btn-primary paramBt">Novo</a>
+               <a href="lista_tabela.php" class="btn btn-primary  paramBt">Voltar</a>                     
+               <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>
+               
+               <!--<a href="lista_tabela.php" class="btn btn-primary  paramBt">Imprimir</a> -->   
             </div> 
 
         </div> 

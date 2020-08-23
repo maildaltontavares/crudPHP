@@ -47,6 +47,8 @@
 			//$sql = 'Select * from usuario';
 			//$sql = 'SELECT * FROM public."S0001_usuario" where d0001_nome = ? and d0001_senha = ?';
 			$sql = 'SELECT  d0001_nome nome,d0001_senha senha  FROM public."S0001_usuario" where d0001_email = ?';
+ 
+
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$u->getEmail());
 			//$stmt->bindValue(2,$u->getSenha());
@@ -134,11 +136,11 @@
 			$sql = 'SELECT  d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel   FROM public."S0001_usuario"';
 
  
-			if(!empty($u->getNome()) and  $u->getNome() != ''  ):
+			if((!empty($u->getNome()) and  $u->getNome() != '') or (!empty($u->getEmail()) and  $u->getEmail() != '')  ):
 				$sql  = $sql . ' where ';
 			endif;
 
-			if(!empty($u->getNome())):
+			if(!empty($u->getNome()) and  $u->getNome() != ''):
 				$sql =  $sql .  ' upper(d0001_nome) like ? ';
 				$prim_filtro = True;
 			endif;

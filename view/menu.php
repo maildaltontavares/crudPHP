@@ -146,6 +146,7 @@
                         
                          <li> <a href="#">Loja</a></li>
                          <li> <a href="#">Produto</a></li>
+                         <li> <a href="#">Pessoas</a></li>
                          <li> <a href="#">Evento</a></li>
                          
 

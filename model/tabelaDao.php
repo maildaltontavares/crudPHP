@@ -142,10 +142,7 @@
      		$sql = $sql . ' d0004_data3';
 			$sql = $sql . ' )' ; 
 			$sql = $sql . '    values (?,?,?,?,?,?,?,?,?,?,?,?,?)';  
-
-			$sql = $sql . ' )' ; 
-			$sql = $sql . '    values (?,?,?,?,?,?,?)';  
-
+ 
     		//var_dump($sql);
 
 			$stmt = Conexao::getConn()->prepare($sql); 
@@ -179,15 +176,6 @@
 				$stmt->bindValue(13,null); 
 			endif;	
 
-
-/*			$stmt->bindValue(14,$t->getDescTabPad()); 
-  
-				
-			var_dump($t->getIdTp()); 
-			var_dump($t->getStr1()); 
-			var_dump($t->getDescStr1());  
- */			
-	        //var_dump($stmt); 
 			 $stmt->execute(); 
 			 
 			//var_dump('OK');
