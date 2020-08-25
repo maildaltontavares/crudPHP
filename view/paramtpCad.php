@@ -182,6 +182,8 @@
 
   if (isset($_POST['gravar'])):
       
+              $erros = array(); 
+
               if(isset($_POST['grupoTab'])):                
                 $id_tp = $_POST['grupoTab'];
                  $id_tp = (INT)$id_tp;
@@ -197,6 +199,7 @@
               else:
                 $str1 = 'N';
                 $i_str1 = '';
+                $erros[] = "Obrigatório marcar o checkbox da String 1!"; 
                 //var_dump($str1);  
               endif ;
 
@@ -290,7 +293,23 @@
               endif ;  
 
 
-              $erros = array(); 
+              if(isset($_POST['desc_str1']) and !EMPTY($_POST['desc_str1']) ) :  
+                  if($_POST['desc_str1'] != ''):          
+                      $desc_str1 = filter_input(INPUT_POST, 'desc_str1',FILTER_SANITIZE_STRING);   
+                      
+                      if(!filter_var($desc_str1,FILTER_SANITIZE_STRING)):
+                          $erros[] = "Descrição String 1 inválida!";              
+                      endif;    
+                  else:
+                      $erros[] = "Descrição String 1 inválida!";  
+                  endif; 
+              else: 
+                      $erros[] = "Descrição String 1 inválida!"; 
+                      $desc_str1 = ''; 
+              endif;  
+
+
+ /*             
 
               if(isset($_POST['desc_str1']) and !EMPTY($_POST['desc_str1'])):            
                   $desc_str1 = filter_input(INPUT_POST, 'desc_str1',FILTER_SANITIZE_STRING);  
@@ -302,37 +321,65 @@
               else:
                   $desc_str1 = ''; 
               endif;  
+*/
 
-              if(isset($_POST['desc_str2']) and !EMPTY($_POST['desc_str2'])):    
-                  $desc_str2 = filter_input(INPUT_POST, 'desc_str2',FILTER_SANITIZE_STRING);  
-                  
-                  if(!filter_var($desc_str2,FILTER_SANITIZE_STRING)):
-                      $erros[] = "Descrição string 2 inválida!";              
-                  endif; 
+              if($i_str2 == 'checked'):
+                  if(isset($_POST['desc_str2']) and !EMPTY($_POST['desc_str2']) ) :  
+                      if($_POST['desc_str2'] != ''):          
+                          $desc_str2 = filter_input(INPUT_POST, 'desc_str2',FILTER_SANITIZE_STRING);   
+                          
+                          if(!filter_var($desc_str2,FILTER_SANITIZE_STRING)):
+                              $erros[] = "Descrição String 2 inválida!";              
+                          endif;    
+                      else:
+                          $erros[] = "Descrição String 2 inválida!";  
+                      endif; 
+                  else: 
+                          $erros[] = "Descrição String 2 inválida!"; 
+                          $desc_str2 = ''; 
+                  endif;
               else:
-                  $desc_str2 = ''; 
-              endif; 
+                   $desc_str2 = ''; 
+              endif;
                   
-              if(isset($_POST['desc_str3']) and !EMPTY($_POST['desc_str3'])):    
-                  $desc_str3 = filter_input(INPUT_POST, 'desc_str3',FILTER_SANITIZE_STRING);  
-                  
-                  if(!filter_var($desc_str3,FILTER_SANITIZE_STRING)):
-                      $erros[] = "Descrição string 3 inválida!";              
-                  endif; 
+              if($i_str3 == 'checked'):
+                  if(isset($_POST['desc_str3']) and !EMPTY($_POST['desc_str3']) ) :  
+                      if($_POST['desc_str3'] != ''):          
+                          $desc_str3 = filter_input(INPUT_POST, 'desc_str3',FILTER_SANITIZE_STRING);   
+                          
+                          if(!filter_var($desc_str3,FILTER_SANITIZE_STRING)):
+                              $erros[] = "Descrição String 3 inválida!";              
+                          endif;    
+                      else:
+                          $erros[] = "Descrição String 3 inválida!";  
+                      endif; 
+                  else: 
+                          $erros[] = "Descrição String 3 inválida!"; 
+                          $desc_str3 = ''; 
+                  endif;
               else:
-                  $desc_str3 = ''; 
-              endif;  
+                   $desc_str3 = ''; 
+              endif;
 
-              if(isset($_POST['desc_flag1']) and !EMPTY($_POST['desc_flag1'])):    
-                  $desc_flag1 = filter_input(INPUT_POST, 'desc_flag1',FILTER_SANITIZE_STRING);  
-                  
-                  if(!filter_var($desc_flag1,FILTER_SANITIZE_STRING)):
-                      $erros[] = "Descrição flag 1 inválida!";              
-                  endif; 
+              if($i_flag1 == 'checked'):
+                  if(isset($_POST['desc_flag1']) and !EMPTY($_POST['desc_flag1']) ) :  
+                      if($_POST['desc_flag1'] != ''):          
+                          $desc_flag1 = filter_input(INPUT_POST, 'desc_flag1',FILTER_SANITIZE_STRING);   
+                          
+                          if(!filter_var($desc_flag1,FILTER_SANITIZE_STRING)):
+                              $erros[] = "Descrição flag 1 inválida!";             
+                          endif;    
+                      else:
+                          $erros[] = "Descrição flag 1 inválida!";   
+                      endif; 
+                  else: 
+                          $erros[] = "Descrição flag 1 inválida!";   
+                          $desc_flag1 = ''; 
+                  endif;
               else:
-                  $flag1 = ''; 
-              endif; 
-
+                   $desc_flag1 = ''; 
+              endif;
+/*
               if(isset($_POST['desc_flag2']) and !EMPTY($_POST['desc_flag2'])):    
                   $desc_flag2 = filter_input(INPUT_POST, 'desc_flag2',FILTER_SANITIZE_STRING);  
                   
@@ -342,28 +389,69 @@
               else:
                   $flag2 = ''; 
               endif;
+*/
 
-              if(isset($_POST['desc_flag3']) and !EMPTY($_POST['desc_flag3'])):    
-                  $desc_flag3 = filter_input(INPUT_POST, 'desc_flag3',FILTER_SANITIZE_STRING);  
-                  
-                  if(!filter_var($desc_flag3,FILTER_SANITIZE_STRING)):
-                      $erros[] = "Descrição flag 3 inválida!";              
-                  endif; 
+
+
+
+              if($i_flag2 == 'checked'):
+                  if(isset($_POST['desc_flag2']) and !EMPTY($_POST['desc_flag2']) ) :  
+                      if($_POST['desc_flag2'] != ''):          
+                          $desc_flag2 = filter_input(INPUT_POST, 'desc_flag2',FILTER_SANITIZE_STRING);   
+                          
+                          if(!filter_var($desc_flag2,FILTER_SANITIZE_STRING)):
+                              $erros[] = "Descrição flag 2 inválida!";             
+                          endif;    
+                      else:
+                          $erros[] = "Descrição flag 2 inválida!";   
+                      endif; 
+                  else: 
+                          $erros[] = "Descrição flag 2 inválida!";   
+                          $desc_flag2 = ''; 
+                  endif;
               else:
-                  $flag3 = ''; 
-              endif; 
+                   $desc_flag2 = ''; 
+              endif;
 
-
-              if(isset($_POST['desc_num1']) and !EMPTY($_POST['desc_num1'])):    
-                  $desc_num1 = filter_input(INPUT_POST, 'desc_num1',FILTER_SANITIZE_STRING);  
-                  
-                  if(!filter_var($desc_num1,FILTER_SANITIZE_STRING)):
-                      $erros[] = "Descrição numerico 1 inválida!";              
-                  endif; 
+              if($i_flag3 == 'checked'):
+                  if(isset($_POST['desc_flag3']) and !EMPTY($_POST['desc_flag3']) ) :  
+                      if($_POST['desc_flag3'] != ''):          
+                          $desc_flag3 = filter_input(INPUT_POST, 'desc_flag3',FILTER_SANITIZE_STRING);   
+                          
+                          if(!filter_var($desc_flag3,FILTER_SANITIZE_STRING)):
+                              $erros[] = "Descrição flag 3 inválida!";             
+                          endif;    
+                      else:
+                          $erros[] = "Descrição flag 3 inválida!";   
+                      endif; 
+                  else: 
+                          $erros[] = "Descrição flag 3 inválida!";   
+                          $desc_flag3 = ''; 
+                  endif;
               else:
-                  $num1 = ''; 
-              endif;               
+                   $desc_flag3 = ''; 
+              endif;
 
+
+              if($i_num1 == 'checked'):
+                  if(isset($_POST['desc_num1']) and !EMPTY($_POST['desc_num1']) ) :  
+                      if($_POST['desc_num1'] != ''):          
+                          $desc_num1 = filter_input(INPUT_POST, 'desc_num1',FILTER_SANITIZE_STRING);   
+                          
+                          if(!filter_var($desc_num1,FILTER_SANITIZE_STRING)):
+                              $erros[] = "Descrição numerico 1 inválida!";            
+                          endif;    
+                      else:
+                          $erros[] = "Descrição numerico 1 inválida!";    
+                      endif; 
+                  else: 
+                          $erros[] = "Descrição numerico 1 inválida!";   
+                          $desc_num1 = ''; 
+                  endif;
+              else:
+                   $desc_num1 = ''; 
+              endif;           
+/*
               if(isset($_POST['desc_num2']) and !EMPTY($_POST['desc_num2'])):    
                   $desc_num2 = filter_input(INPUT_POST, 'desc_num2',FILTER_SANITIZE_STRING);  
                   
@@ -373,28 +461,68 @@
               else:
                   $num2 = ''; 
               endif;               
+*/
 
+
+              if($i_num2 == 'checked'):
+                  if(isset($_POST['desc_num2']) and !EMPTY($_POST['desc_num2']) ) :  
+                      if($_POST['desc_num2'] != ''):          
+                          $desc_num2 = filter_input(INPUT_POST, 'desc_num1',FILTER_SANITIZE_STRING);   
+                          
+                          if(!filter_var($desc_num2,FILTER_SANITIZE_STRING)):
+                              $erros[] = "Descrição numerico 2 inválida!";            
+                          endif;    
+                      else:
+                          $erros[] = "Descrição numerico 2 inválida!";    
+                      endif; 
+                  else: 
+                          $erros[] = "Descrição numerico 2 inválida!";   
+                          $desc_num2 = ''; 
+                  endif;
+              else:
+                   $desc_num2 = ''; 
+              endif;                
  
-              if(isset($_POST['desc_num3']) and !EMPTY($_POST['desc_num3'])):    
-                  $desc_num3 = filter_input(INPUT_POST, 'desc_num3',FILTER_SANITIZE_STRING);  
-                  
-                  if(!filter_var($desc_num3,FILTER_SANITIZE_STRING)):
-                      $erros[] = "Descrição numerico 3 inválida!";              
-                  endif; 
-              else:
-                  $num3 = ''; 
-              endif;  
+   
 
-              if(isset($_POST['desc_data1']) and !EMPTY($_POST['desc_data1'])):    
-                  $desc_data1 = filter_input(INPUT_POST, 'desc_data1',FILTER_SANITIZE_STRING);  
-                  
-                  if(!filter_var($desc_data1,FILTER_SANITIZE_STRING)):
-                      $erros[] = "Descrição data 1 inválida!";              
-                  endif; 
+              if($i_num3 == 'checked'):
+                  if(isset($_POST['desc_num3']) and !EMPTY($_POST['desc_num3']) ) :  
+                      if($_POST['desc_num3'] != ''):          
+                          $desc_num3 = filter_input(INPUT_POST, 'desc_num3',FILTER_SANITIZE_STRING);   
+                          
+                          if(!filter_var($desc_num3,FILTER_SANITIZE_STRING)):
+                              $erros[] = "Descrição numerico 3 inválida!";            
+                          endif;    
+                      else:
+                          $erros[] = "Descrição numerico 3 inválida!";    
+                      endif; 
+                  else: 
+                          $erros[] = "Descrição numerico 3 inválida!";   
+                          $desc_num3 = ''; 
+                  endif;
               else:
-                  $data1 = ''; 
-              endif;  
+                   $desc_num3 = ''; 
+              endif;     
 
+              if($i_data1 == 'checked'):
+                  if(isset($_POST['desc_data1']) and !EMPTY($_POST['desc_data1']) ) :  
+                      if($_POST['desc_data1'] != ''):          
+                          $desc_data1 = filter_input(INPUT_POST, 'desc_data1',FILTER_SANITIZE_STRING);   
+                          
+                          if(!filter_var($desc_data1,FILTER_SANITIZE_STRING)):
+                              $erros[] = "Descrição data 1 inválida!";           
+                          endif;    
+                      else:
+                          $erros[] = "Descrição data 1 inválida!";   
+                      endif; 
+                  else: 
+                          $erros[] = "Descrição data 1 inválida!"; 
+                          $desc_data1 = ''; 
+                  endif;
+              else:
+                   $desc_data1 = ''; 
+              endif;                          
+/*
               if(isset($_POST['desc_data2']) and !EMPTY($_POST['desc_data2'])):    
                   $desc_data2 = filter_input(INPUT_POST, 'desc_data2',FILTER_SANITIZE_STRING);  
                   
@@ -404,15 +532,45 @@
               else:
                   $data2 = ''; 
               endif;  
+*/
 
-              if(isset($_POST['desc_data3']) and !EMPTY($_POST['desc_data3'])):    
-                  $desc_data3 = filter_input(INPUT_POST, 'desc_data3',FILTER_SANITIZE_STRING);  
-                  
-                  if(!filter_var($desc_data3,FILTER_SANITIZE_STRING)):
-                      $erros[] = "Descrição data 3 inválida!";              
-                  endif; 
+              if($i_data2 == 'checked'):
+                  if(isset($_POST['desc_data2']) and !EMPTY($_POST['desc_data2']) ) :  
+                      if($_POST['desc_data2'] != ''):          
+                          $desc_data2 = filter_input(INPUT_POST, 'desc_data2',FILTER_SANITIZE_STRING);   
+                          
+                          if(!filter_var($desc_data2,FILTER_SANITIZE_STRING)):
+                              $erros[] = "Descrição data 2 inválida!";           
+                          endif;    
+                      else:
+                          $erros[] = "Descrição data 2 inválida!";   
+                      endif; 
+                  else: 
+                          $erros[] = "Descrição data 2 inválida!"; 
+                          $desc_data2 = ''; 
+                  endif;
               else:
-                  $data3 = ''; 
+                   $desc_data2 = ''; 
+              endif; 
+
+
+              if($i_data3 == 'checked'):
+                  if(isset($_POST['desc_data3']) and !EMPTY($_POST['desc_data3']) ) :  
+                      if($_POST['desc_data3'] != ''):          
+                          $desc_data3 = filter_input(INPUT_POST, 'desc_data3',FILTER_SANITIZE_STRING);   
+                          
+                          if(!filter_var($desc_data3,FILTER_SANITIZE_STRING)):
+                              $erros[] = "Descrição data 3 inválida!";           
+                          endif;    
+                      else:
+                          $erros[] = "Descrição data 3 inválida!";   
+                      endif; 
+                  else: 
+                          $erros[] = "Descrição data 3 inválida!"; 
+                          $desc_data3 = ''; 
+                  endif;
+              else:
+                   $desc_data3 = ''; 
               endif;    
 
               if (empty($erros)):  // Nao tem erros de digitacao
@@ -423,19 +581,23 @@
                       if ($paramtpCtr->create($id_tp,$str1,$desc_str1,$str2,$desc_str2,$str3,$desc_str3,$flag1,$desc_flag1,$flag2,$desc_flag2,$flag3,$desc_flag3,$num1,$desc_num1,$num2,$desc_num2,$num3,$desc_num3,$data1,$desc_data1,$data2,$desc_data2,$data3,$desc_data3 )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
                    
+                           $_SESSION['gravou'] = "S";
                           //header('Location:principal.php');   
                       else:  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Parametrização inválida!!"  . '</li></div>';                  
+                          $_SESSION['gravou'] = "N";
                       endif;  
 
                   else: 
                       
                       if ($paramtpCtr->update($id,$id_tp,$str1,$desc_str1,$str2,$desc_str2,$str3,$desc_str3,$flag1,$desc_flag1,$flag2,$desc_flag2,$flag3,$desc_flag3,$num1,$desc_num1,$num2,$desc_num2,$num3,$desc_num3,$data1,$desc_data1,$data2,$desc_data2,$data3,$desc_data3 )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>'; 
+                          $_SESSION['gravou'] = "S";
                                             
                           //header('Location:principal.php');   
                       else:  
-                          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';                  
+                          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';
+                          $_SESSION['gravou'] = "N";                  
                       endif;  
 
                   endif;    
@@ -463,10 +625,33 @@
 
 <script> 
   
-  var vAltera = "<?=$Altera?>";  
   
   $(document).ready(function() { 
-     if (vAltera=='S'){
+
+        var vGrava    = "<?=((isset($_POST['gravar']))?"S":"N");?>";  
+        var vCommit   = "<?=((isset($_SESSION['gravou']))?"S":"N");?>";
+        var vAlterac  = "<?=((isset($_GET['Altera']   ))?"S":"N");?>";  
+
+        if(vCommit=="S") {      
+             vCommit = "<?=$_SESSION['gravou']?>";
+        } 
+
+        if(vGrava=="S"){    
+
+             <?php $_SESSION['gravou'] = "N";?>
+
+             if(vCommit=="S"){
+                //alert('Registro gravado com sucesso!');
+                $('#btGravar').attr('disabled', true); 
+
+                if(vAlterac=="S"){
+                  $('#btGravar').attr('disabled', false);
+                }  
+             }  
+        }  
+     
+     var vAltera = "<?=$Altera?>";  
+     if (vAltera=='S' || vGrava=="S"){
         $('#grupoTabela').attr('disabled', true); 
       }  
   });  
@@ -482,9 +667,9 @@
             <h1 class="p-3 mb-2  text-dark cTitulo">Parametrização de Tabelas</h1>
             <div id="grupoBotoes">
                <a href="paramtpCad.php" class="btn btn-primary paramBt">Novo</a>                       
-               <button type="submit" name= "gravar" class="btn btn-primary paramBt">Gravar</button>
+               <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>
                <a href="lista_paramtp.php" class="btn btn-primary  paramBt">Voltar</a> 
-               <a href="lista_paramtp.php" class="btn btn-primary  paramBt">Imprimir</a> 
+               
             </div> 
 
         </div> 
@@ -501,7 +686,14 @@
           <?php
 
               $tabpad = new tabpadCtr();
-              foreach($tabpad->lerTodas() as $p_tabpad):
+              if($Altera =='S' or isset($_POST['gravar'])):
+                  $aTab = $tabpad->lerTodas() ;
+              else:
+                  $aTab = $tabpad->lerNParam() ;
+              endif;
+              
+              foreach($aTab as $p_tabpad):
+               
                   if ($p_tabpad['id'] == $id_tp):
                     echo ' <option value=' . $p_tabpad['id']  . ' selected >' . $p_tabpad['descricao']  .'</option>';  
                   else:  
@@ -517,7 +709,7 @@
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="str1" name="i_str1" <?php echo $i_str1; ?> >
             <label class="form-check-label" for="str1">
-              String1 (50 caracteres)
+              String1 (100 caracteres)
             </label>
           </div>  
 
@@ -527,7 +719,7 @@
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="str2" name="i_str2" <?php echo $i_str2; ?> >
             <label class="form-check-label" for="str2">
-              String2 (50 caracteres)
+              String2 (100 caracteres)
             </label>
           </div>  
 
@@ -538,7 +730,7 @@
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="str3" name="i_str3" <?php echo $i_str3; ?>
             <label class="form-check-label" for="str3">
-              String3 (50 caracteres)
+              String3 (100 caracteres)
             </label>
           </div>  
 
@@ -560,7 +752,7 @@
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="flag2" name="i_flag2" <?php echo $i_flag2; ?>
             <label class="form-check-label" for="flag2">
-              Flag2 (1 caracter)
+              Flag2 (3 caracteres)
             </label>
           </div>  
 
@@ -570,7 +762,7 @@
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="flag3" name="i_flag3" <?php echo $i_flag3; ?>
             <label class="form-check-label" for="flag3">
-              Flag3 (1 caracter)
+              Flag3 (3 caracteres)
             </label>
           </div>  
 
@@ -591,7 +783,7 @@
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="num2" name="i_num2" <?php echo $i_num2; ?>
             <label class="form-check-label" for="num2">
-              Numérico 2 (integer)
+              Numérico 2 (Float)
             </label>
           </div>  
 
@@ -601,7 +793,7 @@
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="num3" name="i_num3" <?php echo $i_num3; ?>
             <label class="form-check-label" for="num3">
-              Numérico 3 (integer)
+              Numérico 3 (Float)
             </label>
           </div>  
 

@@ -137,6 +137,31 @@
 		 
 		}
 
+		public function lerNParam()
+		{
+ 		 
+			//$sql = 'Select * from usuario';
+			//$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  ';
+			//$sql = $sql + ' FROM public."E0001_tabela_padrao" ';
+			//$sql = $sql +  ' where d0001_id not in (select d0001_id from public."E0003_config_tp" ) ';
+			//$sql = $sql +  ' order by d0001_descricao' ;
+
+
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao"  where d0001_id not in (select d0001_id from public."E0003_config_tp" )  order by d0001_descricao' ; 
+			$stmt = Conexao::getConn()->prepare($sql); 
+			
+			$stmt->execute();  
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}
+
+
 
 		public function read($numPg)
 		{

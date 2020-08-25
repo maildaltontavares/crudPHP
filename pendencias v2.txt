@@ -1,11 +1,8 @@
-replicar inclusoes duplicadas;
-Validações; Valida caso marque string1 p por a descricao; e vice versa
+
 Controle de transações;
 Melhorar exclusão;
 Melhorar layouts;
-
-
-MD5 para a senha
+MD5 para a senha;
 
 Corrigir a visualizacao da mensagem de email ou senha invalida;
 por um link sobre a descricao pra consulta
@@ -15,12 +12,11 @@ Exibir o usuario logado
 recuperar senha
 
 divisao por loja
-implementar a seguranca
-
+implementar a seguranca 
 
 Phpexcel
 
-
+ //$('#grupoTabela').attr('disabled', true); 
 
 Como criar janela modal com formulário cadastrar com JavaScript - youtube
 Setar como administrador
@@ -47,6 +43,9 @@ Corrigir o limpar todos - limpar o filtro - ok;
 Gravar campos data e numerico; ok;
 Pictures; ok; 
 Inclusões duplicadas; ok;
+replicar inclusoes duplicadas; ok
+Validações; Valida caso marque string1 p por a descricao; e vice versa; ok
+Filtrar os grupos  e tabelas na parametrizacao dwe tabelas - ok
 
 
 

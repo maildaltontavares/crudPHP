@@ -93,6 +93,16 @@
 
 		 } 
 
+
+		public function lerNParam(){
+
+      
+			$tabpadDao = new tabpadDao();    
+			return $tabpadDao->lerNParam();
+			
+
+		 } 				 
+
 		public function listatabpad($numPg){
 
 			
@@ -129,7 +139,7 @@
 
 		 } 
 
-		
+
 
 
 	}	 

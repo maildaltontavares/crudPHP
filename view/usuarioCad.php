@@ -44,16 +44,21 @@
 
               $erros = array();
 
+
               $nome = filter_input(INPUT_POST, 'username',FILTER_SANITIZE_STRING);  
               if(!filter_var($nome,FILTER_SANITIZE_STRING)):
                   $erros[] = "Usuario inválido!";              
-              endif;    
+               elseif($nome==''):
+                    $erros[] = "Usuario inválido!";                 
+              endif;     
 
 
               $email = filter_input(INPUT_POST, 'email',FILTER_SANITIZE_EMAIL); 
               if(!filter_var($email,FILTER_SANITIZE_EMAIL)):
                   $erros[] = "Email inválido!";              
-              endif; 
+               elseif($email==''):
+                    $erros[] = "Email inválido!";                 
+              endif;    
 
 
               $senha = $_POST['password'];  
@@ -74,20 +79,23 @@
 
                       if ($usuarioCtr->create($nome,$senha,$email,$tel)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
-                   
+                          $_SESSION['gravou'] = "S";
                           //header('Location:principal.php');   
                       else:  
-                          echo '<div class="alert alert-primary" role="alert"><li>' . "Usuario ou senha inválido!!"  . '</li></div>';                  
+                          echo '<div class="alert alert-primary" role="alert"><li>' . "Usuario ou senha inválido!!"  . '</li></div>';           
+                          $_SESSION['gravou'] = "N";       
                       endif;  
 
                   else:
 
                       if ($usuarioCtr->update($id,$nome,$senha,$email,$tel)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>';  
+                          $_SESSION['gravou'] = "S";
                    
                           //header('Location:principal.php');   
                       else:  
-                          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';                  
+                          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';
+                          $_SESSION['gravou'] = "N";                  
                       endif;  
 
                   endif;    
@@ -114,12 +122,43 @@
 
 </script>
 
+  <script  src="https://code.jquery.com/jquery-3.5.1.js"  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="  crossorigin="anonymous"></script>
+
+<script> 
+  
+  
+  $(document).ready(function() { 
+
+        var vGrava    = "<?=((isset($_POST['gravar']))?"S":"N");?>";  
+        var vCommit   = "<?=((isset($_SESSION['gravou']))?"S":"N");?>";
+        var vAlterac  = "<?=((isset($_GET['Altera']   ))?"S":"N");?>";  
+
+        if(vCommit=="S") {      
+             vCommit = "<?=$_SESSION['gravou']?>";
+        } 
+
+        if(vGrava=="S"){    
+
+             <?php $_SESSION['gravou'] = "N";?>
+
+             if(vCommit=="S"){
+                //alert('Registro gravado com sucesso!');
+                $('#btGravar').attr('disabled', true); 
+
+                if(vAlterac=="S"){
+                  $('#btGravar').attr('disabled', false);
+                }  
+             }  
+        }  
+ 
+ 
+  }); 
+</script>
 <style>
 
   #frmcad{
     z-index: 1; 
-  }
-  
+  } 
 
 </style>
 
@@ -132,7 +171,7 @@
             <h1 class="p-3 mb-2  text-dark cTitulo">Usuarios</h1>
             <div id="grupoBotoes">
                <a href="usuarioCad.php" class="btn btn-primary paramBt">Novo</a>                       
-               <button type="submit" name= "gravar" class="btn btn-primary paramBt">Gravar</button>
+               <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>
                <a href="lista_usuarios.php" class="btn btn-primary  paramBt">Voltar</a> 
             </div> 
 

@@ -45,13 +45,18 @@
               $nometabpad =  filter_input(INPUT_POST, 'nometabpad',FILTER_SANITIZE_STRING); 
            
               if(!filter_var($nometabpad,FILTER_SANITIZE_STRING)):
-                  $erros[] = "Grupo de Tabela inválido!";              
-              endif;    
+                     $erros[] = "Nome grupo de Tabela inválido!";   
+              elseif($nometabpad==''):
+                    $erros[] = "Nome grupo de Tabela inválido!";                  
+              endif;   
+
 
               $sigla =  filter_input(INPUT_POST, 'sigla',FILTER_SANITIZE_STRING); 
            
               if(!filter_var($sigla,FILTER_SANITIZE_STRING)):
-                  $erros[] = "Sigla inválida!";              
+                  $erros[] = "Sigla inválida!";          
+              elseif($sigla==''):
+                  $erros[] = "Sigla inválida!";                             
               endif; 
 
 
@@ -64,9 +69,10 @@
                       if ($tabpadCtr->create($nometabpad,$sigla)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
                    
-                          //header('Location:principal.php');   
+                          $_SESSION['gravou'] = "S";  
                       else:  
-                          echo '<div class="alert alert-primary" role="alert"><li>' . "Grupo inválido!!"  . '</li></div>';                  
+                          echo '<div class="alert alert-primary" role="alert"><li>' . "Grupo inválido!!"  . '</li></div>';                        
+                          $_SESSION['gravou'] = "N";                  
                       endif;  
 
                   else:
@@ -74,9 +80,10 @@
                       if ($tabpadCtr->update($id,$nometabpad,$sigla)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>'; 
                                             
-                          //header('Location:principal.php');   
+                          $_SESSION['gravou'] = "S"; 
                       else:  
-                          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';                  
+                          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';
+                          $_SESSION['gravou'] = "N";                  
                       endif;  
 
                   endif;    
@@ -94,7 +101,38 @@
 
 
   ?>
- 
+
+ <script  src="https://code.jquery.com/jquery-3.5.1.js"  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="  crossorigin="anonymous"></script>
+
+<script>  
+
+  $(document).ready(function(){  
+          
+          var vGrava    = "<?=((isset($_POST['gravar']))?"S":"N");?>";  
+          var vCommit   = "<?=((isset($_SESSION['gravou']))?"S":"N");?>";
+          var vAlterac  = "<?=((isset($_GET['Altera']   ))?"S":"N");?>";  
+
+          if(vCommit=="S") {      
+               vCommit = "<?=$_SESSION['gravou']?>";
+          }  
+
+          if(vGrava=="S"){    
+
+               <?php $_SESSION['gravou'] = "N";?>
+
+               if(vCommit=="S"){
+                  //alert('Registro gravado com sucesso!');
+                  $('#btGravar').attr('disabled', true); 
+
+                  if(vAlterac=="S"){
+                    $('#btGravar').attr('disabled', false);
+                  }  
+               }  
+          }  
+
+ })
+</script> 
+
  <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
 
 
@@ -107,7 +145,7 @@
             <h1 class="p-3 mb-2  text-dark cTitulo">Grupos de Tabelas</h1>
             <div id="grupoBotoes">
                <a href="tabpadCad.php" class="btn btn-primary paramBt">Novo</a>                       
-               <button type="submit" name= "gravar" class="btn btn-primary paramBt">Gravar</button>
+               <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>
                <a href="lista_tp.php" class="btn btn-primary  paramBt">Voltar</a> 
             </div> 
 

@@ -85,13 +85,16 @@
 
               $erros = array(); 
 
-              if(isset($_POST['str1']) and !EMPTY($_POST['str1']) and $str1 != '') :            
-                  $str1 = filter_input(INPUT_POST, 'str1',FILTER_SANITIZE_STRING);   
-                  
-                  if(!filter_var($str1,FILTER_SANITIZE_STRING) or $str1 == ''):
-                      $erros[] = "Descrição campo 1 inválida!";              
-                  endif;    
-
+              if(isset($_POST['str1']) and !EMPTY($_POST['str1']) ) :  
+                  if($_POST['str1'] != ''):          
+                      $str1 = filter_input(INPUT_POST, 'str1',FILTER_SANITIZE_STRING);   
+                      
+                      if(!filter_var($str1,FILTER_SANITIZE_STRING)):
+                          $erros[] = "Descrição campo 1 inválida!";              
+                      endif;    
+                  else:
+                      $erros[] = "Descrição campo 1 inválida!";  
+                  endif; 
               else: 
                       $erros[] = "Descrição campo 1 inválida!"; 
                       $str1 = ''; 
