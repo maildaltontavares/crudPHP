@@ -6,15 +6,30 @@
 	class TabelaDao{ 
 
 		public function delete(Tabela $t)
-		{
-  
-		 
-			$sql = 'delete from public."E0004_tabela" where d0004_id = ? ';  
+		{ 
+			$sql = 'delete from public."E0004_tabela" where d0004_id = ? '; 
+
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$t->getId()); 
-			$stmt->execute();  
+			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-			return 'OK';
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    return 'nOK';
+			}			
+
+
+			 
+
+ 
 		 
 		}
 
@@ -110,13 +125,20 @@
 			endif;	
 			$stmt->bindValue(14,$t->getId()); 
 
- 
+			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            //var_dump($t);
-    
-
-			$stmt->execute();  
-			return 'OK';
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    return 'nOK';
+			}	
 		 
 		}
 
@@ -176,11 +198,20 @@
 				$stmt->bindValue(13,null); 
 			endif;	
 
-			 $stmt->execute(); 
-			 
-			//var_dump('OK');
+			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-			return 'OK';
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    return 'nOK';
+			}	
 		 
 		}
 

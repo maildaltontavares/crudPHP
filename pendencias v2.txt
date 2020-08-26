@@ -1,8 +1,9 @@
 
-Controle de transações;
 Melhorar exclusão;
+Não permitir excluir parametrização se ja houver cadastro de tabelas;
 Melhorar layouts;
 MD5 para a senha;
+
 
 Corrigir a visualizacao da mensagem de email ou senha invalida;
 por um link sobre a descricao pra consulta
@@ -14,21 +15,20 @@ recuperar senha
 divisao por loja
 implementar a seguranca 
 
-Phpexcel
+Phpexcel 
 
- //$('#grupoTabela').attr('disabled', true); 
+Como criar janela modal com formulário cadastrar com JavaScript - youtube 
 
-Como criar janela modal com formulário cadastrar com JavaScript - youtube
+
+================================================================ 
 Setar como administrador
-
-
 set HOMEDRIVE=C:\Program Files\heroku\client\node_modules\netrc-parser\lib
 
 GIT PUSH HEROKU MASTER
 git push heroku master
  
 git push -u crudphp master
-
+=====================================================================
 
 erro na chamada do aqrquivo .php - letra inicial minusvcula
 
@@ -46,6 +46,7 @@ Inclusões duplicadas; ok;
 replicar inclusoes duplicadas; ok
 Validações; Valida caso marque string1 p por a descricao; e vice versa; ok
 Filtrar os grupos  e tabelas na parametrizacao dwe tabelas - ok
+Controle de transações; ok
 
 
 

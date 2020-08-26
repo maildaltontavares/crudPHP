@@ -14,9 +14,21 @@
 			$sql = 'delete from public."E0003_config_tp" where d0003_id = ? ';  
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$t->getId()); 
-			$stmt->execute();  
 
-			return 'OK';
+			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	 
+
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    return 'nOK';
+			}	
 		 
 		}
 
@@ -227,8 +239,20 @@
 
             //var_dump($t);
 
-			$stmt->execute();  
-			return 'OK';
+			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    return 'nOK';
+			}	
 		 
 		}
 
@@ -280,6 +304,7 @@
 
     		//var_dump($sql);
 
+		 
 			$stmt = Conexao::getConn()->prepare($sql); 
 		 
 			$stmt->bindValue(1,$t->getIdTp()); 
@@ -307,16 +332,25 @@
 			$stmt->bindValue(22,$t->getData2()); 
 			$stmt->bindValue(23,$t->getDescData2()); 			
 			$stmt->bindValue(24,$t->getData3()); 
-			$stmt->bindValue(25,$t->getDescData3()); 			
+			$stmt->bindValue(25,$t->getDescData3()); 		 
 
-/*			$stmt->bindValue(14,$t->getDescTabPad()); 
-  
-				
-			var_dump($t->getIdTp()); 
-			var_dump($t->getStr1()); 
-			var_dump($t->getDescStr1());  
- */			
-	        //var_dump($stmt);
+			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    
+			    return 'nOK';
+			}	
+
+/*
 
 			try {
 				$stmt->execute(); 
@@ -324,10 +358,10 @@
 			    return $e->getMessage();
 			    //var_dump($e->getMessage());
 			}
-
+*/
 			//var_dump('OK');
 
-			return 'OK';
+			
 		 
 		}
 

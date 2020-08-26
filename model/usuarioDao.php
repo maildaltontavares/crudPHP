@@ -14,9 +14,20 @@
 			$sql = 'delete from public."S0001_usuario" where d0001_id = ? ';  
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$u->getId()); 
-			$stmt->execute();  
+			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	 
 
-			return 'OK';
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    return 'nOK';
+			}	
 		 
 		}
 
@@ -81,9 +92,20 @@
 			$stmt->bindValue(4,$u->getTel()); 
 			$stmt->bindValue(5,$u->getId()); 
 
-			$stmt->execute();  
+			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	 
 
-			return 'OK';
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    return 'nOK';
+			}	
 		 
 		}
 
@@ -102,9 +124,20 @@
 			$stmt->bindValue(3,$u->getEmail());			
 			$stmt->bindValue(4,$u->getTel()); 
 
-			$stmt->execute();  
+			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	 
 
-			return 'OK';
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    return 'nOK';
+			}	
 		 
 		}
 

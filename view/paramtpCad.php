@@ -690,6 +690,7 @@
                   $aTab = $tabpad->lerTodas() ;
               else:
                   $aTab = $tabpad->lerNParam() ;
+
               endif;
               
               foreach($aTab as $p_tabpad):
