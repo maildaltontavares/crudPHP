@@ -1,5 +1,5 @@
 
-Melhorar exclusão;
+Melhorar exclusão; replicar
 No novo nao exibe o excluir - adicionar o pesquisa no cadastro
 Melhorar layouts;
 
