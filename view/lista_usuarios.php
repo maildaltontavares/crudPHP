@@ -68,6 +68,50 @@
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">Usuarios</h1>'; 
 		echo '<h1 class="p-3 mb-2 text-dark">Usuarios</h1>';  
 
+
+		echo '
+		<form >
+	        <div class="row">
+	          <div class="col-md-4 mb-3"> ';
+				           
+	        if (isset($_SESSION['arg1Tp'])):			      
+				   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por Nome" value="' . $_SESSION['arg1Tp'] .'">';
+	        else:
+				   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por Nome">'; 
+
+		    endif;
+
+		    Echo '	      	       
+ 
+	          </div>
+	          <div class="col-md-4 mb-3">';
+				           
+	        if (isset($_SESSION['arg2Tp'])):			      
+				   echo '<input type="text" class="form-control" id="email" name="p_email" placeholder="Pesquise por email"  value="' . $_SESSION['arg2Tp'] .'">';
+	        else:
+				   echo '<input type="text" class="form-control" id="email" name="p_email" placeholder="Pesquise por email" >' ;
+
+		    endif;
+
+		    Echo '	 
+ 
+	          </div>
+	        </div>
+
+	        <div class="row">
+
+		        <button type="submit" class="btn btn-primary mb-2 paramBtListagem" name = "pesquisar"> Pesquisar </button>
+				<button type="submit" class="btn btn-light paramBtListagem" name = "pesquisa_todos"> Listar Todos </button>
+				<a href="usuarioCad.php?novo=S" class="btn btn-primary paramBtListagem">  Novo  </a>
+
+			</div>
+        </form>
+		';
+
+
+
+/*
+
 		ECHO '
 		<div class="row">
 			<div class="col-12">
@@ -115,7 +159,7 @@
 
 			</div>
 		</div>';  
-
+*/
         /*"table table-striped" */
 		echo '<table class="table table-hover">    
 			  <thead>
@@ -235,7 +279,7 @@
 			    <!--<a class='box-numero <?=$destaque?>' href="lista_tp.php?page=<?=$i?>"><?=$i?></a>     -->
 			  <?php endfor; ?>    
 
-			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light' href="lista_usuarios.php?page=<?=$proxima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>&p_email=<?=$_SESSION['arg2Tp']?>" title="Próxima Página">></a>    
+			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light ' href="lista_usuarios.php?page=<?=$proxima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>&p_email=<?=$_SESSION['arg2Tp']?>" title="Próxima Página">></a>    
 			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light ' href="lista_usuarios.php?page=<?=$ultima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>&p_email=<?=$_SESSION['arg2Tp']?>" title="Última Página">>></a>    
 		 </div>   
 

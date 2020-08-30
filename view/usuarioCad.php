@@ -224,7 +224,7 @@
                     </div>
                   </div> 
 
-               <a href="lista_usuarios.php" class="btn btn-primary  paramBt">Voltar</a> 
+               <a href="lista_usuarios.php" class="btn btn-primary  paramBt">Pesquisar</a> 
             </div> 
 
         </div> 
