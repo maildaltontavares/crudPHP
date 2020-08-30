@@ -1,0 +1,92 @@
+
+                       '<td><form>
+                       <input type="hidden"  name="Idz" value='  . $p_usuario['id'] . '> 
+                       <button type="submit" class="btn btn-info btn-lg" data-toggle="modal" data-target="#confirm" name="excluir1">ExcluirZZZ</button></form>  </td>'.
+
+                      //'<td><button type="submit" class="btn btn-light" name="excluir1">Excluir</button></td>'.
+
+					  '<td> <!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick=excluir("'. $p_usuario['id'] . '")>
+							  Excluir
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title" id="exampleModalLabel">Exclusão</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							        Confirma ?
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+							        <form >
+                                            <input type="hidden"  name="Idz" value='  . $p_usuario['id'] . '> 
+                                            <a href="lista_usuarios.php?Idz=' . $p_usuario['id'] . '" onclick=excluir("'. $p_usuario['id'] . '")>Excluir</a> 
+							                <button type="submit" class="btn btn-primary"  name="excluir" onclick=excluir("'. $p_usuario['id'] . '")>Excluir</button>
+
+                                           
+							        </form>
+							      </div>
+							    </div>
+							  </div>
+							</div></td>'.
+
+
+ '<td><button id="btAltera"><a href="usuarioCad.php?Id='  . $p_usuario['id'] . '&Altera=S'  . '"></a>Editar</button> </td>' . 
+alt="HTML tutorial" width="32" height="32" 
+
+
+ if (isset($_GET['excluir1'])):
+
+   		echo '<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>';
+
+
+
+        if (isset($_GET['Idz'])): 
+
+
+
+
+
+          	echo '<div class="alert alert-primary" role="alert"><li>' .'Id.: '. $_GET['Idz']  . '</li></div>';
+
+
+        /*	
+	        $usuarioCtr = new UsuarioCtr(); 
+	          
+	        if ($usuarioCtr->delete($_GET['Id1'])== 'OK'):  
+	           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro excluido com sucesso!!"  . '</li></div>';
+	        else:
+	        	echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao Excluir!"  . '</li></div>';
+	        endif;	 
+
+	      */  
+
+        endif;
+ 
+
+   endif;

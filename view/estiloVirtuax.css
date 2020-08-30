@@ -50,3 +50,7 @@
  .destaque{
         background:#000;
      }
+
+ #btAltera {
+        background-image:url("edit.png");
+     }

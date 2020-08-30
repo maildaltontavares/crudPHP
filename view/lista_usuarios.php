@@ -31,15 +31,21 @@
    if (isset($_GET['pesquisa_todos'])):
    	   $_SESSION['arg1Tp'] = '';
    	   $_SESSION['arg2Tp'] = '';
-   endif;	   
+   endif;	
+
+
+  
+
 
   ?>  
     <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
+
   	<script type="text/javascript">
   		
   		var conf;
 
   		function excluir($p_id){
+  			 
   			conf=confirm("Confirma exclusao do usuario: " + $p_id + " ?");
   			
   			if(conf){
@@ -60,7 +66,7 @@
 		<?php   
 
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">Usuarios</h1>'; 
-		echo '<h1 class="p-3 mb-2 text-dark">Usuarios</h1>'; 
+		echo '<h1 class="p-3 mb-2 text-dark">Usuarios</h1>';  
 
 		ECHO '
 		<div class="row">
@@ -100,7 +106,7 @@
 			      </div>
 
 			      <div class="form-group mx-sm-3 mb-2">
-			         <a href="usuarioCad.php" class="btn btn-primary">Novo</a>
+			         <a href="usuarioCad.php?novo=S" class="btn btn-primary">Novo</a>
 			      </div> 
 
 			    </form>
@@ -114,11 +120,12 @@
 		echo '<table class="table table-hover">    
 			  <thead>
 			    <tr>
-			      <th scope="col">Id</th>
+			      <th scope="col-2">Editar</th> 
 			      <th scope="col">Nome</th>
 			      <th scope="col">Email</th>
 			      <th scope="col">Tel</th>
-			      <th scope="col-2">Acao</th>
+			      <th scope="col">Id</th>
+			      
 
 			    </tr>
 			  </thead>
@@ -138,12 +145,18 @@
 
 				 
 				echo '<tr>' .
-				      '<th scope="row">' . $p_usuario['id'] . '</th>' .
+				      '<td> <a href="usuarioCad.php?Id='  . $p_usuario['id'] . '&Altera=S'  . '"   "><img src="edit.png"width="32" height="32" placeholder="Editar" /></a>  </td>' . 
 				      '<td>' .  $p_usuario['nome']      . '</td> ' .
 				      '<td>' .  $p_usuario['email']         . '</td> ' .
 				      '<td>' .  $p_usuario['tel']           . '</td> ' .
-	          		  '<td><a href="usuarioCad.php?Id='  . $p_usuario['id'] . '&Altera=S'  . '">Alterar</a> </td>' .
-	                  '<td><a href="excluirUsuario.php?Id=' . $p_usuario['id'] . '">Excluir</a> </td>'.
+				      '<th scope="row">' . $p_usuario['id'] . '</th>' . 
+	          		  
+	                  //'<td><a href="excluirUsuario.php?Id=' . $p_usuario['id'] . '">Excluir</a> </td>'.
+
+
+
+	                 // '<td><a href="" onclick=excluir("'. $p_usuario['id'] . '")>Excluir</a> </td>'.
+	                  //'<td><button type="submit" name="excluir" onclick=excluir("'. $p_usuario['id'] . '")>Excluir</button> 
 				      //'<td><button type="submit" name="excluir" onclick=excluir("'. $p_usuario['id'] . '")>Excluir</button> </td>'.  
 				    '</tr>' .
 				    '<input type="hidden"  name="Id" value='  . $p_usuario['id'] . '>'; 
@@ -156,12 +169,21 @@
 				//var_dump($p_usuario);
                 //var_dump($p_usuario['id']);
 				echo '<tr>' . 
-				      '<th scope="row">' . $p_usuario['id'] . '</th>' .
+				      '<td> <a href="usuarioCad.php?Id='  . $p_usuario['id'] . '&Altera=S'  . '"   "><img src="edit.png"width="32" height="32" placeholder="Editar" /></a>  </td>' . 
 				      '<td>' .  $p_usuario['nome']      . '</td> ' .
 				      '<td>' .  $p_usuario['email']         . '</td> ' .
 				      '<td>' .  $p_usuario['tel']           . '</td> ' .
-				      '<td><a href="usuarioCad.php?Id='  . $p_usuario['id'] . '&Altera=S'  . '">Alterar</a> </td>' .
-	                  '<td><a href="excluirUsuario.php?Id=' . $p_usuario['id'] . '">Excluir</a> </td>'.
+				      '<th scope="row">' . $p_usuario['id'] . '</th>' . 
+                       
+
+	                 // '<td><a href="" onclick=excluir("'. $p_usuario['id'] . '")>Excluir</a> </td>'.
+	                  //'<td><button type="submit" name="excluir" onclick=excluir("'. $p_usuario['id'] . '")>Excluir</button> 
+				      //'<td><button type="submit" name="excluir" onclick=excluir("'. $p_usuario['id'] . '")>Excluir</button> </td>'.  
+				    '</tr>' .
+				    '<input type="hidden"  name="Id" value='  . $p_usuario['id'] . '>'; 
+
+
+	                  //'<td><a href="excluirUsuario.php?Id=' . $p_usuario['id'] . '">Excluir</a> </td>'.
 				     // '<td><button  type="submit" name="excluir" onclick=excluir("'. $p_usuario['id'] . '")>Excluir</button> </td>'.   
 
 				    '</tr>'	.

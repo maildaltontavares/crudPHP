@@ -10,6 +10,7 @@
 		public function delete(Usuario $u)
 		{
   
+ 
 		 
 			$sql = 'delete from public."S0001_usuario" where d0001_id = ? ';  
 			$stmt = Conexao::getConn()->prepare($sql); 

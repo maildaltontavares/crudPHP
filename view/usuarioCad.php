@@ -37,6 +37,18 @@
 
   endif;
 
+  $excluiu='N';
+  if (isset($_POST['excluir'])): 
+     $usuarioCtr = new UsuarioCtr();     
+         
+      if ($usuarioCtr->delete($_POST['Idx'])== 'OK'):  
+         $excluiu = 'S';
+         echo '<div class="alert alert-primary" role="alert"><li>' . "Registro excluido com sucesso!"  . '</li></div>';
+      else:         
+         echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao Excluir!"  . '</li></div>';
+      endif; 
+
+  endif;
 
 
   if (isset($_POST['gravar'])):
@@ -132,6 +144,17 @@
         var vGrava    = "<?=((isset($_POST['gravar']))?"S":"N");?>";  
         var vCommit   = "<?=((isset($_SESSION['gravou']))?"S":"N");?>";
         var vAlterac  = "<?=((isset($_GET['Altera']   ))?"S":"N");?>";  
+        var vNovo     = "<?=((isset($_GET['novo']))?"S":"N");?>";  
+        var vExcluir  = "<?=$excluiu=='S'?"S":"N";?>";  
+
+        if(vNovo=="S"){
+          $('#btExcluir').attr('hidden', true);
+        }   
+
+        if(vExcluir=="S"){
+          $('#btGravar').attr('disabled', true);
+          $('#btExcluir').attr('disabled', true);
+        }   
 
         if(vCommit=="S") {      
              vCommit = "<?=$_SESSION['gravou']?>";
@@ -170,8 +193,37 @@
         <div class="cabecalho">
             <h1 class="p-3 mb-2  text-dark cTitulo">Usuarios</h1>
             <div id="grupoBotoes">
-               <a href="usuarioCad.php" class="btn btn-primary paramBt">Novo</a>                       
-               <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>
+               <a href="usuarioCad.php?novo=S" class="btn btn-primary paramBt">Novo</a>                       
+               <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button> 
+
+ <!-- Button trigger modal -->
+              <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" >
+                Excluir
+              </button> 
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Exclusão</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Confirma ?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                          <form >
+                                  <input type="hidden"  name="Idx" value= <?php echo $id;?>  >
+                                  <button type="submit" class="btn btn-primary"  name="excluir" >Confirmar</button> 
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+
                <a href="lista_usuarios.php" class="btn btn-primary  paramBt">Voltar</a> 
             </div> 
 

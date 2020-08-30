@@ -1,8 +1,13 @@
 
 Melhorar exclusão;
-Não permitir excluir parametrização se ja houver cadastro de tabelas;
+No novo nao exibe o excluir - adicionar o pesquisa no cadastro
 Melhorar layouts;
+
+implementar a seguranca
 MD5 para a senha;
+Phpexcel 
+Não permitir excluir parametrização se ja houver cadastro de tabelas;
+
 
 
 Corrigir a visualizacao da mensagem de email ou senha invalida;
@@ -13,9 +18,7 @@ Exibir o usuario logado
 recuperar senha
 
 divisao por loja
-implementar a seguranca 
 
-Phpexcel 
 
 Como criar janela modal com formulário cadastrar com JavaScript - youtube 
 
