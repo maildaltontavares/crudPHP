@@ -73,51 +73,46 @@
 			//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabelas</h1>'; 
 			echo '<h1 class="p-3 mb-2 text-dark">Tabela de ' . $nometabpad .  '</h1>'; 
 
-			ECHO '
-			<div class="row">
-				<div class="col-12">
+			echo '
+			<form >
+		        <div class="row">
+		          <div class="col-md-8 mb-3"> ';
+					           
+		        if (isset($_SESSION['arg1Tp'])):			      
+					   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por descrição" value="' . $_SESSION['arg1Tp'] .'">';
+		        else:
+					   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por descrição">'; 
 
-				    <form class="form-inline" >
-				      <div class="form-group mx-sm-3 mb-2">';
-				
-				           
-	        if (isset($_SESSION['arg1Tp'])):			      
-				   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por descrição"value="' . $_SESSION['arg1Tp'] .'">';
-	        else:
-				   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por descrição">'; 
+			    endif;
 
-		    endif;
+			    Echo '	      	       
+	 
+		            </div>
+		          
+		        </div>
 
-		    Echo '		    
-		 		      </div> 
+		        <div class="row">
 
-				      <button type="submit" class="btn btn-primary mb-2" name = "pesquisar"> Pesquisar </button>
-				     
-				      <div class="form-group mx-sm-3 mb-2">			          
-				         <button type="submit" class="btn btn-light" name = "pesquisa_todos"> Listar Todos </button>
-				      </div>
-
-				      <div class="form-group mx-sm-3 mb-2">
-				         <a href="tabelaCad.php" class="btn btn-primary">Novo</a>
-				      </div> 
-
-				    </form>
-
-
+			        <button type="submit" class="btn btn-primary mb-2 paramBtListagem" name = "pesquisar"> Pesquisar </button>
+					<button type="submit" class="btn btn-light paramBtListagem" name = "pesquisa_todos"> Listar Todos </button>
+					<a href="tabelaCad.php?novo=S" class="btn btn-primary paramBtListagem">  Novo  </a>
 
 				</div>
-			</div>';  
+	        </form>
+			';
 
 	        /*"table table-striped" */
 			echo '<table class="table table-hover">    
 				  <thead>
 				    <tr>
-				      <th scope="col">id</th>
+				    <th scope="col-2">Editar</th>
+				      
 				      <th scope="col">Descrição</th>
 				      <th scope="col">Tabela</th>
+				      <th scope="col">id</th>
 
 	 
-				      <th scope="col-2">Ação</th>
+				      
 
 				    </tr>
 				  </thead>
@@ -136,13 +131,10 @@
 				foreach($aTab as $p_tabela):
 
 					echo '<tr>' .
-					      '<th scope="row">' . $p_tabela['id'] . '</th>' .
+					      '<td><a href="tabelaCad.php?Id='  . $p_tabela['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
 					      '<td>' .  $p_tabela['str1']      . '</td> ' .
-					      '<td>' .  $p_tabela['nome_grupo']      . '</td> ' .
-					      
-					  
-		          		  '<td><a href="tabelaCad.php?Id='  . $p_tabela['id'] . '&Altera=S'  . '">Alterar</a> </td>' .
-		                  '<td><a href="excluirTabela.php?Id=' . $p_tabela['id'] . '">Excluir</a> </td>'.
+					      '<td>' .  $p_tabela['nome_grupo']      . '</td> ' .   
+		                  '<th scope="row">' . $p_tabela['id'] . '</th>' .
 					      //'<td><button type="submit" name="excluir" onclick=excluir("'. $p_tabela['id'] . '")>Excluir</button> </td>'.  
 					    '</tr>' .
 					    '<input type="hidden"  name="Id" value='  . $p_tabela['id'] . '>'; 
@@ -154,14 +146,12 @@
 				foreach($tabela->listaTabelaF($_SESSION['arg1Tp'],$sigla,$linha_inicial) as $p_tabela):
 
 					echo '<tr>' .
-					      '<th scope="row">' . $p_tabela['id'] . '</th>' .
-					      '<td>' .  $p_tabela['str1']      . '</td> ' . 
-					      '<td>' .  $p_tabela['nome_grupo']      . '</td> ' .
-					     
-					      '<td><a href="tabelaCad.php?Id='  . $p_tabela['id'] . '&Altera=S'  . '">Alterar</a> </td>' .
-		                  '<td><a href="excluirtabela.php?Id=' . $p_tabela['id'] . '">Excluir</a> </td>'.
-
-					    '</tr>'	.
+					      '<td><a href="tabelaCad.php?Id='  . $p_tabela['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
+					      '<td>' .  $p_tabela['str1']      . '</td> ' .
+					      '<td>' .  $p_tabela['nome_grupo']      . '</td> ' .   
+		                  '<th scope="row">' . $p_tabela['id'] . '</th>' .
+					      //'<td><button type="submit" name="excluir" onclick=excluir("'. $p_tabela['id'] . '")>Excluir</button> </td>'.  
+					    '</tr>' .
 
 					    '<input type="hidden"  name="Id" value='  . $p_tabela['id'] . '>';
 

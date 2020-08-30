@@ -62,7 +62,8 @@
 
     </style>
  
-	<div class="container">  
+ <!--	<div class="container">   -->
+ 	<div class="limiteTela" >
 		<?php   
 
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">Usuarios</h1>'; 
@@ -285,8 +286,8 @@
 
 
 
-
- 	</div>
+	</div>
+ 	<!--	</div> container--> 
 
 
 <?php

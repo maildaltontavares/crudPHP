@@ -36,48 +36,43 @@
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabpads</h1>'; 
 		echo '<h1 class="p-3 mb-2 text-dark">Grupo de Tabelas</h1>'; 
 
-		Echo  '
-		  <div class="row">
-			<div class="col-12">
+		echo '
+		<form >
+	        <div class="row">
+	          <div class="col-md-8 mb-3"> ';
+				           
+	        if (isset($_SESSION['arg1Tp'])):			      
+				   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por nome" value="' . $_SESSION['arg1Tp'] .'">';
+	        else:
+				   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por nome">'; 
 
-			    <form class="form-inline" >
-			      <div class="form-group mx-sm-3 mb-2">';
-			           
-        if (isset($_SESSION['arg1Tp'])):			      
-			   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por Nome" value="' . $_SESSION['arg1Tp'] .'">';
-        else:
-			   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por Nome">'; 
+		    endif;
 
-	    endif;
+		    Echo '	      	       
+ 
+	            </div>
+	          
+	        </div>
 
-	    Echo '		    
-	 		       </div>  
+	        <div class="row">
 
-			      <button type="submit" class="btn btn-primary mb-2" name = "pesquisar"> Pesquisar </button>
-			     
-			      <div class="form-group mx-sm-3 mb-2">			          
-			         <button type="submit" class="btn btn-light" name = "pesquisa_todos"> Listar Todos </button>
-			      </div>
-
-			      <div class="form-group mx-sm-3 mb-2">
-			         <a href="tabpadCad.php" class="btn btn-primary">Novo</a>
-			      </div> 
-
-			    </form>
-
-
+		        <button type="submit" class="btn btn-primary mb-2 paramBtListagem" name = "pesquisar"> Pesquisar </button>
+				<button type="submit" class="btn btn-light paramBtListagem" name = "pesquisa_todos"> Listar Todos </button>
+				<a href="tabpadCad.php?novo=S" class="btn btn-primary paramBtListagem">  Novo  </a>
 
 			</div>
-		</div>';  
+        </form>
+		';
  
         /*"table table-striped" */
 		Echo '<table class="table table-hover">    
 			  <thead>
 			    <tr>
-			      <th scope="col">id</th>
+			      <th scope="col-2">Editar</th>			      
 			      <th scope="col">Nome</th>
+			      <th scope="col">id</th>
  
-			      <th scope="col-2">Acao</th>
+			      
 
 			    </tr>
 			  </thead>
@@ -98,11 +93,12 @@
 			//foreach($tabpad->listatabpad($linha_inicial) as $p_tabpad):
             foreach($aTab as $p_tabpad):
 				echo '<tr>' .
-				      '<th scope="row">' . $p_tabpad['id'] . '</th>' .
+	          		  '<td><a href="tabpadCad.php?Id='  . $p_tabpad['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
 				      '<td>' .  $p_tabpad['descricao']      . '</td> ' .
-				  
-	          		  '<td><a href="tabpadCad.php?Id='  . $p_tabpad['id'] . '&Altera=S'  . '">Alterar</a> </td>' .
-	                  '<td><a href="excluirtabpad.php?Id=' . $p_tabpad['id'] . '">Excluir</a> </td>'.
+				      '<th scope="row">' . $p_tabpad['id'] . '</th>' .				  
+
+
+	 
 				      //'<td><button type="submit" name="excluir" onclick=excluir("'. $p_tabpad['id'] . '")>Excluir</button> </td>'.  
 				    '</tr>' .
 				    '<input type="hidden"  name="Id" value='  . $p_tabpad['id'] . '>';
@@ -114,24 +110,18 @@
 		elseif(isset($_GET['pesquisar'])):
  		      
  
-					foreach($tabpad->listatabpadF($_SESSION['arg1Tp'],$linha_inicial) as $p_tabpad):
+				foreach($tabpad->listatabpadF($_SESSION['arg1Tp'],$linha_inicial) as $p_tabpad):
+		        	echo '<tr>' .
+          		  '<td><a href="tabpadCad.php?Id='  . $p_tabpad['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
+			      '<td>' .  $p_tabpad['descricao']      . '</td> ' .
+			      '<th scope="row">' . $p_tabpad['id'] . '</th>' .		
 
-						echo '<tr>' .
-						      '<th scope="row">' . $p_tabpad['id'] . '</th>' .
-						      '<td>' .  $p_tabpad['descricao']      . '</td> ' .
-						      
-						      '<td><a href="tabpadCad.php?Id='  . $p_tabpad['id'] . '&Altera=S'  . '">Alterar</a> </td>' .
-			                  '<td><a href="excluirTabPad.php?Id=' . $p_tabpad['id'] . '">Excluir</a> </td>'.
-						     // '<td><button  type="submit" name="excluir" onclick=excluir("'. $p_tabpad['id'] . '")>Excluir</button> </td>'.  
+					    '</tr>'	.
 
+					    '<input type="hidden"  name="Id" value='  . $p_tabpad['id'] . '>';
 
-
-						    '</tr>'	.
-
-						    '<input type="hidden"  name="Id" value='  . $p_tabpad['id'] . '>';
-
-					endforeach;	 
-		 
+				endforeach;	 
+	 
 
 			 
 		endif;

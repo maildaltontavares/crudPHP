@@ -41,49 +41,40 @@
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabpads</h1>'; 
 		echo '<h1 class="p-3 mb-2 text-dark">Parametrização de Tabelas</h1>'; 
 
-		ECHO '
-		<div class="row">
-			<div class="col-12">
 
-			    <form class="form-inline" >
-			      <div class="form-group mx-sm-3 mb-2">';
+		echo '
+		<form >
+	        <div class="row">
+	          <div class="col-md-8 mb-3"> ';
+				           
+	        if (isset($_SESSION['arg1Tp'])):			      
+				   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por nome do grupo" value="' . $_SESSION['arg1Tp'] .'">';
+	        else:
+				   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por nome do grupo">'; 
 
-			           
-        if (isset($_SESSION['arg1Tp'])):			      
-			   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise nome do grupo"value="' . $_SESSION['arg1Tp'] .'">';
-        else:
-			   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise nome do grupo">'; 
+		    endif;
 
-	    endif;
+		    Echo '	      	       
+ 
+	            </div>
+	          
+	        </div>
 
-	    Echo '		    
-	 		      </div>   
+	        <div class="row">
 
-			      <button type="submit" class="btn btn-primary mb-2" name = "pesquisar"> Pesquisar </button>
-			     
-			      <div class="form-group mx-sm-3 mb-2">			          
-			         <button type="submit" class="btn btn-light" name = "pesquisa_todos"> Listar Todos </button>
-			      </div>
-
-			      <div class="form-group mx-sm-3 mb-2">
-			         <a href="paramtpCad.php" class="btn btn-primary ">Novo</a>
-			      </div> 
-
-			    </form>
-
-
+		        <button type="submit" class="btn btn-primary mb-2 paramBtListagem" name = "pesquisar"> Pesquisar </button>
+				<button type="submit" class="btn btn-light paramBtListagem" name = "pesquisa_todos"> Listar Todos </button>
+				<a href="paramtpCad.php?novo=S" class="btn btn-primary paramBtListagem">  Novo  </a>
 
 			</div>
-		</div>';  
-
-        /*"table table-striped" */
+        </form>
+		';
 		echo '<table class="table table-hover">    
 			  <thead>
 			    <tr>
+			      <th scope="col-2">Editar</th>
+			      <th scope="col">Nome do Grupo</th>
 			      <th scope="col">id</th>
-			      <th scope="col">Nome</th>
- 
-			      <th scope="col-2">Acao</th>
 
 			    </tr>
 			  </thead>
@@ -103,11 +94,9 @@
 			foreach($aTab as $p_paramtb):
 
 				echo '<tr>' .
-				      '<th scope="row">' . $p_paramtb['id'] . '</th>' .
-				      '<td>' .  $p_paramtb['nome_grupo']      . '</td> ' .
-				  
-	          		  '<td><a href="paramtpCad.php?Id='  . $p_paramtb['id'] . '&Altera=S'  . '">Alterar</a> </td>' .
-	                  '<td><a href="excluirParamtp.php?Id=' . $p_paramtb['id'] . '">Excluir</a> </td>'.
+				      '<td><a href="paramtpCad.php?Id='  . $p_paramtb['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
+				      '<td>' .  $p_paramtb['nome_grupo']      . '</td> ' .  
+	                   '<th scope="row">' . $p_paramtb['id'] . '</th>' .
 				      //'<td><button type="submit" name="excluir" onclick=excluir("'. $p_paramtb['id'] . '")>Excluir</button> </td>'.  
 				    '</tr>' .
 				    '<input type="hidden"  name="Id" value='  . $p_paramtb['id'] . '>';
@@ -121,17 +110,11 @@
 			foreach($paramtb->listaParamTbF($_SESSION['arg1Tp'],$linha_inicial) as $p_paramtb):
 
 				echo '<tr>' .
-				      '<th scope="row">' . $p_paramtb['id'] . '</th>' .
-				      '<td>' .  $p_paramtb['nome_grupo']      . '</td> ' .
-				      
-				      '<td><a href="paramtpCad.php?Id='  . $p_paramtb['id'] . '&Altera=S'  . '">Alterar</a> </td>' .
-	                  '<td><a href="excluirParamtp.php?Id=' . $p_paramtb['id'] . '">Excluir</a> </td>'.
-				     // '<td><button  type="submit" name="excluir" onclick=excluir("'. $p_paramtb['id'] . '")>Excluir</button> </td>'.  
-
-
-
-				    '</tr>'	.
-
+				      '<td><a href="paramtpCad.php?Id='  . $p_paramtb['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
+				      '<td>' .  $p_paramtb['nome_grupo']      . '</td> ' .  
+	                   '<th scope="row">' . $p_paramtb['id'] . '</th>' .
+				      //'<td><button type="submit" name="excluir" onclick=excluir("'. $p_paramtb['id'] . '")>Excluir</button> </td>'.  
+				    '</tr>' .
 				    '<input type="hidden"  name="Id" value='  . $p_paramtb['id'] . '>';
 
 			endforeach;	 
