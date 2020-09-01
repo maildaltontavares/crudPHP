@@ -146,7 +146,7 @@
                         
                          <li> <a href="#">Loja</a></li>
                          <li> <a href="#">Produto</a></li>
-                         <li> <a href="#">Pessoas</a></li>
+                         <li> <a href="#">Pessoa</a></li>
                          <li> <a href="#">Evento</a></li>
                          
 
@@ -198,12 +198,11 @@
             <li> <a href="#">Seguranca</a>
 
                     <ul>
-                         <li> <a href="#">Função</a> </li>
+                         <li> <a href="lista_funcao.php">Função</a> </li>
+                         <li> <a href="#">Perfil</a> </li>
                          <li> <a href="#">Grupo</a> </li>
+                         <li> <a href="#">Grupo Tabela</a> </li>
                          <li> <a href="lista_usuarios.php">Usuario</a> </li>
-
-
-
                     </ul>
              </li>
         </ul>        

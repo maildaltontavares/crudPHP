@@ -66,8 +66,8 @@
   		}
 
     </style>
- 
-	<div class="container">  
+  	<div class="limiteTela" >
+	<!--<div class="container">   -->
 		<?php   
 
 			//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabelas</h1>'; 

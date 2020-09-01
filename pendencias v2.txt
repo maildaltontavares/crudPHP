@@ -1,23 +1,16 @@
 
-Melhorar exclusão; replicar
-No novo nao exibe o excluir - adicionar o pesquisa no cadastro
-Melhorar layouts;
-
-implementar a seguranca
+Por a cor vermelha nas mensagens de insucesso
+implementar a seguranca;
 MD5 para a senha;
-Phpexcel 
-Não permitir excluir parametrização se ja houver cadastro de tabelas;
-
-
+Por a impressao p primeira tela;
+Phpexcel ;
+Não permitir excluir parametrização se ja houver cadastro de tabelas; 
 
 Corrigir a visualizacao da mensagem de email ou senha invalida;
-por um link sobre a descricao pra consulta
-Por a impressao p primeira tela
+Exibir o usuario logado;
+recuperar senha;
 
-Exibir o usuario logado
-recuperar senha
-
-divisao por loja
+divisao por loja;
 
 
 Como criar janela modal com formulário cadastrar com JavaScript - youtube 
@@ -50,7 +43,9 @@ replicar inclusoes duplicadas; ok
 Validações; Valida caso marque string1 p por a descricao; e vice versa; ok
 Filtrar os grupos  e tabelas na parametrizacao dwe tabelas - ok
 Controle de transações; ok
-
+Melhorar exclusão; replicar - ok 
+No novo nao exibe o excluir - adicionar o pesquisa no cadastro
+Melhorar layouts;
 
 
 
