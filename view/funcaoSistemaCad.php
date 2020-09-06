@@ -87,10 +87,28 @@
                   $funcaoSistemaCtr = new FuncaoSistemaCtr();  
                   if ($Altera == "N"):
 
-                      if ($funcaoSistemaCtr->create($funcaoSistema,$idfunc,$idAcao)== 'OK'):  
+
+                      $date = date('YmdHis'); 
+                      $chave =  '' . $date  ;
+                      for ($i = 1; $i <= 3; $i++) {
+                          $chave = $chave .  (string)random_int(100, 999);
+                      }                        
+
+                      if ($funcaoSistemaCtr->create($funcaoSistema,$idfunc,$idAcao,$chave)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
                    
-                          $_SESSION['gravou'] = "S";  
+                          $_SESSION['gravou'] = "S"; 
+
+
+                          $idAcao = $funcaoSistemaCtr->buscaChave($chave);   
+
+                          $aAcao = [];
+
+                          for($i=0;$i<count($idAcao);$i++)
+                            {
+                               $aAcao[$i] = $idAcao[$i]['id'];
+                            } 
+
                       else:  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro não gravado!!"  . '</li></div>';                        
                           $_SESSION['gravou'] = "N";                  
@@ -102,6 +120,18 @@
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>'; 
                                             
                           $_SESSION['gravou'] = "S"; 
+
+
+                          $idAcao = $funcaoSistemaCtr->listaAcao($id);   
+
+                          $aAcao = [];
+
+                          for($i=0;$i<count($idAcao);$i++)
+                            {
+                               $aAcao[$i] = $idAcao[$i]['id'];
+                            } 
+
+                          
                       else:  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';
                           $_SESSION['gravou'] = "N";                  
@@ -117,17 +147,7 @@
 
               endif;
 
-              if($_SESSION['gravou'] == "S"):
-                    $idAcao = $funcaoSistemaCtr->listaAcao($id);   
-
-                    $aAcao = [];
-
-                    for($i=0;$i<count($idAcao);$i++)
-                      {
-                         $aAcao[$i] = $idAcao[$i]['id'];
-                      } 
- 
-              endif;               
+          
  
 
   endif; 

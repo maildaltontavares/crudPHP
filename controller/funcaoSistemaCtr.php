@@ -29,6 +29,17 @@
 
 		 }  
 
+		public function buscaChave($p_chave){
+
+			$funcSys = new FuncaoSistema();  
+			$funcSys->setChave($p_chave);
+
+			$funcSysDao = new FuncSysDao();  
+			return $funcSysDao->buscaChave($funcSys); 
+
+
+		 }  		 
+
 		public function update($p_id,$p_funcSys,$p_func,$p_acao){
 
 
@@ -46,19 +57,15 @@
 		 }
 
 
-		public function create($p_funcSys,$p_func,$p_acao ){ 
+		public function create($p_funcSys,$p_func,$p_acao,$p_chave ){ 
 
-			$date = date('YmdHis'); 
-			$chave =  '' . $date  ;
-			for ($i = 1; $i <= 3; $i++) {
-  			  $chave = $chave .  (string)random_int(100, 999);
-			}  	 
+
 
 			$funcSys = new FuncaoSistema();
 			$funcSys->setNome($p_funcSys);  
 			$funcSys->setFunc($p_func); 
 			$funcSys->setAcao($p_acao); 
-			$funcSys->setChave($chave);
+			$funcSys->setChave($p_chave);
 
 			$funcSysDao = new FuncSysDao();
 			$r = $funcSysDao->create($funcSys); 
@@ -75,7 +82,7 @@
 		 } 
 
 		public function listaAcao($p_func){
-			
+
 			$funcSys = new FuncaoSistema();
 			$funcSys->setFunc($p_func); 
 

@@ -64,6 +64,35 @@
 
 		 
 		}
+
+		public function buscaChave(FuncaoSistema $f)
+		{
+ 
+			$sql = 'SELECT  D0003_ID_ACAO id   FROM public."S0003_FUNCAO_ACAO" f  WHERE D0003_chave = ?'  ;
+			$stmt = Conexao::getConn()->prepare($sql); 
+			$stmt->bindValue(1,$f->getChave());  
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit();  
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na pesquisa: " . $e->getMessage() . '</li></div>'; 
+			 
+			}	
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);   
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}		
+
+
  		public function update(FuncaoSistema $f)
 		{
   
