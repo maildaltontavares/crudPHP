@@ -30,7 +30,8 @@
    <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
  
  <body>
-	<div class="container" >  
+ 	<div class="limiteTela" >
+	<!--<div class="container" >  -->
 		<?php   
 
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabpads</h1>'; 

@@ -3,7 +3,9 @@
   session_start();
 
   require_once '../config.php';
-  require_once ROOT_PATH . '/controller/funcaoSistemaCtr.php'; ;
+  require_once ROOT_PATH . '/controller/funcaoSistemaCtr.php';
+  require_once ROOT_PATH . '/controller/tabelaCtr.php';  
+
   
 
   if(!isset($_SESSION['user'])):
@@ -19,27 +21,38 @@
   $id = 0;
   $funcaoSistema = '';
   $sigla  = '';
+  $idfunc =0;
 
   if (isset($_GET['Altera'])):
      $Altera = "S";
      
-     $funcaoSistema = new FuncaoSistemaCtr();   
-     $p_funcaoSistema = $funcaoSistema->buscaFuncSys($_GET['Id']);  
+     $funcaoSistemaCtr = new FuncaoSistemaCtr();   
+     $p_funcaoSistema = $funcaoSistemaCtr->buscaFuncaoSistema($_GET['Id']);  
 
      //var_dump($p_funcaoSistema);
 
-      if(!empty($p_funcaoSistema)): 
+      if(!empty($p_funcaoSistema)):
+
         $id = $p_funcaoSistema[0]['id'];  
-        $funcaoSistema = $p_funcaoSistema[0]['descricao'];    
-       // $sigla = $p_funcaoSistema[0]['sigla'];    
+        $funcaoSistema = $p_funcaoSistema[0]['descricao']; 
+        $idfunc = $p_funcaoSistema[0]['idfunc'];
+        $idAcao = $funcaoSistemaCtr->listaAcao($id);   
+
+        $aAcao = [];
+
+        for($i=0;$i<count($idAcao);$i++)
+          {
+             $aAcao[$i] = $idAcao[$i]['id'];
+          } 
+ 
       endif;  
   endif;
 
   $excluiu='N';
   if (isset($_POST['excluir'])): 
-      $funcaoSistema = new FuncaoSistemaCtr(); 
+      $funcaoSistemaCtr = new FuncaoSistemaCtr(); 
           
-      if ($funcaoSistema->delete($_POST['Idx'])== 'OK'):  
+      if ($funcaoSistemaCtr->delete($_POST['Idx'])== 'OK'):  
          $excluiu = 'S';
          echo '<div class="alert alert-primary" role="alert"><li>' . "Registro excluido com sucesso!"  . '</li></div>';
       else:         
@@ -48,10 +61,10 @@
 
   endif;
 
-  if (isset($_POST['gravar'])):
-     
+  if (isset($_POST['gravar'])): 
 
-              $erros = array();
+
+              $erros = array();              
 
               $funcaoSistema =  filter_input(INPUT_POST, 'funcaoSistema',FILTER_SANITIZE_STRING); 
            
@@ -59,36 +72,33 @@
                      $erros[] = "Descrição inválida!";   
               elseif($funcaoSistema==''):
                     $erros[] = "Descrição inválida!";                  
-              endif;   
+              endif;    
 
-/*
-              $sigla =  filter_input(INPUT_POST, 'sigla',FILTER_SANITIZE_STRING); 
-           
-              if(!filter_var($sigla,FILTER_SANITIZE_STRING)):
-                  $erros[] = "Sigla inválida!";          
-              elseif($sigla==''):
-                  $erros[] = "Sigla inválida!";                             
+               $idfunc =  $_POST['Funcao'];  
+
+               if (isset($_POST['Acao'])):
+                   $idAcao =  $_POST['Acao'];  
+               else:
+                    $idAcao =  [];
               endif; 
-
-*/
 
               if (empty($erros)):  // Nao tem erros de digitacao
 
-                  $funcaoSistema = new FuncaoSistemaCtr();  
+                  $funcaoSistemaCtr = new FuncaoSistemaCtr();  
                   if ($Altera == "N"):
 
-                      if ($funcaoSistema->create($funcaoSistema)== 'OK'):  
+                      if ($funcaoSistemaCtr->create($funcaoSistema,$idfunc,$idAcao)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
                    
                           $_SESSION['gravou'] = "S";  
                       else:  
-                          echo '<div class="alert alert-primary" role="alert"><li>' . "Grupo inválido!!"  . '</li></div>';                        
+                          echo '<div class="alert alert-primary" role="alert"><li>' . "Registro não gravado!!"  . '</li></div>';                        
                           $_SESSION['gravou'] = "N";                  
                       endif;  
 
                   else:
 
-                      if ($funcaoSistema->update($id,$funcaoSistema)== 'OK'):  
+                      if ($funcaoSistemaCtr->update($id,$funcaoSistema,$idfunc,$idAcao)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>'; 
                                             
                           $_SESSION['gravou'] = "S"; 
@@ -106,6 +116,18 @@
                   endforeach;  
 
               endif;
+
+              if($_SESSION['gravou'] == "S"):
+                    $idAcao = $funcaoSistemaCtr->listaAcao($id);   
+
+                    $aAcao = [];
+
+                    for($i=0;$i<count($idAcao);$i++)
+                      {
+                         $aAcao[$i] = $idAcao[$i]['id'];
+                      } 
+ 
+              endif;               
  
 
   endif; 
@@ -206,21 +228,65 @@
         <div class="form-group col-md-8">
           <label for="funcaoSistema">Descrição</label> 
 
-          <input id="funcaoSistema" name ="funcaoSistema" type="text" class="form-control"   value="<?php  echo $funcaoSistema;  ?>"       >
+          <input id="funcaoSistema" name ="funcaoSistema" type="text" class="form-control"   value="<?php  echo $funcaoSistema;  ?>"       >          
 
         </div>
-    </div>  
-<!--
-    <div class="form-row"> 
+
+
 
         <div class="form-group col-md-8">
-          <label for="sigla">Sigla</label> 
+            <label for="selecioneFuncao">Função</label>  
+            <select class="form-control" id="selecioneFuncao" name="Funcao" >  
+            <?php 
 
-          <input id="sigla" name ="sigla" type="text" class="form-control"   value="<?php  echo $sigla;  ?>"       >
+                $tabela = new tabelaCtr();               
+                $aTabFunc = $tabela->buscaTabelaSigla('funcSys'); 
 
+                //var_dump($aTab) ;
+  
+                foreach($aTabFunc as $p_tabela):
+
+                    if ($p_tabela['id'] ==  $idfunc ):
+                      echo ' <option value=' . $p_tabela['id']  . ' selected >' . $p_tabela['descricao']  .'</option>';  
+                    else:  
+                      echo ' <option value=' . $p_tabela['id']  . ' >' . $p_tabela['descricao']  .'</option>';  
+                    endif;  
+
+                endforeach;
+  
+            ?>             
+
+
+            </select> 
         </div>
-    </div>      
--->
+
+
+        
+
+
+        <div class="form-group col-md-8">
+            <label for="selecioneAcao">Ações</label>  
+            <select multiple class="form-control" id="selecioneAcao" name="Acao[]" >  
+
+            <?php   
+                $aTabBot = $tabela->buscaTabelaSigla('botSys');  
+                foreach($aTabBot as $p_tabela):  
+                    $key = array_search($p_tabela['id'],  $aAcao);  
+                    if (false !== $key):
+                      echo ' <option value=' . $p_tabela['id']  . ' selected >' . $p_tabela['descricao']  .'</option>';  
+                    else:  
+                      echo ' <option value=' . $p_tabela['id']  . ' >' . $p_tabela['descricao']  .'</option>';  
+                    endif;  
+
+                endforeach; 
+            ?>    
+
+            </select> 
+        </div>        
+
+
+    </div>  
+
 
   </div> 
 </form>

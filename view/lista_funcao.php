@@ -30,7 +30,8 @@
    <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
  
  <body>
-	<div class="container" >  
+ 	<div class="limiteTela" >
+	<!--<div class="container" >   -->
 		<?php   
 
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabpads</h1>'; 
@@ -78,17 +79,18 @@
 			  </thead>
 			  <tbody>';
 
-		$funcaoSistema = new FuncaoSistemaCtr();	 
+		$funcaoSistemaCtr = new FuncaoSistemaCtr();	 
 
 
 		if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ):   
 
             if($_SESSION['arg1Tp'] ==''):
-            	$aTab = $funcaoSistema->listaFuncaoSistema($linha_inicial);
+            	$aTab = $funcaoSistemaCtr->listaFuncaoSistema($linha_inicial);
             else:
-            	$aTab = $funcaoSistema->listaFuncSysF($_SESSION['arg1Tp'],$linha_inicial);
+            	$aTab = $funcaoSistemaCtr->listaFuncSysF($_SESSION['arg1Tp'],$linha_inicial);
             endif;
 
+            ///var_dump($aTab);
             
 			//foreach($funcaoSistema->FuncaoSistemaCtr($linha_inicial) as $p_funcaoSistema):
             foreach($aTab as $p_funcaoSistema):
@@ -110,7 +112,7 @@
 		elseif(isset($_GET['pesquisar'])):
  		      
  
-				foreach($funcaoSistema->listaFuncSysF($_SESSION['arg1Tp'],$linha_inicial) as $p_funcaoSistema):
+				foreach($funcaoSistemaCtr->listaFuncSysF($_SESSION['arg1Tp'],$linha_inicial) as $p_funcaoSistema):
 		        	echo '<tr>' .
           		  '<td><a href="funcaoSistemaCad.php?Id='  . $p_funcaoSistema['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
 			      '<td>' .  $p_funcaoSistema['descricao']      . '</td> ' .
@@ -140,13 +142,13 @@
 			 if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ): 
 
 		         if($_SESSION['arg1Tp'] ==''):
-		          	$aValor = $funcaoSistema->totRegistros(''); 
+		          	$aValor = $funcaoSistemaCtr->totRegistros(''); 
 		         else:
-		          	$aValor = $funcaoSistema->totRegistros($_SESSION['arg1Tp']); 
+		          	$aValor = $funcaoSistemaCtr->totRegistros($_SESSION['arg1Tp']); 
 		         endif;
 
 			 elseif(isset($_GET['pesquisar'])):  
-			     $aValor = $funcaoSistema->totRegistros($_SESSION['arg1Tp']);  
+			     $aValor = $funcaoSistemaCtr->totRegistros($_SESSION['arg1Tp']);  
 			 endif;
 
 			 include_once "paginas.php";

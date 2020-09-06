@@ -16,6 +16,7 @@
 
 
 		}		
+ 
 
 		public function buscaFuncaoSistema($p_id){
 
@@ -28,14 +29,15 @@
 
 		 }  
 
-		public function update($p_id,$p_funcSys){
+		public function update($p_id,$p_funcSys,$p_func,$p_acao){
 
 
 			// Prepara Bean tabpad
 			$funcSys = new FuncaoSistema();
 			$funcSys->setId($p_id);
 			$funcSys->setNome($p_funcSys); 
-			//$funcSys->setSigla($p_sigla); 
+			$funcSys->setFunc($p_func); 
+			$funcSys->setAcao($p_acao);
 
 			//  Vzalida tabpad
 			$funcSysDao = new FuncSysDao();
@@ -44,13 +46,20 @@
 		 }
 
 
-		public function create($p_funcSys ){
+		public function create($p_funcSys,$p_func,$p_acao ){ 
 
+			$date = date('YmdHis'); 
+			$chave =  '' . $date  ;
+			for ($i = 1; $i <= 3; $i++) {
+  			  $chave = $chave .  (string)random_int(100, 999);
+			}  	 
 
-			// Prepara Bean tabpad
 			$funcSys = new FuncaoSistema();
 			$funcSys->setNome($p_funcSys);  
-			//$funcSys->setSigla($p_sigla);  
+			$funcSys->setFunc($p_func); 
+			$funcSys->setAcao($p_acao); 
+			$funcSys->setChave($chave);
+
 			$funcSysDao = new FuncSysDao();
 			$r = $funcSysDao->create($funcSys); 
 			return  $r;  
@@ -58,13 +67,23 @@
 
  
 		public function listaFuncaoSistema($numPg){
-
 			
 			$funcSysDao = new FuncSysDao();  
 			return $funcSysDao->read($numPg);
 			
 
 		 } 
+
+		public function listaAcao($p_func){
+			
+			$funcSys = new FuncaoSistema();
+			$funcSys->setFunc($p_func); 
+
+			$funcSysDao = new FuncSysDao();  
+			return $funcSysDao->readItens($funcSys);
+			
+
+		 } 		 
 
 
 		public function listaFuncSysF($p_funcSys,$numPg){

@@ -1,2 +1,2 @@
-ALTER TABLE public."E0004_tabela"
-ADD CONSTRAINT fk_id_grupo FOREIGN KEY (d0001_id) REFERENCES public."E0001_tabela_padrao"(d0001_id);
+ALTER TABLE public."S0003_FUNCAO_ACAO"
+ADD CONSTRAINT fk_funcao_grupo FOREIGN KEY (D0002_ID_FUNCAO) REFERENCES public."E0004_tabela"(d0004_id);

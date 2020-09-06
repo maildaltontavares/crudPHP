@@ -34,8 +34,8 @@
   		}
 
     </style>
- 
-	<div class="container"  style="">  
+   	<div class="limiteTela" >
+	<!--<div class="container"  style="">   -->
 		<?php   
 
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabpads</h1>'; 

@@ -5,6 +5,10 @@
 
 		private $Id;
 		private $nome;
+		private $IdFunc;
+		private $IdAcao;
+		private $chave;
+
 		//private $sigla;
 	 
 
@@ -24,14 +28,28 @@
 			return $this->nome;
 		}
 
-		//public function setSigla($sigla){
-		//	$this->sigla = $sigla;
-		//}
+		public function setFunc($id_func){
+		 	$this->IdFunc = $id_func;
+		}
 
-		//public function getSigla(){
-		//	return $this->sigla;
-		//}				
+		public function getFunc(){
+			return $this->IdFunc;
+		}				
 		 
+		public function setAcao($id_acao){
+		 	$this->IdAcao = $id_acao;
+		}
+
+		public function getAcao(){
+			return $this->IdAcao;
+		}			 
+		public function setChave($chave){
+		 	$this->chave = $chave;
+		}
+
+		public function getChave(){
+			return $this->chave;
+		}		
 
 
 	}

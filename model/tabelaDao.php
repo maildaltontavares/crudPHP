@@ -33,6 +33,53 @@
 		 
 		}
 
+		public function buscaTabelaSigla(Tabela $t)
+		{
+  
+ 
+			$sql = 'SELECT ';
+   			$sql = $sql . ' ctp.d0001_id id_tp, ';
+   			$sql = $sql . ' ctp.d0004_string1 descricao, ';
+			$sql = $sql . ' d0004_string1 str1,';
+			$sql = $sql . ' d0004_string2  str2,';
+			$sql = $sql . ' d0004_string3  str3,';
+			$sql = $sql . ' d0004_flag1  flag1,';
+			$sql = $sql . ' d0004_flag2 flag2,';			
+			$sql = $sql . ' d0004_flag3 flag3,';
+			$sql = $sql . ' d0004_num1 num1,';
+			$sql = $sql . ' d0004_num2 num2,';
+			$sql = $sql . ' d0004_num3 num3,';
+		    $sql = $sql . ' d0004_data1 data1,';	
+			$sql = $sql . ' d0004_data2 data2,';
+			$sql = $sql . ' d0004_data3 data3,';
+			$sql = $sql . ' d0004_id id  '  ;
+			$sql = $sql . ' FROM public."E0004_tabela" ctp';
+			$sql = $sql . ' inner join public."E0001_tabela_padrao" tp';
+            $sql = $sql . ' on ctp.d0001_id  = tp.d0001_id  ';
+			$sql = $sql . ' where tp.d0001_sigla = ? order by d0004_string1';
+			$stmt = Conexao::getConn()->prepare($sql); 
+			$stmt->bindValue(1,$t->getSigla());  
+			try{ 
+				$stmt->execute(); 
+
+				if($stmt->rowCount() > 0):
+					$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+					return $resultado;	
+				else:
+					return [];				
+				endif;
+			}
+			  catch (\PDOException $e) {  
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			        return [];	;
+			}	
+			
+
+
+		 
+		}
+
+
 		public function buscaTabela(Tabela $t)
 		{
   
@@ -239,7 +286,7 @@
 			$sql = $sql . ' where tp.d0001_id = ctp.d0001_id and tp.d0001_sigla = ? '; 
 			$sql = $sql . '  order by d0004_string1  LIMIT ' .QTDE_REGISTROS . ' OFFSET ' . $numPg  ;
 
-			//var_dump($sql);
+			//var_dump($t->getSigla());
 
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$t->getSigla());

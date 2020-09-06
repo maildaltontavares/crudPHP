@@ -17,6 +17,17 @@
 
 		}		
 
+		public function buscaTabelaSigla($p_sigla){
+
+			$tabela = new tabela();
+			$tabela->setSigla($p_sigla);
+
+			$TabelaDao = new TabelaDao();   
+			return $TabelaDao->buscaTabelaSigla($tabela); 
+
+
+		 } 		
+
 		public function buscaTabela($p_id){
 
 			$tabela = new tabela();
