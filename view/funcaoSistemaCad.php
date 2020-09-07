@@ -22,6 +22,7 @@
   $funcaoSistema = '';
   $sigla  = '';
   $idfunc =0;
+  $aAcao = [];
 
   if (isset($_GET['Altera'])):
      $Altera = "S";
@@ -278,32 +279,57 @@
 
 
             </select> 
-        </div>
-
-
-        
-
-
-        <div class="form-group col-md-8">
-            <label for="selecioneAcao">Ações</label>  
-            <select multiple class="form-control" id="selecioneAcao" name="Acao[]" >  
-
+        </div>  
+    </div>
+    <div class="form-row"> 
+        <div class="form-group col-md-1"> 
             <?php   
+
+                Echo '<table class="table table-hover">    
+                <thead>
+                  <tr>
+                    <th scope="col-1">Ação</th>  
+                    <th scope="col-1"></th>  
+                  </tr>
+                </thead>
+                <tbody>';  
+
                 $aTabBot = $tabela->buscaTabelaSigla('botSys');  
                 foreach($aTabBot as $p_tabela):  
                     $key = array_search($p_tabela['id'],  $aAcao);  
                     if (false !== $key):
-                      echo ' <option value=' . $p_tabela['id']  . ' selected >' . $p_tabela['descricao']  .'</option>';  
-                    else:  
-                      echo ' <option value=' . $p_tabela['id']  . ' >' . $p_tabela['descricao']  .'</option>';  
+                   //   echo '<tr>' .
+                  //'<td> <input type="checkbox" name="Acao[]" value=' . $p_tabela['id'] . ' checked  ><label>' . $p_tabela['descricao']  .'</label> </td></tr> ';
+                     
+                      echo '<tr>' . 
+                      '<td>  ' . $p_tabela['descricao']  .'  </td>';
+                      echo '' .
+                      '<td> <input type="checkbox" name="Acao[]" value=' . $p_tabela['id'] . ' checked  ></td>' . 
+                      '</tr>   ';
+    
+
+                     //echo ' <option value=' . $p_tabela['id']  . ' selected >' . $p_tabela['descricao']  .'</option>';  
+                    else:
+                      //echo '<tr>' .
+                    //'<td> <input type="checkbox" name="Acao[]" value=' . $p_tabela['id']  . ' ><label>' . $p_tabela['descricao']  .'</label> </td></tr>';
+                      echo '<tr>' . 
+                      '<td>  ' . $p_tabela['descricao']  .'  </td>';
+                      echo '' .
+                      '<td> <input type="checkbox" name="Acao[]" value=' . $p_tabela['id'] . '    ></td>' . 
+                      '</tr>   ';                    
+                    
                     endif;  
 
                 endforeach; 
+
+
+               echo ' </tbody> </table>';    
             ?>    
 
-            </select> 
-        </div>        
+            
+        </div>
 
+        
 
     </div>  
 

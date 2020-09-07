@@ -156,8 +156,8 @@
          ?>
 
 		 <div class='box-paginacao'>     
-			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light' href="lista_funcao.php?page=<?=$primeira_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Primeira Página"><<</a>    
-			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light' href="lista_funcao.php?page=<?=$pagina_anterior?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Página Anterior"><</a>     
+			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$primeira_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Primeira Página"><<</a>    
+			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$pagina_anterior?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Página Anterior"><</a>     
 
 			  <?php  
 
@@ -165,12 +165,14 @@
 			  for ($i=$range_inicial; $i <= $range_final; $i++):   
 			    $destaque = ($i == $pagina_atual) ? 'destaque' : '' ;  
 			    ?>   
-			    <a class='box-numero <?=$destaque?>' href="lista_funcao.php?page=<?=$i?>&p_nome=<?=$_SESSION['arg1Tp']?>"><?=$i?></a>    
-			    <!--<a class='box-numero <?=$destaque?>' href="lista_funcao.php?page=<?=$i?>"><?=$i?></a>     -->
+
+			     <a class=' btn btn-light paramBtPag <?=$destaque?>' href="lista_funcao.php?page=<?=$i?>&p_nome=<?=$_SESSION['arg1Tp']?>"> <?=$i?></a>  
+			    <!--<a class='box-navegacao paramBtPagin  <?=$destaque?>' href="lista_funcao.php?page=<?=$i?>&p_nome=<?=$_SESSION['arg1Tp']?>"><?=$i?></a>    <!--
+			    <!--box-numero  <a class='box-numero <?=$destaque?>' href="lista_funcao.php?page=<?=$i?>"><?=$i?></a>     -->
 			  <?php endfor; ?>    
 
-			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light' href="lista_funcao.php?page=<?=$proxima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Próxima Página">></a>    
-			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light ' href="lista_funcao.php?page=<?=$ultima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Última Página">>></a>    
+			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$proxima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Próxima Página">></a>    
+			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$ultima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Última Página">>></a>    
 		 </div>   
 
 
