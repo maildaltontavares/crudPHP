@@ -13,9 +13,9 @@
   endif;  
 
 
-  include_once "menuPrincipal.php";
-  include_once "menu.php"; 
-
+ // include_once "menuPrincipal.php";
+ // include_once "menu.php"; 
+  include_once "menuNavCab.php";
   $Altera = "N"; 
 
   $id = 0;
@@ -203,7 +203,8 @@
 
 
 <form method="POST" > 
-  <div class = 'container'>
+  <div class="limiteTela" >
+   
     
     <div id='modelo'>
         <div class="cabecalho">
@@ -323,7 +324,8 @@
                 endforeach; 
 
 
-               echo ' </tbody> </table>';    
+               echo ' </tbody> </table>';  
+               include_once "menuNavRodape.php";  
             ?>    
 
             
@@ -336,4 +338,5 @@
 
   </div> 
 </form>
+
 

@@ -10,9 +10,8 @@
   	header('Location:login.php');  
   endif;	
 
-  //include_once "menuPrincipal.php";
-  //include_once "menu.php"; 
   include_once "menuNavCab.php";
+  //include_once "menu.php"; 
   include_once "confPaginacao.php"; 
 
   if(isset($_GET['p_nome'])):
@@ -30,7 +29,7 @@
 ?>  
    <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
  
- <body>
+ 
  	<div class="limiteTela" >
 	<!--<div class="container" >   -->
 		<?php   
@@ -182,9 +181,7 @@
 
 <?php
 
-  //include_once "footer.php";
   include_once "menuNavRodape.php";
+
 ?>  
-
-</body> 
-
+ 
