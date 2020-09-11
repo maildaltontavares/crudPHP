@@ -11,8 +11,9 @@
   endif;  
 
 
-  include_once "menuPrincipal.php";
-  include_once "menu.php"; 
+  //include_once "menuPrincipal.php";
+  //include_once "menu.php"; 
+  include_once "menuNavCab.php";
 
   $Altera = "N"; 
 
@@ -160,7 +161,8 @@
 
 
 <form method="POST" > 
-  <div class = 'container'>
+  <div class="limiteTela" >
+  <!--<div class="container" >  -->
     
     <div id='modelo'>
         <div class="cabecalho">
@@ -223,5 +225,11 @@
 
 
   </div> 
+
+<?php
+
+  //include_once "footer.php";
+  include_once "menuNavRodape.php";
+?>    
 </form>
 

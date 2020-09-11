@@ -10,8 +10,9 @@
        header('Location:login.php');  
        exit();      
    endif;  
-   include_once "menuPrincipal.php";
-   include_once "menu.php"; 
+  //include_once "menuPrincipal.php";
+  //include_once "menu.php"; 
+  include_once "menuNavCab.php";
     $_SESSION['tabelaAtual'] ='';  
 
   ?>
@@ -69,6 +70,8 @@
                   endif;  
               endforeach;
 
+
+              include_once "menuNavRodape.php";
           ?> 
 
           </select> 

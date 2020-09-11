@@ -21,10 +21,12 @@
 
  
 <?php
-  include_once "menuPrincipal.php";
-  include_once "menu.php";
+  //include_once "menuPrincipal.php";
+  //include_once "menu.php"; 
+  include_once "menuNavCab.php";
   
-  include_once "footer.php";
+  //include_once "footer.php";
+  include_once "menuNavRodape.php";
 
 ?>  
 

@@ -10,8 +10,9 @@
   	header('Location:login.php');  
   endif;	
 
-  include_once "menuPrincipal.php";
-  include_once "menu.php"; 
+  //include_once "menuPrincipal.php";
+  //include_once "menu.php"; 
+  include_once "menuNavCab.php";
   include_once "confPaginacao.php"; 
 
   if(isset($_GET['p_nome'])):
@@ -155,8 +156,8 @@
          ?>
 
 		 <div class='box-paginacao'>     
-			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light' href="lista_tp.php?page=<?=$primeira_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Primeira Página"><<</a>    
-			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light' href="lista_tp.php?page=<?=$pagina_anterior?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Página Anterior"><</a>     
+			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light paramBtPagin ' href="lista_tp.php?page=<?=$primeira_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Primeira Página"><<</a>    
+			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light paramBtPagin ' href="lista_tp.php?page=<?=$pagina_anterior?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Página Anterior"><</a>     
 
 			  <?php  
 
@@ -164,12 +165,15 @@
 			  for ($i=$range_inicial; $i <= $range_final; $i++):   
 			    $destaque = ($i == $pagina_atual) ? 'destaque' : '' ;  
 			    ?>   
-			    <a class='box-numero <?=$destaque?>' href="lista_tp.php?page=<?=$i?>&p_nome=<?=$_SESSION['arg1Tp']?>"><?=$i?></a>    
-			    <!--<a class='box-numero <?=$destaque?>' href="lista_tp.php?page=<?=$i?>"><?=$i?></a>     -->
+
+			     <a class=' btn btn-light paramBtPag <?=$destaque?>' href="lista_tp.php?page=<?=$i?>&p_nome=<?=$_SESSION['arg1Tp']?>"> <?=$i?></a>  
+			    
+			    <!--<a class='box-numero <?=$destaque?>' href="lista_tp.php?page=<?=$i?>&p_nome=<?=$_SESSION['arg1Tp']?>"><?=$i?></a>    
+			    <a class='box-numero <?=$destaque?>' href="lista_tp.php?page=<?=$i?>"><?=$i?></a>     -->
 			  <?php endfor; ?>    
 
-			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light' href="lista_tp.php?page=<?=$proxima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Próxima Página">></a>    
-			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light ' href="lista_tp.php?page=<?=$ultima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Última Página">>></a>    
+			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light paramBtPagin ' href="lista_tp.php?page=<?=$proxima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Próxima Página">></a>    
+			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light paramBtPagin ' href="lista_tp.php?page=<?=$ultima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Última Página">>></a>    
 		 </div>   
 
 
@@ -178,8 +182,8 @@
 
 <?php
 
-  include_once "footer.php";
-
+  //include_once "footer.php";
+  include_once "menuNavRodape.php";
 ?>  
 
 </body> 
