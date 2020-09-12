@@ -115,7 +115,7 @@
  
 				foreach($funcaoSistemaCtr->listaFuncSysF($_SESSION['arg1Tp'],$linha_inicial) as $p_funcaoSistema):
 		        	echo '<tr>' .
-          		  '<td><a href="funcaoSistemaCad.php?Id='  . $p_funcaoSistema['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
+          		  '<td><a href="funcaoSistemaCad.php?Id='  . $p_funcaoSistema['id'] . '&Altera=S'  . '"><img src="edit.png" width="32" height="32" placeholder="Editar" /></a> </td>' .
 			      '<td>' .  $p_funcaoSistema['descricao']      . '</td> ' .
 			      '<th scope="row">' . $p_funcaoSistema['id'] . '</th>' .		
 

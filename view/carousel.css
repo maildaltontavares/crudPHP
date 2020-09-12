@@ -11,9 +11,7 @@ body {
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
-.carousel-inner {
-  margin-top: 2rem;
-}
+
 /* Carousel base class */
 .carousel {
   margin-bottom: 4rem;
@@ -33,7 +31,7 @@ body {
   top: 0;
   left: 0;
   min-width: 100%;
-  height: 32rem; 
+  height: 32rem;
 }
 
 
@@ -80,8 +78,6 @@ body {
     line-height: 1.4;
   }
 
- 
-
   .featurette-heading {
     font-size: 50px;
   }
@@ -91,28 +87,4 @@ body {
   .featurette-heading {
     margin-top: 7rem;
   }
-
-
-
-}
-
-@media (max-width: 380px) {
-  .carousel-inner   {
- 
-  font-size: 1.25rem;
- 
-   } 
-.carousel-item {
-  height: 17rem;
-  margin-top: 55px;
-}
- .carousel-item > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  height: 17rem; 
-
-}
-
 }
