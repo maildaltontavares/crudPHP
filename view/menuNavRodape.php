@@ -3,11 +3,11 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div class="text-muted">Copyright &copy; Virtualize 2020</div>
                             <div>
-                                <a href="#">Privacy Policy</a>
+                                <a href="#">Políticas</a>
                                 &middot;
-                                <a href="#">Terms &amp; Conditions</a>
+                                <a href="#">Termos &amp; Condições</a>
                             </div>
                         </div>
                     </div>

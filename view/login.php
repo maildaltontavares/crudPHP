@@ -116,7 +116,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
                 
                 <div class="checkbox mb-3">
                   <label>
-                    <input type="checkbox" value=""> Esqueci a senha
+                    <input type="checkbox" value=""> Lembrar de mim
                   </label>
                 </div>
 

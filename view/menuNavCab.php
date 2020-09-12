@@ -157,8 +157,12 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        <div class="small">Logado como:</div>
+                        <?php
+                          if(isset($_SESSION['user'])):
+                            echo $_SESSION['user'];  
+                          endif;
+                        ?>  
                     </div>
                 </nav>
             </div>
