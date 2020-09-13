@@ -56,7 +56,7 @@
       <div class="carousel-item">  
              <img id="ed1" src="virtual6.jpg" height="100%"; width="100%"/>  
       </div> 
-      <div class="carousel-item">  
+      <div class="carousel-item">    
           <img id="ed1" src="descontos1.jpg"  height="100%"; width="100%"/> 
       </div>     
       <div class="carousel-item">  
