@@ -45,17 +45,21 @@
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>      
  
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active"> 
-           <img id="ed1" src="descontos1.jpg" height="100%"; width="100%"/> 
+           <img id="ed1" src="virtual3.jpg" height="100%"; width="100%"/> 
       </div>
-      <div class="carousel-item"> 
- 
-             <img id="ed1" src="pracaAlim1.jpg" height="100%"; width="100%"/>
- 
+      <div class="carousel-item">  
+             <img id="ed1" src="pracaAlim1.jpg" height="100%"; width="100%"/>  
       </div> 
+      <div class="carousel-item">  
+          <img id="ed1" src="descontos1.jpg"  height="100%"; width="100%"/> 
+      </div>      
+ 
+
     </div>
     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
