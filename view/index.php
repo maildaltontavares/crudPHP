@@ -53,24 +53,49 @@
     <div class="carousel-inner">
 
       <div class="carousel-item active">
- 
-          <img id="ed1" src="virtualize8.jpg"  height="100%"; width="100%"/> 
+       
+       <!--
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        
+        <div class="container">
+          <div class="carousel-caption text-left">
+            <h1>Example headline.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+          </div>
+        </div>
+       -->
+          <img id="ed1" src="virtualize8.jpg" height="100%"; width="100%"/>
 
       </div>
- 
+
       <div class="carousel-item">  
-          <img id="ed1" src="virtualize9.jpg"  height="100%"; width="100%"/> 
-      </div>
-      <div class="carousel-item">  
-          <img id="ed1" src="pracaAlim1.jpg"  height="100%"; width="100%"/> 
+          <img id="ed1" src="virtualize9.jpg" height="100%" width="100%"/> 
       </div>
       <div class="carousel-item">  
           <img id="ed1" src="descontos1.jpg"  height="100%"; width="100%"/> 
-      </div>      
- 
- 
+      </div>
 
-
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAhttp://localhost:8080/crudphp/view/Shopping6.pngspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Another example headline.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+        <div class="container">
+          <div class="carousel-caption text-right">
+            <h1>One more for good measure.</h1>
+            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+          </div>
+        </div>
+      </div>
 
     </div>
    
