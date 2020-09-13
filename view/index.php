@@ -54,18 +54,18 @@
 
       <div class="carousel-item active">
  
-          <img id="ed1" src="virtualize4.png"  height="100%"; width="100%"/> 
+          <img id="ed1" src="virtualize41.jpg"  height="100%"; width="100%"/> 
 
       </div>
  
       <div class="carousel-item">  
-          <img id="ed1" src="virtualize3.png"  height="100%"; width="100%"/> 
+          <img id="ed1" src="virtualize31.jpg"  height="100%"; width="100%"/> 
       </div>
       <div class="carousel-item">  
-          <img id="ed1" src="pracaAlim.png"  height="100%"; width="100%"/> 
+          <img id="ed1" src="pracaAlim1.jpg"  height="100%"; width="100%"/> 
       </div>
       <div class="carousel-item">  
-          <img id="ed1" src="descontos.png"  height="100%"; width="100%"/> 
+          <img id="ed1" src="descontos1.jpg"  height="100%"; width="100%"/> 
       </div>      
  
  
