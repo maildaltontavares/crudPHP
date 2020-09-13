@@ -50,7 +50,7 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
     
-           <img id="ed1" src="virtualize9.jpg" height="100%"; width="100%"/>
+           <img id="ed1" src="descontos1.jpg" height="100%"; width="100%"/>
  
       </div>
       <div class="carousel-item">
