@@ -123,7 +123,7 @@
       </div>
          <svg width="400px" height="400px" version="1.1"  
          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <image href="loja03.jpg" height="100%"; width="100%"/></svg>
+        <image href="loja05.jpg" height="100%"; width="100%"/></svg>
     </div>
 
     <hr class="featurette-divider">
