@@ -89,29 +89,28 @@
          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <image href="roupas1.jpg"/></svg>
         <h2>Lojas</h2>
-        <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        <p>Encontre tudo que você procura aqui. Presenteie quem você ama. Conheça nossa variedade de lojas prontas para atendê-lo. Entre e divirta-se com suas compras.
+        </p>
+        <p><a class="btn btn-secondary" href="#" role="button">Ir para as compras &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
          <svg width="7cm" height="7cm" version="1.1" style="border: 1px solid;border-radius:  100%;"
          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <image href="eventos3.jpg"/></svg>
         <h2>Eventos</h2>
-        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        <p>Nada melhor para aprimorar seus conhecimentos e enriquecer sua cultura que os eventos promovidos pelo Virtualize. Inscreva-se, participe. Promova.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">Ir para os eventos &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
          <svg width="7cm" height="7cm" version="1.1" style="border: 1px solid;border-radius:  100%;"
          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <image href="servicos2.jpg"/></svg>
         <h2>Serviços</h2>
-        <p>Nossa área de serviços cada vez mais completa para melhor servi-lo. Conheça nossa variedade.</p><br><br>
-        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        <p>Nossa área de serviços cada vez mais completa para melhor servi-lo. Conheça nossa variedade.</p><br>
+        <p><a class="btn btn-secondary" href="#" role="button">Conhecer os serviços &raquo;</a></p>
       </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
-
-
-
+ 
 
     <!-- START THE FEATURETTES -->
 
@@ -122,9 +121,9 @@
         <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-      </div>
+         <svg width="400px" height="400px" version="1.1"  
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <image href="loja03.jpg" height="100%"; width="100%"/></svg>
     </div>
 
     <hr class="featurette-divider">
@@ -134,9 +133,9 @@
         <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-      </div>
+         <svg width="400px" height="400px" version="1.1"  
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <image href="desfile02.jpg" height="100%"; width="100%"/></svg>
     </div>
 
     <hr class="featurette-divider">
@@ -146,9 +145,9 @@
         <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-      </div>
+         <svg width="400px" height="400px" version="1.1"  
+         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <image href="bijouterias02.jpg" height="100%"; width="100%"/></svg>
     </div>
 
     <hr class="featurette-divider">
@@ -160,8 +159,8 @@
 
   <!-- FOOTER -->
   <footer class="container">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2017-2020 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p class="float-right"><a href="#">Início</a></p>
+    <p>&copy; 2020-2020 Virtualize, Inc. &middot; <a href="#">Políticas</a> &middot; <a href="#">Termos</a></p>
   </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>VirtuaX - Shopping Virtual</title>
+        <title>Virtualize- Shopping Virtual</title>
         <link href="css/styles.css" rel="stylesheet" />
         <link href="estiloVirtuax.css" rel="stylesheet" />
 
