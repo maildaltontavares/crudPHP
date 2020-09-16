@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,11 +42,7 @@
 	Nome Usuario
 	<input type="text" name="nome" id="nome"> 
 	<button id="btAdd" >EnviaNome</button> 
-
-  	<ul id="listaElementos">
-  		
-  	</ul>
-
+ 
 
 </body>
 </html>

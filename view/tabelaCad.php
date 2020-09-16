@@ -572,7 +572,9 @@
         <div class="cabecalho">
  
             <?php
+               
                 echo '<h1 class="p-3 mb-2 text-dark">Tabela de ' . $nometabpad .  '</h1>'; 
+                
             ?>
 
             <div id="grupoBotoes">

@@ -1,0 +1,13 @@
+{
+    "name": "daltontavares/composer",
+    "description": "Repositorio de Bibliotecas",
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.14"
+    }, 
+    "authors": [
+        {
+            "name": "Dalton Tavares",
+            "email": "dalton_tavares@bol.com.br"
+        }
+    ]
+}
