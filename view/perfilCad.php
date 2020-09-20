@@ -5,6 +5,7 @@
   require_once '../config.php';
   require_once ROOT_PATH . '/controller/perfilCtr.php'; ;
   
+   
 
   if(!isset($_SESSION['user'])):
     header('Location:login.php');  
@@ -23,7 +24,30 @@
 
   if (isset($_GET['Altera'])):
      $Altera = "S";
+
      
+  /*
+   echo '<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>';
+ 
+    */ 
      $perfilCtr = new PerfilCtr();   
      $p_perfil = $perfilCtr->buscaPerfil($_GET['Id']);  
 
@@ -152,6 +176,8 @@
  
     function fAbrejan(){
       window.open("pesquisa.php","_blank",'width=400px,height=300px');
+
+
     }
 
  </script>  
@@ -210,13 +236,120 @@
 
           <input id="perfil" name ="nomePerfil" type="text" class="form-control"   value="<?php  echo $nomePerfil;  ?>"       >
 
-        </div>
-
-         <div class="form-group col-md-8">
-            <a href="" class="btn btn-primary" onclick="fAbrejan()">Adicionar Função</a>
-        </div>          
+        </div> 
+ 
+      
     </div>   
 
+    <div class="form-row"> 
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Adicionar função</button>
+
+          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Selecione a Função</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        
+                        <div class="modal-body">
+                        
+ 
+                              <form>
+                                <div class="form-group"> 
+                                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Descrição da Função">
+                                </div>  
+                              </form>
+
+
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>                                    
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td><a href="perfilCad.php?Id='  . $p_perfil['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>                                    
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">2</th>
+                                    <td><a href="perfilCad.php?Id='  . $p_perfil['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>
+                                    <td>Thornton</td>
+                                    <td>@fat Mark Mark Mark </td>
+                                    <td>Mark Mark Mark Mark </td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>                                    
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">3</th>
+                                    <td><a href="perfilCad.php?Id='  . $p_perfil['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>                                    
+                                  </tr>
+                                </tbody>
+                              </table>
+
+
+
+                          Confirma ?
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                          <form >   
+                                  <button type="submit" class="btn btn-primary"  name="excluir" >Confirmar</button> 
+                          </form>
+                        </div>
+
+
+              </div>
+            </div>
+          </div>
+    </div>   
+
+<!--    
+    <div class="form-row">       
+ 
+           <a class="btn btn-primary" href="#abrirModal">Adicionar Função</a>
+ 
+          <div id="abrirModal" class="modal1">
+            <a href="#fechar" title="Fechar" class="fechar">x</a>
+                  <div class="form-group col-md-8">
+                    <label for="tabpad">Nome Grupo Tabela</label>
+
+                    <input id="tabpad" name ="nometabpad" type="text" class="form-control"   value="zzz"       >
+
+                  </div>
+
+            <h2>Janela Modal</h2>
+            <p>Esta é uma simples janela de modal.</p>
+            <p>Você pode fazer qualquer coisa aqui, página de Login, pop-ups, ou formulários</p>
+
+            <a class="btn btn-primary fechar" href="#fechar" title="Fechar" >Fechar</a>      
+
+
+          </div>
+    </div>                
+-->
   </div> 
 
 <?php
@@ -225,4 +358,7 @@
   include_once "menuNavRodape.php";
 ?>    
 </form>
-
+<!--
+         <div class="form-group col-md-8">
+            <a href="" class="btn btn-primary" onclick="fAbrejan()">Adicionar Função</a>
+        </div>    

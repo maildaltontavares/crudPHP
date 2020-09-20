@@ -1,0 +1,64 @@
+<style>
+
+.modal {
+  position: fixed;
+  top: 100;
+  right: 100;
+  bottom: 100;
+  left: 100;
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgba(0,0,0,0.8);
+  z-index: 99999;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+
+.modal:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal > div {
+  width: 400px;
+  position: relative;
+  margin: 10% auto;
+  padding: 15px 20px;
+  background: #fff;
+}
+
+.fechar {
+  position: absolute;
+  width: 30px;
+  right: -15px;
+  top: -20px;
+  text-align: center;
+  line-height: 30px;
+  margin-top: 5px;
+  background: #ff4545;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #8d0000;
+}
+
+</style>
+
+
+<a href="#abrirModal">Open Modal</a>
+
+<div id="abrirModal" class="modal">
+  <a href="#fechar" title="Fechar" class="fechar">x</a>
+        <div class="form-group col-md-8">
+          <label for="tabpad">Nome Grupo Tabela</label>
+
+          <input id="tabpad" name ="nometabpad" type="text" class="form-control"   value="zzz"       >
+
+        </div>
+
+  <h2>Janela Modal</h2>
+  <p>Esta é uma simples janela de modal.</p>
+  <p>Você pode fazer qualquer coisa aqui, página de Login, pop-ups, ou formulários</p>
+
+</div>
