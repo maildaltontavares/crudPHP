@@ -180,6 +180,14 @@
 
     }
 
+    function enviaDado($p){ 
+      $( "#perfil" ).val($p);  
+    }    
+
+    function novaFuncao(){ 
+      $(".nFuncao").append('<div class="form-row"><div class="form-group col-md-8"><input id="username" name ="username" type="text" class="form-control"><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"  >...</button>          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">            <div class="modal-dialog modal-lg">              <div class="modal-content"><div class="modal-header">                          <h5 class="modal-title" id="exampleModalLabel">Selecione a Função</h5>                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">                            <span aria-hidden="true">&times;</span>                          </button>                        </div>                                                <div class="modal-body">                                                       <form>                                 <div lass="form-row">                                       <div class="form-group col-md-10">                                          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Descrição da Função">                                        </div>                                   </div>                                   <div class="form-group col-md-2">                                       <button type="button" class="btn btn-primary" >Pesquisar</button>                                  </div>                               </form>        </div> <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button><button type="button" class="btn btn-primary" data-dismiss="modal" name="excluir" >Confirmar</button> </div></div></div></div></div></div>');  
+    }        
+
  </script>  
 
  <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
@@ -232,17 +240,19 @@
     <div class="form-row"> 
 
         <div class="form-group col-md-8">
-          <label for="perfil">Nome do perfil</label> 
-
-          <input id="perfil" name ="nomePerfil" type="text" class="form-control"   value="<?php  echo $nomePerfil;  ?>"       >
-
+          <label for="perfil">Nome do perfil</label>  
+          <input id="perfil" name ="nomePerfil" type="text" class="form-control"   value="<?php  echo $nomePerfil;  ?>"       > 
         </div> 
- 
+
       
     </div>   
 
+ 
+
     <div class="form-row"> 
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Adicionar função</button>
+          <button type="button" class="btn btn-primary"   onclick="novaFuncao()">Adicionar função</button>
+          <!--
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"  >Adicionar função</button>
 
           <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -259,10 +269,17 @@
                         
  
                               <form>
-                                <div class="form-group"> 
-                                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Descrição da Função">
-                                </div>  
+                                  <div class="form-row"> 
+                                      <div class="form-group col-md-10">
+                                          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Descrição da Função"> 
+                                       </div> 
+                                  </div> 
+                                  <div class="form-group col-md-2">
+                                       <button type="button" class="btn btn-primary" >Pesquisar</button>
+                                  </div> 
+                                   
                               </form>
+                                              
 
 
                               <table class="table">
@@ -310,21 +327,26 @@
 
 
 
-                          Confirma ?
+                       
                         </div>
 
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                          <form >   
-                                  <button type="submit" class="btn btn-primary"  name="excluir" >Confirmar</button> 
-                          </form>
+                     
+                               <button type="button" class="btn btn-primary" onclick="enviaDado('Requisitante')" data-dismiss="modal" name="excluir" >Confirmar</button> 
+                          
                         </div>
 
 
               </div>
             </div>
-          </div>
+          </div>-->
     </div>   
+
+    <div class="nFuncao">
+      
+
+    </div>
 
 <!--    
     <div class="form-row">       
