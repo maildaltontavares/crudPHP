@@ -14,7 +14,6 @@
 
   //include_once "menuPrincipal.php";
   //include_once "menu.php"; 
-  
   include_once "menuNavCab.php";
 
   $Altera = "N"; 
@@ -25,10 +24,35 @@
 
   if (isset($_GET['Altera'])):
      $Altera = "S";
-  
+
+     
+  /*
+   echo '<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>';
+ 
+    */ 
      $perfilCtr = new PerfilCtr();   
      $p_perfil = $perfilCtr->buscaPerfil($_GET['Id']);  
- 
+
+//     var_dump($_GET['Id']);
+
       if(!empty($p_perfil)): 
         $id = $p_perfil[0]['id'];  
         $nomePerfil = $p_perfil[0]['descricao'];    
@@ -109,67 +133,15 @@
 
 <script type="text/javascript" src="func.js"></script>    
 <script>
-
-var numCampo  = 0;    
-$(document).ready(function(){
-          
-           
-           var vGrava    = "<?=((isset($_POST['gravar']))?"S":"N");?>";  
-           var vCommit   = "<?=((isset($_SESSION['gravou']))?"S":"N");?>";
-           var vAlterac  = "<?=((isset($_GET['Altera']   ))?"S":"N");?>";  
-           var vNovo     = "<?=((isset($_GET['novo']))?"S":"N");?>";  
-           var vExcluir  = "<?=$excluiu=='S'?"S":"N";?>"; 
-
-           if(vNovo=="S"){
-            $('#btExcluir').attr('hidden', true);
-           }   
-
-           if(vExcluir=="S"){
-            $('#btGravar').attr('disabled', true);
-            $('#btExcluir').attr('disabled', true);
-           }  
-
-           if(vCommit=="S") {      
-               vCommit = "<?=$_SESSION['gravou']?>";
-           }  
-
-           if(vGrava=="S"){    
-
-               <?php $_SESSION['gravou'] = "N";?>
-
-               if(vCommit=="S"){
-                  //alert('Registro gravado com sucesso!');
-                  $('#btGravar').attr('disabled', true); 
-
-                  if(vAlterac=="S"){
-                    $('#btGravar').attr('disabled', false);
-                  }  
-               }  
-           } 
-                  
- })
-
-   
+    
 
     function novaFuncao(){ 
 
-      numCampo = numCampo + 1;
-
-      var TxtBtTxt = '<div class="form-row">'+ 
-      '<div class="form-group col-md-1">' +
-        '<input type="text" id= "func' + numCampo.toString() + '" class="form-control" >' +
-      '</div>'+
-       '<button type="button" class="btn btn-primary btPesq" data-toggle="modal" data-target=".bd-example-modal-lg' + numCampo.toString() + '" onclick="limpaTela(\''+ numCampo.toString() + '\')" id= "funcao' + numCampo.toString() + '"  >...</button></br> ' +
-      '<div class="form-group col-md-3">'+
-        '<input class="form-control" type="text" id="desc' + numCampo.toString() + '" value="" disabled>'+ 
-      '</div>';
-
-
-      var pesq = TxtBtTxt + //'<div class="form-row">'+
-        //'<div class="form-group col-md-2">'+               
-                //'<input type="text" id= "func' + numCampo.toString() + '" class="form-control" >' +  
-               // '<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg' + numCampo.toString() + '" onclick="limpaTela(\''+ numCampo.toString() + '\')" id= "funcao' + numCampo.toString() + '"  >...</button></br> '+
-                '<div class="modal fade bd-example-modal-lg' + numCampo.toString() + '" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">'+
+      var pesq = '<div class="form-row">'+
+        '<div class="form-group col-md-8">'+               
+                '<input type="text" class="form-control" >' +  
+                '<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"  >...</button></br> '+
+                '<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">'+
                    '<div class="modal-dialog modal-lg">'+
                        '<div class="modal-content"><div class="modal-header">'+
                            '<h5 class="modal-title" id="exampleModalLabel">Selecione a Função</h5>'+
@@ -179,13 +151,13 @@ $(document).ready(function(){
                        '<div class="modal-body">'+  
                                       '<form name="form_pesquisa" id="form_pesquisa" method="post" action=""> '+ 
                                           '<fieldset> ' +
-                                              ' <legend>Digite o nome da função a pesquisar</legend> ' +
+                                              ' <legend>Digite o nome a pesquisar</legend> ' +
                                                   ' <div class="input-prepend"> ' +
                                                       ' <span class="add-on"><i class="icon-search"></i></span> ' +
 
                                                        '<div class="form-row">'+
                                                              '<div class="form-group col-md-10">'+
-                                                                 ' <input type="text" class="form-control" name="pesquisaCliente' + numCampo.toString() + '" id="pesquisaCliente' + numCampo.toString() + '" value=""  ' +
+                                                                 ' <input type="text" class="form-control" name="pesquisaCliente" id="pesquisaCliente" value=""  ' +
                                                                  'tabindex="1" placeholder="Descrição da Função" /> ' +
                                                              '</div>'+
                                                        '</div>'+  
@@ -193,7 +165,7 @@ $(document).ready(function(){
                                                    '</div> ' +
 
                                                    '<div class="form-group col-md-2">'+
-                                                   '      <button type="button" class="btn btn-primary" onclick="buscarDado(\''+ numCampo.toString() + '\')" id="busca"  >Pesquisar</button>'+
+                                                   '      <button type="button" class="btn btn-primary" onclick="buscarDados()" id="busca"  >Pesquisar</button>'+
                                                    '</div>'+                                                    
                                           '</fieldset>'+
                                       '</form>' + 
@@ -201,13 +173,12 @@ $(document).ready(function(){
                                           '<div id="loading"></div> '+
                                       '</div> '+
                                       '<section class="jumbotron"> '+
-                                          ' <div id="MostraPesq' + numCampo.toString() + '"></div>'+
+                                          ' <div id="MostraPesq"></div>'+
                                       '</section> '+ 
                        '</div>'+
                        '<div class="modal-footer">'+
                       '       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
-                            '<button type="button" class="btn btn-primary" data-dismiss="modal" name="confirmar" onclick="gravaNum(\''+ numCampo.toString() + '\')" >Confirmar</button>'+
-  
+                            '<button type="button" class="btn btn-primary" data-dismiss="modal" name="excluir" >Confirmar</button>'+
                       ' </div>'+
                    '</div>'+                 
                 '</div>'+ 
@@ -216,7 +187,6 @@ $(document).ready(function(){
   '</div>' ;
   
     $(".nFuncao").append(pesq); 
-     
     }        
 
 
@@ -274,21 +244,137 @@ $(document).ready(function(){
         <div class="form-group col-md-8">
           <label for="perfil">Nome do perfil</label>  
           <input id="perfil" name ="nomePerfil" type="text" class="form-control"   value="<?php  echo $nomePerfil;  ?>"       > 
-        </div>   
+        </div> 
+
+      
     </div>   
 
  
 
-    <div class="form-row  dv-pesquisa"> 
+    <div class="form-row"> 
 
-          <button type="button" class="btn btn-primary "   onclick="novaFuncao()">Adicionar função</button>
-       
+          <button type="button" class="btn btn-primary"   onclick="novaFuncao()">Adicionar função</button>
+      <!--    
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"  >Adicionar função</button>
+
+          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Selecione a Função</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        
+                        <div class="modal-body">
+                        
+ 
+                              <form>
+                                  <div class="form-row"> 
+                                      <div class="form-group col-md-10">
+                                          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Descrição da Função"> 
+                                       </div> 
+                                  </div> 
+                                  <div class="form-group col-md-2">
+                                       <button type="button" class="btn btn-primary" >Pesquisar</button>
+                                  </div> 
+                                   
+                              </form>
+                                              
+
+
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>                                    
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td><a href="perfilCad.php?Id='  . $p_perfil['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>                                    
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">2</th>
+                                    <td><a href="perfilCad.php?Id='  . $p_perfil['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>
+                                    <td>Thornton</td>
+                                    <td>@fat Mark Mark Mark </td>
+                                    <td>Mark Mark Mark Mark </td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>                                    
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">3</th>
+                                    <td><a href="perfilCad.php?Id='  . $p_perfil['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>                                    
+                                  </tr>
+                                </tbody>
+                              </table>
+
+
+
+                       
+                        </div>
+
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                     
+                               <button type="button" class="btn btn-primary" onclick="enviaDado('Requisitante')" data-dismiss="modal" name="excluir" >Confirmar</button> 
+                          
+                        </div>
+
+
+              </div>
+            </div>
+          </div>-->
     </div>   
 
     <div class="nFuncao">
       
 
-    </div> 
+    </div>
+
+<!--    
+    <div class="form-row">       
+ 
+           <a class="btn btn-primary" href="#abrirModal">Adicionar Função</a>
+ 
+          <div id="abrirModal" class="modal1">
+            <a href="#fechar" title="Fechar" class="fechar">x</a>
+                  <div class="form-group col-md-8">
+                    <label for="tabpad">Nome Grupo Tabela</label>
+
+                    <input id="tabpad" name ="nometabpad" type="text" class="form-control"   value="zzz"       >
+
+                  </div>
+
+            <h2>Janela Modal</h2>
+            <p>Esta é uma simples janela de modal.</p>
+            <p>Você pode fazer qualquer coisa aqui, página de Login, pop-ups, ou formulários</p>
+
+            <a class="btn btn-primary fechar" href="#fechar" title="Fechar" >Fechar</a>      
+
+
+          </div>
+    </div>                
+-->
   </div> 
 
 <?php
