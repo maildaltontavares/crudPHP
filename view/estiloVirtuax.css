@@ -133,17 +133,16 @@
   color: #8d0000;
 }
 
-    .btPesq{
+.dv-pesquisa {
+    margin-bottom: 25px;
+    padding:5px; 
+ 
+  }
+
+.btPesq{
     height: 36px; 
     margin-left: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
     
   }
-
-  .dv-pesquisa {
-    margin-bottom: 25px;
-    padding:5px; 
- 
-  }
-

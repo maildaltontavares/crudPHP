@@ -11,7 +11,7 @@ Exibir o usuario logado;
 recuperar senha;
 
 divisao por loja;
-
+ 
 
 Como criar janela modal com formulário cadastrar com JavaScript - youtube 
 

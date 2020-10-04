@@ -8,47 +8,39 @@
   //Aqui desativa a imagem de loading
   function loading_hide(){
       $('#loading').fadeOut('fast');
-  }    
-
+  }     
     
-  function load_dados(valores, page, div)
-            {
+  function load_dados(valores, page, div){
                 
-                $.ajax
-                    ({
-                        type: 'POST',
-                        dataType: 'html',
-                        url: page,
-                        beforeSend: function(){//Chama o loading antes do carregamento
-                              loading_show();
-                        },
-                        data: valores,
-                        success: function(msg){
-                            loading_hide();
-                            var data = msg;
-                            $(div).html(data).fadeIn();             
-                        }
-                    });
-           }
+        $.ajax
+            ({
+                type: 'POST',
+                dataType: 'html',
+                url: page,
+                beforeSend: function(){//Chama o loading antes do carregamento
+                      loading_show();
+                },
+                data: valores,
+                success: function(msg){
+                    loading_hide();
+                    var data = msg;
+                    $(div).html(data).fadeIn();             
+                }
+            });
 
+  } 
 
   function buscarDado(numInput){  
-    var cli= $('#pesquisaCliente'+numInput).val(); 
-    load_dados(null, 'pesquisa.php', '#MostraPesq'+numInput);
+    var par = $('#pesquisaCmp'+numInput).val();  
+    load_dados(null, 'pesquisa.php?pesquisaCmp=%'+ par +'%', '#MostraPesq'+numInput);
   }
 
-    function limpaTela(numInput){ 
-    $('#pesquisaCliente'+numInput).val("");
+  function limpaTela(numInput){ 
+    $('#pesquisaCmp'+numInput).val("");
     load_dados(null, 'limpaPesq.php', '#MostraPesq'+numInput); 
   }
 
-
-    function gravaNum(numInput){  
-
-
+  function gravaNum(numInput){  
        $('#func'+numInput).val($('#MostraPesq'+numInput + " input:checked").val());
-
-       $('#desc'+numInput).val($('#MostraPesq'+numInput + " input:checked").attr('name'));
-      
-
+       $('#desc'+numInput).val($('#MostraPesq'+numInput + " input:checked").attr('nome'));      
   }

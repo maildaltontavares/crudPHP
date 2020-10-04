@@ -153,15 +153,15 @@ $(document).ready(function(){
 
     function novaFuncao(){ 
 
-      numCampo = numCampo + 1;
+      numCampo = numCampo + 1; 
 
       var TxtBtTxt = '<div class="form-row">'+ 
-      '<div class="form-group col-md-1">' +
-        '<input type="text" id= "func' + numCampo.toString() + '" class="form-control" >' +
+      '<div class="form-inline ">' +
+        '<input type="text" id= "func' + numCampo.toString() + '" class="form-control btPesq  " >' +
       '</div>'+
-       '<button type="button" class="btn btn-primary btPesq" data-toggle="modal" data-target=".bd-example-modal-lg' + numCampo.toString() + '" onclick="limpaTela(\''+ numCampo.toString() + '\')" id= "funcao' + numCampo.toString() + '"  >...</button></br> ' +
-      '<div class="form-group col-md-3">'+
-        '<input class="form-control" type="text" id="desc' + numCampo.toString() + '" value="" disabled>'+ 
+       '<button type="button" class="btn btn-primary btPesq" data-toggle="modal" data-target=".bd-example-modal-lg' + numCampo.toString() + '" onclick="limpaTela(\''+ numCampo.toString() + '\')" id= "funcao' + numCampo.toString() + '"  >...</button></br> '   +
+      '<div class="col-md-3">'+
+        '<input class="form-control " type="text" id="desc' + numCampo.toString() + '" value="" disabled>'+ 
       '</div>';
 
 
@@ -185,7 +185,7 @@ $(document).ready(function(){
 
                                                        '<div class="form-row">'+
                                                              '<div class="form-group col-md-10">'+
-                                                                 ' <input type="text" class="form-control" name="pesquisaCliente' + numCampo.toString() + '" id="pesquisaCliente' + numCampo.toString() + '" value=""  ' +
+                                                                 ' <input type="text" class="form-control" name="pesquisaCmp' + numCampo.toString() + '" id="pesquisaCmp' + numCampo.toString() + '" value=""  ' +
                                                                  'tabindex="1" placeholder="Descrição da Função" /> ' +
                                                              '</div>'+
                                                        '</div>'+  
@@ -277,6 +277,8 @@ $(document).ready(function(){
         </div>   
     </div>   
 
+   
+
  
 
     <div class="form-row  dv-pesquisa"> 
@@ -296,8 +298,4 @@ $(document).ready(function(){
   //include_once "footer.php";
   include_once "menuNavRodape.php";
 ?>    
-</form>
-<!--
-         <div class="form-group col-md-8">
-            <a href="" class="btn btn-primary" onclick="fAbrejan()">Adicionar Função</a>
-        </div>    
+</form> 
