@@ -3,18 +3,18 @@
     session_start();
 
     require_once '../config.php';
-    require_once ROOT_PATH . '/controller/tabelaCtr.php';   
+    require_once ROOT_PATH . '/controller/funcaoSistemaCtr.php';  
 
     $parametro = isset($_GET['pesquisaCmp']) ? $_GET['pesquisaCmp'] : null; 
 
     $msg = "";
 
-    $tabela = new tabelaCtr();    
+    $tabela = new funcaoSistemaCtr();    
 
     if (isset($_GET['pesquisaCmp'])):           
-        $aTabFunc = $tabela->buscaTabelaSiglaF('funcSys',$_GET['pesquisaCmp']); 
+        $aTabFunc = $tabela->buscaFuncSysF($_GET['pesquisaCmp']); 
     else:
-        $aTabFunc = $tabela->buscaTabelaSiglaF('funcSys',''); 
+        $aTabFunc = $tabela->buscaFuncSysF(''); 
     endif;
 
 

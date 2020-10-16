@@ -42,5 +42,13 @@
 
   function gravaNum(numInput){  
        $('#func'+numInput).val($('#MostraPesq'+numInput + " input:checked").val());
-       $('#desc'+numInput).val($('#MostraPesq'+numInput + " input:checked").attr('nome'));      
+       $('#desc'+numInput).val($('#MostraPesq'+numInput + " input:checked").attr('nome'));
+
+      var det = $('#detalhe').val();    
+      if (typeof($('#MostraPesq'+numInput + " input:checked").attr('nome')) != "undefined") {      
+         // $('#detalhe').val(det + '['  + numInput + ']' + $('#MostraPesq'+numInput + " input:checked").val()) ;       
+      };
+
+     
+
   }

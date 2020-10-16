@@ -36,7 +36,7 @@
 		<?php   
 
 		//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabpads</h1>'; 
-		echo '<h1 class="p-3 mb-2 text-dark">Perfis de usuários</h1>'; 
+		echo '<h1 class="p-3 mb-2 text-dark">Perfis de acesso</h1>'; 
 
 		echo '
 		<form >

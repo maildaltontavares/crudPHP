@@ -121,6 +121,22 @@
 
 
 
+		public function buscaFuncSysF($p_funcSys){
+
+			// Prepara Bean tabpad
+			$funcSys = new FuncaoSistema();
+
+			$funcSys->setNome($p_funcSys);
+			 
+			$funcSysDao = new FuncSysDao();
+			return $funcSysDao->readFunc($funcSys);
+			
+
+		 } 
+
+
+
+
 
 	}	 
 

@@ -1,3 +1,8 @@
+funcaoSistemaCTR
+FuncaoSistemaDao
+PEsquisa.php
+
+
 DBDesigner 4 
 Por a cor vermelha nas mensagens de insucesso
 implementar a seguranca;
