@@ -215,24 +215,34 @@
   function montaItens(){  
 
     var vItens='';  
+    var vDescItens=''; 
     var nCampos='';
+    var nCamposInvalidos='';
     var nmPerfil=$('#perfil').val();
 
     $('#detalhe').val('');
     $('#numCampos').val('');
 
-    $( ".idFunc" ).each(function() {
 
-        var vVal = '*' + $( this ).val() + '*';
+    // monta os itens que não devrão ser gravados pois não tem a descricao preenchida
 
+    $(".descfunc").each(function() {
+        var vDesc = '*' + $( this ).val() + '*';   
+         if ($( this ).val().length <= 1  ) {             
+            $('#func' + $(this).attr('descUnica') ).val("");
+         };            
+    });
+
+   $( ".idFunc" ).each(function() {
+
+        var vVal = '*' + $( this ).val() + '*'; 
         if ($( this ).val().length > 0 ) {  
              if (vItens.indexOf(vVal) == -1){
                  vItens = vItens + vVal  + ';'; 
                  nCampos = nCampos + $(this).attr('idUnico') + '*;*'; 
              };
          };  
-         /*nCampos = nCampos + $(this).attr('idUnico') + '*;*';*/
-         
+       
 
     });
     $('#detalhe').val(vItens); 
@@ -274,11 +284,15 @@
        var TxtBtTxt = '<div class="form-row" id="idClasseFunc' + numCampo.toString() + '" >'+  txtExcluir 
        +
       '<div class="form-inline "  id="idClasseFuncIL' + numCampo.toString() + '">' +
-        '<input type="text" name= "func' + numCampo.toString() + '" idUnico=' + numCampo.toString() + '  id= "func' + numCampo.toString() + '" class="form-control btPesq idFunc" value="' + p_id + '">' +
+
+
+        '<input type="number" name= "func' + numCampo.toString() + '" idUnico=' + numCampo.toString() + '  id= "func' + numCampo.toString() + '" class="form-control btPesq idFunc"  onfocusout="buscarDescricao(\''+ numCampo.toString() + '\')" value="' + p_id + '">' +
+      
+
       '</div>'+
        '<button type="button" class="btn btn-primary btPesq" data-toggle="modal" data-target=".bd-example-modal-lg' + numCampo.toString() + '" onclick="limpaTela(\''+ numCampo.toString() + '\')" id= "funcao' + numCampo.toString() + '"  ><img src="pesquisar.png"width="15" height="15" placeholder="Excluir" /></button></br> '   +
-      '<div class="col-md-4"id="idClasseFuncMd' + numCampo.toString() + '">'+
-        '<input class="form-control " type="text" id="desc' + numCampo.toString() + '" value="' + p_descricao + '" disabled>'+ 
+      '<div class="col-md-5"id="idClasseFuncMd' + numCampo.toString() + '">'+
+        '<input class="form-control descfunc " type="text" id="desc' + numCampo.toString() + '" descUnica=' + numCampo.toString() +  ' value="' + p_descricao + '" disabled>'+ 
       '</div>'
       ;
  
@@ -332,7 +346,7 @@
                 '</div>'+ 
             '</div>'+             
         '</div>'+
-  '</div>' ;
+  '</div><hr/>' ;
   
     $(".nFuncao").append(pesq); 
      

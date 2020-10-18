@@ -30,6 +30,33 @@
 
   } 
 
+  function loadDescricao(valores,page, pTxt){
+                
+        $.ajax
+            ({
+                type: 'POST',
+                dataType: 'html',
+                url: page,
+                beforeSend: function(msg){//Chama o loading antes do carregamento
+                     
+                },
+                data: valores,
+                success: function(msg){ 
+                    var data = msg; 
+                    $(pTxt).val(data);             
+                }
+            });
+
+  } 
+
+  function buscarDescricao(numInput){  
+     if($('#func'+numInput).val()!==""){
+        var par = $('#func'+numInput).val();   
+        loadDescricao(null, 'pesquisaDescFuncSys.php?pesquisaCmp='+ par.toString(), '#desc'+numInput);
+     }
+  }  
+
+
   function buscarDado(numInput){  
     var par = $('#pesquisaCmp'+numInput).val();  
     load_dados(null, 'pesquisa.php?pesquisaCmp=%'+ par +'%', '#MostraPesq'+numInput);
@@ -41,14 +68,18 @@
   }
 
   function excluirItem(numInput){   
-     //$('#idClasseFunc'+numInput).remove();  
+
+
+     $('#func'+numInput).val("");  
+     $('#desc'+numInput).val("");  
+     /*
      $('#func'+numInput).remove(); 
      $('#funcao'+numInput).remove(); 
      $('#desc'+numInput).remove(); 
      $('#btExcluirItem'+numInput).remove();
      $('#idClasseFuncIL'+numInput).remove();
      $('#idClasseFuncMd'+numInput).remove();
-     
+     */
       
      /*$('#idClasseFunc'+numInput).removeClass(); */
      
