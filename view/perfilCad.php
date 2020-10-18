@@ -1,3 +1,4 @@
+
 <?php
  
   session_start();
@@ -403,9 +404,12 @@ $(document).ready(function(){
                if(vCommit=="S"){
                   //alert('Registro gravado com sucesso!');
                   $('#btGravar').attr('disabled', true); 
+                  $('#novaFuncao').attr('disabled', true); 
+                  
 
                   if(vAlterac=="S"){
                     $('#btGravar').attr('disabled', false);
+                    $('#novaFuncao').attr('disabled', false); 
                   }  
                }  
            } 
