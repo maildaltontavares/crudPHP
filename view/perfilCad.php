@@ -216,6 +216,7 @@
 
     var vItens='';  
     var nCampos='';
+    var nmPerfil=$('#perfil').val();
 
     $('#detalhe').val('');
     $('#numCampos').val('');
@@ -226,30 +227,62 @@
 
         if ($( this ).val().length > 0 ) {  
              if (vItens.indexOf(vVal) == -1){
-                 vItens = vItens + vVal  + ';';  
+                 vItens = vItens + vVal  + ';'; 
+                 nCampos = nCampos + $(this).attr('idUnico') + '*;*'; 
              };
          };  
-         nCampos = nCampos + $(this).attr('idUnico') + '*;*';
+         /*nCampos = nCampos + $(this).attr('idUnico') + '*;*';*/
          
 
     });
     $('#detalhe').val(vItens); 
     $('#numCampos').val(nCampos);  
-  } 
+ 
+
+  }  
 
   function novaFuncao(p_id,p_descricao){ 
 
       numCampo++;   
+ 
+       var txtExcluir = ' <button type="button" id="btExcluirItem' + numCampo.toString() + '" class=" btExcIt  " data-toggle="modal" ' +
+              ' data-target="#excluirItem' + numCampo.toString() + '" > ' +
+              '  <img src="delete.png"width="20" height="20" placeholder="Excluir" /> ' + 
+              '</button> ' +
+              '   <!-- Modal --> ' +
+                 '<div class="modal fade" id="excluirItem' + numCampo.toString() + '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
+                    '<div class="modal-dialog">' +
+                      '<div class="modal-content">' +
+                        '<div class="modal-header">' +
+                          '<h5 class="modal-title" id="exampleModalLabel">Excluir função</h5>' +
+                          '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                            '<span aria-hidden="true">&times;</span>' +
+                          '</button>' +
+                        '</div>' +
+                        '<div class="modal-body">' +
+                          'Confirma exclusão da função ? '+
+                        '</div>' +
+                        '<div class="modal-footer">' +
+                          '<button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancelar</button>' + 
 
-      var TxtBtTxt = '<div class="form-row">'+ 
-      '<div class="form-inline ">' +
+                          '<button type="button" class="btn btn-primary" data-dismiss="modal" name="confirmar" onclick="excluirItem(\''+ numCampo.toString() + '\')" >Confirmar</button>'+  
+                        '</div>' +
+                      '</div>' +
+                    '</div>' +
+                 ' </div> '; 
+
+       var TxtBtTxt = '<div class="form-row" id="idClasseFunc' + numCampo.toString() + '" >'+  txtExcluir 
+       +
+      '<div class="form-inline "  id="idClasseFuncIL' + numCampo.toString() + '">' +
         '<input type="text" name= "func' + numCampo.toString() + '" idUnico=' + numCampo.toString() + '  id= "func' + numCampo.toString() + '" class="form-control btPesq idFunc" value="' + p_id + '">' +
       '</div>'+
-       '<button type="button" class="btn btn-primary btPesq" data-toggle="modal" data-target=".bd-example-modal-lg' + numCampo.toString() + '" onclick="limpaTela(\''+ numCampo.toString() + '\')" id= "funcao' + numCampo.toString() + '"  >...</button></br> '   +
-      '<div class="col-md-3">'+
+       '<button type="button" class="btn btn-primary btPesq" data-toggle="modal" data-target=".bd-example-modal-lg' + numCampo.toString() + '" onclick="limpaTela(\''+ numCampo.toString() + '\')" id= "funcao' + numCampo.toString() + '"  ><img src="pesquisar.png"width="15" height="15" placeholder="Excluir" /></button></br> '   +
+      '<div class="col-md-4"id="idClasseFuncMd' + numCampo.toString() + '">'+
         '<input class="form-control " type="text" id="desc' + numCampo.toString() + '" value="' + p_descricao + '" disabled>'+ 
-      '</div>';
-
+      '</div>'
+      ;
+ 
+ 
 
       var pesq = TxtBtTxt + //'<div class="form-row">'+
         //'<div class="form-group col-md-2">'+               
@@ -315,8 +348,13 @@ $(document).ready(function(){
            var vAlterac  = "<?=((isset($_GET['Altera']   ))?"S":"N");?>";  
            var vNovo     = "<?=((isset($_GET['novo']))?"S":"N");?>";  
            var vExcluir  = "<?=$excluiu=='S'?"S":"N";?>";   
-           var aItens    = "<?php echo $_SESSION['aIt']; ?>";  
-       
+           var aItens    = "<?php echo $_SESSION['aIt']; ?>";   
+
+          $("#novaFuncao").bind("click", function(){
+              novaFuncao('','') ;
+           });   
+
+           
            array_itens = aItens.split("|");  
 
            var i=0;
@@ -332,6 +370,7 @@ $(document).ready(function(){
                 
            if(vNovo=="S"){
             $('#btExcluir').attr('hidden', true);
+             
            }   
 
            if(vExcluir=="S"){
@@ -366,7 +405,7 @@ $(document).ready(function(){
 
 <link rel="stylesheet" type="text/css" href="estiloVirtuax.css"> 
 
-<form method="POST" onsubmit="montaItens()"> 
+<form method="POST" onsubmit="montaItens();" id="formCadastro"> 
   <div class="limiteTela" >
   <!--<div class="container" >  -->
     
@@ -416,17 +455,17 @@ $(document).ready(function(){
     <div class="form-row"> 
         <div class="form-group col-md-8">
           <label for="perfil">Nome do perfil</label>  
-          <input id="perfil" name ="nomePerfil" type="text" class="form-control"   value="<?php  echo $nomePerfil;  ?>"       > 
+          <input id="perfil" name ="nomePerfil" type="text" class="form-control"  required value="<?php  echo $nomePerfil;  ?>"       > 
           <input type="hidden"  class="form-control"  name="detalhe" id="detalhe" value=""  >
           <input type="hidden"  class="form-control"  name="numCampos" id="numCampos" value=""  >
         </div>   
     </div>    
-
+    <label for="nFuncao">Funções</label> 
     <div class="form-row  dv-pesquisa">  
-          <button type="button" class="btn btn-primary "   onclick="novaFuncao('','')">Adicionar função</button>  
+          <button type="button" id="novaFuncao" class="btn btn-primary " onclick="novaFuncao('','')"  >Adicionar função</button>  
     </div>   
 
-    <div class="nFuncao">
+    <div class="nFuncao" id="nFuncao">
       
 
     </div> 

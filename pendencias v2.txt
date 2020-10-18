@@ -1,6 +1,10 @@
-funcaoSistemaCTR
-FuncaoSistemaDao
-PEsquisa.php
+PerfilCad
+
+Nao perder o detalhe quando nao preencher a descricao da funcao 
+Limitar a pesquisa do popup ou por o databases 
+Fazer a deleção
+Por a imagem da Lupa no botao da pesquisa
+
 
 
 DBDesigner 4 

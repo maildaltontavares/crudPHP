@@ -40,6 +40,21 @@
     load_dados(null, 'limpaPesq.php', '#MostraPesq'+numInput); 
   }
 
+  function excluirItem(numInput){   
+     //$('#idClasseFunc'+numInput).remove();  
+     $('#func'+numInput).remove(); 
+     $('#funcao'+numInput).remove(); 
+     $('#desc'+numInput).remove(); 
+     $('#btExcluirItem'+numInput).remove();
+     $('#idClasseFuncIL'+numInput).remove();
+     $('#idClasseFuncMd'+numInput).remove();
+     
+      
+     /*$('#idClasseFunc'+numInput).removeClass(); */
+     
+ 
+  } 
+
   function gravaNum(numInput){  
        $('#func'+numInput).val($('#MostraPesq'+numInput + " input:checked").val());
        $('#desc'+numInput).val($('#MostraPesq'+numInput + " input:checked").attr('nome'));
