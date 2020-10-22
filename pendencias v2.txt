@@ -1,9 +1,6 @@
-PerfilCad
 
-Quando informar o código trazer a descricao 
-Limitar a pesquisa do popup ou por o datatables 
-deleção - melhorar a visualização da DIv
-
+Obrigara digitar o parametro de pesquisa no pop-up
+Limitar a pesquisa do popup ou por paginacao
 
 
 

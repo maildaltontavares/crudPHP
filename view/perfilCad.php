@@ -1,4 +1,3 @@
-
 <?php
  
   session_start();
@@ -10,11 +9,7 @@
 
   if(!isset($_SESSION['user'])):
     header('Location:login.php');  
-  endif;  
-
-
-  //include_once "menuPrincipal.php";
-  //include_once "menu.php"; 
+  endif;   
   
   include_once "menuNavCab.php";
 
@@ -85,8 +80,8 @@
                   $car = "*;*"; 
                   $fim = strpos($nIt  , $car);   
                   $vIt = substr($nIt, $inicio,$fim);   
-                  if (isset($_POST['func' . $vIt])):                     
-                      $aIt[$nInd] = $_POST['func' . $vIt]; 
+                  if (isset($_POST['fItem' . $vIt])):                     
+                      $aIt[$nInd] = $_POST['fItem' . $vIt]; 
                       if($aIt[$nInd]!=""):
                          $nInd = $nInd + 1 ;
                     endif;
@@ -197,9 +192,7 @@
      if (!isset($_GET['Altera'])):     
          $_SESSION['aIt'] = "";
      endif;    
-  endif; 
-
-
+  endif;  
 
 
   ?>
@@ -208,151 +201,15 @@
   
  </script>
 
-<script type="text/javascript" src="func.js"></script>  
+<script type="text/javascript" src="pesqItem.js"></script>  
 
-<script>
+<script> 
 
+  /* NOVOiTEM*/
+function addItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv){
+    novoItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv) ;
 
-  function montaItens(){  
-
-    var vItens='';  
-    var vDescItens=''; 
-    var nCampos='';
-    var nCamposInvalidos='';
-    var nmPerfil=$('#perfil').val();
-
-    $('#detalhe').val('');
-    $('#numCampos').val('');
-
-
-    // monta os itens que não devrão ser gravados pois não tem a descricao preenchida
-
-    $(".descfunc").each(function() {
-        var vDesc = '*' + $( this ).val() + '*';   
-         if ($( this ).val().length <= 1  ) {             
-            $('#func' + $(this).attr('descUnica') ).val("");
-         };            
-    });
-
-   $( ".idFunc" ).each(function() {
-
-        var vVal = '*' + $( this ).val() + '*'; 
-        if ($( this ).val().length > 0 ) {  
-             if (vItens.indexOf(vVal) == -1){
-                 vItens = vItens + vVal  + ';'; 
-                 nCampos = nCampos + $(this).attr('idUnico') + '*;*'; 
-             };
-         };  
-       
-
-    });
-    $('#detalhe').val(vItens); 
-    $('#numCampos').val(nCampos);  
- 
-
-  }  
-
-  function novaFuncao(p_id,p_descricao){ 
-
-      numCampo++;   
- 
-       var txtExcluir = ' <button type="button" id="btExcluirItem' + numCampo.toString() + '" class=" btExcIt  " data-toggle="modal" ' +
-              ' data-target="#excluirItem' + numCampo.toString() + '" > ' +
-              '  <img src="delete.png"width="20" height="20" placeholder="Excluir" /> ' + 
-              '</button> ' +
-              '   <!-- Modal --> ' +
-                 '<div class="modal fade" id="excluirItem' + numCampo.toString() + '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">'+
-                    '<div class="modal-dialog">' +
-                      '<div class="modal-content">' +
-                        '<div class="modal-header">' +
-                          '<h5 class="modal-title" id="exampleModalLabel">Excluir função</h5>' +
-                          '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
-                            '<span aria-hidden="true">&times;</span>' +
-                          '</button>' +
-                        '</div>' +
-                        '<div class="modal-body">' +
-                          'Confirma exclusão da função ? '+
-                        '</div>' +
-                        '<div class="modal-footer">' +
-                          '<button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancelar</button>' + 
-
-                          '<button type="button" class="btn btn-primary" data-dismiss="modal" name="confirmar" onclick="excluirItem(\''+ numCampo.toString() + '\')" >Confirmar</button>'+  
-                        '</div>' +
-                      '</div>' +
-                    '</div>' +
-                 ' </div> '; 
-
-       var TxtBtTxt = '<div class="form-row" id="idClasseFunc' + numCampo.toString() + '" >'+  txtExcluir 
-       +
-      '<div class="form-inline "  id="idClasseFuncIL' + numCampo.toString() + '">' +
-
-
-        '<input type="number" name= "func' + numCampo.toString() + '" idUnico=' + numCampo.toString() + '  id= "func' + numCampo.toString() + '" class="form-control btPesq idFunc"  onfocusout="buscarDescricao(\''+ numCampo.toString() + '\')" value="' + p_id + '">' +
-      
-
-      '</div>'+
-       '<button type="button" class="btn btn-primary btPesq" data-toggle="modal" data-target=".bd-example-modal-lg' + numCampo.toString() + '" onclick="limpaTela(\''+ numCampo.toString() + '\')" id= "funcao' + numCampo.toString() + '"  ><img src="pesquisar.png"width="15" height="15" placeholder="Excluir" /></button></br> '   +
-      '<div class="col-md-5"id="idClasseFuncMd' + numCampo.toString() + '">'+
-        '<input class="form-control descfunc " type="text" id="desc' + numCampo.toString() + '" descUnica=' + numCampo.toString() +  ' value="' + p_descricao + '" disabled>'+ 
-      '</div>'
-      ;
- 
- 
-
-      var pesq = TxtBtTxt + //'<div class="form-row">'+
-        //'<div class="form-group col-md-2">'+               
-                //'<input type="text" id= "func' + numCampo.toString() + '" class="form-control" >' +  
-               // '<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg' + numCampo.toString() + '" onclick="limpaTela(\''+ numCampo.toString() + '\')" id= "funcao' + numCampo.toString() + '"  >...</button></br> '+
-                '<div class="modal fade bd-example-modal-lg' + numCampo.toString() + '" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">'+
-                   '<div class="modal-dialog modal-lg">'+
-                       '<div class="modal-content"><div class="modal-header">'+
-                           '<h5 class="modal-title" id="exampleModalLabel">Selecione a Função</h5>'+
-                           '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'+
-                           '<span aria-hidden="true">&times;</span></button>'+
-                       '</div>'+
-                       '<div class="modal-body">'+  
-                                      '<form name="form_pesquisa" id="form_pesquisa" method="post" action=""> '+ 
-                                          '<fieldset> ' +
-                                              ' <legend>Digite o nome da função a pesquisar</legend> ' +
-                                                  ' <div class="input-prepend"> ' +
-                                                      ' <span class="add-on"><i class="icon-search"></i></span> ' +
-
-                                                       '<div class="form-row">'+
-                                                             '<div class="form-group col-md-10">'+
-                                                                 ' <input type="text" class="form-control" name="pesquisaCmp' + numCampo.toString() + '" id="pesquisaCmp' + numCampo.toString() + '" value=""  ' +
-                                                                 'tabindex="1" placeholder="Descrição da Função" /> ' +
-                                                             '</div>'+
-                                                       '</div>'+  
-                                                      
-                                                   '</div> ' +
-
-                                                   '<div class="form-group col-md-2">'+
-                                                   '      <button type="button" class="btn btn-primary" onclick="buscarDado(\''+ numCampo.toString() + '\')" id="busca"  >Pesquisar</button>'+
-                                                   '</div>'+                                                    
-                                          '</fieldset>'+
-                                      '</form>' + 
-                                      '<div id="contentLoading"> ' +
-                                          '<div id="loading"></div> '+
-                                      '</div> '+
-                                      '<section class="jumbotron"> '+
-                                          ' <div id="MostraPesq' + numCampo.toString() + '"></div>'+
-                                      '</section> '+ 
-                       '</div>'+
-                       '<div class="modal-footer">'+
-                      '       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>'+
-                            '<button type="button" class="btn btn-primary" data-dismiss="modal" name="confirmar" onclick="gravaNum(\''+ numCampo.toString() + '\')" >Confirmar</button>'+
-  
-                      ' </div>'+
-                   '</div>'+                 
-                '</div>'+ 
-            '</div>'+             
-        '</div>'+
-  '</div><hr/>' ;
-  
-    $(".nFuncao").append(pesq); 
-     
-    }        
-
+}
 var numCampo;
 $(document).ready(function(){
 
@@ -365,8 +222,8 @@ $(document).ready(function(){
            var vExcluir  = "<?=$excluiu=='S'?"S":"N";?>";   
            var aItens    = "<?php echo $_SESSION['aIt']; ?>";   
 
-          $("#novaFuncao").bind("click", function(){
-              novaFuncao('','') ;
+          $("#novoItem").bind("click", function(){
+              addItem('','','Selecione a Função','Descrição da Função', 'pesquisaDescFuncSys','pesquisaFuncSys') ;
            });   
 
            
@@ -376,7 +233,7 @@ $(document).ready(function(){
            if (array_itens.length>1) {
                while (i < array_itens.length) {
                    
-                        novaFuncao(array_itens[i],array_itens[i+1]);
+                        addItem(array_itens[i],array_itens[i+1],'Selecione a Função','Descrição da Função', 'pesquisaDescFuncSys','pesquisaFuncSys');
                         i=i+2; 
                    
 
@@ -404,12 +261,12 @@ $(document).ready(function(){
                if(vCommit=="S"){
                   //alert('Registro gravado com sucesso!');
                   $('#btGravar').attr('disabled', true); 
-                  $('#novaFuncao').attr('disabled', true); 
+                  $('#novoItem').attr('disabled', true); 
                   
 
                   if(vAlterac=="S"){
                     $('#btGravar').attr('disabled', false);
-                    $('#novaFuncao').attr('disabled', false); 
+                    $('#novoItem').attr('disabled', false); 
                   }  
                }  
            } 
@@ -478,12 +335,11 @@ $(document).ready(function(){
           <input type="hidden"  class="form-control"  name="numCampos" id="numCampos" value=""  >
         </div>   
     </div>    
-    <label for="nFuncao">Funções</label> 
+    <label for="nItem">Funções</label> 
     <div class="form-row  dv-pesquisa">  
-          <button type="button" id="novaFuncao" class="btn btn-primary " onclick="novaFuncao('','')"  >Adicionar função</button>  
-    </div>   
-
-    <div class="nFuncao" id="nFuncao">
+          <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione a Função','Descrição da Função', 'pesquisaDescFuncSys','pesquisaFuncSys')"  >Adicionar função</button>  
+    </div>    
+    <div class="nItem" id="nItem">
       
 
     </div> 
@@ -491,11 +347,7 @@ $(document).ready(function(){
 
 <?php
 
-  //include_once "footer.php";
+ 
   include_once "menuNavRodape.php";
 ?>    
-</form>
-<!--
-         <div class="form-group col-md-8">
-            <a href="" class="btn btn-primary" onclick="fAbrejan()">Adicionar Função</a>
-        </div>    
+</form> 

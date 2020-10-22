@@ -5,8 +5,8 @@
     $msg .="<table class='table table-hover'>";
     $msg .="    <thead>";
     $msg .="            <th>#</th>";
-    $msg .="            <th>Função:</th>";
-    $msg .="            <th>id</th>";      
+    $msg .="            <th>Descrição</th>";
+    $msg .="            <th>Id</th>";    
  
     $msg .="    </thead>";
     $msg .="    <tbody>";
