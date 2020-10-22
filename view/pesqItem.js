@@ -225,7 +225,7 @@
                                           '<div id="loading"></div> '+
                                       '</div> '+
                                       '<section class="jumbotron"> '+
-                                          ' <div id="MostraPesq' + numCampo.toString() + '"></div>'+
+                                          ' <div class ="MostraPesq" id="MostraPesq' + numCampo.toString() + '" ></div>'+
                                       '</section> '+ 
                        '</div>'+
                        '<div class="modal-footer">'+
