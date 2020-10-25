@@ -118,6 +118,19 @@
 
 		 } 
 
+		public function buscaPerfilF($p_perfil){
+
+			// Prepara Bean tabpad
+			$perfil = new Perfil();
+
+			$perfil->setNome($p_perfil);
+			 
+			$perfilDao = new PerfilDao();
+			return $perfilDao->readPerfil($perfil);
+			
+
+		 } 		 
+
 
 
 

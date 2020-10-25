@@ -11,7 +11,7 @@
   }     
     
   function load_dados(valores, page, div){
-                
+        
         $.ajax
             ({
                 type: 'POST',
@@ -57,12 +57,20 @@
   }  
 
 
-  function buscarDado(numInput,page){   
+  function buscarDado(numInput,page){  
+     /*alert(page);*/
      var par = $('#pesquisaCmp'+numInput).val();  
-    load_dados(null, page+'.php?pesquisaCmp=%'+ par +'%', '#MostraPesq'+numInput);
+     if(par!==""){
+          $('#mensagem'+numInput).html(""); 
+           load_dados(null, page+'.php?pesquisaCmp=%'+ par +'%', '#MostraPesq'+numInput); 
+          /*load_dados(null, 'pesquisaPerfil.php?pesquisaCmp=%'+ par +'%', '#MostraPesq'+numInput); */
+      }    
+      else{
+          $('#mensagem'+numInput).html('<p class="msg">Informe uma descrição para prosseguir!</p>');          
+      }
   }
 
-  function limpaTela(numInput){ 
+  function limpaTela(numInput){  
     $('#pesquisaCmp'+numInput).val("");
     load_dados(null, 'limpaPesq.php', '#MostraPesq'+numInput); 
   }
@@ -76,15 +84,12 @@
  
   } 
 
-  function gravaNum(numInput){  
-       $('#fItem'+numInput).val($('#MostraPesq'+numInput + " input:checked").val());
-       $('#desc'+numInput).val($('#MostraPesq'+numInput + " input:checked").attr('nome'));
+  function gravaNum(numInput){ 
 
-      var det = $('#detalhe').val();    
-      if (typeof($('#MostraPesq'+numInput + " input:checked").attr('nome')) != "undefined") {      
-         // $('#detalhe').val(det + '['  + numInput + ']' + $('#MostraPesq'+numInput + " input:checked").val()) ;       
-      };
-
+       if (typeof($('#MostraPesq'+numInput + " input:checked").attr('nome')) !== "undefined") { 
+             $('#fItem'+numInput).val($('#MostraPesq'+numInput + " input:checked").val());
+             $('#desc'+numInput).val($('#MostraPesq'+numInput + " input:checked").attr('nome')); 
+        }
      
 
   } 
@@ -176,7 +181,7 @@
      
       /*Descrição do Item */
       '<div class="col-md-5"  >'+
-        '<input class="form-control descItem " type="text" id="desc' + numCampo.toString() + '" descUnica=' + numCampo.toString() +  ' value="' + p_descricao + '" disabled>'+ 
+           '<input class="form-control descItem " type="text" id="desc' + numCampo.toString() + '" descUnica=' + numCampo.toString() +  ' value="' + p_descricao + '" disabled>'+ 
       '</div>'
       ;
  
@@ -208,9 +213,8 @@
                                                                  'tabindex="1" placeholder="' + p_descPlacHld +  '" /> ' +
                                                              '</div>'+
                                                        '</div>'+  
-                                                      
-                                                   '</div> ' +
-
+                                                      '<div id="mensagem' + numCampo.toString() + '" </div>' + 
+                                                   '</div> ' + 
 
                                                   /* Botao Pesquisa pop-up*/
                                                    '<div class="form-group col-md-2">'+

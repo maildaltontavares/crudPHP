@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Virtualize- Shopping Virtual</title>
+        <title>Santana Textiles</title>
         <link href="css/styles.css" rel="stylesheet" />
         <link href="estiloVirtuax.css" rel="stylesheet" /> 
 
@@ -16,12 +16,12 @@
     <body class="nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
            <!-- <a class="navbar-brand" href="index.php"><img src="virtualize2.png" width="182" height="52">  </a>-->
-            <a class="navbar-brand" href="index.php"><img src="virtualize2.png" width="182" height="52">  </a> 
+            <a class="navbar-brand" href="login.php"><img src="logoSantana2.jpg" width="150" height="60">  </a> 
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">&#9776;</i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Encontre sua loja..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <input class="form-control" type="text" placeholder="Funcionalidade" aria-label="Search" aria-describedby="basic-addon2" />
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button">...<i class="fas fa-search"></i></button>
                     </div>
@@ -48,7 +48,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
 
-                            <div class="sb-sidenav-menu-heading">Shopping</div>
+                            <div class="sb-sidenav-menu-heading">Industrial</div>
 
                             <!--
                             <a class="nav-link" href="index.html" href="lista_tabelas">
@@ -64,10 +64,10 @@
                             <div class="collapse" id="collapseCadastros" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     
-                                    <a class="nav-link" href="pesquisa2.php">Lojas</a>
-                                    <a class="nav-link" href="#">Produtos</a>
-                                    <a class="nav-link" href="#">Pessoas</a>
-                                    <a class="nav-link" href="#">Eventos</a>
+                                    <a class="nav-link" href="pesquisa2.php">Fiação</a>
+                                    <a class="nav-link" href="#">Tecelagem</a>
+                                    <a class="nav-link" href="#">Acabamento</a>
+                                    <a class="nav-link" href="#">Revisão</a>
                                     <a class="nav-link" href="selecioneTb.php">Tabelas</a>
                                 </nav>
                             </div>
@@ -119,7 +119,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="lista_funcao.php">Funções</a>
                                     <a class="nav-link" href="lista_perfil.php">Perfis</a>
-                                    <a class="nav-link" href="#">Grupos</a>
+                                    <a class="nav-link" href="lista_grupoUsuario.php">Grupos</a>
                                     <a class="nav-link" href="#">Tabelas</a>
                                     <a class="nav-link" href="lista_usuarios.php">Usuários</a>
                                 </nav>
