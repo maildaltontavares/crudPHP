@@ -120,7 +120,7 @@
                                     <a class="nav-link" href="lista_funcao.php">Funções</a>
                                     <a class="nav-link" href="lista_perfil.php">Perfis</a>
                                     <a class="nav-link" href="lista_grupoUsuario.php">Grupos</a>
-                                    <a class="nav-link" href="#">Tabelas</a>
+                                    <a class="nav-link" href="lista_grupoTabela.php">Tabelas</a>
                                     <a class="nav-link" href="lista_usuarios.php">Usuários</a>
                                 </nav>
                             </div>

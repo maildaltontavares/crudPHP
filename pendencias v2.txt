@@ -1,11 +1,11 @@
-pesqitem.js
-estilovirtuax.css
-menunavCab
-lista_grupousuario
-grupousuarioCtr
-grupoUsusario.php
- 
- 
+Criar colua de tabelas do sistema
+
+menuNavCab.php
+lista_GrupoTabela.php
+grupoTabela.php
+grupoTabelaCtr.php
+grupoTabelaDao.php
+
 
 
 
