@@ -1,9 +1,9 @@
-m<?php
+<?php
  
   session_start();
 
   require_once '../config.php';
-  require_once ROOT_PATH . '/controller/perfilCtr.php'; ;
+  require_once ROOT_PATH . '/controller/perfilCtr.php'; 
   
    
 
@@ -206,8 +206,8 @@ m<?php
 <script> 
 
   /* NOVOiTEM*/
-function addItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv){
-    novoItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv) ;
+function addItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv,divDetalhe){
+    novoItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv,divDetalhe) ;
 
 }
 var numCampo;
@@ -223,7 +223,7 @@ $(document).ready(function(){
            var aItens    = "<?php echo $_SESSION['aIt']; ?>";   
 
           $("#novoItem").bind("click", function(){
-              addItem('','','Selecione a Função','Descrição da Função', 'pesquisaDescFuncSys','pesquisaFuncSys') ;
+              addItem('','','Selecione a Função','Descrição da Função', 'pesquisaDescFuncSys','pesquisaFuncSys','ItFunc') ;
            });   
 
            
@@ -233,7 +233,7 @@ $(document).ready(function(){
            if (array_itens.length>1) {
                while (i < array_itens.length) {
                    
-                        addItem(array_itens[i],array_itens[i+1],'Selecione a Função','Descrição da Função', 'pesquisaDescFuncSys','pesquisaFuncSys');
+                        addItem(array_itens[i],array_itens[i+1],'Selecione a Função','Descrição da Função', 'pesquisaDescFuncSys','pesquisaFuncSys','ItFunc');
                         i=i+2; 
                    
 
@@ -335,11 +335,11 @@ $(document).ready(function(){
           <input type="hidden"  class="form-control"  name="numCampos" id="numCampos" value=""  >
         </div>   
     </div>    
-    <label for="nItem">Funções</label> 
+    <label for="ItFunc">Funções</label> 
     <div class="form-row  dv-pesquisa">  
-          <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione a Função','Descrição da Função', 'pesquisaDescFuncSys','pesquisaFuncSys')"  >Adicionar função</button>  
+          <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione a Função','Descrição da Função', 'pesquisaDescFuncSys','pesquisaFuncSys','ItFunc')"  >Adicionar função</button>  
     </div>    
-    <div class="nItem" id="nItem">
+    <div class="nItem" id="ItFunc">
       
 
     </div> 

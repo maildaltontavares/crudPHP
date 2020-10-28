@@ -1,12 +1,8 @@
-Criar colua de tabelas do sistema
+perfilCad.php
+grupoUsuarioCad.php
+pesqItem.js
 
-menuNavCab.php
-lista_GrupoTabela.php
-grupoTabela.php
-grupoTabelaCtr.php
-grupoTabelaDao.php
-
-
+Criar colua de tabelas do sistema 
 
 
 DBDesigner 4 

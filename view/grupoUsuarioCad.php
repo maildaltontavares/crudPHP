@@ -206,8 +206,8 @@
 <script> 
 
   /* NOVOiTEM*/
-function addItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv){
-    novoItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv) ;
+function addItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv,divDetalhe){
+    novoItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv,divDetalhe) ;
 
 }
 var numCampo;
@@ -223,7 +223,7 @@ $(document).ready(function(){
            var aItens    = "<?php echo $_SESSION['aIt']; ?>";   
 
           $("#novoItem").bind("click", function(){
-              addItem('','','Selecione o perfil','Descrição do Grupo', 'pesquisaDescPerfil','pesquisaPerfil') ;
+              addItem('','','Selecione o perfil','Descrição do Grupo', 'pesquisaDescPerfil','pesquisaPerfil','nItem') ;
            });   
 
            
@@ -233,7 +233,7 @@ $(document).ready(function(){
            if (array_itens.length>1) {
                while (i < array_itens.length) {
                    
-                        addItem(array_itens[i],array_itens[i+1],'Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil');
+                        addItem(array_itens[i],array_itens[i+1],'Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nItem');
                         i=i+2; 
                    
 
@@ -337,7 +337,7 @@ $(document).ready(function(){
     </div>    
     <label for="nItem">Perfis</label> 
     <div class="form-row  dv-pesquisa">  
-          <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil')"  >Adicionar Perfil</button>  
+          <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nItem')"  >Adicionar Perfil</button>  
     </div>    
     <div class="nItem" id="nItem">
       

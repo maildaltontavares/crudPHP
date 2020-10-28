@@ -54,10 +54,31 @@
 
   if (isset($_POST['gravar'])):
      
+              $nIt = $_POST['numCampos'];  
+              $nIt = trim($nIt); 
+              $aIt = [];
+              $inicio = 0; 
+              $nInd=0;             
+
+              while ( strlen($nIt) > 0) { 
+                  $car = "*;*"; 
+                  $fim = strpos($nIt  , $car);   
+                  $vIt = substr($nIt, $inicio,$fim);   
+                  if (isset($_POST['fItem' . $vIt])):                     
+                      $aIt[$nInd] = $_POST['fItem' . $vIt]; 
+                      if($aIt[$nInd]!=""):
+                         $nInd = $nInd + 1 ;
+                    endif;
+                  endif;    
+                  if(strlen($nIt) > 3):
+                     $nIt = substr($nIt,$fim+3,strlen($nIt)-3); 
+                  else:    
+                     $nIt = '';
+                  endif;   
+                 
+              };  
 
               $erros = array();
-
-
               $nome = filter_input(INPUT_POST, 'username',FILTER_SANITIZE_STRING);  
               if(!filter_var($nome,FILTER_SANITIZE_STRING)):
                   $erros[] = "Usuario inválido!";              
@@ -121,7 +142,11 @@
 
               endif;
  
-
+  else:
+       $_SESSION['numFunc'] =0;  
+       if (!isset($_GET['Altera'])):     
+           $_SESSION['aIt'] = "";
+       endif;  
   endif;
    
 
@@ -137,16 +162,39 @@
 
   <script  src="https://code.jquery.com/jquery-3.5.1.js"  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="  crossorigin="anonymous"></script>
 
+<script type="text/javascript" src="pesqItem.js"></script>  
+
 <script> 
   
+  function addItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv,divDetalhe){
+    novoItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv,divDetalhe) ;
+
+  }
+  var numCampo;
   
   $(document).ready(function() { 
+
+        numCampo      = "<?php echo $_SESSION['numFunc']; ?>";  
 
         var vGrava    = "<?=((isset($_POST['gravar']))?"S":"N");?>";  
         var vCommit   = "<?=((isset($_SESSION['gravou']))?"S":"N");?>";
         var vAlterac  = "<?=((isset($_GET['Altera']   ))?"S":"N");?>";  
         var vNovo     = "<?=((isset($_GET['novo']))?"S":"N");?>";  
         var vExcluir  = "<?=$excluiu=='S'?"S":"N";?>";  
+
+        $("#novoItem").bind("click", function(){
+            addItem('','','Selecione o perfil','Descrição do Grupo', 'pesquisaDescPerfil','pesquisaPerfil','nItem') ;
+        }); 
+           
+        array_itens = aItens.split("|");  
+
+        var i=0;
+        if (array_itens.length>1) {
+               while (i < array_itens.length) {                   
+                        addItem(array_itens[i],array_itens[i+1],'Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nItem');
+                        i=i+2; 
+                } 
+          }        
 
         if(vNovo=="S"){
           $('#btExcluir').attr('hidden', true);
@@ -270,7 +318,60 @@
 
 
   </div> 
+
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#grupos" role="tab" aria-controls="home" aria-selected="true">Grupos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#perfis" role="tab" aria-controls="profile" aria-selected="false">Perfis</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="profile" aria-selected="false">Empresas</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#tabelas" role="tab" aria-controls="contact" aria-selected="false">Tabelas</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="grupos" role="tabpanel" aria-labelledby="home-tab">
+      
+      <div class="form-row  dv-pesquisa">  
+            <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nGrupo')"  >Novo Grupo</button>  
+      </div>    
+      <div class="nGrupo" id="nGrupo"> 
+      </div> 
+
+
+  </div>
+
+
+
+  <div class="tab-pane fade" id="perfis" role="tabpanel" aria-labelledby="profile-tab"> 
+      <div class="form-row  dv-pesquisa">  
+            <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nItem')"  >Novo Perfil</button>  
+      </div>    
+      <div class="nItem" id="nItem"> 
+      </div> 
+
+  </div>
+  <div class="tab-pane fade" id="empresas" role="tabpanel" aria-labelledby="profile-tab">33...</div>
+  
+  <div class="tab-pane fade" id="tabelas" role="tabpanel" aria-labelledby="contact-tab">
+      <div class="form-row  dv-pesquisa">  
+            <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nTabela')"  >Novo Grupo Tabela</button>  
+      </div>    
+      <div class="nTabela" id="nTabela"> 
+      </div>   
+  </div>
+</div>
+
 </form>
+
+
+
+
 
 <!--
 <div class="form-row" id="painel">

@@ -135,7 +135,7 @@
   }  
 
  
-  function novoItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv){ 
+  function novoItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageDiv,divDetalhe){ 
 
       numCampo++;   
  
@@ -241,8 +241,9 @@
                 '</div>'+ 
             '</div>'+             
         '</div>'+
-  '</div><hr/>' ;
-  
-    $(".nItem").append(pesq); 
+  '</div><hr/>' ; 
+
+
+    $('#' + divDetalhe).append(pesq); 
      
     }        
