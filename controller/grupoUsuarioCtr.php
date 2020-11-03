@@ -119,6 +119,20 @@
 		 }  
 
 
+		public function buscaGrupoUsuarioF($p_grupoUsuario){
+
+			// Prepara Bean tabpad
+			$grupoUsuario = new GrupoUsuario();
+
+			$grupoUsuario->setNome($p_grupoUsuario);
+			 
+			$grupoUsuarioDao = new GrupoUsuarioDao();
+			return $grupoUsuarioDao->readGrupoUsuario($grupoUsuario);
+			
+
+		 } 			 
+
+
 	}	 
 
 ?>

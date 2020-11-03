@@ -8,6 +8,8 @@
 		private $senha;
 		private $email;
 		private $tel;  
+		private $chave;
+		private $itens;		
 
 		public function setId($Id){
 			$this->Id = $Id;
@@ -49,6 +51,22 @@
 			return $this->tel;
 		}
 
+
+		public function setItens($p_itens){
+			$this->itens = $p_itens;
+		}
+
+		public function getItens(){
+			return $this->itens;
+		}
+
+		public function setChave($chave){
+		 	$this->chave = $chave;
+		}
+
+		public function getChave(){
+			return $this->chave;
+		}	
 
 	}
 

@@ -1,6 +1,7 @@
-perfilCad.php
-grupoUsuarioCad.php
-pesqItem.js
+Filtrar tabelas do sistema
+
+
+
 
 Criar colua de tabelas do sistema 
 

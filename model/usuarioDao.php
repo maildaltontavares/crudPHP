@@ -3,16 +3,12 @@
 	require_once('Conexao.php');
 	require_once('usuario.php');
 
-	class UsuarioDao{
-
-
+	class UsuarioDao{  
 
 		public function delete(Usuario $u)
-		{
-  
- 
+		{ 
 		 
-			$sql = 'delete from public."S0001_usuario" where d0001_id = ? ';  
+			$sql = 'delete from public."S0011_USUARIO_GRUPO" where d0001_id = ? ';  
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$u->getId()); 
 			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	 
@@ -20,6 +16,14 @@
 			try{
 				Conexao::getConn()->beginTransaction();
 				$stmt->execute();
+
+
+                $sql = 'delete from public."S0001_usuario" where d0001_id = ? ';  
+				$stmt = Conexao::getConn()->prepare($sql); 
+	 
+	            $stmt->bindValue(1,$u->getId());   
+				$stmt->execute();  
+
 				Conexao::getConn()->commit(); 
 				return 'OK';
 			}
@@ -77,6 +81,32 @@
 		 
 		}
 
+		public function buscaChave(Usuario $u)
+		{
+ 
+			$sql = 'SELECT  p.d0006_id_grupo id ,f.d0006_desc_grupo descricao  FROM public."S0011_USUARIO_GRUPO" p inner join public."S0006_GRUPO" f on p.d0006_id_grupo = f.d0006_id_grupo   WHERE p.D0011_CHAVE = ? order by D0011_ordem'  ;
+			$stmt = Conexao::getConn()->prepare($sql); 
+			$stmt->bindValue(1,$u->getChave());  
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit();  
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na pesquisa: " . $e->getMessage() . '</li></div>'; 
+			 
+			}	
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);   
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}	
 
 		public function update(Usuario $u)
 		{
@@ -98,6 +128,7 @@
 			try{
 				Conexao::getConn()->beginTransaction();
 				$stmt->execute();
+				$this->createItens($u); 	 
 				Conexao::getConn()->commit(); 
 				return 'OK';
 			}
@@ -108,14 +139,41 @@
 			    return 'nOK';
 			}	
 		 
+		} 
+
+
+		public function createItens(Usuario $u)
+		{ 
+
+            $sql = 'Delete FROM public."S0011_USUARIO_GRUPO" WHERE D0001_ID=?';
+			$stmt = Conexao::getConn()->prepare($sql); 
+ 
+            $stmt->bindValue(1,$u->getId());   
+			$stmt->execute(); 
+
+			$z = 0;
+			//var_dump($u->getItens());
+		 
+			foreach ($u->getItens() as $itens)
+			{
+				$z++;
+                $sql = 'Insert into public."S0011_USUARIO_GRUPO" (D0001_ID,D0006_ID_GRUPO,D0011_CHAVE,D0011_ordem ) values (?,?,?,?)';   
+			    $stmt = Conexao::getConn()->prepare($sql); 
+ 
+                $stmt->bindValue(1,$u->getId());  
+                $stmt->bindValue(2,$itens); 
+                $stmt->bindValue(3,$u->getChave()); 
+                $stmt->bindValue(4,$z );
+			    $stmt->execute();  
+			     
+			}  
+			 
 		}
 
-
 		public function create(Usuario $u)
-		{
-  
-		 
-			$sql = 'Insert into public."S0001_usuario" (d0001_nome,d0001_senha,d0001_email,d0001_tel) values(?,?,?,?)';
+		{  
+
+			$sql = 'Insert into public."S0001_usuario" (d0001_nome,d0001_senha,d0001_email,d0001_tel,d0001_chave) values(?,?,?,?,?)';
 			//$sql = 'Insert into usuario (nome,senha,d0001_email,d0001_tel) values(?,?,?,?)';
 
 			$stmt = Conexao::getConn()->prepare($sql); 
@@ -124,12 +182,28 @@
 			$stmt->bindValue(2,$u->getSenha());
 			$stmt->bindValue(3,$u->getEmail());			
 			$stmt->bindValue(4,$u->getTel()); 
+			$stmt->bindValue(5,$u->getChave()); 
 
 			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	 
 
 			try{
 				Conexao::getConn()->beginTransaction();
 				$stmt->execute();
+
+                $sql = 'SELECT D0001_ID id FROM public."S0001_usuario" where d0001_chave = ?';
+
+				$stmt = Conexao::getConn()->prepare($sql);  
+				$stmt->bindValue(1,$u->getChave());  
+				$stmt->execute();
+				//Conexao::getConn()->commit(); 
+
+				//Conexao::getConn()->beginTransaction();
+				if($stmt->rowCount() > 0):
+					$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 					 
+					$u->setId($resultado[0]['id']);  
+					$this->createItens($u); 	 
+				endif; 
+
 				Conexao::getConn()->commit(); 
 				return 'OK';
 			}
@@ -280,6 +354,36 @@
 
 		 
 		}	
+
+
+		public function readItens(Usuario $u)
+		{ 
+			 
+ 
+			$sql = 'SELECT  p.d0006_id_grupo id ,f.d0006_desc_grupo descricao  FROM public."S0011_USUARIO_GRUPO" p inner join public."S0006_GRUPO" f on p.d0006_id_grupo = f.d0006_id_grupo   WHERE p.d0001_id = ? order by D0011_ordem'  ;	
+			
+			$stmt = Conexao::getConn()->prepare($sql); 
+			$stmt->bindValue(1,$u->getId());  
+			try{
+				 
+				$stmt->execute();
+				 
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na pesquisa: " . $e->getMessage() . '</li></div>'; 
+			 
+			}	
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);   
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}		
 
 
 	}

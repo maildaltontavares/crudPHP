@@ -12,8 +12,7 @@
 			$usuario->setId($p_id);
 
 			$usuarioDao = new UsuarioDao();  
-			return $usuarioDao->delete($usuario); 
-
+			return $usuarioDao->delete($usuario);  
 
 		}		
 
@@ -21,17 +20,13 @@
 
 			$usuario = new Usuario();
 			$usuario->setId($p_id);
-
 			$usuarioDao = new UsuarioDao();  
-			return $usuarioDao->buscaUsuario($usuario); 
-
-
+			return $usuarioDao->buscaUsuario($usuario);  
  
 		 } 
 
 
-		public function update($p_id,$p_usuario,$p_senha,$p_email,$p_fone){
-
+		public function update($p_id,$p_usuario,$p_senha,$p_email,$p_fone,$p_itens){ 
 
 			// Prepara Bean usuario
 			$usuario = new Usuario();
@@ -40,16 +35,15 @@
 			$usuario->setSenha($p_senha);
 			$usuario->setEmail($p_email);
 			$usuario->setTel($p_fone);
+			$usuario->setItens($p_itens);  
 
-
-			//  Vzalida usuario
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->update($usuario); 
 			return  $r;  
 		 }
 
 
-		public function create($p_usuario,$p_senha,$p_email,$p_fone){
+		public function create($p_usuario,$p_senha,$p_email,$p_fone,$p_itens,$p_chave){
 
 
 			// Prepara Bean usuario
@@ -58,9 +52,8 @@
 			$usuario->setSenha($p_senha);
 			$usuario->setEmail($p_email);
 			$usuario->setTel($p_fone);
-
-
-			//  Vzalida usuario
+			$usuario->setItens($p_itens); 
+			$usuario->setChave($p_chave);    
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->create($usuario); 
 			return  $r;  
@@ -68,17 +61,11 @@
 
 
 
-		public function validaUsuario($p_email,$senha){
-
-
+		public function validaUsuario($p_email,$senha){  
 			// Prepara Bean usuario
 			$usuario = new Usuario();
 			$usuario->setEmail($p_email);
-			$usuario->setSenha($senha);
-
-		    //var_dump('ssss');
-		    //var_dump($usuario);
-			//  Vzalida usuario
+			$usuario->setSenha($senha); 
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->validaUsuario($usuario); 
 			return  $r;  
@@ -92,6 +79,16 @@
 			
 
 		 } 
+		public function buscaChave($p_chave){
+
+			$usuario = new Usuario();  
+			$usuario->setChave($p_chave);
+
+			$usuarioDao = new UsuarioDao();  
+			return $usuarioDao->buscaChave($usuario); 
+
+
+	    } 		 
 
 
 		public function listaUsuarioF($p_usuario,$email,$numPg){
@@ -122,6 +119,17 @@
 			
 
 		 } 
+
+		public function listaItens($p_id){
+
+			$usuario = new Usuario();
+			$usuario->setId($p_id); 
+
+			$usuarioDao = new UsuarioDao();  
+			return $usuarioDao->readItens($usuario);
+			
+
+		 } 			 
 
 
 

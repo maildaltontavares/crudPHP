@@ -324,6 +324,51 @@
 		 
 		}		
 
+        public function readGrupoUsuario(GrupoUsuario $g)
+		{
+ 		 
+ 
+
+			//$sql = 'Select * from usuario';
+			$prim_filtro = false;
+
+			$sql = 'SELECT D0006_ID_GRUPO id, d0006_desc_grupo descricao    FROM public."S0006_GRUPO"';
+
+			if (!empty($g->getNome())   and  $g->getNome() != '' ):
+				$sql  = $sql . ' where ';
+			endif;
+
+			if (!empty($g->getNome())   and  $g->getNome() != '' ):
+				$sql =  $sql .  ' upper(d0006_desc_grupo) like ? ';
+				$prim_filtro = True;
+			endif;  
+
+            $sql  = $sql . ' order by d0006_desc_grupo';
+
+			$stmt = Conexao::getConn()->prepare($sql);
+
+	 
+			$bind = 1;
+
+			if (!empty($g->getNome())   and  $g->getNome() != '' ):
+				$stmt->bindValue($bind,strtoupper($g->getNome()));
+				$prim_filtro = True;
+				$bind++;
+			endif; 
+			
+         
+
+			$stmt->execute();  
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}			
+
 
 
 	}

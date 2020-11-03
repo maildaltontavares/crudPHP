@@ -3,7 +3,7 @@
   session_start();
 
   require_once '../config.php';
-  require_once ROOT_PATH . '/controller/usuarioCtr.php'; ;
+  require_once ROOT_PATH . '/controller/usuarioCtr.php';  
   
 
   if(!isset($_SESSION['user'])):
@@ -21,9 +21,11 @@
   $email = '';
   $tel = '';
   $id = 0;   
+  $aIt = [];  
 
   if (isset($_GET['Altera'])):
      $Altera = "S";
+     $_SESSION['aIt'] = "";
      
      $usuarioCtr = new UsuarioCtr();     
      $p_usuario = $usuarioCtr->buscaUsuario($_GET['Id']);   
@@ -33,7 +35,31 @@
           $senha = $p_usuario[0]['senha'];
           $email = $p_usuario[0]['email'];
           $tel= $p_usuario[0]['tel'];
-          $id = $_GET['Id'];       
+          $id = $_GET['Id'];   
+
+          $aItem = $usuarioCtr->listaItens($id);
+
+        //var_dump($aItem);
+        $string_array = "";
+        $z=0;
+
+        foreach ($aItem as $itens)
+        {  
+             
+            if ( $z!=0):
+              $string_array = $string_array . '|';
+            endif;
+            $string_array = $string_array . implode("|", $itens);
+            $z = $z + 1; 
+        }  
+
+        //var_dump($itens);
+        //var_dump($string_array);
+        $_SESSION['aIt'] = $string_array;  
+
+        //var_dump($string_array);
+
+
       endif;  
 
   endif;
@@ -48,7 +74,6 @@
       else:         
          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao Excluir!"  . '</li></div>';
       endif; 
-
   endif;
 
 
@@ -60,10 +85,17 @@
               $inicio = 0; 
               $nInd=0;             
 
+              //var_dump($_POST['numCampos']);
+              //var_dump($_POST['fItem1']);
+              //var_dump($_POST['fItem2']);
+
               while ( strlen($nIt) > 0) { 
                   $car = "*;*"; 
                   $fim = strpos($nIt  , $car);   
                   $vIt = substr($nIt, $inicio,$fim);   
+
+                               //var_dump($vIt);
+
                   if (isset($_POST['fItem' . $vIt])):                     
                       $aIt[$nInd] = $_POST['fItem' . $vIt]; 
                       if($aIt[$nInd]!=""):
@@ -111,10 +143,39 @@
                   $usuarioCtr = new UsuarioCtr(); 
                   if ($Altera == "N"):
 
-                      if ($usuarioCtr->create($nome,$senha,$email,$tel)== 'OK'):  
+                      $date = date('YmdHis'); 
+                      $chave =  '' . $date  ;
+                      for ($i = 1; $i <= 3; $i++) {
+                          $chave = $chave .  (string)random_int(100, 999);
+                      }                      
+
+
+                      var_dump($aIt);
+                      var_dump($chave);
+
+                      if ($usuarioCtr->create($nome,$senha,$email,$tel,$aIt,$chave)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
                           $_SESSION['gravou'] = "S";
-                          //header('Location:principal.php');   
+
+
+                          $aItem = $usuarioCtr->buscaChave($chave);
+
+                          $string_array = "";
+                          $z=0;
+
+                          foreach ($aItem as $itens)
+                          {  
+                              //var_dump($itens);
+                              if ( $z!=0):
+                                $string_array = $string_array . '|';
+                              endif;
+                              $string_array = $string_array . implode("|", $itens);
+                              $z = $z + 1; 
+                          }  
+
+                          //var_dump($itens);
+                          //var_dump($string_array);
+                          $_SESSION['aIt'] = $string_array;
                       else:  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Usuario ou senha inválido!!"  . '</li></div>';           
                           $_SESSION['gravou'] = "N";       
@@ -122,9 +183,33 @@
 
                   else:
 
-                      if ($usuarioCtr->update($id,$nome,$senha,$email,$tel)== 'OK'):  
+                      //var_dump($aIt);
+              
+                      if ($usuarioCtr->update($id,$nome,$senha,$email,$tel,$aIt)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>';  
                           $_SESSION['gravou'] = "S";
+
+
+                          $aItem = $usuarioCtr->listaItens($id);
+
+                          //var_dump($aItem);
+                          $string_array = "";
+                          $z=0;
+
+                          foreach ($aItem as $itens)
+                          {  
+                               
+                              if ( $z!=0):
+                                $string_array = $string_array . '|';
+                              endif;
+                              $string_array = $string_array . implode("|", $itens);
+                              $z = $z + 1; 
+                          }  
+
+                          //var_dump($itens);
+                          //var_dump($string_array);
+                          $_SESSION['aIt'] = $string_array;     
+
                    
                           //header('Location:principal.php');   
                       else:  
@@ -181,9 +266,10 @@
         var vAlterac  = "<?=((isset($_GET['Altera']   ))?"S":"N");?>";  
         var vNovo     = "<?=((isset($_GET['novo']))?"S":"N");?>";  
         var vExcluir  = "<?=$excluiu=='S'?"S":"N";?>";  
+        var aItens    = "<?php echo $_SESSION['aIt']; ?>";   
 
         $("#novoItem").bind("click", function(){
-            addItem('','','Selecione o perfil','Descrição do Grupo', 'pesquisaDescPerfil','pesquisaPerfil','nItem') ;
+            addItem('','','Selecione o Grupo','Descrição do grupo', 'pesquisaDescGrupoUsuario','pesquisaGrupoUsuario','nGrupo') ;
         }); 
            
         array_itens = aItens.split("|");  
@@ -191,7 +277,7 @@
         var i=0;
         if (array_itens.length>1) {
                while (i < array_itens.length) {                   
-                        addItem(array_itens[i],array_itens[i+1],'Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nItem');
+                  addItem(array_itens[i],array_itens[i+1],'Selecione o Grupo','Descrição do grupo', 'pesquisaDescGrupoUsuario','pesquisaGrupoUsuario','nGrupo');
                         i=i+2; 
                 } 
           }        
@@ -209,19 +295,22 @@
              vCommit = "<?=$_SESSION['gravou']?>";
         } 
 
-        if(vGrava=="S"){    
+           if(vGrava=="S"){    
 
-             <?php $_SESSION['gravou'] = "N";?>
+               <?php $_SESSION['gravou'] = "N";?>
 
-             if(vCommit=="S"){
-                //alert('Registro gravado com sucesso!');
-                $('#btGravar').attr('disabled', true); 
+               if(vCommit=="S"){
+                  //alert('Registro gravado com sucesso!');
+                  $('#btGravar').attr('disabled', true); 
+                  $('#novoItem').attr('disabled', true); 
+                  
 
-                if(vAlterac=="S"){
-                  $('#btGravar').attr('disabled', false);
-                }  
-             }  
-        }  
+                  if(vAlterac=="S"){
+                    $('#btGravar').attr('disabled', false);
+                    $('#novoItem').attr('disabled', false); 
+                  }  
+               }  
+           } 
  
  
   }); 
@@ -235,7 +324,7 @@
 </style>
 
  
-<form method="POST" id="frmcad"> 
+<form method="POST" onsubmit="montaItens();" id="formCadastro"> 
   <div class="limiteTela" >
   <!--<div class="container" >  -->
     
@@ -285,7 +374,7 @@
 
         <div class="form-group col-md-8">
           <label for="inputPassword4">Nome usuario</label>
-          <input id="username" name ="username" type="text" class="form-control" value="<?php echo $nome;?>">
+          <input id="username" name ="username" type="text" class="form-control" required value="<?php echo $nome;?>">
         </div>
        <!-- <div class="form-group col-md-1">
             <a href="" class="btn btn-primary" onclick="fAbrejan()" >Busca</a>
@@ -297,14 +386,14 @@
       <div class="form-row"> 
         <div class="form-group col-md-6">
           <label for="inputPassword4">Password</label>
-          <input type="password" name = "password" class="form-control" id="inputPassword4" value="<?php echo $senha;?>" > 
+          <input type="password" name = "password" class="form-control" required  id="inputPassword4" value="<?php echo $senha;?>" > 
         </div>  
       </div>
 
       <div class="form-row">  
         <div class="form-group col-md-6">
           <label for="inputEmail4">Email</label>
-          <input type="email" name = "email" class="form-control" id="inputEmail4" value="<?php echo $email;?>">       
+          <input type="email" name = "email" class="form-control" required  id="inputEmail4" value="<?php echo $email;?>">       
         </div> 
       </div>
 
@@ -312,42 +401,74 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputCity">Fone</label>
-          <input name ="tel" type="text" class="form-control" value="<?php echo $tel;?>"> 
+          <input name ="tel" type="text" class="form-control" required  value="<?php echo $tel;?>"> 
         </div> 
       </div>
+
+          <input type="hidden"  class="form-control"  name="detalhe" id="detalhe" value=""  >
+          <input type="hidden"  class="form-control"  name="numCampos" id="numCampos" value=""  >
+
+
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#grupos" role="tab" aria-controls="home" aria-selected="true">Grupos</a>
+          </li>
+
+        <!--  
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#perfis" role="tab" aria-controls="profile" aria-selected="false">Perfis</a>
+          </li>
+          -->
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="profile" aria-selected="false">Empresas</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#tabelas" role="tab" aria-controls="contact" aria-selected="false">Tabelas</a>
+          </li>
+      
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="grupos" role="tabpanel" aria-labelledby="home-tab">
+              
+              <div class="form-row  dv-pesquisa">  
+                    <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione o Grupo','Descrição do grupo', 'pesquisaDescGrupoUsuario','pesquisaGrupoUsuario','nGrupo')"  >Novo Grupo</button>  
+              </div>    
+              <div class="nGrupo" id="nGrupo"> 
+              </div> 
+
+
+          </div>  
+
+          <div class="tab-pane fade show active" id="empresas" role="tabpanel" aria-labelledby="home-tab">
+              
+              <div class="form-row  dv-pesquisa"> 
+              </div>    
+              <div class="nEmpresa" id="nEmpresa"> 
+              </div> 
+
+
+          </div>      
+
+          <div class="tab-pane fade show active" id="tabelas" role="tabpanel" aria-labelledby="home-tab">
+              
+              <div class="form-row  dv-pesquisa">  
+              </div>    
+              <div class="nEmpresa" id="nEmpresa"> 
+              </div> 
+
+
+          </div>   
+        </div> 
 
 
   </div> 
 
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#grupos" role="tab" aria-controls="home" aria-selected="true">Grupos</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#perfis" role="tab" aria-controls="profile" aria-selected="false">Perfis</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="profile" aria-selected="false">Empresas</a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#tabelas" role="tab" aria-controls="contact" aria-selected="false">Tabelas</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="grupos" role="tabpanel" aria-labelledby="home-tab">
-      
-      <div class="form-row  dv-pesquisa">  
-            <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nGrupo')"  >Novo Grupo</button>  
-      </div>    
-      <div class="nGrupo" id="nGrupo"> 
-      </div> 
-
-
-  </div>
 
 
 
+  <!--
   <div class="tab-pane fade" id="perfis" role="tabpanel" aria-labelledby="profile-tab"> 
       <div class="form-row  dv-pesquisa">  
             <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nItem')"  >Novo Perfil</button>  
@@ -356,15 +477,9 @@
       </div> 
 
   </div>
-  <div class="tab-pane fade" id="empresas" role="tabpanel" aria-labelledby="profile-tab">33...</div>
-  
-  <div class="tab-pane fade" id="tabelas" role="tabpanel" aria-labelledby="contact-tab">
-      <div class="form-row  dv-pesquisa">  
-            <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nTabela')"  >Novo Grupo Tabela</button>  
-      </div>    
-      <div class="nTabela" id="nTabela"> 
-      </div>   
-  </div>
+  -->
+
+
 </div>
 
 </form>
