@@ -419,10 +419,11 @@
           <li class="nav-item">
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#perfis" role="tab" aria-controls="profile" aria-selected="false">Perfis</a>
           </li>
-          -->
+          -->          
           <li class="nav-item">
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="profile" aria-selected="false">Empresas</a>
           </li>  
+
           <li class="nav-item">
             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#tabelas" role="tab" aria-controls="contact" aria-selected="false">Tabelas</a>
           </li>
@@ -459,8 +460,9 @@
 
 
           </div>   
+<!--
         </div> 
-
+-->
 
   </div> 
 
