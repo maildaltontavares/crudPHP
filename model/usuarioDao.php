@@ -383,7 +383,51 @@
 			endif;
 
 		 
-		}		
+		}	
+
+
+		public function montaPerfil(Usuario $u)
+		{
+ 		 
+			//$sql = 'Select * from usuario';
+			//$sql = 'SELECT * FROM public."S0001_usuario" where d0001_nome = ? and d0001_senha = ?';
+			$sql = 'SELECT  d0001_nome nome,d0001_senha senha  FROM public."S0001_usuario" where d0001_email = ?';
+ 
+
+			$sql = 'SELECT DISTINCT SIGLA,NOME_BOTAO ';
+			$sql =  $sql . ' FROM ';
+			$sql =  $sql . ' ( ';
+			$sql =  $sql . ' SELECT USU.D0001_ID,USU_G.D0006_ID_GRUPO,GRP_FUNC.D0004_ID_PERFIL,PER_FUNC.D0002_ID_FUNCAO ,  ';
+			$sql =  $sql . ' FUNC_ACAO.D0003_ID_ACAO, FUNC.D0001_ID_FUNC,tab.d0004_string2 sigla ,tab_acao.d0004_string2 nome_botao  ';
+			$sql =  $sql . ' FROM PUBLIC."S0011_USUARIO_GRUPO" USU_G ';
+			$sql =  $sql . ' INNER JOIN PUBLIC."S0001_usuario" USU ON USU_G.D0001_ID = USU.D0001_ID  ';
+			$sql =  $sql . ' INNER JOIN PUBLIC."S0007_GRUPO_PERFIL" GRP_FUNC ON GRP_FUNC.D0006_id_grupo = USU_G.D0006_ID_GRUPO   ';
+			$sql =  $sql . ' INNER JOIN PUBLIC."S0005_PERFIL_FUNCAO" PER_FUNC ON PER_FUNC.D0004_ID_PERFIL = GRP_FUNC.D0004_ID_PERFIL  ';
+			$sql =  $sql . ' INNER JOIN PUBLIC."S0003_FUNCAO_ACAO" FUNC_ACAO ON FUNC_ACAO.D0002_ID_FUNCAO = PER_FUNC.D0002_ID_FUNCAO ';
+			$sql =  $sql . ' INNER JOIN PUBLIC."S0002_FUNCAO" FUNC ON FUNC_ACAO.D0002_ID_FUNCAO = FUNC.D0002_ID_FUNCAO  ';
+			$sql =  $sql . ' inner join public."E0004_tabela" tab on tab.d0004_id = FUNC.D0001_ID_FUNC  ';
+			$sql =  $sql . ' inner join public."E0004_tabela" tab_acao on tab_acao.d0004_id = FUNC_ACAO.D0003_ID_ACAO ';
+			$sql =  $sql . ' WHERE USU.d0001_email = ?   ';
+			$sql =  $sql . ' ) P ';
+			$sql =  $sql . ' WHERE  LENGTH(NOME_BOTAO) > 0 ';
+	 
+
+
+			$stmt = Conexao::getConn()->prepare($sql); 
+			$stmt->bindValue(1,$u->getEmail());
+			//$stmt->bindValue(2,$u->getSenha());
+			$stmt->execute();  
+			
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);  
+				return $resultado;		
+			else:
+				return 'NOK';				
+			endif;
+
+		 
+		}
+
 
 
 	}

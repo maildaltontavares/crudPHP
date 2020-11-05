@@ -129,9 +129,17 @@
 			return $usuarioDao->readItens($usuario);
 			
 
-		 } 			 
+		 } 	
 
 
+		public function montaPerfil($p_email){ 
+			// Prepara Bean usuario
+			$usuario = new Usuario();
+			$usuario->setEmail($p_email); 
+			$usuarioDao = new UsuarioDao();
+			$r = $usuarioDao->montaPerfil($usuario); 
+			return  $r;  
+		 }   
 
 	}	 
 

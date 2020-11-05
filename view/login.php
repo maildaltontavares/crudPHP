@@ -2,6 +2,7 @@
 
   //require_once './../../controller/usuarioCtsr.php';
 require_once '../config.php';
+require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
 require_once ROOT_PATH . '/controller/usuarioCtr.php'; 
 
   session_start();
@@ -74,8 +75,11 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
 
               if ($usuarioCtr->validaUsuario($email,$pwd)== 'OK'):  
  
+
+
                   $_SESSION['user'] = $email;
-                  //echo '<div class="alert alert-primary" role="alert"><li>' . $_SESSION['user']  . '</li></div>';
+                  $_SESSION['perfil'] = $usuarioCtr->montaPerfil($email);  
+
                   header('Location:principal.php');   
               else:  
  

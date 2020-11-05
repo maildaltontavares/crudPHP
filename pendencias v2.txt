@@ -1,9 +1,19 @@
+usuarioCtr.php
+login.php
+\bibliotecas\funcoes.php
+lista_tp.php
+semAcesso.php
+usuarioDao.php
+listaq_paramtp.php
+paramTpCad.php
+tabpadCad.php
+
 Filtrar tabelas do sistema
 
 
 
 
-Criar colua de tabelas do sistema 
+Criar coluna de tabelas do sistema 
 
 
 DBDesigner 4 
