@@ -19,7 +19,7 @@
   $validaAcesso = $acesso->validaAcesso('00007');
  //var_dump($acesso->validaAcesso('00001'));
   if (strlen($validaAcesso)==0): 
-    // header('Location:semAcesso.php?tela="Grupo de tabela de usuario"'); 
+     header('Location:semAcesso.php?tela="Grupo de tabela de usuario"'); 
      //exit; 
   endif;  
 
@@ -208,14 +208,14 @@
           }  
 
           if (vBtNovo==-1){            
-             //$('#btNovo').addClass('disabled');          
+             $('#btNovo').addClass('disabled');          
            } 
 
           if (vBtExcluir==-1){             
-            //$('#btExcluir').attr('disabled', true);
+            $('#btExcluir').attr('disabled', true);
           }    
          if (vBtGravar==-1){           
-           // $('#btGravar').attr('disabled', true);
+            $('#btGravar').attr('disabled', true);
           }           
 
  })

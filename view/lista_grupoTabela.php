@@ -18,7 +18,7 @@
   $validaAcesso = $acesso->validaAcesso('00007');
   var_dump($acesso->validaAcesso('00007'));
   if (strlen($validaAcesso)==0): 
-     //header('Location:semAcesso.php?tela="Grupo de tabela de usuario"'); 
+     header('Location:semAcesso.php?tela="Grupo de tabela de usuario"'); 
      //exit; 
   endif;
 

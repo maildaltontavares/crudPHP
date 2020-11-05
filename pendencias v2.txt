@@ -1,19 +1,4 @@
  
-selecioneTb.php 
-lista_tabela.php
-tabelaCad.php
-lista_Funcao.php
-funcaoSistemaCad.php
-lista_perfil.php
-perfilCad.php
-lista_grupoUsuario.php
-grupoUsuarioCad.php
-
-lista_grupoTabela.php
-grupoTabelaCad.php
-lista_usuarios.php
-usuarioCad.php
-
 
 
 Filtrar tabelas do sistema
