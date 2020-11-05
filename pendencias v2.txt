@@ -1,12 +1,5 @@
-usuarioCtr.php
-login.php
-\bibliotecas\funcoes.php
-lista_tp.php
-semAcesso.php
-usuarioDao.php
-listaq_paramtp.php
-paramTpCad.php
-tabpadCad.php
+ 
+listaq_paramtp.php 
 
 Filtrar tabelas do sistema
 

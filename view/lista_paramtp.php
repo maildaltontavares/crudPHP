@@ -16,10 +16,10 @@
   // Valida os acessos
   $acesso = new Funcao();
   $validaAcesso = $acesso->validaAcesso('00002');
-  var_dump($validaAcesso);
+  //var_dump($validaAcesso);
 
   if (strlen($validaAcesso)==0): 
-     //header('Location:semAcesso.php?tela="Parametrização de tabelas"'); 
+     header('Location:semAcesso.php?tela="Parametrização de tabelas"'); 
      //exit; 
   endif; 
 
