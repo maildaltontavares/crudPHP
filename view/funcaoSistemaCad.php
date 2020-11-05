@@ -1,16 +1,27 @@
 <?php
  
-  session_start();
+  session_start(); 
 
   require_once '../config.php';
   require_once ROOT_PATH . '/controller/funcaoSistemaCtr.php';
   require_once ROOT_PATH . '/controller/tabelaCtr.php';  
-
+  require_once ROOT_PATH . '/bibliotecas/funcoes.php';  
   
-
   if(!isset($_SESSION['user'])):
     header('Location:login.php');  
   endif;  
+
+  //include_once "menuPrincipal.php";
+  //include_once "menu.php"; 
+
+  // Valida os acessos
+  $acesso = new Funcao();
+  $validaAcesso = $acesso->validaAcesso('00004');
+ //var_dump($acesso->validaAcesso('00001'));
+  if (strlen($validaAcesso)==0): 
+     header('Location:semAcesso.php?tela="Função do sistema"'); 
+     //exit; 
+  endif; 
 
 
  // include_once "menuPrincipal.php";
@@ -168,6 +179,12 @@
           var vNovo     = "<?=((isset($_GET['novo']))?"S":"N");?>";  
           var vExcluir  = "<?=$excluiu=='S'?"S":"N";?>";  
 
+          var vAcessos  = "<?php Echo $validaAcesso ?>"; 
+          var vBtNovo   = vAcessos.indexOf("btNovo");
+          var vBtExcluir= vAcessos.indexOf("btExcluir");
+          var vBtGravar = vAcessos.indexOf("btGravar");
+
+
           if(vNovo=="S"){
             $('#btExcluir').attr('hidden', true);
           }   
@@ -193,7 +210,20 @@
                     $('#btGravar').attr('disabled', false);
                   }  
                }  
-          }  
+          } 
+
+
+          if (vBtNovo==-1){            
+             $('#btNovo').addClass('disabled');          
+           } 
+
+          if (vBtExcluir==-1){             
+            $('#btExcluir').attr('disabled', true);
+          }    
+         if (vBtGravar==-1){           
+            $('#btGravar').attr('disabled', true);
+          } 
+
 
  })
 </script> 
@@ -210,7 +240,8 @@
         <div class="cabecalho">
             <h1 class="p-3 mb-2  text-dark cTitulo">Funções do Sistema</h1>
             <div id="grupoBotoes">
-               <a href="funcaoSistemaCad.php?novo=S" class="btn btn-primary paramBt">Novo</a>                       
+ 
+               <a class="btn btn-primary  paramBt" href="funcaoSistemaCad.php?novo=S" role="button" id="btNovo">Novo</a>                          
                <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>
  <!-- Button trigger modal -->
               <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" >

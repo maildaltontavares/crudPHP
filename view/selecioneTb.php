@@ -1,15 +1,25 @@
 <?php
  
    session_start();
-
+ 
    require_once '../config.php';
 
-   require_once ROOT_PATH . '/controller/tabpadCtr.php';  
- 
-   if(!isset($_SESSION['user'])):
-       header('Location:login.php');  
-       exit();      
-   endif;  
+   require_once ROOT_PATH . '/controller/tabpadCtr.php';   
+  require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
+  
+
+  if(!isset($_SESSION['user'])):
+    header('Location:login.php');  
+  endif;   
+
+  // Valida os acessos
+  $acesso = new Funcao();
+  $validaAcesso = $acesso->validaAcesso('00003');
+ //var_dump($acesso->validaAcesso('00001'));
+  if (strlen($validaAcesso)==0): 
+     header('Location:semAcesso.php?tela="Tabelas"'); 
+     //exit; 
+  endif;
   //include_once "menuPrincipal.php";
   //include_once "menu.php"; 
   include_once "menuNavCab.php";
@@ -64,19 +74,19 @@
               foreach($tabpad->lerTodas() as $p_tabpad): 
 
                   if ($p_tabpad['id'] ==  $_POST['selecioneTab'] ):
-                    echo ' <option value=' . $p_tabpad['id']  . ' selected >' . $p_tabpad['descricao']  .'</option>';  
+                     echo ' <option value=' . $p_tabpad['id']  . ' selected >' . $p_tabpad['descricao']  .'</option>';  
                   else:  
-                    echo ' <option value=' . $p_tabpad['id']  . ' >' . $p_tabpad['descricao']  .'</option>';  
-                  endif;  
+                     echo ' <option value=' . $p_tabpad['id']  . ' >' . $p_tabpad['descricao']  .'</option>';  
+                  endif; 
+
               endforeach;
 
-
               include_once "menuNavRodape.php";
+              
           ?> 
 
           </select> 
-
-         
+ 
 
 
 

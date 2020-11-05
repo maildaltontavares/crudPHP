@@ -4,12 +4,23 @@
 
   require_once '../config.php';
   require_once ROOT_PATH . '/controller/perfilCtr.php'; 
+  require_once ROOT_PATH . '/bibliotecas/funcoes.php';  
   
-   
-
   if(!isset($_SESSION['user'])):
     header('Location:login.php');  
-  endif;   
+  endif;  
+
+  //include_once "menuPrincipal.php";
+  //include_once "menu.php"; 
+
+  // Valida os acessos
+  $acesso = new Funcao();
+  $validaAcesso = $acesso->validaAcesso('00005');
+ //var_dump($acesso->validaAcesso('00001'));
+  if (strlen($validaAcesso)==0): 
+     header('Location:semAcesso.php?tela="Perfil de Acesso"'); 
+     //exit; 
+  endif; 
   
   include_once "menuNavCab.php";
 
@@ -222,6 +233,11 @@ $(document).ready(function(){
            var vExcluir  = "<?=$excluiu=='S'?"S":"N";?>";   
            var aItens    = "<?php echo $_SESSION['aIt']; ?>";   
 
+          var vAcessos  = "<?php Echo $validaAcesso ?>"; 
+          var vBtNovo   = vAcessos.indexOf("btNovo");
+          var vBtExcluir= vAcessos.indexOf("btExcluir");
+          var vBtGravar = vAcessos.indexOf("btGravar");           
+
           $("#novoItem").bind("click", function(){
               addItem('','','Selecione a Função','Descrição da Função', 'pesquisaDescFuncSys','pesquisaFuncSys','ItFunc') ;
            });   
@@ -270,6 +286,17 @@ $(document).ready(function(){
                   }  
                }  
            } 
+
+          if (vBtNovo==-1){            
+             $('#btNovo').addClass('disabled');          
+           } 
+
+          if (vBtExcluir==-1){             
+            $('#btExcluir').attr('disabled', true);
+          }    
+         if (vBtGravar==-1){           
+            $('#btGravar').attr('disabled', true);
+          }            
                   
  })
 
@@ -288,12 +315,9 @@ $(document).ready(function(){
         <div class="cabecalho">
             <h1 class="p-3 mb-2  text-dark cTitulo">Perfis de acesso</h1>
             <div id="grupoBotoes">
-               <a href="perfilCad.php?novo=S" class="btn btn-primary paramBt">Novo</a>                       
-               
-
-               <button type="submit" name= "gravar" class="btn btn-primary paramBt"   id="btGravar">Gravar</button>
-
-
+ 
+               <a class="btn btn-primary  paramBt" href="perfilCad.php?novo=S" role="button" id="btNovo">Novo</a>    
+               <button type="submit" name= "gravar" class="btn btn-primary paramBt"   id="btGravar">Gravar</button>  
  <!-- Button trigger modal -->
               <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" >
                 Excluir

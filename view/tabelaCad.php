@@ -1,16 +1,26 @@
 <?php
  
-  session_start();
+  session_start(); 
 
   require_once '../config.php';
   require_once ROOT_PATH . '/controller/tabelaCtr.php'; 
   require_once ROOT_PATH . '/controller/tabpadCtr.php';  
   require_once ROOT_PATH . '/controller/paramtpCtr.php';  
+  require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
   
 
-  if(!isset($_SESSION['user']) or !isset($_SESSION['tabelaAtual'])):
+  if(!isset($_SESSION['user'])):
     header('Location:login.php');  
-  endif;  
+  endif;   
+
+  // Valida os acessos
+  $acesso = new Funcao();
+  $validaAcesso = $acesso->validaAcesso('00003');
+ //var_dump($acesso->validaAcesso('00001'));
+  if (strlen($validaAcesso)==0): 
+     header('Location:semAcesso.php?tela="Tabelas"'); 
+     //exit; 
+  endif;
 
   //include_once "menuPrincipal.php";
   //include_once "menu.php"; 
@@ -392,6 +402,11 @@
           var vNovo     = "<?=((isset($_GET['novo']))?"S":"N");?>";  
           var vExcluir  = "<?=$excluiu=='S'?"S":"N";?>";  
 
+          var vAcessos  = "<?php Echo $validaAcesso ?>"; 
+          var vBtNovo   = vAcessos.indexOf("btNovo");
+          var vBtExcluir= vAcessos.indexOf("btExcluir");
+          var vBtGravar = vAcessos.indexOf("btGravar");          
+
           if(vNovo=="S"){
             $('#btExcluir').attr('hidden', true);
           }   
@@ -560,6 +575,17 @@
            $("#lbData3").text(jsDesc_data3); 
          }   
 
+          if (vBtNovo==-1){            
+             $('#btNovo').addClass('disabled');          
+           } 
+
+          if (vBtExcluir==-1){             
+            $('#btExcluir').attr('disabled', true);
+          }    
+         if (vBtGravar==-1){           
+            $('#btGravar').attr('disabled', true);
+          }          
+
   });  
 </script>
  <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
@@ -578,7 +604,8 @@
             ?>
 
             <div id="grupoBotoes">
-               <a href="tabelaCad.php?novo=S" class="btn btn-primary paramBt">Novo</a>
+                
+               <a class="btn btn-primary  paramBt" href="tabelaCad.php?novo=S" role="button" id="btNovo">Novo</a>     
                
                <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>
 

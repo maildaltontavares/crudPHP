@@ -1,14 +1,26 @@
-<?php
+<?php 
  
-  session_start();
+  session_start(); 
 
   require_once '../config.php';
   require_once ROOT_PATH . '/controller/usuarioCtr.php';  
+  require_once ROOT_PATH . '/bibliotecas/funcoes.php';  
   
-
   if(!isset($_SESSION['user'])):
   	header('Location:login.php');  
-  endif;
+  endif;	
+
+  //include_once "menuPrincipal.php";
+  //include_once "menu.php"; 
+
+  // Valida os acessos
+  $acesso = new Funcao();
+  $validaAcesso = $acesso->validaAcesso('00008');
+ //var_dump($acesso->validaAcesso('00001'));
+  if (strlen($validaAcesso)==0): 
+     header('Location:semAcesso.php?tela="Cadastro de usuarios"'); 
+     //exit; 
+  endif; 
 
   //include_once "menuPrincipal.php";
   //include_once "menu.php"; 
@@ -39,6 +51,25 @@
 
 
   ?>  
+
+
+  <script  src="https://code.jquery.com/jquery-3.5.1.js"  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="  crossorigin="anonymous"></script>
+
+<script>  
+
+  $(document).ready(function(){   
+
+          var vAcessos  = "<?php Echo $validaAcesso ?>"; 
+          var vBtNovo   = vAcessos.indexOf("btNovo");  
+
+          if (vBtNovo==-1){            
+               /*$('#btNovo').attr('disabled', true);       */
+               $('#btNovo').addClass('disabled');   
+           } 
+
+
+ })
+</script> 
     <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
 
   	<script type="text/javascript">
@@ -104,7 +135,8 @@
 
 		        <button type="submit" class="btn btn-primary mb-2 paramBtListagem" name = "pesquisar"> Pesquisar </button>
 				<button type="submit" class="btn btn-light paramBtListagem" name = "pesquisa_todos"> Listar Todos </button>
-				<a href="usuarioCad.php?novo=S" class="btn btn-primary paramBtListagem">  Novo  </a>
+		 
+				<a class="btn btn-primary  paramBtListagem" href="usuarioCad.php?novo=S" role="button" id="btNovo">Novo</a>
 
 			</div>
         </form>

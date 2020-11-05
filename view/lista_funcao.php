@@ -4,12 +4,23 @@
 
   require_once '../config.php';
   require_once ROOT_PATH . '/controller/funcaoSistemaCtr.php';  
+  require_once ROOT_PATH . '/bibliotecas/funcoes.php';  
   
-
   if(!isset($_SESSION['user'])):
-  	header('Location:login.php');  
-  endif;	
+    header('Location:login.php');  
+  endif;  
 
+  //include_once "menuPrincipal.php";
+  //include_once "menu.php"; 
+
+  // Valida os acessos
+  $acesso = new Funcao();
+  $validaAcesso = $acesso->validaAcesso('00004');
+ //var_dump($acesso->validaAcesso('00001'));
+  if (strlen($validaAcesso)==0): 
+     header('Location:semAcesso.php?tela="Função do sistema"'); 
+     //exit; 
+  endif; 
   //include_once "menuPrincipal.php";
   //include_once "menu.php"; 
   include_once "menuNavCab.php";
@@ -23,161 +34,181 @@
    endif;
 
    if (isset($_GET['pesquisa_todos'])):
-   	   $_SESSION['arg1Tp'] = '';
-   endif;	   
+       $_SESSION['arg1Tp'] = '';
+   endif;    
  
 
 ?>  
+<script  src="https://code.jquery.com/jquery-3.5.1.js"  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="  crossorigin="anonymous"></script>
+
+<script>  
+
+  $(document).ready(function(){   
+
+          var vAcessos  = "<?php Echo $validaAcesso ?>"; 
+          var vBtNovo   = vAcessos.indexOf("btNovo");  
+
+          if (vBtNovo==-1){            
+               /*$('#btNovo').attr('disabled', true);       */
+               $('#btNovo').addClass('disabled');   
+           } 
+
+
+ })
+</script> 
+
+   <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
+
    <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
  
  <body>
- 	<div class="limiteTela" >
-	<!--<div class="container" >   -->
-		<?php   
+  <div class="limiteTela" >
+  <!--<div class="container" >   -->
+    <?php   
 
-		//echo '<h1 class="p-3 mb-2 bg-light text-dark">tabpads</h1>'; 
-		echo '<h1 class="p-3 mb-2 text-dark">Funções do Sistema</h1>'; 
+    //echo '<h1 class="p-3 mb-2 bg-light text-dark">tabpads</h1>'; 
+    echo '<h1 class="p-3 mb-2 text-dark">Funções do Sistema</h1>'; 
 
-		echo '
-		<form >
-	        <div class="row">
-	          <div class="col-md-8 mb-3"> ';
-				           
-	        if (isset($_SESSION['arg1Tp'])):			      
-				   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por descrição" value="' . $_SESSION['arg1Tp'] .'">';
-	        else:
-				   echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por descrição">'; 
+    echo '
+    <form >
+          <div class="row">
+            <div class="col-md-8 mb-3"> ';
+                   
+          if (isset($_SESSION['arg1Tp'])):            
+           echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por descrição" value="' . $_SESSION['arg1Tp'] .'">';
+          else:
+           echo '<input type="text" class="form-control"  name="p_nome" placeholder="Pesquise por descrição">'; 
 
-		    endif;
+        endif;
 
-		    Echo '	      	       
+        Echo '                 
  
-	            </div>
-	          
-	        </div>
+              </div>
+            
+          </div>
 
-	        <div class="row">
+          <div class="row">
 
-		        <button type="submit" class="btn btn-primary mb-2 paramBtListagem" name = "pesquisar"> Pesquisar </button>
-				<button type="submit" class="btn btn-light paramBtListagem" name = "pesquisa_todos"> Listar Todos </button>
-				<a href="funcaoSistemaCad.php?novo=S" class="btn btn-primary paramBtListagem">  Novo  </a>
+            <button type="submit" class="btn btn-primary mb-2 paramBtListagem" name = "pesquisar"> Pesquisar </button>
+        <button type="submit" class="btn btn-light paramBtListagem" name = "pesquisa_todos"> Listar Todos </button> 
+        <a class="btn btn-primary  paramBtListagem" href="funcaoSistemaCad.php?novo=S" role="button" id="btNovo">Novo</a>
 
-			</div>
+      </div>
         </form>
-		';
+    ';
  
         /*"table table-striped" */
-		Echo '<table class="table table-hover">    
-			  <thead>
-			    <tr>
-			      <th scope="col-2">Editar</th>			      
-			      <th scope="col">Descrição</th>
-			      <th scope="col">id</th>
+    Echo '<table class="table table-hover">    
+        <thead>
+          <tr>
+            <th scope="col-2">Editar</th>           
+            <th scope="col">Descrição</th>
+            <th scope="col">id</th>
  
-			      
+            
 
-			    </tr>
-			  </thead>
-			  <tbody>';
+          </tr>
+        </thead>
+        <tbody>';
 
-		$funcaoSistemaCtr = new FuncaoSistemaCtr();	 
+    $funcaoSistemaCtr = new FuncaoSistemaCtr();  
 
 
-		if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ):   
+    if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ):   
 
             if($_SESSION['arg1Tp'] ==''):
-            	$aTab = $funcaoSistemaCtr->listaFuncaoSistema($linha_inicial);
+              $aTab = $funcaoSistemaCtr->listaFuncaoSistema($linha_inicial);
             else:
-            	$aTab = $funcaoSistemaCtr->listaFuncSysF($_SESSION['arg1Tp'],$linha_inicial);
+              $aTab = $funcaoSistemaCtr->listaFuncSysF($_SESSION['arg1Tp'],$linha_inicial);
             endif;
 
             ///var_dump($aTab);
             
-			//foreach($funcaoSistema->FuncaoSistemaCtr($linha_inicial) as $p_funcaoSistema):
+      //foreach($funcaoSistema->FuncaoSistemaCtr($linha_inicial) as $p_funcaoSistema):
             foreach($aTab as $p_funcaoSistema):
-				echo '<tr>' .
-	          		  '<td><a href="funcaoSistemaCad.php?Id='  . $p_funcaoSistema['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
-				      '<td>' .  $p_funcaoSistema['descricao']      . '</td> ' .
-				      '<th scope="row">' . $p_funcaoSistema['id'] . '</th>' .				  
+        echo '<tr>' .
+                  '<td><a href="funcaoSistemaCad.php?Id='  . $p_funcaoSistema['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
+              '<td>' .  $p_funcaoSistema['descricao']      . '</td> ' .
+              '<th scope="row">' . $p_funcaoSistema['id'] . '</th>' .         
 
 
-	 
-				      //'<td><button type="submit" name="excluir" onclick=excluir("'. $p_funcaoSistema['id'] . '")>Excluir</button> </td>'.  
-				    '</tr>' .
-				    '<input type="hidden"  name="Id" value='  . $p_funcaoSistema['id'] . '>';
+   
+              //'<td><button type="submit" name="excluir" onclick=excluir("'. $p_funcaoSistema['id'] . '")>Excluir</button> </td>'.  
+            '</tr>' .
+            '<input type="hidden"  name="Id" value='  . $p_funcaoSistema['id'] . '>';
 
 
 
-			endforeach;
+      endforeach;
 
-		elseif(isset($_GET['pesquisar'])):
- 		      
+    elseif(isset($_GET['pesquisar'])):
+          
  
-				foreach($funcaoSistemaCtr->listaFuncSysF($_SESSION['arg1Tp'],$linha_inicial) as $p_funcaoSistema):
-		        	echo '<tr>' .
-          		  '<td><a href="funcaoSistemaCad.php?Id='  . $p_funcaoSistema['id'] . '&Altera=S'  . '"><img src="edit.png" width="32" height="32" placeholder="Editar" /></a> </td>' .
-			      '<td>' .  $p_funcaoSistema['descricao']      . '</td> ' .
-			      '<th scope="row">' . $p_funcaoSistema['id'] . '</th>' .		
+        foreach($funcaoSistemaCtr->listaFuncSysF($_SESSION['arg1Tp'],$linha_inicial) as $p_funcaoSistema):
+              echo '<tr>' .
+                '<td><a href="funcaoSistemaCad.php?Id='  . $p_funcaoSistema['id'] . '&Altera=S'  . '"><img src="edit.png" width="32" height="32" placeholder="Editar" /></a> </td>' .
+            '<td>' .  $p_funcaoSistema['descricao']      . '</td> ' .
+            '<th scope="row">' . $p_funcaoSistema['id'] . '</th>' .   
 
-					    '</tr>'	.
+              '</tr>' .
 
-					    '<input type="hidden"  name="Id" value='  . $p_funcaoSistema['id'] . '>';
+              '<input type="hidden"  name="Id" value='  . $p_funcaoSistema['id'] . '>';
 
-				endforeach;	 
-	 
+        endforeach;  
+   
 
-			 
-		endif;
+       
+    endif;
 
-		echo ' </tbody>
-		   </table>';   
-		 
+    echo ' </tbody>
+       </table>';   
+     
 
 
-		?>
+    ?>
 
-		<?php  
+    <?php  
 
-		//Paginação 
+    //Paginação 
 
-			 if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ): 
+       if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ): 
 
-		         if($_SESSION['arg1Tp'] ==''):
-		          	$aValor = $funcaoSistemaCtr->totRegistros(''); 
-		         else:
-		          	$aValor = $funcaoSistemaCtr->totRegistros($_SESSION['arg1Tp']); 
-		         endif;
+             if($_SESSION['arg1Tp'] ==''):
+                $aValor = $funcaoSistemaCtr->totRegistros(''); 
+             else:
+                $aValor = $funcaoSistemaCtr->totRegistros($_SESSION['arg1Tp']); 
+             endif;
 
-			 elseif(isset($_GET['pesquisar'])):  
-			     $aValor = $funcaoSistemaCtr->totRegistros($_SESSION['arg1Tp']);  
-			 endif;
+       elseif(isset($_GET['pesquisar'])):  
+           $aValor = $funcaoSistemaCtr->totRegistros($_SESSION['arg1Tp']);  
+       endif;
 
-			 include_once "paginas.php";
+       include_once "paginas.php";
 
          ?>
 
-		 <div class='box-paginacao'>     
-			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$primeira_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Primeira Página"><<</a>    
-			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$pagina_anterior?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Página Anterior"><</a>     
+     <div class='box-paginacao'>     
+         <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$primeira_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Primeira Página"><<</a>    
+         <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$pagina_anterior?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Página Anterior"><</a>     
 
-			  <?php  
+        <?php  
 
-			  /* Loop para montar a páginação central com os números */   
-			  for ($i=$range_inicial; $i <= $range_final; $i++):   
-			    $destaque = ($i == $pagina_atual) ? 'destaque' : '' ;  
-			    ?>   
+        /* Loop para montar a páginação central com os números */   
+        for ($i=$range_inicial; $i <= $range_final; $i++):   
+          $destaque = ($i == $pagina_atual) ? 'destaque' : '' ;  
+          ?>   
 
-			     <a class=' btn btn-light paramBtPag <?=$destaque?>' href="lista_funcao.php?page=<?=$i?>&p_nome=<?=$_SESSION['arg1Tp']?>"> <?=$i?></a>  
-			    <!--<a class='box-navegacao paramBtPagin  <?=$destaque?>' href="lista_funcao.php?page=<?=$i?>&p_nome=<?=$_SESSION['arg1Tp']?>"><?=$i?></a>    <!--
-			    <!--box-numero  <a class='box-numero <?=$destaque?>' href="lista_funcao.php?page=<?=$i?>"><?=$i?></a>     -->
-			  <?php endfor; ?>    
+           <a class=' btn btn-light paramBtPag <?=$destaque?>' href="lista_funcao.php?page=<?=$i?>&p_nome=<?=$_SESSION['arg1Tp']?>"> <?=$i?></a>  
+          <!--<a class='box-navegacao paramBtPagin  <?=$destaque?>' href="lista_funcao.php?page=<?=$i?>&p_nome=<?=$_SESSION['arg1Tp']?>"><?=$i?></a>    <!--
+          <!--box-numero  <a class='box-numero <?=$destaque?>' href="lista_funcao.php?page=<?=$i?>"><?=$i?></a>     -->
+        <?php endfor; ?>    
 
-			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$proxima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Próxima Página">></a>    
-			   <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$ultima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Última Página">>></a>    
-		 </div>   
+         <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$proxima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Próxima Página">></a>    
+         <a class='box-navegacao <?=$exibir_botao_final?> btn btn-light paramBtPagin' href="lista_funcao.php?page=<?=$ultima_pagina?>&p_nome=<?=$_SESSION['arg1Tp']?>" title="Última Página">>></a>    
+     </div>   
 
 
- 	</div>
+  </div>
 
 
 <?php
