@@ -1,15 +1,17 @@
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="index.php"><img src="virtualize2.png" width="182" height="40"> </a>  
+    <a class="navbar-brand" href="login.php"><img src="logoSantana2.jpg" width="182" height="40"> </a>  
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Lojas
+          <a class="nav-link" href="login.php">Home
                 <span class="sr-only">(current)</span>
               </a>
         </li>
+
+        <!--
         <li class="nav-item">
           <a class="nav-link" href="#">Promoções</a>
         </li>
@@ -19,9 +21,12 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Eventos</a>
         </li>
+
+   
         <li class="nav-item">
-          <a class="nav-link" href="index.php" >Home</a>
-        </li>          
+          <a class="nav-link" href="login.php" >Home</a>
+        </li>      
+           -->    
         <li class="nav-item">
           <a class="nav-link" href="login.php" >Login</a>
         </li> 

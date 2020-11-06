@@ -3,7 +3,7 @@
 	require_once('Conexao.php');
 	require_once('paramtp.php');
 
-	class ParamTpDao{
+	class ParamTpDao{ 
 
 
 

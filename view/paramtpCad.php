@@ -494,7 +494,7 @@
               if($i_num2 == 'checked'):
                   if(isset($_POST['desc_num2']) and !EMPTY($_POST['desc_num2']) ) :  
                       if($_POST['desc_num2'] != ''):          
-                          $desc_num2 = filter_input(INPUT_POST, 'desc_num1',FILTER_SANITIZE_STRING);   
+                          $desc_num2 = filter_input(INPUT_POST, 'desc_num2',FILTER_SANITIZE_STRING);   
                           
                           if(!filter_var($desc_num2,FILTER_SANITIZE_STRING)):
                               $erros[] = "Descrição numerico 2 inválida!";            

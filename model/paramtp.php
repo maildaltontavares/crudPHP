@@ -16,7 +16,7 @@
 		private $descStr3;
 
 		private $flag1;
-		private $descFlag1;
+		private $descFlag1; 
  
 		private $flag2;
 		private $descFlag2;

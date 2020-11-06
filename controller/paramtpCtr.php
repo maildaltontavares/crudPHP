@@ -37,7 +37,7 @@
 
 			$paramtpDao = new paramtpDao();   
 			return $paramtpDao->buscaParamTb($paramtp); 
-		 }  
+		 }   
 
 		public function update($p_id,$p_idTp,$p_str1,$p_descStr1,$p_str2,$p_descStr2 ,$p_str3,$p_descStr3,$p_flag1,$p_descFlag1,$p_flag2,$p_descFlag2,$p_flag3,$p_descFlag3,$p_num1,$p_descNum1,$p_num2,$p_descNum2,$p_num3,$p_descNum3,$p_data1,$p_descData1,$p_data2,$p_descData2,$p_data3,$p_descData3 ){
 

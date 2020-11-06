@@ -1,10 +1,9 @@
 <?php
-  
+ 
   session_start();
 
   require_once '../config.php';
-  require_once ROOT_PATH . '/controller/tabpadCtr.php';
-  require_once ROOT_PATH . '/controller/grupoTabelaCtr.php';  
+  require_once ROOT_PATH . '/controller/grupoEmpresaCtr.php'; 
   require_once ROOT_PATH . '/bibliotecas/funcoes.php';  
   
   if(!isset($_SESSION['user'])):
@@ -16,52 +15,44 @@
 
   // Valida os acessos
   $acesso = new Funcao();
-  $validaAcesso = $acesso->validaAcesso('00007');
+  $validaAcesso = $acesso->validaAcesso('00009');
  //var_dump($acesso->validaAcesso('00001'));
   if (strlen($validaAcesso)==0): 
-     header('Location:semAcesso.php?tela="Grupo de tabela de usuario"'); 
+     header('Location:semAcesso.php?tela="Grupo de Empresarial"'); 
      //exit; 
-  endif;  
+  endif; 
 
 
- // include_once "menuPrincipal.php";
- // include_once "menu.php"; 
+  //include_once "menuPrincipal.php";
+  //include_once "menu.php";   
+
   include_once "menuNavCab.php";
   $Altera = "N"; 
 
   $id = 0;
-  $grupoTabela = ''; 
-  $aTabela = [];
+  $nomeGrupoEmpresa = '';
+ 
 
   if (isset($_GET['Altera'])):
      $Altera = "S";
      
-     $grupoTabelaCtr = new GrupoTabelaCtr();   
-     $p_grupoTabela = $grupoTabelaCtr->buscaGrupoTabela($_GET['Id']);  
+     $grupoEmpresarialCtr = new grupoEmpresaCtr();   
+     $p_grupoEmpresa = $grupoEmpresarialCtr->buscaGrupoEmpresa($_GET['Id']);  
 
-     //var_dump($p_grupoTabela);
+     //var_dump($p_grupoEmpresa);
 
-      if(!empty($p_grupoTabela)):
-
-        $id = $p_grupoTabela[0]['id'];  
-        $grupoTabela = $p_grupoTabela[0]['descricao']; 
-        $idTabela = $grupoTabelaCtr->listaTabelas($id);   
+      if(!empty($p_grupoEmpresa)): 
+        $id = $p_grupoEmpresa[0]['id'];  
+        $nomeGrupoEmpresa = $p_grupoEmpresa[0]['descricao'];    
         
-        $aTabela = [];
-
-        for($i=0;$i<count($idTabela);$i++)
-          {
-             $aTabela[$i] = $idTabela[$i]['id'];
-          } 
- 
       endif;  
   endif;
 
   $excluiu='N';
   if (isset($_POST['excluir'])): 
-      $grupoTabelaCtr = new GrupoTabelaCtr(); 
+      $grupoEmpresarialCtr = new grupoEmpresaCtr(); 
           
-      if ($grupoTabelaCtr->delete($_POST['Idx'])== 'OK'):  
+      if ($grupoEmpresarialCtr->delete($_POST['Idx'])== 'OK'):  
          $excluiu = 'S';
          echo '<div class="alert alert-primary" role="alert"><li>' . "Registro excluido com sucesso!"  . '</li></div>';
       else:         
@@ -70,75 +61,50 @@
 
   endif;
 
-  if (isset($_POST['gravar'])): 
+  if (isset($_POST['gravar'])):
+     
 
+              $erros = array();
 
-              $erros = array();              
-
-              $grupoTabela =  filter_input(INPUT_POST, 'grupoTabela',FILTER_SANITIZE_STRING); 
+              $nomeGrupoEmpresa =  filter_input(INPUT_POST, 'nomeGrupoEmpresa',FILTER_SANITIZE_STRING); 
            
-              if(!filter_var($grupoTabela,FILTER_SANITIZE_STRING)):
-                     $erros[] = "Descrição inválida!";   
-              elseif($grupoTabela==''):
-                    $erros[] = "Descrição inválida!";                  
-              endif;  
+              if(!filter_var($nomeGrupoEmpresa,FILTER_SANITIZE_STRING)):
+                    $erros[] = "Nome grupo Empresarial inválido!";   
+              elseif($nomeGrupoEmpresa==''):
+                    $erros[] = "Nome grupo Empresarial inválido!";                  
+              endif;   
 
-               if (isset($_POST['Tabela'])):
-                   $idTabela =  $_POST['Tabela'];  
-               else:
-                    $idTabela =  [];
+              /*
+              $sigla =  filter_input(INPUT_POST, 'sigla',FILTER_SANITIZE_STRING); 
+           
+              if(!filter_var($sigla,FILTER_SANITIZE_STRING)):
+                  $erros[] = "Sigla inválida!";          
+              elseif($sigla==''):
+                  $erros[] = "Sigla inválida!";                             
               endif; 
+              */
 
-              if (empty($erros)):  // Nao tem erros de digitTabela
 
-                  $grupoTabelaCtr = new GrupoTabelaCtr();  
+              if (empty($erros)):  // Nao tem erros de digitacao
+
+                  $grupoEmpresarialCtr = new grupoEmpresaCtr();  
                   if ($Altera == "N"):
 
-
-                      $date = date('YmdHis'); 
-                      $chave =  '' . $date  ;
-                      for ($i = 1; $i <= 3; $i++) {
-                          $chave = $chave .  (string)random_int(100, 999);
-                      }                        
-
-                      if ($grupoTabelaCtr->create($grupoTabela, $idTabela,$chave)== 'OK'):  
+                      if ($grupoEmpresarialCtr->create($nomeGrupoEmpresa )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
                    
-                          $_SESSION['gravou'] = "S"; 
-
-
-                          $idTabela = $grupoTabelaCtr->buscaChave($chave);   
-
-                          $aTabela = [];
-
-                          for($i=0;$i<count($idTabela);$i++)
-                            {
-                               $aTabela[$i] = $idTabela[$i]['id'];
-                            } 
-
+                          $_SESSION['gravou'] = "S";  
                       else:  
-                          echo '<div class="alert alert-primary" role="alert"><li>' . "Registro não gravado!!"  . '</li></div>';                        
+                          echo '<div class="alert alert-primary" role="alert"><li>' . "Grupo inválido!!"  . '</li></div>';                        
                           $_SESSION['gravou'] = "N";                  
                       endif;  
 
                   else:
 
-                      if ($grupoTabelaCtr->update($id,$grupoTabela, $idTabela)== 'OK'):  
+                      if ($grupoEmpresarialCtr->update($id,$nomeGrupoEmpresa )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>'; 
                                             
                           $_SESSION['gravou'] = "S"; 
-
-
-                          $idTabela = $grupoTabelaCtr->listaTabelas($id);   
-
-                          $aTabela = [];
-
-                          for($i=0;$i<count($idTabela);$i++)
-                            {
-                               $aTabela[$i] = $idTabela[$i]['id'];
-                            } 
-
-                          
                       else:  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';
                           $_SESSION['gravou'] = "N";                  
@@ -153,8 +119,6 @@
                   endforeach;  
 
               endif;
-
-          
  
 
   endif; 
@@ -178,7 +142,7 @@
           var vBtNovo   = vAcessos.indexOf("btNovo");
           var vBtExcluir= vAcessos.indexOf("btExcluir");
           var vBtGravar = vAcessos.indexOf("btGravar");
-
+ 
 
           if(vNovo=="S"){
             $('#btExcluir').attr('hidden', true);
@@ -205,7 +169,7 @@
                     $('#btGravar').attr('disabled', false);
                   }  
                }  
-          }  
+          }   
 
           if (vBtNovo==-1){            
              $('#btNovo').addClass('disabled');          
@@ -216,7 +180,8 @@
           }    
          if (vBtGravar==-1){           
             $('#btGravar').attr('disabled', true);
-          }           
+          } 
+
 
  })
 </script> 
@@ -227,15 +192,14 @@
 
 <form method="POST" > 
   <div class="limiteTela" >
-   
+  <!--<div class="container" >  -->
     
     <div id='modelo'>
         <div class="cabecalho">
-            <h1 class="p-3 mb-2  text-dark cTitulo">Grupo de Tabelas</h1>
-            <div id="grupoBotoes">
-            
-               <a class="btn btn-primary  paramBt" href="grupoTabelaCad.php?novo=S" role="button" id="btNovo">Novo</a>    
-                              
+            <h1 class="p-3 mb-2  text-dark cTitulo">Grupo Empresarial</h1>
+            <div id="grupoBotoes">  
+                 <!--<a href="tabpadCad.php?novo=S">  <button id="btNovo"  class="btn btn-primary paramBt"   > Novo </button></a> -->
+                 <a class="btn btn-primary  paramBt" href="grupoEmpresaCad.php?novo=S" role="button" id="btNovo">Novo</a>                  
                <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>
  <!-- Button trigger modal -->
               <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" >
@@ -264,7 +228,7 @@
                       </div>
                     </div>
                   </div>                
-               <a href="lista_grupoTabela.php" class="btn btn-primary  paramBt">Pesquisar</a> 
+               <a href="lista_grupoEmpresa.php" class="btn btn-primary  paramBt">Pesquisar</a> 
             </div> 
 
         </div> 
@@ -273,60 +237,28 @@
     <div class="form-row"> 
 
         <div class="form-group col-md-8">
-          <label for="grupoTabela">Descrição</label>  
-          <input id="grupoTabela" name ="grupoTabela" type="text" class="form-control"  required value="<?php  echo $grupoTabela;  ?>"       >   
+          <label for="grupoEmpresa">Nome Grupo Empresarial</label> 
+          <input id="grupoEmpresa" name ="nomeGrupoEmpresa" type="text" class="form-control"   value="<?php  echo $nomeGrupoEmpresa;  ?>" >
         </div>
-
-    </div>
-
-
-    <div class="form-row"> 
-        <div class="form-group col-md-6"> 
-            <?php   
-
-                Echo '<table class="table table-hover">    
-                <thead>
-                  <tr>
-                    <th scope="col-4">Tabela</th>  
-                    <th scope="col-1"></th>  
-                  </tr>
-                </thead>
-                <tbody>';  
-                 
-                $tabela = new tabpadCtr();
-                $aTabPad = $tabela->lerTodas();    
-                foreach($aTabPad as $p_tabela):  
-
-                    $key = array_search($p_tabela['id'],  $aTabela);  
-
-                    if (false !== $key):                      
-                        echo '<tr>' . 
-                        '<td>  ' . $p_tabela['descricao']  .'  </td>';
-                        echo '' .
-                        '<td> <input type="checkbox" name="Tabela[]" value=' . $p_tabela['id'] . ' checked  ></td>' . 
-                        '</tr>   '; 
-                    else:                     
-                        echo '<tr>' . 
-                        '<td>  ' . $p_tabela['descricao']  .'  </td>';
-                        echo '' .
-                        '<td> <input type="checkbox" name="Tabela[]" value=' . $p_tabela['id'] . '    ></td>' . 
-                        '</tr>   ';  
-                    endif;  
-
-                endforeach;   
-               echo ' </tbody> </table>';  
-               include_once "menuNavRodape.php";  
-            ?>    
-
-            
-        </div>
-
-        
-
     </div>  
+    <!--
+    <div class="form-row"> 
 
+        <div class="form-group col-md-8">
+          <label for="sigla">Sigla</label> 
+
+          <input id="sigla" name ="sigla" type="text" class="form-control"   value="<?php  echo $sigla;  ?>"       >
+
+        </div>
+    </div>      
+    -->
 
   </div> 
-</form>
 
+<?php
+
+  //include_once "footer.php";
+  include_once "menuNavRodape.php";
+?>    
+</form>
 

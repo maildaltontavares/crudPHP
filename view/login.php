@@ -21,7 +21,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="generator" content="Jekyll v4.0.1">
-        <title>VirtuaX - Shopping Virtual</title> 
+        <title>Santana Textiles</title> 
 
         <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
         <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
