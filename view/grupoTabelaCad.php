@@ -4,7 +4,7 @@
 
   require_once '../config.php';
   require_once ROOT_PATH . '/controller/tabpadCtr.php';
-  require_once ROOT_PATH . '/controller/grupoTabelaCtr.php';  
+  require_once ROOT_PATH . '/controller/grupoTabelaCtr.php';   
   require_once ROOT_PATH . '/bibliotecas/funcoes.php';  
   
   if(!isset($_SESSION['user'])):
@@ -294,7 +294,7 @@
                 <tbody>';  
                  
                 $tabela = new tabpadCtr();
-                $aTabPad = $tabela->lerTodas();    
+                $aTabPad = $tabela->lerTodasSistema();    
                 foreach($aTabPad as $p_tabela):  
 
                     $key = array_search($p_tabela['id'],  $aTabela);  

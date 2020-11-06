@@ -85,13 +85,20 @@
 		 }
  
 		public function lerTodas(){
-
-			
+ 
 			$tabpadDao = new tabpadDao();  
 			return $tabpadDao->lerTodas();
 			
 
 		 } 
+
+		public function lerTodasSistema(){
+ 
+			$tabpadDao = new tabpadDao();  
+			return $tabpadDao->lerTodasSistema();
+			
+
+		 } 		 
 
 
 		public function lerNParam(){

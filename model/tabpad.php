@@ -6,6 +6,7 @@
 		private $Id;
 		private $nome;
 		private $sigla;
+		private $sistema;
 	 
 
 		public function setId($Id){
@@ -32,6 +33,13 @@
 			return $this->sigla;
 		}				
 		 
+		public function setSistema($p_sistema){
+			$this->sistema = $sistema;
+		}
+
+		public function getSistema(){
+			return $this->sistema;
+		}			 
 
 
 	}

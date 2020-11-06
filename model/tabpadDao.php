@@ -152,11 +152,29 @@
 		 
 		}
 
+		public function lerTodasSistema()
+		{ 
+		 
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" where d0001_tab_sistema=' . '\'S\'' . ' order by d0001_descricao' ;  
+			$stmt = Conexao::getConn()->prepare($sql); 
+			
+			$stmt->execute();  
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}		
+
 		public function lerTodas()
 		{
  		 
-			//$sql = 'Select * from usuario';
-			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" order by d0001_descricao' ;
+             
+		 
+			    $sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" where d0001_tab_sistema is null order by d0001_descricao' ;  
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
 			$stmt->execute();  

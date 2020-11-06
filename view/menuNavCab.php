@@ -139,6 +139,7 @@
                                             <a class="nav-link" href="lista_grupoEmpresa.php">Grupo Empresarial</a>
                                             <a class="nav-link" href="lista_tp.php">Grupo de Tabela</a>
                                             <a class="nav-link" href="lista_paramtp.php">Parametrização Tabela</a>
+                                            <a class="nav-link" href="selecioneTbSistema.php">Tabelas Configuração</a>
                                         </nav>
                                     </div>
                        
