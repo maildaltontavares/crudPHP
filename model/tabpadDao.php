@@ -34,7 +34,7 @@
 		public function buscatabpad(TabPad $t)
 		{
  
-			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" where d0001_id = ?';
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla,d0001_tab_sistema tab_sistema   FROM public."E0001_tabela_padrao" where d0001_id = ?';
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$t->getId());
 
@@ -54,7 +54,7 @@
 		public function buscatpSigla(TabPad $t)
 		{
  
-			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" where upper(d0001_sigla) = ?';
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla,d0001_tab_sistema tab_sistema   FROM public."E0001_tabela_padrao" where upper(d0001_sigla) = ?';
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,strtoupper($t->getSigla()));
 
@@ -76,7 +76,7 @@
 		{
  		 
 			//$sql = 'Select * from usuario';
-			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao"  where  d0001_id in (SELECT d0001_id id  FROM public."E0003_config_tp") order by d0001_descricao';
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla,d0001_tab_sistema tab_sistema   FROM public."E0001_tabela_padrao"  where  d0001_id in (SELECT d0001_id id  FROM public."E0003_config_tp") order by d0001_descricao';
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
 			$stmt->execute();  
@@ -95,14 +95,15 @@
 		{
   
 		 
-			$sql = 'update public."E0001_tabela_padrao" set d0001_descricao=?,d0001_sigla =? where d0001_id = ? ';
+			$sql = 'update public."E0001_tabela_padrao" set d0001_descricao=?,d0001_sigla =? ,d0001_tab_sistema =? where d0001_id = ? ';
 			//$sql = 'Insert into usuario (nome,senha,email,tel) values(?,?,?,?)';
 
 			$stmt = Conexao::getConn()->prepare($sql); 
 		 
 			$stmt->bindValue(1,$t->getNome()); 
 			$stmt->bindValue(2,$t->getSigla()); 
-			$stmt->bindValue(3,$t->getId()); 
+			$stmt->bindValue(3,$t->getSistema());  	
+			$stmt->bindValue(4,$t->getId()); 
 
 
 			//var_dump($t->getSigla());
@@ -130,11 +131,12 @@
   	
   			//var_dump($t);
 		                       
-			$sql = 'Insert into public."E0001_tabela_padrao" (d0001_descricao,d0001_sigla) values (?,?)';  
+			$sql = 'Insert into public."E0001_tabela_padrao" (d0001_descricao,d0001_sigla,d0001_tab_sistema) values (?,?,?)';  
 			$stmt = Conexao::getConn()->prepare($sql); 
 		 
 			$stmt->bindValue(1,$t->getNome());  
 			$stmt->bindValue(2,$t->getSigla());  
+			$stmt->bindValue(3,$t->getSistema());  			
 			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 			try{
@@ -155,7 +157,7 @@
 		public function lerTodasSistema()
 		{ 
 		 
-			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" where d0001_tab_sistema=' . '\'S\'' . ' order by d0001_descricao' ;  
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla,d0001_tab_sistema tab_sistema  FROM public."E0001_tabela_padrao" where d0001_tab_sistema=' . '\'S\'' . ' order by d0001_descricao' ;  
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
 			$stmt->execute();  
@@ -172,7 +174,7 @@
 		public function lerTodasGeral()
 		{ 
 		 
-			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao"  order by d0001_descricao' ;  
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla,d0001_tab_sistema tab_sistema  FROM public."E0001_tabela_padrao"  order by d0001_descricao' ;  
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
 			$stmt->execute();  
@@ -191,7 +193,7 @@
  		 
              
 		 
-			    $sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" where d0001_tab_sistema is null order by d0001_descricao' ;  
+			    $sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla,d0001_tab_sistema tab_sistema  FROM public."E0001_tabela_padrao" where d0001_tab_sistema = ' . '\'\'' . ' order by d0001_descricao' ;  
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
 			$stmt->execute();  
@@ -215,7 +217,7 @@
 			//$sql = $sql +  ' order by d0001_descricao' ;
 
 
-			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao"  where d0001_id not in (select d0001_id from public."E0003_config_tp" )  order by d0001_descricao' ; 
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla,d0001_tab_sistema tab_sistema   FROM public."E0001_tabela_padrao"  where d0001_id not in (select d0001_id from public."E0003_config_tp" )  order by d0001_descricao' ; 
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
 			$stmt->execute();  
@@ -235,7 +237,7 @@
 		{
  		 
 			//$sql = 'Select * from usuario';
-			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao" order by d0001_descricao LIMIT ' .QTDE_REGISTROS . ' OFFSET ' . $numPg  ;
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla,d0001_tab_sistema tab_sistema   FROM public."E0001_tabela_padrao" order by d0001_descricao LIMIT ' .QTDE_REGISTROS . ' OFFSET ' . $numPg  ;
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
 			$stmt->execute();  
@@ -257,7 +259,7 @@
 			//$sql = 'Select * from usuario';
 			$prim_filtro = false;
 
-			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao"';
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla,d0001_tab_sistema tab_sistema   FROM public."E0001_tabela_padrao"';
 
 			if (!empty($t->getNome())   and  $t->getNome() != '' ):
 				$sql  = $sql . ' where ';

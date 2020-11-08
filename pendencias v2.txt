@@ -1,8 +1,9 @@
-Trazer tasmbém o grupo EMpresarial no login
+ 
+Trazer tasmbém o grupo EMpresarial no login 
 Selecionar Filial
 usuario Filial
 usuario tabelas 
-Adicionar a opcao de tabela do sistema no cadastro de tabelas padroes
+
 
 
 Botao novo do grupocad 
@@ -22,7 +23,6 @@ implementar a seguranca;
 MD5 para a senha;
 Por a impressao p primeira tela;
 Phpexcel ;
-Não permitir excluir parametrização se ja houver cadastro de tabelas; 
 
 Corrigir a visualizacao da mensagem de email ou senha invalida;
 Exibir o usuario logado;

@@ -288,13 +288,14 @@
                 <thead>
                   <tr>
                     <th scope="col-4">Tabela</th>  
+                    <th scope="col-1">De configuração</th>  
                     <th scope="col-1"></th>  
                   </tr>
                 </thead>
                 <tbody>';  
                  
                 $tabela = new tabpadCtr();
-                $aTabPad = $tabela->lerTodasSistema();    
+                $aTabPad = $tabela->lerTodasGeral();    
                 foreach($aTabPad as $p_tabela):  
 
                     $key = array_search($p_tabela['id'],  $aTabela);  
@@ -302,12 +303,14 @@
                     if (false !== $key):                      
                         echo '<tr>' . 
                         '<td>  ' . $p_tabela['descricao']  .'  </td>';
+                        echo '<td>  ' . $p_tabela['tab_sistema']  .'  </td>';
                         echo '' .
                         '<td> <input type="checkbox" name="Tabela[]" value=' . $p_tabela['id'] . ' checked  ></td>' . 
                         '</tr>   '; 
                     else:                     
                         echo '<tr>' . 
                         '<td>  ' . $p_tabela['descricao']  .'  </td>';
+                        echo  '<td>  ' . $p_tabela['tab_sistema']  .'  </td>';
                         echo '' .
                         '<td> <input type="checkbox" name="Tabela[]" value=' . $p_tabela['id'] . '    ></td>' . 
                         '</tr>   ';  

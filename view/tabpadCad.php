@@ -30,6 +30,7 @@
   $id = 0;
   $nometabpad = '';
   $sigla  = '';
+  $tabsys = '';
 
   if (isset($_GET['Altera'])):
      $Altera = "S";
@@ -43,6 +44,7 @@
         $id = $p_tabpad[0]['id'];  
         $nometabpad = $p_tabpad[0]['descricao'];    
         $sigla = $p_tabpad[0]['sigla'];    
+        $tabsys = $p_tabpad[0]['tab_sistema'];  
       endif;  
   endif;
 
@@ -81,14 +83,19 @@
                   $erros[] = "Sigla inválida!";                             
               endif; 
 
-
+              $tabsys = '';
+              if (isset($_POST['Tabsys'])):
+                  $tabsys = 'S';
+              endif;  
+ 
+              //var_dump($tabsys);
 
               if (empty($erros)):  // Nao tem erros de digitacao
 
                   $tabpadCtr = new tabpadCtr();  
                   if ($Altera == "N"):
 
-                      if ($tabpadCtr->create($nometabpad,$sigla)== 'OK'):  
+                      if ($tabpadCtr->create($nometabpad,$sigla,$tabsys)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
                    
                           $_SESSION['gravou'] = "S";  
@@ -99,7 +106,7 @@
 
                   else:
 
-                      if ($tabpadCtr->update($id,$nometabpad,$sigla)== 'OK'):  
+                      if ($tabpadCtr->update($id,$nometabpad,$sigla,$tabsys)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>'; 
                                             
                           $_SESSION['gravou'] = "S"; 
@@ -250,7 +257,22 @@
           <input id="sigla" name ="sigla" type="text" class="form-control"   value="<?php  echo $sigla;  ?>"       >
 
         </div>
-    </div>      
+    </div>     
+
+   <div class="form-row"> 
+
+        <div class="form-group col-md-4">
+          <?php
+          if ($tabsys =="S"):
+             echo '<input type="checkbox" name="Tabsys"  checked  >';
+          else:
+             echo '<input type="checkbox" name="Tabsys"   >';
+          endif;
+          ?>
+
+          <label for="sigla">Tabela de configuração</label> 
+        </div>
+    </div>       
 
 
   </div> 

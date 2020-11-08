@@ -34,7 +34,7 @@
 		}				
 		 
 		public function setSistema($p_sistema){
-			$this->sistema = $sistema;
+			$this->sistema = $p_sistema;
 		}
 
 		public function getSistema(){

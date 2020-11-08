@@ -56,7 +56,7 @@
 		 }  
 
 
-		public function update($p_id,$p_tabpad,$p_sigla){
+		public function update($p_id,$p_tabpad,$p_sigla,$p_tbsys){
 
 
 			// Prepara Bean tabpad
@@ -64,6 +64,7 @@
 			$tabpad->setId($p_id);
 			$tabpad->setNome($p_tabpad); 
 			$tabpad->setSigla($p_sigla); 
+			$tabpad->setSistema($p_tbsys);  
 
 			//  Vzalida tabpad
 			$tabpadDao = new tabpadDao();
@@ -72,13 +73,15 @@
 		 }
 
 
-		public function create($p_tabpad,$p_sigla){
+		public function create($p_tabpad,$p_sigla,$p_tbsys){
 
 
 			// Prepara Bean tabpad
 			$tabpad = new TabPad();
 			$tabpad->setNome($p_tabpad);  
 			$tabpad->setSigla($p_sigla);  
+			$tabpad->setSistema($p_tbsys);  
+
 			$tabpadDao = new tabpadDao();
 			$r = $tabpadDao->create($tabpad); 
 			return  $r;  
