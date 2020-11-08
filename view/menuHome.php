@@ -33,9 +33,8 @@
 
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastre-se<i class="fas fa-user fa-fw"></i></a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                  <a class="dropdown-item" href="#">Settings</a>
-                  <a class="dropdown-item" href="#">Activity Log</a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown"> 
+                  <a class="dropdown-item" href="#">Home</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="login.php">Logout</a>
               </div>
@@ -44,7 +43,7 @@
 
       </ul>
       <form class="form-inline mt-2 mt-md-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Nome da loja" aria-label="Search">
+        <input class="form-control mr-sm-2" type="text" placeholder="Funcionalidade" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
       </form>
 

@@ -108,7 +108,7 @@
 			    //throw $e;
 			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
 			    return 'nOK';
-			}	
+			}	 
 		 
 		}
 

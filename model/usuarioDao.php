@@ -62,8 +62,9 @@
  		 
 			//$sql = 'Select * from usuario';
 			//$sql = 'SELECT * FROM public."S0001_usuario" where d0001_nome = ? and d0001_senha = ?';
-			$sql = 'SELECT  d0001_nome nome,d0001_senha senha  FROM public."S0001_usuario" where d0001_email = ?';
- 
+			$sql = 'SELECT d0001_nome nome,d0001_senha senha, fil.D0006_id_filial filial,d0006_nome_filial nome_filial FROM    public."S0001_usuario" usu 
+                    INNER JOIN public."S0012_USUARIO_FILIAL" usuf on usu.d0001_id = usuf.d0001_id 
+                    INNER JOIN  public."E0006_FILIAL" fil on fil.d0006_id_filial = usuf.d0006_id_filial   where d0012_default = ' . '\'S\'' . ' and d0001_email = ?'; 
 
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$u->getEmail());
@@ -71,11 +72,11 @@
 			$stmt->execute();  
 			
 			if($stmt->rowCount() > 0):
-				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);   
+				return $resultado;
 
-				return 'OK';	
 			else:
-				return 'NOK';				
+				return [];				
 			endif;
 
 		 

@@ -92,6 +92,14 @@
 
 		 } 
 
+		public function lerTodasGeral(){
+ 
+			$tabpadDao = new tabpadDao();  
+			return $tabpadDao->lerTodasGeral();
+			
+
+		 } 
+
 		public function lerTodasSistema(){
  
 			$tabpadDao = new tabpadDao();  

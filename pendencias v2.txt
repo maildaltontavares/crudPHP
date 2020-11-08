@@ -1,8 +1,8 @@
-lista_grupoEmpresa.php
-grupoEmpresaCtr.php
-grupoEmpresaDao.php
-grupoEmpresa.php
-grupoEmpresaCad.php
+Trazer tasmbém o grupo EMpresarial no login
+Selecionar Filial
+usuario Filial
+usuario tabelas 
+Adicionar a opcao de tabela do sistema no cadastro de tabelas padroes
 
 
 Botao novo do grupocad 

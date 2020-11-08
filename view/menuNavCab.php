@@ -137,6 +137,7 @@
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="lista_grupoEmpresa.php">Grupo Empresarial</a>
+                                            <a class="nav-link" href="lista_filial.php">Filial</a>
                                             <a class="nav-link" href="lista_tp.php">Grupo de Tabela</a>
                                             <a class="nav-link" href="lista_paramtp.php">Parametrização Tabela</a>
                                             <a class="nav-link" href="selecioneTbSistema.php">Tabelas Configuração</a>
@@ -162,7 +163,8 @@
                         <div class="small">Logado como:</div>
                         <?php
                           if(isset($_SESSION['user'])):
-                            echo $_SESSION['user'];  
+                            echo $_SESSION['user'] . '</br>';  
+                            echo $_SESSION['nomeFilial'];  
                           endif;
                         ?>  
                     </div>

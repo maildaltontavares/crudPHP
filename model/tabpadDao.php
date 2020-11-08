@@ -169,6 +169,23 @@
 		 
 		}		
 
+		public function lerTodasGeral()
+		{ 
+		 
+			$sql = 'SELECT d0001_id id, d0001_descricao descricao,d0001_sigla sigla  FROM public."E0001_tabela_padrao"  order by d0001_descricao' ;  
+			$stmt = Conexao::getConn()->prepare($sql); 
+			
+			$stmt->execute();  
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}			
+
 		public function lerTodas()
 		{
  		 

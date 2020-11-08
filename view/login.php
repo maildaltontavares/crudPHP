@@ -72,13 +72,13 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
           if (empty($erros)):  // Nao tem erros de digitacao
 
               $usuarioCtr = new UsuarioCtr();   
-
-              if ($usuarioCtr->validaUsuario($email,$pwd)== 'OK'):  
- 
-
+              $p_usu = $usuarioCtr->validaUsuario($email,$pwd);  
+              if(!empty($p_usu)):  
 
                   $_SESSION['user'] = $email;
                   $_SESSION['perfil'] = $usuarioCtr->montaPerfil($email);  
+                  $_SESSION['filial'] = $p_usu[0]['filial'];  
+                  $_SESSION['nomeFilial'] = $p_usu[0]['nome_filial'];
 
                   header('Location:principal.php');   
               else:  
