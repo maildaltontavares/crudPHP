@@ -66,7 +66,7 @@
                                     
                                   
                                     <!--<a class="nav-link" href="pastas.php">Ler Pastas Aplic</a> -->
-
+                                    <a class="nav-link" href="selecioneFilial.php">Alternar Filial</a>
                                     <a class="nav-link" href="selecioneTb.php">Tabelas</a>
                                 </nav>
                             </div>
@@ -96,8 +96,8 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">Gerenciais</a>
-                                            <a class="nav-link" href="404.html">Notas Fiscais</a>  
+                                            <a class="nav-link" href="#">Gerenciais</a>
+                                            <a class="nav-link" href="#">Notas Fiscais</a>  
                                         </nav>
                                     </div>
                                 </nav>
@@ -163,7 +163,7 @@
                         <div class="small">Logado como:</div>
                         <?php
                           if(isset($_SESSION['user'])):
-                            echo $_SESSION['user'] . '</br>';  
+                            echo  substr($_SESSION['user'], 0, 20)   . '</br>';  
                             echo $_SESSION['nomeFilial'];  
                           endif;
                         ?>  

@@ -198,7 +198,7 @@
 
 		 
 		}		
-
+ 
 
 
 		public function readFilial(Filial $f)
@@ -285,6 +285,42 @@
 			endif;  
 
 			$stmt->execute();  
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}		
+
+
+
+		public function lerFilialUsuario()
+		{
+ 
+			$sql = 'SELECT fil.D0006_id_filial id, D0006_nome_filial descricao,D0005_grupo_empresa idGrupo 
+                     FROM public."E0006_FILIAL"  fil inner join public."S0012_USUARIO_FILIAL" usuf on usuf.D0006_id_filial = fil.D0006_id_filial inner join public."S0001_usuario" USU on usu.d0001_id = usuf.d0001_id where usu.d0001_email =' . '\'' . $_SESSION['email'] . '\'';  
+
+
+			$stmt = Conexao::getConn()->prepare($sql);
+
+
+			//$stmt->bindValue(1,$f->getId());
+
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit(); 
+			 
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na pesquisa: " . $e->getMessage() . '</li></div>'; 
+			 
+			}	
 			if($stmt->rowCount() > 0):
 				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
 				return $resultado;	

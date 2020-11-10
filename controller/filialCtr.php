@@ -38,7 +38,19 @@
 			return $filialDao->buscaChave($filial); 
 
 
-		 }  		 
+		 } 
+
+
+		 public function lerFilialUsuario(){
+
+			//$filial = new Filial();  
+			//$filial->setChave($p_chave);
+
+			$filialDao = new FilialDao();  
+			return $filialDao->lerFilialUsuario(); 
+
+
+		 } 
 
 		public function update($p_id,$p_filial,$p_grupo){
 

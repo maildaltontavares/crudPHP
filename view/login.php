@@ -75,20 +75,24 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
               $p_usu = $usuarioCtr->validaUsuario($email,$pwd);  
               if(!empty($p_usu)):  
 
-                  $_SESSION['user'] = $email;
+                  $_SESSION['email'] = $email;
                   $_SESSION['perfil'] = $usuarioCtr->montaPerfil($email);  
                   $_SESSION['filial'] = $p_usu[0]['filial'];  
                   $_SESSION['nomeFilial'] = $p_usu[0]['nome_filial'];
+                  $_SESSION['grupoEmpresa'] = $p_usu[0]['idGrupo'];
+                  $_SESSION['user'] = $p_usu[0]['nome'];
+
 
                   header('Location:principal.php');   
               else:  
- 
+                  echo '</br>';
                   echo '<div class="alert alert-primary" role="alert"><li>' . "E-mail ou senha inválido!!"  . '</li></div>';                  
               endif;  
 
           else:
  
-              foreach ($erros as $erro):                 
+              foreach ($erros as $erro): 
+                  echo '</br>';                
                   echo '<div class="alert alert-primary" role="alert"><li>' . $erro  . '</li></div>';  
               endforeach;  
 

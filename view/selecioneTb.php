@@ -20,6 +20,12 @@
      header('Location:semAcesso.php?tela="Tabelas"'); 
      //exit; 
   endif;
+
+  if(isset($_POST['selecioneTab'])):
+     header('Location:lista_tabela.php?idTp=' .  $_POST['selecioneTab']  ); //+  $_POST['selecioneTab'] ); 
+     exit; 
+  endif;
+
   //include_once "menuPrincipal.php";
   //include_once "menu.php"; 
   include_once "menuNavCab.php";
@@ -36,10 +42,11 @@
   <script  src="https://code.jquery.com/jquery-3.5.1.js"  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="  crossorigin="anonymous"></script>  
 
 <script> 
-  var vAltera = <?php echo isset($_POST['selecioneTab'])?$_POST['selecioneTab']:'Nada';  ?>;   
-  $(document).ready(function() {  
-       window.open("lista_tabela.php?idTp=" + vAltera ,"_self" ); 
-  });  
+ // var vAltera = <?php echo isset($_POST['selecioneTab'])?$_POST['selecioneTab']:'Nada';  ?>;   
+  //$(document).ready(function() {  
+  //     window.open("lista_tabela.php?idTp=" + vAltera ,"_self" ); 
+  //     exit;
+  //});  
 </script>
 
  <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
