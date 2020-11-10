@@ -39,7 +39,7 @@
 		public function buscaUsuario(Usuario $u)
 		{
  
-			$sql = 'SELECT d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel  FROM public."S0001_usuario"  where d0001_id = ?';
+			$sql = 'SELECT d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel,d0001_filial_default filPad   FROM public."S0001_usuario"  where d0001_id = ?';
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$u->getId());
 			//$stmt->bindValue(2,$u->getSenha());
@@ -62,9 +62,13 @@
  		 
 			//$sql = 'Select * from usuario';
 			//$sql = 'SELECT * FROM public."S0001_usuario" where d0001_nome = ? and d0001_senha = ?';
-			$sql = 'SELECT d0001_nome nome,d0001_senha senha, fil.D0006_id_filial filial,d0006_nome_filial nome_filial,D0005_grupo_empresa idGrupo FROM    public."S0001_usuario" usu 
-                    INNER JOIN public."S0012_USUARIO_FILIAL" usuf on usu.d0001_id = usuf.d0001_id 
-                    INNER JOIN  public."E0006_FILIAL" fil on fil.d0006_id_filial = usuf.d0006_id_filial   where d0012_default = ' . '\'S\'' . ' and d0001_email = ?'; 
+			$sql = 'SELECT d0001_nome nome,d0001_senha senha, fil.D0006_id_filial filial,d0006_nome_filial nome_filial,D0005_grupo_empresa                 idGrupo,d0001_filial_default filPad 
+			    FROM    public."S0001_usuario" usu                     
+                    INNER JOIN  public."E0006_FILIAL" fil on fil.d0006_id_filial = usu.d0001_filial_default  where d0001_email = ?'; 
+               
+
+               //INNER JOIN public."S0012_USUARIO_FILIAL" usuf on usu.d0001_id = usuf.d0001_id 
+
 
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$u->getEmail());
@@ -86,7 +90,7 @@
 		public function buscaFilialUsuario(Usuario $u)
 		{
  
-			$sql = 'SELECT  p.d0006_id_filial id ,p.d0001_id idUsuario , p.d0012_default filialPadrao  FROM public."S0012_USUARIO_FILIAL" p  WHERE p.d0001_id = ?'    ;
+			$sql = 'SELECT  p.d0006_id_filial id ,p.d0001_id idUsuario FROM public."S0012_USUARIO_FILIAL" p  WHERE p.d0001_id = ?'    ;
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$u->getId());  
 			try{
@@ -142,7 +146,7 @@
 		{
   
 		 
-			$sql = 'update public."S0001_usuario" set d0001_nome = ?,d0001_senha=?,d0001_email=?,d0001_tel=? where d0001_id = ? ';
+			$sql = 'update public."S0001_usuario" set d0001_nome = ?,d0001_senha=?,d0001_email=?,d0001_tel=?,d0001_filial_default =? where d0001_id = ? ';
 			//$sql = 'Insert into usuario (nome,senha,d0001_email,d0001_tel) values(?,?,?,?)';
 
 			$stmt = Conexao::getConn()->prepare($sql); 
@@ -151,7 +155,9 @@
 			$stmt->bindValue(2,$u->getSenha());
 			$stmt->bindValue(3,$u->getEmail());			
 			$stmt->bindValue(4,$u->getTel()); 
-			$stmt->bindValue(5,$u->getId()); 
+			$stmt->bindValue(5,$u->getFilialPad());
+			$stmt->bindValue(6,$u->getId()); 
+			 
 
 			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	 
 
@@ -159,6 +165,7 @@
 				Conexao::getConn()->beginTransaction();
 				$stmt->execute();
 				$this->createItens($u); 	 
+				$this->createFilial($u); 
 				Conexao::getConn()->commit(); 
 				return 'OK';
 			}
@@ -170,6 +177,34 @@
 			}	
 		 
 		} 
+
+		public function createFilial(Usuario $u)
+		{ 
+
+            $sql = 'Delete FROM public."S0012_USUARIO_FILIAL" WHERE D0001_ID=?';
+			$stmt = Conexao::getConn()->prepare($sql); 
+ 
+            $stmt->bindValue(1,$u->getId());   
+			$stmt->execute(); 
+
+			$z = 0;
+			//var_dump($u->getItens());
+		 
+			foreach ($u->getFilial() as $itens)
+			{
+				$z++;
+                $sql = 'Insert into public."S0012_USUARIO_FILIAL" (D0001_ID,D0006_ID_FILIAL,D0012_CHAVE,D0012_ordem ) values (?,?,?,?)';   
+			    $stmt = Conexao::getConn()->prepare($sql); 
+ 
+                $stmt->bindValue(1,$u->getId());  
+                $stmt->bindValue(2,$itens); 
+                $stmt->bindValue(3,$u->getChave()); 
+                $stmt->bindValue(4,$z );
+			    $stmt->execute();  
+			     
+			}  
+			 
+		}
 
 
 		public function createItens(Usuario $u)
@@ -203,7 +238,7 @@
 		public function create(Usuario $u)
 		{  
 
-			$sql = 'Insert into public."S0001_usuario" (d0001_nome,d0001_senha,d0001_email,d0001_tel,d0001_chave) values(?,?,?,?,?)';
+			$sql = 'Insert into public."S0001_usuario" (d0001_nome,d0001_senha,d0001_email,d0001_tel,d0001_chave,d0001_filial_default) values(?,?,?,?,?,?)';
 			//$sql = 'Insert into usuario (nome,senha,d0001_email,d0001_tel) values(?,?,?,?)';
 
 			$stmt = Conexao::getConn()->prepare($sql); 
@@ -213,6 +248,7 @@
 			$stmt->bindValue(3,$u->getEmail());			
 			$stmt->bindValue(4,$u->getTel()); 
 			$stmt->bindValue(5,$u->getChave()); 
+			$stmt->bindValue(6,$u->getFilialPad()); 
 
 			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	 
 
@@ -231,7 +267,9 @@
 				if($stmt->rowCount() > 0):
 					$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 					 
 					$u->setId($resultado[0]['id']);  
-					$this->createItens($u); 	 
+					$this->createItens($u); 
+					$this->createFilial($u); 
+
 				endif; 
 
 				Conexao::getConn()->commit(); 

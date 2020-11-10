@@ -10,6 +10,9 @@
 		private $tel;  
 		private $chave;
 		private $itens;		
+		private $filial;		
+		private $filialPad;	
+
 
 		public function setId($Id){
 			$this->Id = $Id;
@@ -67,6 +70,25 @@
 		public function getChave(){
 			return $this->chave;
 		}	
+
+
+		public function setFilial($p_fil){
+			$this->filial = $p_fil;
+		}
+
+		public function getFilial(){
+			return $this->filial;
+		}		
+
+		 
+	 
+		public function setFilialPad($p_fil){
+			$this->filialPad = $p_fil;
+		}
+
+		public function getFilialPad(){
+			return $this->filialPad;
+		}
 
 	}
 

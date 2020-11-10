@@ -37,6 +37,7 @@
   $aIt = [];  
   $filPad = 0;
   $aFilialUsu = [];
+  $filPad=0;
 
   if (isset($_GET['Altera'])):
      $Altera = "S";
@@ -46,12 +47,15 @@
      $usuarioCtr = new UsuarioCtr();     
      $p_usuario = $usuarioCtr->buscaUsuario($_GET['Id']);   
       
+     
+
       if(!empty($p_usuario)):
           $nome = $p_usuario[0]['nome'];
           $senha = $p_usuario[0]['senha'];
           $email = $p_usuario[0]['email'];
           $tel= $p_usuario[0]['tel'];
           $id = $_GET['Id'];   
+          $filPad =$p_usuario[0]['filpad']; 
 
           $aItem = $usuarioCtr->listaItens($id);
 
@@ -69,36 +73,13 @@
             $z = $z + 1; 
          }  
 
-         $aFilialUsuario = $usuarioCtr->buscaFilialUsuario($_GET['Id']);   
-     
-
-     /*    
-         $arrayFilUsu = "";
-         $filPad=0;
-
-         //var_dump($aFilialUsuario);
-     
-
-         foreach ($aFilialUsuario as $filUsu)
-         {   
-            if ( $filUsu['filialpadrao']=='S'):
-                $filPad = $filUsu['id'];
-            endif;
-            $idFil = $filUsu['id'];
-            $arrayFilUsu = $arrayFilUsu . "|" . $idFil;
-             
-         }   
-*/
+        $aFilialUsuario = $usuarioCtr->buscaFilialUsuario($_GET['Id']);    
         $aFilialUsu = [];
-        $filPad=0;
+        
         for($i=0;$i<count($aFilialUsuario);$i++)
 
           
-          {
-             if ( $aFilialUsuario[$i]['filialpadrao']=='S'):
-                 $filPad = $aFilialUsuario[$i]['id'];
-             endif;
-
+          { 
              $aFilialUsu[$i] = $aFilialUsuario[$i]['id'];
           } 
 
@@ -194,6 +175,11 @@
                     $vFilUsu =  [];
               endif; 
 
+              $filPad =  $_POST['filialPad'];  
+
+               
+
+              //var_dump($vFilUsu);
 
               if (empty($erros)):  // Nao tem erros de digitacao
 
@@ -210,7 +196,7 @@
                       //var_dump($aIt);
                       //var_dump($chave);
 
-                      if ($usuarioCtr->create($nome,$senha,$email,$tel,$aIt,$chave)== 'OK'):  
+                      if ($usuarioCtr->create($nome,$senha,$email,$tel,$aIt,$chave,$vFilUsu,$filPad)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
                           $_SESSION['gravou'] = "S";
 
@@ -230,9 +216,21 @@
                               $z = $z + 1; 
                           }  
 
-                          //var_dump($itens);
-                          //var_dump($string_array);
+
+                          $aFilialUsuario = $usuarioCtr->buscaFilialUsuario($_GET['Id']);    
+                          $aFilialUsu = [];
+                          
+                          for($i=0;$i<count($aFilialUsuario);$i++)
+
+                            
+                            {
+                               
+
+                               $aFilialUsu[$i] = $aFilialUsuario[$i]['id'];
+                            }                           
+  
                           $_SESSION['aIt'] = $string_array;
+                          $_SESSION['aFilUsu'] = $aFilialUsu;
                       else:  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Usuario ou senha inválido!!"  . '</li></div>';           
                           $_SESSION['gravou'] = "N";       
@@ -242,7 +240,7 @@
 
                       //var_dump($aIt);
               
-                      if ($usuarioCtr->update($id,$nome,$senha,$email,$tel,$aIt )== 'OK'):  
+                      if ($usuarioCtr->update($id,$nome,$senha,$email,$tel,$aIt,$vFilUsu,$filPad )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>';  
                           $_SESSION['gravou'] = "S";
 
@@ -263,9 +261,18 @@
                               $z = $z + 1; 
                           }  
 
-                          //var_dump($itens);
-                          //var_dump($string_array);
-                          $_SESSION['aIt'] = $string_array;     
+                          $aFilialUsuario = $usuarioCtr->buscaFilialUsuario($_GET['Id']);    
+                          $aFilialUsu = [];
+                          
+                          for($i=0;$i<count($aFilialUsuario);$i++)  
+                            {
+                              
+
+                               $aFilialUsu[$i] = $aFilialUsuario[$i]['id'];
+                            }                           
+ 
+                          $_SESSION['aIt'] = $string_array;
+                          $_SESSION['aFilUsu'] = $aFilialUsu; 
 
                    
                           //header('Location:principal.php');   
@@ -480,6 +487,37 @@
         </div> 
       </div>
 
+      <div class="form-row">
+        <div class="form-group col-md-6">
+      
+
+            <label for="filialPad">Filial Padrão</label>  
+            <select class="form-control" id="filialPad" name="filialPad" >  
+            <?php 
+
+                 $filial = new FilialCtr();               
+                 $aFilP = $filial->lerTodas();  
+
+                //var_dump($aFilP) ;
+                //var_dump($filPad) ;
+  
+                foreach($aFilP as $p_f): 
+
+                    if ($p_f['id'] ==  $filPad ):
+                      echo ' <option value=' . $p_f['id']  . ' selected >' . $p_f['descricao']  .'</option>';  
+                    else:  
+                      echo ' <option value=' . $p_f['id']  . ' >' . $p_f['descricao']  .'</option>';  
+                    endif;  
+
+                endforeach;
+  
+            ?>             
+
+
+            </select> 
+        </div>                    
+    </div>        
+
           <input type="hidden"  class="form-control"  name="detalhe" id="detalhe" value=""  >
           <input type="hidden"  class="form-control"  name="numCampos" id="numCampos" value=""  >
 
@@ -528,8 +566,9 @@
                       </thead>
                       <tbody>';  
 
-                      $filial = new FilialCtr();               
+                      //$filial = new FilialCtr();               
                       $aFil = $filial->lerTodas();  
+
 
                       foreach($aFil as $p_fil):  
                           $key = array_search($p_fil['id'],  $aFilialUsu);  

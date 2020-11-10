@@ -35,7 +35,7 @@
 		 } 		 
 
 
-		public function update($p_id,$p_usuario,$p_senha,$p_email,$p_fone,$p_itens){ 
+		public function update($p_id,$p_usuario,$p_senha,$p_email,$p_fone,$p_itens,$p_filial,$p_filPad){ 
 
 			// Prepara Bean usuario
 			$usuario = new Usuario();
@@ -45,6 +45,8 @@
 			$usuario->setEmail($p_email);
 			$usuario->setTel($p_fone);
 			$usuario->setItens($p_itens);  
+			$usuario->setFilial($p_filial);  
+			$usuario->setFilialPad($p_filPad); 
 
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->update($usuario); 
@@ -52,7 +54,7 @@
 		 }
 
 
-		public function create($p_usuario,$p_senha,$p_email,$p_fone,$p_itens,$p_chave){
+		public function create($p_usuario,$p_senha,$p_email,$p_fone,$p_itens,$p_chave,$p_filial,$p_filPad){
 
 
 			// Prepara Bean usuario
@@ -63,6 +65,9 @@
 			$usuario->setTel($p_fone);
 			$usuario->setItens($p_itens); 
 			$usuario->setChave($p_chave);    
+			$usuario->setFilial($p_filial);  
+			$usuario->setFilialPad($p_filPad); 
+
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->create($usuario); 
 			return  $r;  

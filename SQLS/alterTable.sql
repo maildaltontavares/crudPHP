@@ -1,3 +1,8 @@
+ALTER TABLE public."S0001_usuario"
+ADD COLUMN d0001_filial_default bigint; 
+
+
+
 ALTER TABLE public."E0003_config_tp"
 ALTER COLUMN d0003_desc_str1 type VARCHAR(30),
 ALTER COLUMN d0003_desc_str2 type VARCHAR(30),

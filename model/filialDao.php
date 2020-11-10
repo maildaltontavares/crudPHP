@@ -335,7 +335,11 @@
 		public function lerTodas()
 		{
  
-			$sql = 'SELECT  f.D0006_id_filial id, D0006_nome_filial descricao   FROM public."E0006_FILIAL" f order by D0006_nome_filial  ';
+			$sql = 'SELECT  f.D0006_id_filial id, D0006_nome_filial descricao   FROM public."E0006_FILIAL" f   
+			 order by D0006_nome_filial  ';
+
+			 //var_dump($sql	);
+
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
 			try{
