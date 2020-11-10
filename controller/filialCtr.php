@@ -15,8 +15,8 @@
 			return $filialDao->delete($filial); 
 
 
-		}		
- 
+		}	 
+
 
 		public function buscaFilial($p_id){
 
@@ -133,7 +133,13 @@
 		 } 
 
 
+		public function lerTodas(){ 
 
+			$filialDao = new FilialDao();  
+			return $filialDao->lerTodas();
+			
+
+		 }  
 
 
 	}	 

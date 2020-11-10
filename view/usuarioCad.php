@@ -1,9 +1,10 @@
 <?php 
  
-  session_start();
+  session_start(); 
 
   require_once '../config.php';
   require_once ROOT_PATH . '/controller/usuarioCtr.php';  
+  require_once ROOT_PATH . '/controller/filialCtr.php';  
   require_once ROOT_PATH . '/bibliotecas/funcoes.php';  
   
   if(!isset($_SESSION['user'])):
@@ -34,10 +35,13 @@
   $tel = '';
   $id = 0;   
   $aIt = [];  
+  $filPad = 0;
+  $aFilialUsu = [];
 
   if (isset($_GET['Altera'])):
      $Altera = "S";
      $_SESSION['aIt'] = "";
+     $_SESSION['aFilUsu'] = "";
      
      $usuarioCtr = new UsuarioCtr();     
      $p_usuario = $usuarioCtr->buscaUsuario($_GET['Id']);   
@@ -51,25 +55,59 @@
 
           $aItem = $usuarioCtr->listaItens($id);
 
-        //var_dump($aItem);
-        $string_array = "";
-        $z=0;
+         //var_dump($aItem);
+         $string_array = "";
+         $z=0;
 
-        foreach ($aItem as $itens)
-        {  
+         foreach ($aItem as $itens)
+         {  
              
             if ( $z!=0):
               $string_array = $string_array . '|';
             endif;
             $string_array = $string_array . implode("|", $itens);
             $z = $z + 1; 
-        }  
+         }  
 
-        //var_dump($itens);
-        //var_dump($string_array);
-        $_SESSION['aIt'] = $string_array;  
+         $aFilialUsuario = $usuarioCtr->buscaFilialUsuario($_GET['Id']);   
+     
 
+     /*    
+         $arrayFilUsu = "";
+         $filPad=0;
+
+         //var_dump($aFilialUsuario);
+     
+
+         foreach ($aFilialUsuario as $filUsu)
+         {   
+            if ( $filUsu['filialpadrao']=='S'):
+                $filPad = $filUsu['id'];
+            endif;
+            $idFil = $filUsu['id'];
+            $arrayFilUsu = $arrayFilUsu . "|" . $idFil;
+             
+         }   
+*/
+        $aFilialUsu = [];
+        $filPad=0;
+        for($i=0;$i<count($aFilialUsuario);$i++)
+
+          
+          {
+             if ( $aFilialUsuario[$i]['filialpadrao']=='S'):
+                 $filPad = $aFilialUsuario[$i]['id'];
+             endif;
+
+             $aFilialUsu[$i] = $aFilialUsuario[$i]['id'];
+          } 
+
+        //var_dump($filPad);
         //var_dump($string_array);
+        $_SESSION['aIt'] = $string_array;
+        $_SESSION['aFilUsu'] = $aFilialUsu;
+
+        //var_dump($aFilialUsu);
 
 
       endif;  
@@ -150,6 +188,13 @@
                   $erros[] = "Fone inválido!";
               endif;
 
+               if (isset($_POST['FilialUsu'])):
+                   $vFilUsu =  $_POST['FilialUsu'];  
+               else:
+                    $vFilUsu =  [];
+              endif; 
+
+
               if (empty($erros)):  // Nao tem erros de digitacao
 
                   $usuarioCtr = new UsuarioCtr(); 
@@ -197,7 +242,7 @@
 
                       //var_dump($aIt);
               
-                      if ($usuarioCtr->update($id,$nome,$senha,$email,$tel,$aIt)== 'OK'):  
+                      if ($usuarioCtr->update($id,$nome,$senha,$email,$tel,$aIt )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>';  
                           $_SESSION['gravou'] = "S";
 
@@ -451,12 +496,8 @@
           </li>
           -->          
           <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#empresas" role="tab" aria-controls="profile" aria-selected="false">Empresas</a>
-          </li>  
-
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#tabelas" role="tab" aria-controls="contact" aria-selected="false">Tabelas</a>
-          </li>
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#filiais" role="tab" aria-controls="profile" aria-selected="false">Filiais</a>
+          </li>   
       
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -471,25 +512,66 @@
 
           </div>  
 
-          <div class="tab-pane fade show active" id="empresas" role="tabpanel" aria-labelledby="home-tab">
+          <div class="tab-pane fade" id="filiais" role="tabpanel" aria-labelledby="home-tab">
               
-              <div class="form-row  dv-pesquisa"> 
-              </div>    
-              <div class="nEmpresa" id="nEmpresa"> 
+              <div class="form-row  dv-pesquisa">   
+
+
+                 <?php   
+
+                      Echo '<table class="table table-hover">    
+                      <thead>
+                        <tr>
+                          <th scope="col-1">Ação</th>  
+                          <th scope="col-1"></th>  
+                        </tr>
+                      </thead>
+                      <tbody>';  
+
+                      $filial = new FilialCtr();               
+                      $aFil = $filial->lerTodas();  
+
+                      foreach($aFil as $p_fil):  
+                          $key = array_search($p_fil['id'],  $aFilialUsu);  
+                          if (false !== $key): 
+                           
+                              echo '<tr>' . 
+                              '<td>  ' . $p_fil['descricao']  .'  </td>';
+                              echo '' .
+                              '<td> <input type="checkbox" name="FilialUsu[]" value=' . $p_fil['id'] . ' checked  ></td>' . 
+                              '</tr>   ';  
+                          else:
+                        
+                              echo '<tr>' . 
+                              '<td>  ' . $p_fil['descricao']  .'  </td>';
+                              echo '' .
+                              '<td> <input type="checkbox" name="FilialUsu[]" value=' . $p_fil['id'] . '    ></td>' . 
+                              '</tr>   ';                    
+                          
+                          endif;  
+
+                      endforeach; 
+
+
+                     echo ' </tbody> </table>';  
+                     include_once "menuNavRodape.php";  
+                  ?>  
+
+
+              </div>   
+
+
+              <div class="nFiliais" id="nFiliais"> 
+
+
+
+
               </div> 
 
 
           </div>      
 
-          <div class="tab-pane fade show active" id="tabelas" role="tabpanel" aria-labelledby="home-tab">
-              
-              <div class="form-row  dv-pesquisa">  
-              </div>    
-              <div class="nEmpresa" id="nEmpresa"> 
-              </div> 
-
-
-          </div>   
+             
 <!--
         </div> 
 -->

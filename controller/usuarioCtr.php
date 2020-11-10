@@ -25,6 +25,15 @@
  
 		 } 
 
+		public function buscaFilialUsuario($p_id){
+
+			$usuario = new Usuario();
+			$usuario->setId($p_id);
+			$usuarioDao = new UsuarioDao();  
+			return $usuarioDao->buscaFilialUsuario($usuario);  
+ 
+		 } 		 
+
 
 		public function update($p_id,$p_usuario,$p_senha,$p_email,$p_fone,$p_itens){ 
 

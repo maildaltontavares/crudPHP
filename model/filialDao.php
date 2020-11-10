@@ -329,7 +329,37 @@
 			endif;
 
 		 
-		}		
+		}
+
+
+		public function lerTodas()
+		{
+ 
+			$sql = 'SELECT  f.D0006_id_filial id, D0006_nome_filial descricao   FROM public."E0006_FILIAL" f order by D0006_nome_filial  ';
+			$stmt = Conexao::getConn()->prepare($sql); 
+			
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit(); 
+			 
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na pesquisa: " . $e->getMessage() . '</li></div>'; 
+			 
+			}	
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}
+
 
 
 

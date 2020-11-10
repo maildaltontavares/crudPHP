@@ -82,6 +82,35 @@
 		 
 		}
 
+
+		public function buscaFilialUsuario(Usuario $u)
+		{
+ 
+			$sql = 'SELECT  p.d0006_id_filial id ,p.d0001_id idUsuario , p.d0012_default filialPadrao  FROM public."S0012_USUARIO_FILIAL" p  WHERE p.d0001_id = ?'    ;
+			$stmt = Conexao::getConn()->prepare($sql); 
+			$stmt->bindValue(1,$u->getId());  
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit();  
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na pesquisa: " . $e->getMessage() . '</li></div>'; 
+			 
+			}	
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);   
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}
+
+
 		public function buscaChave(Usuario $u)
 		{
  
