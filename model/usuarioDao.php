@@ -6,8 +6,12 @@
 	class UsuarioDao{  
 
 		public function delete(Usuario $u)
-		{ 
-		 
+		{     
+			$sql1 = 'delete from public."S0012_USUARIO_FILIAL" where d0001_id = ? ';  
+			$stmt1 = Conexao::getConn()->prepare($sql1); 
+			$stmt1->bindValue(1,$u->getId()); 
+			 
+
 			$sql = 'delete from public."S0011_USUARIO_GRUPO" where d0001_id = ? ';  
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$u->getId()); 
@@ -15,6 +19,7 @@
 
 			try{
 				Conexao::getConn()->beginTransaction();
+                $stmt1->execute();
 				$stmt->execute();
 
 
@@ -87,6 +92,33 @@
 		}
 
 
+		public function buscaChaveFilialUsuario(Usuario $u)
+		{
+ 
+			$sql = 'SELECT  p.d0006_id_filial id ,p.d0001_id idUsuario FROM public."S0012_USUARIO_FILIAL" p  WHERE p.d0012_chave = ?'    ;
+			$stmt = Conexao::getConn()->prepare($sql); 
+			$stmt->bindValue(1,$u->getChave());  
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit();  
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na pesquisa: " . $e->getMessage() . '</li></div>'; 
+			 
+			}	
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);   
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}
+
 		public function buscaFilialUsuario(Usuario $u)
 		{
  
@@ -118,7 +150,7 @@
 		public function buscaChave(Usuario $u)
 		{
  
-			$sql = 'SELECT  p.d0006_id_grupo id ,f.d0006_desc_grupo descricao  FROM public."S0011_USUARIO_GRUPO" p inner join public."S0006_GRUPO" f on p.d0006_id_grupo = f.d0006_id_grupo   WHERE p.D0011_CHAVE = ? order by D0011_ordem'  ;
+			$sql = 'SELECT  p.d0006_id_grupo id ,f.d0006_desc_grupo descricao   FROM public."S0011_USUARIO_GRUPO" p inner join public."S0006_GRUPO" f on p.d0006_id_grupo = f.d0006_id_grupo   WHERE p.D0011_CHAVE = ? order by D0011_ordem'  ;
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$u->getChave());  
 			try{
@@ -134,7 +166,7 @@
 			}	
 			if($stmt->rowCount() > 0):
 				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);   
-				return $resultado;	
+				return $resultado;	 
 			else:
 				return [];				
 			endif;

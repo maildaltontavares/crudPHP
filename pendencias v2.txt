@@ -1,24 +1,12 @@
- 
-Alterar senha no proximo login
+
+
+usuario tabelas;  
+Alterar senha no proximo login;
 MD5 para a senha;
 Alterar senha;
-Registrar-se;
-usuario tabelas 
+Registrar-se;  
 
-
-
-
-
-Botao novo do grupocad 
-
-
-Filtrar tabelas do sistema
-
-
-
-
-Criar coluna de tabelas do sistema 
-
+Botao novo do grupocad   
 
 DBDesigner 4 
 Por a cor vermelha nas mensagens de insucesso

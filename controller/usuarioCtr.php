@@ -8,6 +8,8 @@
 
 		public function delete($p_id){
 
+
+			//var_dump($p_id);	
 			$usuario = new Usuario();
 			$usuario->setId($p_id);
 
@@ -102,7 +104,17 @@
 			return $usuarioDao->buscaChave($usuario); 
 
 
-	    } 		 
+	    } 	
+	     public function buscaChaveFilialUsuario($p_chave){
+
+			$usuario = new Usuario();  
+			$usuario->setChave($p_chave);
+
+			$usuarioDao = new UsuarioDao();  
+			return $usuarioDao->buscaChaveFilialUsuario($usuario); 
+
+
+	    } 
 
 
 		public function listaUsuarioF($p_usuario,$email,$numPg){
