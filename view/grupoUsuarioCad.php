@@ -28,6 +28,7 @@
   $id = 0;
   $nomeGrupoUsuario = '';
   $aIt = [];    
+  $gravou = 'N'; // nova fucao seguranca
 
   if (isset($_GET['Altera'])):
      $Altera = "S";
@@ -130,7 +131,7 @@
                       if ($grupoUsuarioCtr->create($nomeGrupoUsuario,$aIt,$chave)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
                    
-                          $_SESSION['gravou'] = "S";  
+                          $gravou = "S";  
 
                           $aItem = $grupoUsuarioCtr->buscaChave($chave);
 
@@ -153,7 +154,7 @@
                           
                       else:  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "grupo inválido!!"  . '</li></div>';                        
-                          $_SESSION['gravou'] = "N";                  
+                          $gravou = "N";                  
                       endif;  
 
                   else:
@@ -161,7 +162,7 @@
                       if ($grupoUsuarioCtr->update($id,$nomeGrupoUsuario,$aIt)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>'; 
                                             
-                          $_SESSION['gravou'] = "S";  
+                          $gravou = "S";  
 
                           $aItem = $grupoUsuarioCtr->listaItens($id);
 
@@ -186,7 +187,7 @@
 
                       else:  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';
-                          $_SESSION['gravou'] = "N";                  
+                          $gravou = "N";                  
                       endif;  
 
                   endif;    
@@ -224,19 +225,8 @@ function addItem(p_id,p_descricao, p_descSelecione, p_descPlacHld,pageDesc,pageD
 var numCampo;
 $(document).ready(function(){
 
-           numCampo      = "<?php echo $_SESSION['numFunc']; ?>";  
-
-           var vGrava    = "<?=((isset($_POST['gravar']))?"S":"N");?>";  
-           var vCommit   = "<?=((isset($_SESSION['gravou']))?"S":"N");?>";
-           var vAlterac  = "<?=((isset($_GET['Altera']   ))?"S":"N");?>";  
-           var vNovo     = "<?=((isset($_GET['novo']))?"S":"N");?>";  
-           var vExcluir  = "<?=$excluiu=='S'?"S":"N";?>";   
-           var aItens    = "<?php echo $_SESSION['aIt']; ?>";
-
-          var vAcessos  = "<?php Echo $validaAcesso ?>"; 
-          var vBtNovo   = vAcessos.indexOf("btNovo");
-          var vBtExcluir= vAcessos.indexOf("btExcluir");
-          var vBtGravar = vAcessos.indexOf("btGravar");
+          numCampo      = "<?php echo $_SESSION['numFunc']; ?>";   
+          var aItens    = "<?php echo $_SESSION['aIt']; ?>";
 
           $("#novoItem").bind("click", function(){
               addItem('','','Selecione o perfil','Descrição do Grupo', 'pesquisaDescPerfil','pesquisaPerfil','nItem') ;
@@ -244,66 +234,20 @@ $(document).ready(function(){
 
            
            array_itens = aItens.split("|");  
-
            var i=0;
            if (array_itens.length>1) {
-               while (i < array_itens.length) {
-                   
+               while (i < array_itens.length) {                   
                         addItem(array_itens[i],array_itens[i+1],'Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nItem');
-                        i=i+2; 
-                   
-
+                        i=i+2;  
                 } 
-          }
+           }
                 
-           if(vNovo=="S"){
-            $('#btExcluir').attr('hidden', true);
-             
-           }   
-
-           if(vExcluir=="S"){
-            $('#btGravar').attr('disabled', true);
-            $('#btExcluir').attr('disabled', true);
-           }  
-
-           if(vCommit=="S") {      
-               vCommit = "<?=$_SESSION['gravou']?>";
-           }  
-
-           if(vGrava=="S"){    
-
-               <?php $_SESSION['gravou'] = "N";?>
-
-               if(vCommit=="S"){
-                  //alert('Registro gravado com sucesso!');
-                  $('#btGravar').attr('disabled', true); 
-                  $('#novoItem').attr('disabled', true); 
-                  
-
-                  if(vAlterac=="S"){
-                    $('#btGravar').attr('disabled', false);
-                    $('#novoItem').attr('disabled', false); 
-                  }  
-               }  
-           } 
-
-            if (vBtNovo==-1){            
-               $('#btNovo').addClass('disabled');          
-             } 
-
-            if (vBtExcluir==-1){             
-              $('#btExcluir').attr('disabled', true);
-            }    
-           if (vBtGravar==-1){           
-              $('#btGravar').attr('disabled', true);
-            }            
                   
  })
 
 
     </script> 
-
-
+ 
 
 <link rel="stylesheet" type="text/css" href="estiloVirtuax.css"> 
 
@@ -315,15 +259,83 @@ $(document).ready(function(){
         <div class="cabecalho">
             <h1 class="p-3 mb-2  text-dark cTitulo">Grupo de Perfil</h1>
             <div id="grupoBotoes">
-               <a class="btn btn-primary  paramBtListagem" href="grupoUsuarioCad.php?novo=S" role="button" id="btNovo">Novo</a>  
-               
-               <button type="submit" name= "gravar" class="btn btn-primary paramBt"   id="btGravar">Gravar</button>
+              <?php
 
 
- <!-- Button trigger modal -->
-              <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" >
-                Excluir
-              </button> 
+              $vBtNovo    = strpos($validaAcesso,"btNovo");
+              $vBtExcluir = strpos($validaAcesso,"btExcluir");
+              $vBtGravar  = strpos($validaAcesso,"btGravar");  
+              
+              if($vBtNovo>=0  and $vBtNovo!=false): 
+                   Echo 
+                   '<a class="btn btn-primary  paramBtListagem" href="grupoUsuarioCad.php?novo=S" role="button" id="btNovo" >Novo</a> ';
+
+              else:
+                   Echo 
+                   '<a class="btn btn-primary  paramBtListagem disabled" href="grupoUsuarioCad.php?novo=S" role="button" id="btNovo"  >Novo</a> ';
+
+              endif;
+
+              if($vBtGravar>=0 and $vBtGravar!=false):
+                  if($excluiu=='S'):
+                     Echo ' 
+                      <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';
+                  else:
+                      if($Altera == "S"):  
+                            Echo ' 
+                                     <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>'; 
+                      else: // Inclusão
+
+                         //if ($gravou)=='S'):
+                        if ($gravou == "S"):
+                             if($Altera == "S"):
+                                 Echo ' 
+                                  <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';
+                             else:
+                                 Echo ' 
+                                  <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';                             
+                             endif;      
+                         else:
+                              Echo ' 
+                             <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>';
+                         endif;   
+                      endif;
+                  endif;   
+              else:
+                     Echo ' 
+                      <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';
+              endif; 
+
+              if($vBtExcluir>=0 and $vBtExcluir!=false):   
+                   if(isset($_GET['novo'])):   
+                       if ($_GET['novo']!='S'):
+                             Echo '
+                                   <!-- Button trigger modal -->
+                                   <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal"  disabled>
+                                   Excluir
+                                  </button> ';
+                       endif;
+                   
+                   else:
+                       if($excluiu=='S'):
+                              Echo '
+                                   <!-- Button trigger modal -->
+                                   <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" disabled>
+                                   Excluir
+                                  </button> ';
+
+                       else:
+                              Echo '
+                                   <!-- Button trigger modal -->
+                                   <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" >
+                                   Excluir
+                                  </button> ';
+                       endif;           
+                   endif; 
+                          
+               endif;
+
+              echo '
                   <!-- Modal -->
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -340,14 +352,15 @@ $(document).ready(function(){
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                           <form >
-                                  <input type="hidden"  name="Idx" value= <?php echo $id;?>  >
+                                  <input type="hidden"  name="Idx" value= ' .   $id    . '>
                                   <button type="submit" class="btn btn-primary"  name="excluir" >Confirmar</button> 
                           </form>
                         </div>
                       </div>
                     </div>
                   </div>                
-               <a href="lista_grupoUsuario.php" class="btn btn-primary  paramBt">Pesquisar</a> 
+               <a href="lista_grupoUsuario.php" class="btn btn-primary  paramBt">Pesquisar</a> ';
+               ?>
             </div> 
 
         </div> 

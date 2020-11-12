@@ -47,8 +47,6 @@
      
      $usuarioCtr = new UsuarioCtr();     
      $p_usuario = $usuarioCtr->buscaUsuario($_GET['Id']);   
-      
-     
 
       if(!empty($p_usuario)):
           $nome = $p_usuario[0]['nome'];
@@ -199,7 +197,7 @@
 
                       if ($usuarioCtr->create($nome,$senha,$email,$tel,$aIt,$chave,$vFilUsu,$filPad)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
-                          //$_SESSION['gravou'] = "S";
+                          //$gravou = "S";
                           $gravou = 'S';
 
                           $aItem = $usuarioCtr->buscaChave($chave);   
@@ -232,7 +230,7 @@
                           $_SESSION['aFilUsu'] = $aFilialUsu;
                       else:  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Usuario ou senha inválido!!"  . '</li></div>';           
-                          $_SESSION['gravou'] = "N";       
+                          $gravou = "N";       
                       endif;  
 
                   else:
@@ -241,7 +239,7 @@
               
                       if ($usuarioCtr->update($id,$nome,$senha,$email,$tel,$aIt,$vFilUsu,$filPad )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>';  
-                          //$_SESSION['gravou'] = "S";
+                          //$gravou = "S";
                           $gravou = 'S';
 
 
@@ -278,7 +276,7 @@
                           //header('Location:principal.php');   
                       else:  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';
-                          $_SESSION['gravou'] = "N";                  
+                          $gravou = "N";                  
                       endif;  
 
                   endif;    
@@ -366,12 +364,7 @@
 
               $vBtNovo    = strpos($validaAcesso,"btNovo");
               $vBtExcluir = strpos($validaAcesso,"btExcluir");
-              $vBtGravar  = strpos($validaAcesso,"btGravar"); 
-
-              //var_dump($vBtNovo);
-              //var_dump($vBtExcluir);
-              //var_dump($vBtGravar);
-
+              $vBtGravar  = strpos($validaAcesso,"btGravar");  
               
               if($vBtNovo>=0  and $vBtNovo!=false): 
                    Echo 
@@ -393,11 +386,11 @@
                                      <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>'; 
                       else: // Inclusão
 
-                         //if ($_SESSION['gravou'])=='S'):
+                         //if ($gravou)=='S'):
                         if ($gravou == "S"):
                              if($Altera == "S"):
                                  Echo ' 
-                                  <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';
+                                  <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar"   >Gravar</button>';
                              else:
                                  Echo ' 
                                   <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';                             
@@ -439,12 +432,7 @@
                                   </button> ';
                        endif;           
                    endif; 
-              else:
-                          Echo '
-                               <!-- Button trigger modal -->
-                               <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" disabled>
-                               Excluir
-                              </button> ';                 
+                           
                endif;
 
               echo '
@@ -623,7 +611,7 @@
 
                      echo ' </tbody> </table>';  
                      include_once "menuNavRodape.php";  
-                     //$_SESSION['gravou'] = "N"; // Novo Metodo seguranca
+                     //$gravou = "N"; // Novo Metodo seguranca
                   ?>  
 
 

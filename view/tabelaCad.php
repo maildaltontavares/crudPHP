@@ -55,7 +55,7 @@
   endif; 
   
   $Altera = "N"; 
-   
+  $gravou = 'N'; // nova fucao seguranca 
   if (isset($_GET['Altera'])):
      $Altera = "S";
      
@@ -246,23 +246,23 @@
                       if ($tabelaCtr->create($id_tp,$str1,$str2,$str3,$flag1, $flag2,$flag3, $num1,$num2 ,$num3,$data1, $data2,$data3 )== 'OK'):
                   
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
-                          $_SESSION['gravou'] = "S";
+                          $gravou = "S";
                           //echo '<script> alert("Registro gravado com sucesso!");</script> '; 
                    
                       else:  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Parametrização inválida!!"  . '</li></div>';  
-                          $_SESSION['gravou'] = "N";                
+                          $gravou = "N";                
                       endif;  
 
                   else: 
                       
                       if ($tabelaCtr->update($id,$id_tp,$str1,$str2,$str3,$flag1, $flag2,$flag3, $num1,$num2 ,$num3,$data1, $data2,$data3 )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>'; 
-                          $_SESSION['gravou'] = "S";
+                          $gravou = "S";
                                             
                           //header('Location:principal.php');   
                       else:  
-                          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';$_SESSION['gravou'] = "N";                  
+                          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar!!!"  . '</li></div>';$gravou = "N";                  
                       endif;  
 
                   endif;    
@@ -394,45 +394,7 @@
     } 
 
   $(document).ready(function(){  
-          
-          var vGrava    = "<?=((isset($_POST['gravar']))?"S":"N");?>";  
-          var vCommit   = "<?=((isset($_SESSION['gravou']))?"S":"N");?>";
-          var vAlterac  = "<?=((isset($_GET['Altera']   ))?"S":"N");?>";  
-
-          var vNovo     = "<?=((isset($_GET['novo']))?"S":"N");?>";  
-          var vExcluir  = "<?=$excluiu=='S'?"S":"N";?>";  
-
-          var vAcessos  = "<?php Echo $validaAcesso ?>"; 
-          var vBtNovo   = vAcessos.indexOf("btNovo");
-          var vBtExcluir= vAcessos.indexOf("btExcluir");
-          var vBtGravar = vAcessos.indexOf("btGravar");          
-
-          if(vNovo=="S"){
-            $('#btExcluir').attr('hidden', true);
-          }   
-
-          if(vExcluir=="S"){
-            $('#btGravar').attr('disabled', true);
-            $('#btExcluir').attr('disabled', true);
-          }   
-
-          if(vCommit=="S") {      
-               vCommit = "<?=$_SESSION['gravou']?>";
-          } 
-
-          if(vGrava=="S"){    
-
-               <?php $_SESSION['gravou'] = "N";?>
-
-               if(vCommit=="S"){
-                  //alert('Registro gravado com sucesso!');
-                  $('#btGravar').attr('disabled', true); 
-
-                  if(vAlterac=="S"){
-                    $('#btGravar').attr('disabled', false);
-                  }  
-               }  
-          }  
+ 
  
           $('#num2').focusout(function() {
               validaNum($('#num2').val());
@@ -574,17 +536,7 @@
          else{       
            $("#lbData3").text(jsDesc_data3); 
          }   
-
-          if (vBtNovo==-1){            
-             $('#btNovo').addClass('disabled');          
-           } 
-
-          if (vBtExcluir==-1){             
-            $('#btExcluir').attr('disabled', true);
-          }    
-         if (vBtGravar==-1){           
-            $('#btGravar').attr('disabled', true);
-          }          
+ 
 
   });  
 </script>
@@ -605,14 +557,83 @@
 
             <div id="grupoBotoes">
                 
-               <a class="btn btn-primary  paramBt" href="tabelaCad.php?novo=S" role="button" id="btNovo">Novo</a>     
-               
-               <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>
+            <?php
 
- <!-- Button trigger modal -->
-              <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" >
-                Excluir
-              </button> 
+
+              $vBtNovo    = strpos($validaAcesso,"btNovo");
+              $vBtExcluir = strpos($validaAcesso,"btExcluir");
+              $vBtGravar  = strpos($validaAcesso,"btGravar");  
+              
+              if($vBtNovo>=0  and $vBtNovo!=false): 
+                   Echo 
+                   '<a class="btn btn-primary  paramBtListagem" href="tabelaCad.php?novo=S" role="button" id="btNovo" >Novo</a> ';
+
+              else:
+                   Echo 
+                   '<a class="btn btn-primary  paramBtListagem disabled" href="tabelaCad.php?novo=S" role="button" id="btNovo"  >Novo</a> ';
+
+              endif;
+
+              if($vBtGravar>=0 and $vBtGravar!=false):
+                  if($excluiu=='S'):
+                     Echo ' 
+                      <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';
+                  else:
+                      if($Altera == "S"):  
+                            Echo ' 
+                                     <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>'; 
+                      else: // Inclusão
+
+                         //if ($gravou)=='S'):
+                        if ($gravou == "S"):
+                             if($Altera == "S"):
+                                 Echo ' 
+                                  <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar"   >Gravar</button>';
+                             else:
+                                 Echo ' 
+                                  <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';                             
+                             endif;      
+                         else:
+                              Echo ' 
+                             <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>';
+                         endif;   
+                      endif;
+                  endif;   
+              else:
+                     Echo ' 
+                      <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';
+              endif; 
+
+              if($vBtExcluir>=0 and $vBtExcluir!=false):   
+                   if(isset($_GET['novo'])):   
+                       if ($_GET['novo']!='S'):
+                             Echo '
+                                   <!-- Button trigger modal -->
+                                   <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal"  disabled>
+                                   Excluir
+                                  </button> ';
+                       endif;
+                   
+                   else:
+                       if($excluiu=='S'):
+                              Echo '
+                                   <!-- Button trigger modal -->
+                                   <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" disabled>
+                                   Excluir
+                                  </button> ';
+
+                       else:
+                              Echo '
+                                   <!-- Button trigger modal -->
+                                   <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" >
+                                   Excluir
+                                  </button> ';
+                       endif;           
+                   endif; 
+                           
+               endif;
+
+              echo '
                   <!-- Modal -->
                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -629,16 +650,16 @@
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                           <form >
-                                  <input type="hidden"  name="Idx" value= <?php echo $id;?>  >
+                                  <input type="hidden"  name="Idx" value= ' .   $id    . '>
                                   <button type="submit" class="btn btn-primary"  name="excluir" >Confirmar</button> 
                           </form>
                         </div>
                       </div>
                     </div>
                   </div> 
-                <a href="lista_tabela.php" class="btn btn-primary  paramBt">Pesquisar</a>                     
+                <a href="lista_tabela.php" class="btn btn-primary  paramBt">Pesquisar</a> ';                    
+                ?>
                
-               <!--<a href="lista_tabela.php" class="btn btn-primary  paramBt">Imprimir</a> -->   
             </div> 
 
         </div> 

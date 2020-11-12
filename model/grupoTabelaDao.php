@@ -9,7 +9,7 @@
 		public function delete(GrupoTabela $g)
 		{
   		 
-			$sql = 'delete from public."S0009_GRUPO_TABELA" where D0009_ID_GRUPO_TABELA = ? ';  
+			$sql = 'delete from public."S0010_GRUTAB_TABELA" where D0009_ID_GRUPO_TABELA = ? ';  
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$g->getId()); 
 			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -18,7 +18,7 @@
 				Conexao::getConn()->beginTransaction();
 				$stmt->execute();
 
-	            $sql = 'Delete FROM public."S0010_GRUTAB_TABELA" WHERE D0009_ID_GRUPO_TABELA=?';
+	            $sql = 'Delete FROM public."S0009_GRUPO_TABELA" WHERE D0009_ID_GRUPO_TABELA=?';
 				$stmt = Conexao::getConn()->prepare($sql); 
 	 
 	            $stmt->bindValue(1,$g->getId());   

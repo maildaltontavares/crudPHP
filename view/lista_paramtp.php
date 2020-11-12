@@ -47,14 +47,15 @@
 
   $(document).ready(function(){   
 
+   /*
           var vAcessos  = "<?php Echo $validaAcesso ?>"; 
           var vBtNovo   = vAcessos.indexOf("btNovo");  
 
           if (vBtNovo==-1){            
-               /*$('#btNovo').attr('disabled', true);       */
+               /*$('#btNovo').attr('disabled', true);        
                $('#btNovo').addClass('disabled');   
            } 
-
+   */
 
  })
 </script> 
@@ -97,7 +98,21 @@
 
 		        <button type="submit" class="btn btn-primary mb-2 paramBtListagem" name = "pesquisar"> Pesquisar </button>
 				<button type="submit" class="btn btn-light paramBtListagem" name = "pesquisa_todos"> Listar Todos </button>				 
-				<a class="btn btn-primary  paramBtListagem" href="paramtpCad.php?novo=S" role="button" id="btNovo">Novo</a>
+		      ';
+             
+              $vBtNovo    = strpos($validaAcesso,"btNovo");
+              if($vBtNovo>=0  and $vBtNovo!=false): 
+                   Echo 
+                   '<a class="btn btn-primary  paramBtListagem" href="paramtpCad.php?novo=S" role="button" id="btNovo" >Novo</a> ';
+
+              else:
+                   Echo 
+                   '<a class="btn btn-primary  paramBtListagem disabled" href="paramtpCad.php?novo=S" role="button" id="btNovo"  >Novo</a> ';
+
+              endif; 
+				 
+		    
+		    Echo '	 
 
 			</div>
         </form>

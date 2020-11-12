@@ -43,21 +43,7 @@
 
 <script  src="https://code.jquery.com/jquery-3.5.1.js"  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="  crossorigin="anonymous"></script>
 
-<script>  
-
-  $(document).ready(function(){   
-
-          var vAcessos  = "<?php Echo $validaAcesso ?>"; 
-          var vBtNovo   = vAcessos.indexOf("btNovo");  
-
-          if (vBtNovo==-1){            
-               /*$('#btNovo').attr('disabled', true);       */
-               $('#btNovo').addClass('disabled');   
-           } 
-
-
- })
-</script> 
+ 
    <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
  
  <body>
@@ -90,7 +76,21 @@
 
 		        <button type="submit" class="btn btn-primary mb-2 paramBtListagem" name = "pesquisar"> Pesquisar </button>
 				<button type="submit" class="btn btn-light paramBtListagem" name = "pesquisa_todos"> Listar Todos </button> 
-				<a class="btn btn-primary  paramBtListagem" href="filialCad.php?novo=S" role="button" id="btNovo">Novo</a>
+            ';
+             
+              $vBtNovo    = strpos($validaAcesso,"btNovo");
+              if($vBtNovo>=0  and $vBtNovo!=false): 
+                   Echo 
+                   '<a class="btn btn-primary  paramBtListagem" href="filialCad.php?novo=S" role="button" id="btNovo" >Novo</a> ';
+
+              else:
+                   Echo 
+                   '<a class="btn btn-primary  paramBtListagem disabled" href="filialCad.php?novo=S" role="button" id="btNovo"  >Novo</a> ';
+
+              endif; 
+				 
+		    
+		    Echo '	 
 
 			</div>
         </form>
