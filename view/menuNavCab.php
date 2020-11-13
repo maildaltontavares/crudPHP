@@ -121,6 +121,7 @@
                                     <a class="nav-link" href="lista_grupoUsuario.php">Grupos</a>
                                     <a class="nav-link" href="lista_grupoTabela.php">Tabelas</a>
                                     <a class="nav-link" href="lista_usuarios.php">Usuários</a>
+                                    <a class="nav-link" href="#">Usuários tabelas</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -141,6 +142,7 @@
                                             <a class="nav-link" href="lista_tp.php">Grupo de Tabela</a>
                                             <a class="nav-link" href="lista_paramtp.php">Parametrização Tabela</a>
                                             <a class="nav-link" href="selecioneTbSistema.php">Tabelas Configuração</a>
+
                                         </nav>
                                     </div>
                        

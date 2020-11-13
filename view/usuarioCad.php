@@ -361,107 +361,8 @@
                
               <?php
 
-
-              $vBtNovo    = strpos($validaAcesso,"btNovo");
-              $vBtExcluir = strpos($validaAcesso,"btExcluir");
-              $vBtGravar  = strpos($validaAcesso,"btGravar");  
+                   $acesso->configura_botoes($validaAcesso,'usuarioCad','lista_usuarios',$excluiu,$Altera,$id,$gravou);
               
-              if($vBtNovo>=0  and $vBtNovo!=false): 
-                   Echo 
-                   '<a class="btn btn-primary  paramBtListagem" href="usuarioCad.php?novo=S" role="button" id="btNovo" >Novo</a> ';
-
-              else:
-                   Echo 
-                   '<a class="btn btn-primary  paramBtListagem disabled" href="usuarioCad.php?novo=S" role="button" id="btNovo"  >Novo</a> ';
-
-              endif;
-
-              if($vBtGravar>=0 and $vBtGravar!=false):
-                  if($excluiu=='S'):
-                     Echo ' 
-                      <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';
-                  else:
-                      if($Altera == "S"):  
-                            Echo ' 
-                                     <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>'; 
-                      else: // Inclusão
-
-                         //if ($gravou)=='S'):
-                        if ($gravou == "S"):
-                             if($Altera == "S"):
-                                 Echo ' 
-                                  <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar"   >Gravar</button>';
-                             else:
-                                 Echo ' 
-                                  <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';                             
-                             endif;      
-                         else:
-                              Echo ' 
-                             <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar">Gravar</button>';
-                         endif;   
-                      endif;
-                  endif;   
-              else:
-                     Echo ' 
-                      <button type="submit" name= "gravar" class="btn btn-primary paramBt" id="btGravar" disabled >Gravar</button>';
-              endif; 
-
-              if($vBtExcluir>=0 and $vBtExcluir!=false):   
-                   if(isset($_GET['novo'])):   
-                       if ($_GET['novo']!='S'):
-                             Echo '
-                                   <!-- Button trigger modal -->
-                                   <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal"  disabled>
-                                   Excluir
-                                  </button> ';
-                       endif;
-                   
-                   else:
-                       if($excluiu=='S'):
-                              Echo '
-                                   <!-- Button trigger modal -->
-                                   <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" disabled>
-                                   Excluir
-                                  </button> ';
-
-                       else:
-                              Echo '
-                                   <!-- Button trigger modal -->
-                                   <button type="button" id="btExcluir" class="btn btn-primary paramBt" data-toggle="modal" data-target="#exampleModal" >
-                                   Excluir
-                                  </button> ';
-                       endif;           
-                   endif; 
-                           
-               endif;
-
-              echo '
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Exclusão</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          Confirma ?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                          <form >
-                                  <input type="hidden"  name="Idx" value= ' .   $id    . '>
-                                  <button type="submit" class="btn btn-primary"  name="excluir" >Confirmar</button> 
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div> 
-
-               <a href="lista_usuarios.php" class="btn btn-primary  paramBt">Pesquisar</a> ';
-
                ?>
             </div> 
 
@@ -635,44 +536,14 @@
 
   </div> 
 
-
-
-
-
-  <!--
-  <div class="tab-pane fade" id="perfis" role="tabpanel" aria-labelledby="profile-tab"> 
-      <div class="form-row  dv-pesquisa">  
-            <button type="button" id="novoItem" class="btn btn-primary " onclick="addItem('','','Selecione o perfil','Descrição do perfil', 'pesquisaDescPerfil','pesquisaPerfil','nItem')"  >Novo Perfil</button>  
-      </div>    
-      <div class="nItem" id="nItem"> 
-      </div> 
-
-  </div>
-  -->
+ 
 
 
 </div>
 
 </form>
 
-
-
-
-
-<!--
-<div class="form-row" id="painel">
-  <div class="form-group col-md-6" >  
-      <p id="col1">xxx</p>
-  </div>
-  <div class="form-group col-md-6">  
-    <p id="col2">yyy</p>
-  </div>
-  <div class="form-group col-md-6">  
-    <p id="col3"></p>
-  </div>  
  
-</div>
--->
 
 <?php
 
