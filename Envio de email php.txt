@@ -1,0 +1,217 @@
+
+Consegui usando a porta 465 ao inves de 587
+
+function email($from,$email,$assunto,$body, $usuario, $dia , $hora){
+
+   $quebra_linha="\r\n";
+   $chave = $usuario.'_'.substr($dia,6,4).substr($dia,3,2).substr($dia,0,2).$hora;
+   
+   $params['host'] = 'smtp.santana.ind.br';
+   $params['port'] = 25;
+   $retorno = false;
+   $pastaAnexo = './anexos/';
+   
+   $arremail = explode(",",$email);
+   
+   $smtp = new smtp($params);
+   
+   if(!empty($email)){
+     if(!$smtp->is_connected()){
+       $smtp->connect();
+     }
+     if($smtp->is_connected()){
+
+      if(isset($_FILES) && (bool) $_FILES) {
+               
+         $allowedExtensions = array("pdf","doc","docx","gif","jpeg","jpg","png","rtf","txt","xls","xlsx","ppt","pptx","prn","msg");
+         
+         $files = array();
+         
+         foreach($_FILES as $name=>$file) {
+            
+            $file_name  = $file['name']; 
+            $temp_name  = $file['tmp_name'];
+            $file_type  = $file['type'];
+            $path_parts = pathinfo($file_name);
+
+            if ($file_name) {
+               if(!move_uploaded_file($temp_name,URL_TEMP."\\".$file_name)){
+                  return false;
+               }
+               array_push($files,array('arquivo' => URL_TEMP."\\".$file_name , 'nome' => $file_name));
+            }
+         }
+         
+         // email fields: to, from, subject, and so on
+         $headers = "From: $from";
+          
+         // boundary 
+         $semi_rand = md5(time()); 
+         $mime_boundary = "==Multipart_Boundary_x{$semi_rand}x"; 
+          
+         // headers for attachment 
+         $headers .= "\nMIME-Version: 1.0\n";
+         $headers .= "Content-Type: multipart/mixed;\n";
+         $headers .= " boundary=\"{$mime_boundary}\""; 
+          
+         // multipart boundary 
+         $message = "\n\n" . "--{$mime_boundary}\n";
+         $message .= "Content-Type: text/html; charset=\"iso-8859-1\"\n";
+         $message .= "Content-Transfer-Encoding: 7bit\n\n" . $body . "\n\n"; 
+         $message .= "--{$mime_boundary}\n";
+          
+         // preparing attachments
+         foreach($files as $file) {
+            
+            if ($file['arquivo']) {
+               
+               $aFile = fopen($file['arquivo'],"rb");
+               $data = fread($aFile,filesize($file['arquivo']));
+               $orig = $file['arquivo'];
+               $dest = './anexos/'.$chave.'_'.$file['nome'];
+               if (!copy($orig, $dest)) {
+                   echo "falha ao copiar ".$orig."...\n";
+                   return false;
+               }
+               fclose($aFile);
+               $data = chunk_split(base64_encode($data));
+               
+               $message .= "Content-Type: {\"application/octet-stream\"};\n" ;
+               $message .= " name=".$file['arquivo']."\n";
+               $message .= "Content-Disposition: attachment;\n";
+               $message .= " filename=".$file['nome']."\n"; 
+               $message .= "Content-Transfer-Encoding: base64\n\n" . $data . "\n\n";
+               $message .= "--{$mime_boundary}\n";
+               
+               unlink($file['arquivo']);
+
+            }
+            
+         }
+      
+      } else {
+         
+         $headers = "From: $from";
+          
+         // boundary 
+         $semi_rand = md5(time()); 
+         $mime_boundary = "==Multipart_Boundary_x{$semi_rand}x"; 
+          
+         // headers for attachment 
+         $headers .= "\nMIME-Version: 1.0\n";
+         $headers .= "Content-Type: multipart/mixed;\n";
+         $headers .= " boundary=\"{$mime_boundary}\""; 
+          
+         // multipart boundary 
+         $message = "\n\n" . "--{$mime_boundary}\n";
+         $message .= "Content-Type: text/html; charset=\"iso-8859-1\"\n";
+         $message .= "Content-Transfer-Encoding: 7bit\n\n" . $body . "\n\n"; 
+         $message .= "--{$mime_boundary}\n";
+         
+      }
+      
+      $send_params['recipients']   = $arremail;
+      $send_params['from']       = $from;
+      
+      $send_params['headers']       = array($headers,
+                                    'To:'.$email,
+                                          'Subject:'.$assunto,
+                                          $message );
+
+                                          
+      $retorno = $smtp->send($send_params);
+
+     }
+     
+   }
+   
+   return $retorno;
+   
+}
+==================================================================================================
+==================================================================================================
+
+
+
+function enviarEmailPagamento($result_tra){
+
+   $corpoEmail = '
+      <html>
+      <head>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <title>PAGAMENTO CARTÃO DE CRÉDITO</title>
+      </head>
+      <body>
+      <h1 width="100%" style="font-size:14px; font-weight:bold;" align="center">Cliente: '.$result_tra[0]['CLIENTE'].'-'.$result_tra[0]['NOME'].'</h1>
+      <table width="100%" border="1">
+         <tr>
+            <td width="100%" colspan="2">
+               <span style="font-weight: normal; font-size:14px;">O(A) Cliente: '.$result_tra[0]['NOME'].' realizou um pagamento no cartão de crédito para o Pedido: '. $result_tra[0]['PEDIDO'].' Romaneio: '. $result_tra[0]['ROMANEIO'].' </font></font></span>
+            </td>
+         </tr>
+         <tr>
+            <td width="100%" colspan="2" align="center">
+               <span style="font-weight: normal; font-size:14px; font-weight:bold;">I N F O R M A Ç Õ E S</font></font></span>
+            </td>
+         </tr>
+         <tr>
+            <td width="25%">
+               <span style="font-weight: normal; font-size:14px;">Data do Pagamento: </font></font></span>
+            </td>
+            <td width="75%" style="font-size: 14px; color:#204a87;">
+               '.$result_tra[0]['DATA_PAGAMENTO'].' às '.$result_tra[0]['HORA'].'
+            </td>
+         </tr>
+         <tr>
+            <td width="25%">
+               <span style="font-weight: normal; font-size:14px;">Valor Pedido: </font></font></span>
+            </td>
+            <td width="75%" style="font-size:14px; color:#204a87;">
+               R$&nbsp;'.formatMoney($result_tra[0]['VALOR_PEDIDO'],2).'
+            </td>
+         </tr>
+         <tr>
+            <td width="25%">
+               <span style="font-weight: normal; font-size:14px;">Qtde de Parcelas: </font></font></span>
+            </td>
+            <td width="75%" style="font-size:14px; color:#204a87;">
+               '.$result_tra[0]['PARCELAS'].'
+            </td>
+         </tr>
+         <tr>
+            <td width="25%">
+               <span style="font-weight: normal; font-size:14px;">Valor Parcela: </font></font></span>
+            </td>
+            <td width="75%" style="font-size:14px; color:#204a87;">
+               R$&nbsp;'.formatMoney($result_tra[0]['VALOR_PARCELA'],2).'
+            </td>
+         </tr>
+         <tr>
+            <td width="25%">
+               <span style="font-weight: normal; font-size:14px;">Transação: </font></font></span>
+            </td>
+            <td width="75%" style="font-size:14px; color:#204a87;">
+               '.$result_tra[0]['TRANSACAO'].'
+            </td>
+         </tr>
+         <tr>
+            <td colspan="2" align="center">
+               <span style="font-weight: bold; font-size:14px;">Favor conferir o pagamento no site da GetNet e confirmar no sistema. </font></font></span>
+            </td>
+         </tr>
+      </table>
+      </body>
+      </html>';
+
+      $mailPara        = _GETNETEMAILPGTOPARA;
+      $mailAssunto     = "Pagamento com Cartão de Crédito Pedido: ".$result_tra[0]['PEDIDO'].'  Romaneio: '.$result_tra[0]['ROMANEIO'].'-'.$result_tra[0]['NOME'];
+
+      if (email(_GETNETEMAILPGTODE,_GETNETEMAILPGTOPARA, $mailAssunto, $corpoEmail, 'walber', $result_tra[0]['DATA_PAGAMENTO'],$result_tra[0]['HORA'])) {
+        $retorno = "Email Enviado com Sucesso! ";
+      } else {
+        $retorno = "ERRO no Envio do Email.";
+      }
+
+   return $retorno;
+
+}

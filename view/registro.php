@@ -3,12 +3,50 @@
   //require_once './../../controller/usuarioCtsr.php';
 require_once '../config.php';
 require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
+require_once ROOT_PATH . '/bibliotecas/phpmailer/class.phpmailer.php';
 require_once ROOT_PATH . '/controller/usuarioCtr.php'; 
 
   session_start();
   //session_unset();
   //session_destroy();
   //session_start(); 
+if(isset($_POST["criarConta"])):
+
+
+      $date = date('YmdHis'); 
+      $chave =  '' . $date  ;
+      for ($i = 1; $i <= 10; $i++) {
+          $chave = $chave .  (string)random_int(100, 999);
+      }   
+
+    $usuarioCtr = new UsuarioCtr(); 
+    //if ($usuarioCtr->create($nome,$senha,$email,'',[],$chave,[],'')== 'OK'):      
+
+
+    $txtNome = $_POST["nome"];
+    $txtAssunto = "Santana Textiles - Validacao de cadastro";
+    $txtEmail = $_POST["email"];
+    $txtMensagem = "";
+ 
+    /* Montar o corpo do email*/
+    //$corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="http://localhost:8080/crudphp/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
+
+
+    $corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="https://virtuax.herokuapp.com/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
+   
+  
+    /* Definir Usuário e Senha do Gmail de onde partirá os emails*/
+    define('GUSER', 'mail.tavaresdalton@gmail.com');
+    define('GPWD', 'App!@#2020');
+
+
+    if(smtpmailer($txtEmail, $txtEmail, $txtNome, $txtAssunto, $corpoMensagem)):
+        Header("location: emailCadastro.php"); // Redireciona para uma página de Sucesso.
+    else:
+          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao enviar email!!"  . '</li></div>';  
+    endif;
+     
+ endif;
 ?> 
 
 
@@ -45,31 +83,32 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Criar conta</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form method="POST">
 
                                             <div class="form-group">
                                                    <label class="small mb-1" for="inputFirstName">Nome</label>
-                                                        <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Digite seu nome" />
+                                                        <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Digite seu nome" name="nome" />
                                             </div> 
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                                <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Digite seu email"/>
+                                                <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Digite seu email" name="email"/>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputPassword">Senha</label>
-                                                        <input class="form-control py-4" id="inputPassword" type="password" placeholder="Digite a senha" />
+                                                        <input class="form-control py-4" id="inputPassword" type="password" placeholder="Digite a senha" name="senha" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputConfirmPassword">Confirme a senha</label>
-                                                        <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirme a senha" />
+                                                        <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirme a senha" name="confirmaSenha"/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="login.html">Criar conta</a></div>
+                                        
+                                            <button class="btn btn-lg btn-primary btn-block" name="criarConta" type="submit">Criar conta</button>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">

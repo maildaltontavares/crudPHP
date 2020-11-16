@@ -10,7 +10,7 @@ class Conexao
 		if(!isset(self::$instance)):
  
 			try {	 
-					//self::$instance = new  \PDO("pgsql:host=127.0.0.1;port=5432;dbname=Main;user=postgres;password=admin");	
+				   //self::$instance = new  \PDO("pgsql:host=127.0.0.1;port=5432;dbname=Main;user=postgres;password=admin");	
 				
 					
 					self::$instance = new  \PDO("pgsql:host=ec2-3-211-48-92.compute-1.amazonaws.com

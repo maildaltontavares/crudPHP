@@ -108,7 +108,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
       ?>
     </header>
 
-
+        <body class="bg-light">
     <div class="blocos1">
 
         <div id="formp" class="text-center">
@@ -136,7 +136,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
         </div>  
  
     </div>
-
+    </body >
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
