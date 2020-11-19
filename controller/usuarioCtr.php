@@ -75,7 +75,44 @@
 			return  $r;  
 		 }
 
+		public function createConta($p_usuario,$p_senha,$p_email,$p_dt_inc,$p_filPad,$p_chaveAutentic,$p_bloq){
 
+
+			// Prepara Bean usuario
+			$usuario = new Usuario();
+			$usuario->setNome($p_usuario);
+			$usuario->setSenha($p_senha);
+			$usuario->setEmail($p_email);
+			$usuario->setFilialPad($p_filPad);   
+            $usuario->setBloqueado($p_bloq);
+		    $usuario->setDtInclusao($p_dt_inc);  
+		    $usuario->setChaveAutenticacao($p_chaveAutentic);     
+
+			$usuarioDao = new UsuarioDao();
+			$r = $usuarioDao->createConta($usuario); 
+			return  $r;  
+		 }
+
+		public function validaChaveAutenticacao($p_chaveAutentic){  
+			// Prepara Bean usuario
+			$usuario = new Usuario();
+			$usuario->setChaveAutenticacao($p_chaveAutentic);
+			 
+			$usuarioDao = new UsuarioDao();
+			$r = $usuarioDao->validaChaveAutenticacao($usuario); 
+			return  $r;  
+		 }	
+
+		 public function confirmaConta($p_usuario,$p_dtAlt){  
+		 
+			$usuario = new Usuario();
+			$usuario->setId($p_usuario);			
+			$usuario->setDtAlteracao($p_dtAlt);
+			 
+			$usuarioDao = new UsuarioDao();
+			$r = $usuarioDao->confirmaConta($usuario); 
+			return  $r;  
+		 }	
 
 		public function validaUsuario($p_email,$senha){  
 			// Prepara Bean usuario

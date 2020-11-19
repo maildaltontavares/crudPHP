@@ -61,13 +61,42 @@
 		 
 		}
 
+		public function validaChaveAutenticacao(Usuario $u)
+		{
+ 		 
+			//$sql = 'Select * from usuario';
+			//$sql = 'SELECT * FROM public."S0001_usuario" where d0001_nome = ? and d0001_senha = ?';
+			$sql = 'SELECT d0001_id id_usu,d0001_nome nome,d0001_senha senha, fil.D0006_id_filial filial,d0006_nome_filial nome_filial,D0005_grupo_empresa                 idGrupo,d0001_filial_default filPad , d0001_bloqueado bloqueado,d0001_chave_atenticacao chave_atenticacao 
+			    FROM    public."S0001_usuario" usu                     
+                    INNER JOIN  public."E0006_FILIAL" fil on fil.d0006_id_filial = usu.d0001_filial_default  where d0001_chave_atenticacao = ?'; 
+               
+
+             
+
+
+			$stmt = Conexao::getConn()->prepare($sql); 
+			$stmt->bindValue(1,$u->getChaveAutenticacao());
+			//$stmt->bindValue(2,$u->getSenha());
+			$stmt->execute();  
+			
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);   
+				return $resultado;
+
+			else:
+				return [];				
+			endif;
+
+		 
+		}
+
 
 		public function validaUsuario(Usuario $u)
 		{
  		 
 			//$sql = 'Select * from usuario';
 			//$sql = 'SELECT * FROM public."S0001_usuario" where d0001_nome = ? and d0001_senha = ?';
-			$sql = 'SELECT d0001_nome nome,d0001_senha senha, fil.D0006_id_filial filial,d0006_nome_filial nome_filial,D0005_grupo_empresa                 idGrupo,d0001_filial_default filPad 
+			$sql = 'SELECT d0001_nome nome,d0001_senha senha, fil.D0006_id_filial filial,d0006_nome_filial nome_filial,D0005_grupo_empresa                 idGrupo,d0001_filial_default filPad , d0001_bloqueado bloqueado,d0001_chave_atenticacao chave_atenticacao 
 			    FROM    public."S0001_usuario" usu                     
                     INNER JOIN  public."E0006_FILIAL" fil on fil.d0006_id_filial = usu.d0001_filial_default  where d0001_email = ?'; 
                
@@ -172,7 +201,40 @@
 			endif;
 
 		 
-		}	
+		}
+
+
+
+		public function confirmaConta(Usuario $u)
+		{  
+		 
+			$sql = 'update public."S0001_usuario" set d0001_bloqueado=?,d0001_dt_alteracao =? where d0001_id = ? ';
+			//$sql = 'Insert into usuario (nome,senha,d0001_email,d0001_tel) values(?,?,?,?)';
+
+			$stmt = Conexao::getConn()->prepare($sql); 		 
+			$stmt->bindValue(1,' ');
+			$stmt->bindValue(2,$u->getDtAlteracao());  
+			$stmt->bindValue(3,$u->getId()); 
+ 
+
+			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	 
+
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				//$this->createItens($u); 	 
+				//$this->createFilial($u); 
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    return 'nOK';
+			}	
+		 
+		} 
 
 		public function update(Usuario $u)
 		{
@@ -315,6 +377,45 @@
 			}	
 		 
 		}
+
+		public function createConta(Usuario $u)
+		{  
+
+			$sql = 'Insert into public."S0001_usuario" (d0001_nome,d0001_senha,d0001_email,d0001_dt_inclusao,d0001_filial_default,d0001_bloqueado,d0001_chave_atenticacao) values(?,?,?,?,?,?,?)'; 
+
+			$stmt = Conexao::getConn()->prepare($sql); 
+		 
+			$stmt->bindValue(1,$u->getNome());
+			$stmt->bindValue(2,$u->getSenha());
+			$stmt->bindValue(3,$u->getEmail());		
+			$stmt->bindValue(4,$u->getDtInclusao());	
+			$stmt->bindValue(5,$u->getFilialPad());
+			$stmt->bindValue(6,$u->getBloqueado());
+			$stmt->bindValue(7,$u->getChaveAutenticacao());  
+
+			//Gravar data de inclusao e alteracao, validado			 
+
+			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	 
+
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute(); 
+
+				if($stmt->rowCount() > 0):
+					$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);  
+				endif; 
+
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    return 'nOK';
+			}	
+		 
+		}		
 
 
 		public function read($numPg)

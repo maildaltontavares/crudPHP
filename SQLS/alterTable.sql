@@ -1,4 +1,15 @@
 ALTER TABLE public."S0001_usuario"
+ADD COLUMN d0001_bloqueado char,
+ADD COLUMN d0001_dt_inclusao date,
+ADD COLUMN d0001_dt_alteracao date,
+ADD COLUMN d0001_chave_atenticacao character varying(100),
+ADD COLUMN d0001_alter_senha char;
+
+
+
+
+
+ALTER TABLE public."S0001_usuario"
 ADD COLUMN d0001_filial_default bigint; 
 
 

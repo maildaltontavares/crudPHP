@@ -12,7 +12,11 @@
 		private $itens;		
 		private $filial;		
 		private $filialPad;	
-
+		private $bloqueado; 
+		private $dtInclusao;
+		private $dtAlteracao;
+		private $chaveAutenticacao;
+		private $alterSenhaPrxLogin;  
 
 		public function setId($Id){
 			$this->Id = $Id;
@@ -78,9 +82,7 @@
 
 		public function getFilial(){
 			return $this->filial;
-		}		
-
-		 
+		}	 
 	 
 		public function setFilialPad($p_fil){
 			$this->filialPad = $p_fil;
@@ -89,6 +91,47 @@
 		public function getFilialPad(){
 			return $this->filialPad;
 		}
+
+		public function setBloqueado($p_blq){
+			$this->bloqueado = $p_blq;
+		}
+
+		public function getBloqueado(){
+			return $this->bloqueado;
+		}
+
+		public function setDtInclusao($p_dt_inc){
+			$this->dtInclusao = $p_dt_inc;
+		}
+
+		public function getDtInclusao(){
+			return $this->dtInclusao;
+		}
+
+ 		public function setDtAlteracao($p_dt_alt){
+			$this->dtAlteracao = $p_dt_alt;
+		}
+
+		public function getDtAlteracao(){
+			return $this->dtAlteracao;
+		}
+ 
+  		public function setChaveAutenticacao($p_chave_aut){
+			$this->chaveAutenticacao = $p_chave_aut;
+		}
+
+		public function getChaveAutenticacao(){
+			return $this->chaveAutenticacao;
+		}
+ 
+   		public function setAlterSenhaPrxLogin($p_alter_pwd){
+			$this->alterSenhaPrxLogin = $p_alter_pwd;
+		}
+
+		public function getAlterSenhaPrxLogin(){
+			return $this->alterSenhaPrxLogin;
+		}
+ 		
 
 	}
 

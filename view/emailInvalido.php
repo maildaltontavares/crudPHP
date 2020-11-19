@@ -1,31 +1,9 @@
-<?php 
- 
+<?php
 
-require_once '../config.php';
-require_once ROOT_PATH . '/controller/usuarioCtr.php';  
+  //require_once './../../controller/usuarioCtsr.php';
 require_once '../config.php';   
 
   session_start(); 
-
-  echo '<br><br><br><br><br><br>  ';
-  if(isset($_GET["id"])):   
-
-          $usuarioCtr = new UsuarioCtr();   
-          $p_usu = $usuarioCtr->validaChaveAutenticacao($_GET["id"]);  
-          //var_dump($p_usu);  
-          if(!empty($p_usu)):  
-                 if($usuarioCtr->confirmaConta($p_usu[0]['id_usu'],date("d/m/y"))!='OK'):
-                    
-                     Header("location: emailInvalido.php");   
-                 else:
-                   
-                 endif; 
-          else:
-              Header("location: emailInvalido.php"); 
-          endif;    
-  else:
-        Header("location: emailInvalido.php"); 
-  endif;
  
 ?> 
 
@@ -46,7 +24,7 @@ require_once '../config.php';
         <meta name="author" content="" />
         <title>Santana Textiles</title>
         <link href="css/styles.css" rel="stylesheet" />
-  
+    
     </head>
 
 
@@ -61,9 +39,11 @@ require_once '../config.php';
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Bem vindo ao sistema Santana Textiles Web!</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Criação de conta inválida!</h3></div>
                                     <div class="card-body">
-
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Tente novamente mais tarde.</h3></div>
+                                    <div class="card-body">                                        
+                                        
            
                                     </div>
                                     <div class="card-footer text-center">

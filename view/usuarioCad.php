@@ -195,7 +195,7 @@
                       //var_dump($aIt);
                       //var_dump($chave);
 
-                      if ($usuarioCtr->create($nome,$senha,$email,$tel,$aIt,$chave,$vFilUsu,$filPad)== 'OK'):  
+                      if ($usuarioCtr->create($nome,md5($senha),$email,$tel,$aIt,$chave,$vFilUsu,$filPad)== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro inserido com sucesso"  . '</li></div>';  
                           //$gravou = "S";
                           $gravou = 'S';
@@ -237,7 +237,7 @@
 
                       //var_dump($aIt);
               
-                      if ($usuarioCtr->update($id,$nome,$senha,$email,$tel,$aIt,$vFilUsu,$filPad )== 'OK'):  
+                      if ($usuarioCtr->update($id,$nome,md5($senha),$email,$tel,$aIt,$vFilUsu,$filPad )== 'OK'):  
                           echo '<div class="alert alert-primary" role="alert"><li>' . "Registro alterado com sucesso"  . '</li></div>';  
                           //$gravou = "S";
                           $gravou = 'S';

@@ -9,41 +9,79 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
   session_start();
   //session_unset();
   //session_destroy();
-  //session_start(); 
+  //session_start();  
+
 if(isset($_POST["criarConta"])):
 
 
-      $date = date('YmdHis'); 
-      $chave =  '' . $date  ;
-      for ($i = 1; $i <= 10; $i++) {
-          $chave = $chave .  (string)random_int(100, 999);
-      }   
 
-    $usuarioCtr = new UsuarioCtr(); 
-    //if ($usuarioCtr->create($nome,$senha,$email,'',[],$chave,[],'')== 'OK'):      
+//validar a strig com o nme e emaiil;
+    // ver se as duas senhas ezstão iguais
 
+    
+    $dominio = "@santanatextiles.com"; 
+    $dominioValido = strpos($_POST["email"]  , $dominio); 
 
-    $txtNome = $_POST["nome"];
-    $txtAssunto = "Santana Textiles - Validacao de cadastro";
-    $txtEmail = $_POST["email"];
-    $txtMensagem = "";
- 
-    /* Montar o corpo do email*/
-    //$corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="http://localhost:8080/crudphp/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
+    echo '<br><br><br>';
+
+    if($dominioValido>0): 
 
 
-    $corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="https://virtuax.herokuapp.com/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
-   
-  
-    /* Definir Usuário e Senha do Gmail de onde partirá os emails*/
-    define('GUSER', 'mail.tavaresdalton@gmail.com');
-    define('GPWD', 'App!@#2020');
 
 
-    if(smtpmailer($txtEmail, $txtEmail, $txtNome, $txtAssunto, $corpoMensagem)):
-        Header("location: emailCadastro.php"); // Redireciona para uma página de Sucesso.
+
+            if($_POST["senha"] == $_POST["confirmaSenha"]): 
+
+
+                  $usuarioCtr = new UsuarioCtr();
+                  $p_usu = $usuarioCtr->validaUsuario($_POST["email"],''); 
+
+                  if(empty($p_usu)):  
+
+                        $date = date('YmdHis'); 
+                        $chave =  '' . $date  ;
+                        for ($i = 1; $i <= 10; $i++) {
+                            $chave = $chave .  (string)random_int(100, 999);
+                        }     
+
+                        $txtNome = $_POST["nome"];
+                        $txtAssunto = "Santana Textiles - Validacao de cadastro";
+                        $txtEmail = $_POST["email"];
+                        $txtSenha = $_POST["senha"];
+                        $txtMensagem = "";
+
+
+                          
+                        if ($usuarioCtr->createConta($txtNome,md5($txtSenha),$txtEmail,date("d/m/y") ,1,$chave ,'S')!= 'OK'): 
+                            echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao criar conta!!"  . '</li></div>';  
+                        endif;    
+                     
+                        /* Montar o corpo do email*/
+                        //$corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="http://localhost:8080/crudphp/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
+
+
+                        $corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="https://virtuax.herokuapp.com/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
+                       
+                      
+                        /* Definir Usuário e Senha do Gmail de onde partirá os emails*/
+                        define('GUSER', 'mail.tavaresdalton@gmail.com');
+                        define('GPWD', 'App!@#2020');
+
+
+                        if(smtpmailer($txtEmail, $txtEmail, $txtNome, $txtAssunto, $corpoMensagem)):
+                              Header("location: emailCadastro.php"); // Redireciona para uma página de Sucesso.
+                        else:
+                              echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao enviar email!!"  . '</li></div>';  
+                        endif;
+                  else:
+                        echo '<div class="alert alert-primary" role="alert"><li>' . "Email já cadastrado. Solicite a recuperação de senha."  . '</li></div>';
+                  endif;  
+             else:
+                echo '<div class="alert alert-primary" role="alert"><li>' . "Senhas não conferem."  . '</li></div>';  
+                        
+             endif;       
     else:
-          echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao enviar email!!"  . '</li></div>';  
+         echo '<div class="alert alert-primary" role="alert"><li>' . "Dominio do email inválido! Entre com email da Empresa."  . '</li></div>';  
     endif;
      
  endif;
@@ -66,7 +104,7 @@ if(isset($_POST["criarConta"])):
         <meta name="author" content="" />
         <title>Santana Textiles</title>
         <link href="css/styles.css" rel="stylesheet" />
-        script>
+         
     </head>
 
 
@@ -87,23 +125,23 @@ if(isset($_POST["criarConta"])):
 
                                             <div class="form-group">
                                                    <label class="small mb-1" for="inputFirstName">Nome</label>
-                                                        <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Digite seu nome" name="nome" />
+                                                        <input class="form-control py-4" id="inputFirstName" type="text" required placeholder="Digite seu nome" name="nome" />
                                             </div> 
                                             <div class="form-group">
                                                 <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                                <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp" placeholder="Digite seu email" name="email"/>
+                                                <input class="form-control py-4" id="inputEmailAddress" type="email" aria-describedby="emailHelp"required placeholder="Digite seu email" name="email"/>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputPassword">Senha</label>
-                                                        <input class="form-control py-4" id="inputPassword" type="password" placeholder="Digite a senha" name="senha" />
+                                                        <input class="form-control py-4" id="inputPassword" type="password" required placeholder="Digite a senha" name="senha" />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="inputConfirmPassword">Confirme a senha</label>
-                                                        <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirme a senha" name="confirmaSenha"/>
+                                                        <input class="form-control py-4" id="inputConfirmPassword" required type="password" placeholder="Confirme a senha" name="confirmaSenha"/>
                                                     </div>
                                                 </div>
                                             </div>

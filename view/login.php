@@ -65,8 +65,9 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
           $pwd = $_POST['senha'];
 
           if (empty($pwd) or is_null($pwd)):
+          
               $erros[] = "Senha inválida!";
-          endif;
+          endif; 
 
 
           if (empty($erros)):  // Nao tem erros de digitacao
@@ -74,20 +75,31 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
               $usuarioCtr = new UsuarioCtr();   
               $p_usu = $usuarioCtr->validaUsuario($email,$pwd);  
               if(!empty($p_usu)):  
+ 
+                  if ($p_usu[0]['bloqueado']=='S'):
+                       echo '</br>';
+                       echo '<div class="alert alert-primary" role="alert"><li>' . "Aguardando confirmação da conta!"  . '</li></div>';   
+                  else:
+                        if (md5($pwd)!=$p_usu[0]['senha']):
+                             echo '</br>';
+                             echo '<div class="alert alert-primary" role="alert"><li>' . "Senha não confere!"  . '</li></div>';  
+                        else: 
+   
+                            $_SESSION['email'] = $email;
+                            $_SESSION['perfil'] = $usuarioCtr->montaPerfil($email);  
+                            $_SESSION['filial'] = $p_usu[0]['filial'];  
+                            $_SESSION['nomeFilial'] = $p_usu[0]['nome_filial'];
+                            $_SESSION['grupoEmpresa'] = $p_usu[0]['idGrupo'];
+                            $_SESSION['user'] = $p_usu[0]['nome']; 
 
-                  $_SESSION['email'] = $email;
-                  $_SESSION['perfil'] = $usuarioCtr->montaPerfil($email);  
-                  $_SESSION['filial'] = $p_usu[0]['filial'];  
-                  $_SESSION['nomeFilial'] = $p_usu[0]['nome_filial'];
-                  $_SESSION['grupoEmpresa'] = $p_usu[0]['idGrupo'];
-                  $_SESSION['user'] = $p_usu[0]['nome'];
-
-
-                  header('Location:principal.php');   
-              else:  
-                  echo '</br>';
-                  echo '<div class="alert alert-primary" role="alert"><li>' . "E-mail ou senha inválido!!"  . '</li></div>';                  
-              endif;  
+                            header('Location:principal.php');   
+   
+                       endif;
+                  endif;    
+                else:  
+                    echo '</br>';
+                    echo '<div class="alert alert-primary" role="alert"><li>' . "E-mail ou senha inválido!!"  . '</li></div>';                  
+              endif;   
 
           else:
  

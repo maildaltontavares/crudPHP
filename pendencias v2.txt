@@ -1,19 +1,22 @@
 
 
-usuario tabelas;  
+Por o campo bloqueado na tela;
 Alterar senha no proximo login;
-MD5 para a senha;
 Alterar senha;
-Registrar-se;  
+Criar o perfil do usuario - ramal / matrícula / fone empresa / fone particular / Unidade Padrão;
+Criar o módulo de agenda somente consulta;
+Cookies com usuario e senha; 
 
-Botao novo do grupocad   
+Pedir a Empresa no cadastro de contas; 
 
+usuario tabelas;  
 DBDesigner 4 
 Por a cor vermelha nas mensagens de insucesso
  
 
 Por a impressao p primeira tela;
 Phpexcel ;
+
 
 Corrigir a visualizacao da mensagem de email ou senha invalida;
 Exibir o usuario logado;
