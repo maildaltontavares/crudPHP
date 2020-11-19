@@ -87,6 +87,7 @@
             $usuario->setBloqueado($p_bloq);
 		    $usuario->setDtInclusao($p_dt_inc);  
 		    $usuario->setChaveAutenticacao($p_chaveAutentic);     
+ 
 
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->createConta($usuario); 
@@ -108,6 +109,10 @@
 			$usuario = new Usuario();
 			$usuario->setId($p_usuario);			
 			$usuario->setDtAlteracao($p_dtAlt);
+
+
+
+
 			 
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->confirmaConta($usuario); 

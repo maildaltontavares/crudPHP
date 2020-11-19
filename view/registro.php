@@ -13,77 +13,93 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
 
 if(isset($_POST["criarConta"])):
 
+      $erros = array();
+      
+      $nome = filter_input(INPUT_POST, 'nome',FILTER_SANITIZE_STRING);  
+      
+      if(!filter_var($nome,FILTER_SANITIZE_STRING)):
+          $erros[] = "Nome inválida!";              
+      endif;  
 
-
-//validar a strig com o nme e emaiil;
-    // ver se as duas senhas ezstão iguais
-
-    
-    $dominio = "@santanatextiles.com"; 
-    $dominioValido = strpos($_POST["email"]  , $dominio); 
-
-    echo '<br><br><br>';
-
-    if($dominioValido>0): 
-
-
-
-
-
-            if($_POST["senha"] == $_POST["confirmaSenha"]): 
-
-
-                  $usuarioCtr = new UsuarioCtr();
-                  $p_usu = $usuarioCtr->validaUsuario($_POST["email"],''); 
-
-                  if(empty($p_usu)):  
-
-                        $date = date('YmdHis'); 
-                        $chave =  '' . $date  ;
-                        for ($i = 1; $i <= 10; $i++) {
-                            $chave = $chave .  (string)random_int(100, 999);
-                        }     
-
-                        $txtNome = $_POST["nome"];
-                        $txtAssunto = "Santana Textiles - Validacao de cadastro";
-                        $txtEmail = $_POST["email"];
-                        $txtSenha = $_POST["senha"];
-                        $txtMensagem = "";
-
-
-                          
-                        if ($usuarioCtr->createConta($txtNome,md5($txtSenha),$txtEmail,date("d/m/y") ,1,$chave ,'S')!= 'OK'): 
-                            echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao criar conta!!"  . '</li></div>';  
-                        endif;    
-                     
-                        /* Montar o corpo do email*/
-                        //$corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="http://localhost:8080/crudphp/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
-
-
-                        $corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="https://virtuax.herokuapp.com/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
-                       
-                      
-                        /* Definir Usuário e Senha do Gmail de onde partirá os emails*/
-                        define('GUSER', 'mail.tavaresdalton@gmail.com');
-                        define('GPWD', 'App!@#2020');
-
-
-                        if(smtpmailer($txtEmail, $txtEmail, $txtNome, $txtAssunto, $corpoMensagem)):
-                              Header("location: emailCadastro.php"); // Redireciona para uma página de Sucesso.
-                        else:
-                              echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao enviar email!!"  . '</li></div>';  
-                        endif;
-                  else:
-                        echo '<div class="alert alert-primary" role="alert"><li>' . "Email já cadastrado. Solicite a recuperação de senha."  . '</li></div>';
-                  endif;  
-             else:
-                echo '<div class="alert alert-primary" role="alert"><li>' . "Senhas não conferem."  . '</li></div>';  
-                        
-             endif;       
-    else:
-         echo '<div class="alert alert-primary" role="alert"><li>' . "Dominio do email inválido! Entre com email da Empresa."  . '</li></div>';  
-    endif;
+      $email = filter_input(INPUT_POST, 'email',FILTER_SANITIZE_EMAIL); 
+      if(!filter_var($email,FILTER_SANITIZE_EMAIL)):
+          $erros[] = "E-mail inválido!";              
+      endif;    
      
+
+      if (empty($erros)):  
+
+            $dominio = "@santanatextiles.com"; 
+            $dominioValido = strpos($_POST["email"]  , $dominio); 
+
+            echo '<br><br><br>';
+
+            if($dominioValido>0):  
+
+
+                    if($_POST["senha"] == $_POST["confirmaSenha"]): 
+
+
+                          $usuarioCtr = new UsuarioCtr();
+                          $p_usu = $usuarioCtr->validaUsuario($_POST["email"],''); 
+
+                          if(empty($p_usu)):  
+
+                                $date = date('YmdHis'); 
+                                $chave =  '' . $date  ;
+                                for ($i = 1; $i <= 10; $i++) {
+                                    $chave = $chave .  (string)random_int(100, 999);
+                                }     
+
+                                $txtNome = $_POST["nome"];
+                                $txtAssunto = "Santana Textiles - Validacao de cadastro";
+                                $txtEmail = $_POST["email"];
+                                $txtSenha = $_POST["senha"];
+                                $txtMensagem = "";
+
+
+                                  
+                                if ($usuarioCtr->createConta($txtNome,md5($txtSenha),$txtEmail,date("m/d/Y") ,1,$chave ,'S')!= 'OK'): 
+                                    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao criar conta!!"  . '</li></div>';  
+                                else:                      
+                             
+                                            /* Montar o corpo do email*/
+                                            //$corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="http://localhost:8080/crudphp/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
+
+
+                                            $corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="https://virtuax.herokuapp.com/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
+                                           
+                                          
+                                            /* Definir Usuário e Senha do Gmail de onde partirá os emails*/
+                                            define('GUSER', 'mail.tavaresdalton@gmail.com');
+                                            define('GPWD', 'App!@#2020');
+
+
+                                            if(smtpmailer($txtEmail, $txtEmail, $txtNome, $txtAssunto, $corpoMensagem)):
+                                                  Header("location: emailCadastro.php"); // Redireciona para uma página de Sucesso.
+                                            else:
+                                                  echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao enviar email!!"  . '</li></div>';  
+                                            endif;
+
+                                endif;    
+
+                          else:
+                                echo '<div class="alert alert-primary" role="alert"><li>' . "Email já cadastrado. Solicite a recuperação de senha."  . '</li></div>';
+                          endif;  
+                     else:
+                        echo '<div class="alert alert-primary" role="alert"><li>' . "Senhas não conferem."  . '</li></div>';  
+                                
+                     endif;       
+            else:
+                 echo '<div class="alert alert-primary" role="alert"><li>' . "Dominio do email inválido! Entre com email da Empresa."  . '</li></div>';  
+            endif;
+      else:
+
+          foreach ($erros as $erro):                 
+              echo '<div class="alert alert-primary" role="alert"><li>' . $erro  . '</li></div>';  
+          endforeach;  
+
+      endif;
  endif;
 ?> 
 

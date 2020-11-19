@@ -14,7 +14,7 @@ require_once '../config.php';
           $p_usu = $usuarioCtr->validaChaveAutenticacao($_GET["id"]);  
           //var_dump($p_usu);  
           if(!empty($p_usu)):  
-                 if($usuarioCtr->confirmaConta($p_usu[0]['id_usu'],date("d/m/y"))!='OK'):
+                 if($usuarioCtr->confirmaConta($p_usu[0]['id_usu'],date("m/d/y"))!='OK'):
                     
                      Header("location: emailInvalido.php");   
                  else:

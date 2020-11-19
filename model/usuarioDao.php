@@ -214,9 +214,9 @@
 			$stmt = Conexao::getConn()->prepare($sql); 		 
 			$stmt->bindValue(1,' ');
 			$stmt->bindValue(2,$u->getDtAlteracao());  
-			$stmt->bindValue(3,$u->getId()); 
- 
+			$stmt->bindValue(3,$u->getId());  
 
+    
 			Conexao::getConn()->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	 
 
 			try{
