@@ -39,11 +39,29 @@ if(isset($_POST["criarConta"])):
 
                     if($_POST["senha"] == $_POST["confirmaSenha"]): 
 
-
+                          $envEmail='nOK';
                           $usuarioCtr = new UsuarioCtr();
                           $p_usu = $usuarioCtr->validaUsuario($_POST["email"],''); 
 
                           if(empty($p_usu)):  
+                             $envEmail='OK';
+                          else:
+                             if ($p_usu[0]['bloqueado']=='S' and strlen($p_usu[0]['chave_atenticacao'])>5): 
+                                if ($usuarioCtr->delete($p_usu[0]['id_usu'])=='OK'):  
+                                    $envEmail='OK'; 
+                                else: 
+                                     echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao confirmar a conta."  . '</li></div>';
+                                endif;    
+                             else:   
+                                if ($p_usu[0]['bloqueado']=='S' and strlen($p_usu[0]['chave_atenticacao'])<5):   // Esta sem chave de atenticacao
+                                   echo '<div class="alert alert-primary" role="alert"><li>' . "Email bloqueado. Contate o administrador do sistema."  . '</li></div>';
+                                else:
+                                   echo '<div class="alert alert-primary" role="alert"><li>' . "Email já cadastrado. Solicite a recuperação de senha."  . '</li></div>';
+                                endif;
+                             endif;   
+                          endif;
+
+                          if($envEmail=='OK'):
 
                                 $date = date('YmdHis'); 
                                 $chave =  '' . $date  ;
@@ -58,15 +76,18 @@ if(isset($_POST["criarConta"])):
                                 $txtMensagem = "";
 
 
-                                  
+                                // Numvem  
                                 if ($usuarioCtr->createConta($txtNome,md5($txtSenha),$txtEmail,date("m/d/Y") ,1,$chave ,'S')!= 'OK'): 
+
+                                //Local
+                                //if ($usuarioCtr->createConta($txtNome,md5($txtSenha),$txtEmail,date("d/m/Y") ,1,$chave ,'S')!= 'OK'): 
                                     echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao criar conta!!"  . '</li></div>';  
                                 else:                      
                              
-                                            /* Montar o corpo do email*/
+                                            // local
                                             //$corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="http://localhost:8080/crudphp/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
-
-
+                                        
+                                            //Nuvem
                                             $corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Confirme sua conta clicando no link abaixo</b> <br> <a href="https://virtuax.herokuapp.com/view/emailValidado.php?id='. $chave.'">Validar Conta</a> ' ;
                                            
                                           
@@ -81,11 +102,11 @@ if(isset($_POST["criarConta"])):
                                                   echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao enviar email!!"  . '</li></div>';  
                                             endif;
 
-                                endif;    
+                                endif;  
 
-                          else:
-                                echo '<div class="alert alert-primary" role="alert"><li>' . "Email já cadastrado. Solicite a recuperação de senha."  . '</li></div>';
-                          endif;  
+                          endif;
+
+
                      else:
                         echo '<div class="alert alert-primary" role="alert"><li>' . "Senhas não conferem."  . '</li></div>';  
                                 

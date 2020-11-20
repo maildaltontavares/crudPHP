@@ -96,7 +96,7 @@
  		 
 			//$sql = 'Select * from usuario';
 			//$sql = 'SELECT * FROM public."S0001_usuario" where d0001_nome = ? and d0001_senha = ?';
-			$sql = 'SELECT d0001_nome nome,d0001_senha senha, fil.D0006_id_filial filial,d0006_nome_filial nome_filial,D0005_grupo_empresa                 idGrupo,d0001_filial_default filPad , d0001_bloqueado bloqueado,d0001_chave_atenticacao chave_atenticacao 
+			$sql = 'SELECT d0001_id id_usu,d0001_nome nome,d0001_senha senha, fil.D0006_id_filial filial,d0006_nome_filial nome_filial,D0005_grupo_empresa                 idGrupo,d0001_filial_default filPad , d0001_bloqueado bloqueado,d0001_chave_atenticacao chave_atenticacao 
 			    FROM    public."S0001_usuario" usu                     
                     INNER JOIN  public."E0006_FILIAL" fil on fil.d0006_id_filial = usu.d0001_filial_default  where d0001_email = ?'; 
                
@@ -208,7 +208,7 @@
 		public function confirmaConta(Usuario $u)
 		{  
 		 
-			$sql = 'update public."S0001_usuario" set d0001_bloqueado=?,d0001_dt_alteracao =? where d0001_id = ? ';
+			$sql = 'update public."S0001_usuario" set d0001_bloqueado=?,d0001_dt_alteracao =?,d0001_chave_atenticacao =' . '\'\'' .'  where d0001_id = ? ';
 			//$sql = 'Insert into usuario (nome,senha,d0001_email,d0001_tel) values(?,?,?,?)';
 
 			$stmt = Conexao::getConn()->prepare($sql); 		 
@@ -377,6 +377,29 @@
 			}	
 		 
 		}
+
+
+		
+ /*
+		public function criaPerfil(Usuario $u)
+		{  
+ 
+			try{
+				Conexao::getConn()->beginTransaction();	 
+					$this->createItens($u); 
+					$this->createFilial($u);   
+				Conexao::getConn()->commit(); 
+				return 'OK';
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na gravação: " . $e->getMessage() . '</li></div>'; 
+			    return 'nOK';
+			}	
+		 
+		} 
+*/
 
 		public function createConta(Usuario $u)
 		{  

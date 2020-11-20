@@ -86,8 +86,7 @@
 			$usuario->setFilialPad($p_filPad);   
             $usuario->setBloqueado($p_bloq);
 		    $usuario->setDtInclusao($p_dt_inc);  
-		    $usuario->setChaveAutenticacao($p_chaveAutentic);     
- 
+		    $usuario->setChaveAutenticacao($p_chaveAutentic);  
 
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->createConta($usuario); 

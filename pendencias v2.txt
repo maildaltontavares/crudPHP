@@ -1,3 +1,8 @@
+Parametrizar formato da data no banco
+Parametrizar dominio do email
+Gravar a Empresa e grupo de ususario do usuario;
+
+
 Por o campo bloqueado na tela;
 Alterar senha no proximo login;
 Alterar senha;

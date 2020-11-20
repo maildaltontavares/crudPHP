@@ -1,25 +1,31 @@
 <?php 
  
-
 require_once '../config.php';
 require_once ROOT_PATH . '/controller/usuarioCtr.php';  
 require_once '../config.php';   
 
   session_start(); 
 
-  echo '<br><br><br><br><br><br>  ';
+  echo '<br><br><br><br>';
   if(isset($_GET["id"])):   
 
           $usuarioCtr = new UsuarioCtr();   
           $p_usu = $usuarioCtr->validaChaveAutenticacao($_GET["id"]);  
           //var_dump($p_usu);  
-          if(!empty($p_usu)):  
-                 if($usuarioCtr->confirmaConta($p_usu[0]['id_usu'],date("m/d/y"))!='OK'):
-                    
+          if(!empty($p_usu)):
+                 if ($p_usu[0]['bloqueado']=='S'):
+
+                     //Nuvem
+                     if($usuarioCtr->confirmaConta($p_usu[0]['id_usu'],date("m/d/y"))!='OK'): 
+
+                     //local
+                     //if($usuarioCtr->confirmaConta($p_usu[0]['id_usu'],date("d/m/y"))!='OK'): 
+
+                         Header("location: emailInvalido.php");   
+                     endif; 
+                else:
                      Header("location: emailInvalido.php");   
-                 else:
-                   
-                 endif; 
+                 endif;
           else:
               Header("location: emailInvalido.php"); 
           endif;    
