@@ -1,7 +1,8 @@
+ 
 Parametrizar formato da data no banco
 Parametrizar dominio do email
-Gravar a Empresa e grupo de ususario do usuario;
-
+Parametrizar o id do perfil base;
+Gravar a Empresa e grupo de ususario do usuario; 
 
 Por o campo bloqueado na tela;
 Alterar senha no proximo login;
@@ -26,7 +27,9 @@ Exibir o usuario logado;
 recuperar senha;
 
 divisao por loja;
+
  
+
 
 Como criar janela modal com formulário cadastrar com JavaScript - youtube 
 

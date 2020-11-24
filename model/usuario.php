@@ -16,7 +16,8 @@
 		private $dtInclusao;
 		private $dtAlteracao;
 		private $chaveAutenticacao;
-		private $alterSenhaPrxLogin;  
+		private $alterSenhaPrxLogin;
+		private $chaveAltSenha;
 
 		public function setId($Id){
 			$this->Id = $Id;
@@ -132,6 +133,14 @@
 			return $this->alterSenhaPrxLogin;
 		}
  		
+  		public function setChaveAltSenha($p_chaveAltSenha){
+			$this->chaveAltSenha = $p_chaveAltSenha;
+		}
+
+		public function getChaveAltSenha(){
+			return $this->chaveAltSenha;
+		}
+ 	 
 
 	}
 

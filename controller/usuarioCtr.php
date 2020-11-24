@@ -93,6 +93,36 @@
 			return  $r;  
 		 }
 
+		public function createChaveAltSenha($p_usuario, $p_chaveAltSenha,$p_dtAlt){
+
+
+			// Prepara Bean usuario
+			$usuario = new Usuario();
+			$usuario->setId($p_usuario);
+			$usuario->setDtAlteracao($p_dtAlt);   
+		    $usuario->setChaveAltSenha($p_chaveAltSenha);  
+
+			$usuarioDao = new UsuarioDao();
+			$r = $usuarioDao->createChaveAltSenha($usuario); 
+			return  $r;  
+		 }
+
+		public function alteraSenha($p_usuario,$p_senha ,$p_dtAlt){
+
+
+			// Prepara Bean usuario
+			$usuario = new Usuario();
+			$usuario->setId($p_usuario);
+			$usuario->setDtAlteracao($p_dtAlt);   			 
+			$usuario->setSenha($p_senha); 
+
+			$usuarioDao = new UsuarioDao();
+			$r = $usuarioDao->alteraSenha($usuario); 
+			return  $r;  
+		 }
+
+ 	 
+
 		public function validaChaveAutenticacao($p_chaveAutentic){  
 			// Prepara Bean usuario
 			$usuario = new Usuario();
@@ -103,20 +133,29 @@
 			return  $r;  
 		 }	
 
+
+		public function validaChaveAltSenha($p_chaveAltSenha){  
+			// Prepara Bean usuario
+			$usuario = new Usuario();
+			$usuario->setChaveAltSenha($p_chaveAltSenha);
+			 
+			$usuarioDao = new UsuarioDao();
+			$r = $usuarioDao->validaChaveAltSenha($usuario); 
+			return  $r;  
+		 }	
+
+
+
 		 public function confirmaConta($p_usuario,$p_dtAlt){  
 		 
 			$usuario = new Usuario();
 			$usuario->setId($p_usuario);			
-			$usuario->setDtAlteracao($p_dtAlt);
-
-
-
-
-			 
+			$usuario->setDtAlteracao($p_dtAlt);   
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->confirmaConta($usuario); 
 			return  $r;  
-		 }	
+		 }	 
+		 
 
 		public function validaUsuario($p_email,$senha){  
 			// Prepara Bean usuario

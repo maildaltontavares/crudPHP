@@ -4,7 +4,7 @@ require_once '../config.php';
 require_once ROOT_PATH . '/controller/usuarioCtr.php';  
 require_once '../config.php';   
 
-  session_start(); 
+  session_start();    
 
   echo '<br><br><br><br>';
   if(isset($_GET["id"])):   
@@ -34,7 +34,6 @@ require_once '../config.php';
   endif;
  
 ?> 
-
 
 <!DOCTYPE html>
 <html lang="en">

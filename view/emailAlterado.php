@@ -1,9 +1,10 @@
-<?php
-
-  //require_once './../../controller/usuarioCtsr.php';
+<?php 
+ 
+require_once '../config.php';
+require_once ROOT_PATH . '/controller/usuarioCtr.php';  
 require_once '../config.php';   
 
-  session_start(); 
+  session_start();  
  
 ?> 
 
@@ -24,7 +25,7 @@ require_once '../config.php';
         <meta name="author" content="" />
         <title>Santana Textiles</title>
         <link href="css/styles.css" rel="stylesheet" />
-        script>
+  
     </head>
 
 
@@ -39,10 +40,10 @@ require_once '../config.php';
                         <div class="row justify-content-center">
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Email enviado com sucesso!</h3></div>
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Bem vindo ao sistema Santana Textiles Web!</h3></div>
                                     <div class="card-body">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Acesse seu email e avance para a próxima etapa.</h3></div>
-                                    <div class="card-body">  
+
+           
                                     </div>
                                     <div class="card-footer text-center">
                                         <div ><a class="btn btn-lg btn-primary btn-block" href="login.php">Ir para login</a></div>

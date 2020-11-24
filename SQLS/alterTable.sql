@@ -1,4 +1,8 @@
 ALTER TABLE public."S0001_usuario"
+ADD COLUMN d0001_chave_alt_senha character varying(100) 
+
+;
+ALTER TABLE public."S0001_usuario"
 ADD COLUMN d0001_bloqueado char,
 ADD COLUMN d0001_dt_inclusao date,
 ADD COLUMN d0001_dt_alteracao date,

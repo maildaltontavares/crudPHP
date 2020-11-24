@@ -141,7 +141,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
                 </div>
             
                 <button class="btn btn-lg btn-primary btn-block" name="login" type="submit">Entrar</button>
-                <a href="#">Esqueceu sua senha?</a><br>
+                <a href="recuperaSenha.php">Esqueceu sua senha?</a><br>
                 <a href="registro.php">Não tem conta? Cadastre-se.</a>
                 <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
             </form>
