@@ -24,7 +24,7 @@ require_once '../config.php';
         <meta name="author" content="" />
         <title>Santana Textiles</title>
         <link href="css/styles.css" rel="stylesheet" />
-        script>
+         
     </head>
 
 

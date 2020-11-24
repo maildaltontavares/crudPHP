@@ -70,10 +70,10 @@ if(isset($_POST["recuperaSenha"])):
                                     $txtMensagem = "";  
                                  
                                     // local
-                                    $corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Recupere sua senha clicando no link abaixo</b> <br> <a href="http://localhost:8080/crudphp/view/alterarSenha.php?id='. $chave.'">Recuperar senha</a> ' ;
+                                    //$corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Recupere sua senha clicando no link abaixo</b> <br> <a href="http://localhost:8080/crudphp/view/alterarSenha.php?id='. $chave.'">Recuperar senha</a> ' ;
                                 
                                     //Nuvem
-                                    //$corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Recupere sua senha clicando no link abaixo</b> <br> <a href="https://virtuax.herokuapp.com/view/alterarSenha.php?id='. $chave.'">Recuperar senha</a> ' ;
+                                    $corpoMensagem = '<b>Sistema Santana Textiles Web</b></b><br><b>Recupere sua senha clicando no link abaixo</b> <br> <a href="https://virtuax.herokuapp.com/view/alterarSenha.php?id='. $chave.'">Recuperar senha</a> ' ;
                                    
                                   
                                     /* Definir Usuário e Senha do Gmail de onde partirá os emails*/
