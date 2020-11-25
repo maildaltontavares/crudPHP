@@ -66,7 +66,7 @@ if(isset($_POST["criarConta"])):
                           if(!empty($p_usu)):    
 
   
-                                $p_tabela = $tabelaCtr->buscaParametro('T',2); 
+                                $p_tabela = $tabelaCtr->buscaParametro('T',1); 
                                 $paramDt =  $p_tabela[0]['pt']; 
                               
                                 if ($usuarioCtr->alteraSenha($p_usu[0]['id_usu'],md5($_POST["senha"]), date($paramDt)  )!= 'OK'): 
