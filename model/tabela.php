@@ -19,6 +19,10 @@
         private $data3;
 		private $descTabPad; 
 		private $sigla;
+		private $tpParam;
+		private $vlParamT;
+		private $vlParamN;
+		private $vlParamD;
 
 		public function setSigla($sigla){
 			$this->sigla = $sigla;
@@ -147,11 +151,42 @@
 		public function getIdTp(){
 			return $this->idTp;
 		}
-		 
 
+		public function setTpParam($tpParam){
+			$this->tpParam = $tpParam;
+		}
+
+		public function getTpParam(){
+			return $this->tpParam;
+		}		
+		 
+		public function setParamT($vlParam){
+			$this->vlParamT = $vlParam;
+		}
+
+		public function getParamT(){
+			return $this->vlParamT;
+		}	
+
+		public function setParamN($vlParam){
+			$this->vlParamN = $vlParam;
+		}
+
+		public function getParamN(){
+			return $this->vlParamN;
+		}	
+
+	    public function setParamD($vlParam){
+			$this->vlParamD = $vlParam;
+		}
+
+		public function getParamD(){
+			return $this->vlParamD;
+		}
 
 	}
 
 
 
 ?>
+ 

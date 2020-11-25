@@ -2,6 +2,7 @@
  
 require_once '../config.php';
 require_once ROOT_PATH . '/controller/usuarioCtr.php';  
+require_once ROOT_PATH . '/controller/tabelaCtr.php'; 
 require_once '../config.php';   
 
   session_start();    
@@ -10,17 +11,21 @@ require_once '../config.php';
   if(isset($_GET["id"])):   
 
           $usuarioCtr = new UsuarioCtr();   
-          $p_usu = $usuarioCtr->validaChaveAutenticacao($_GET["id"]);  
-          //var_dump($p_usu);  
+          $p_usu = $usuarioCtr->validaChaveAutenticacao($_GET["id"]);   
+
           if(!empty($p_usu)):
                  if ($p_usu[0]['bloqueado']=='S'):
 
-                     //Nuvem
-                     if($usuarioCtr->confirmaConta($p_usu[0]['id_usu'],date("m/d/y"))!='OK'): 
+                     $tabelaCtr = new TabelaCtr();   
+                     $p_tabela = $tabelaCtr->buscaParametro('N',1); 
+                     $param[] =  $p_tabela[0]['pn'];   
 
-                     //local
-                     //if($usuarioCtr->confirmaConta($p_usu[0]['id_usu'],date("d/m/y"))!='OK'): 
+                     $p_tabela = $tabelaCtr->buscaParametro('T',1); 
+                     $paramDt =  $p_tabela[0]['pt'];                       
 
+                     //var_dump($paramDt); 
+                                       
+                     if($usuarioCtr->confirmaConta($p_usu[0]['id_usu'],date($paramDt),$param,[1])!='OK'): 
                          Header("location: emailInvalido.php");   
                      endif; 
                 else:
@@ -34,6 +39,8 @@ require_once '../config.php';
   endif;
  
 ?> 
+
+ 
 
 <!DOCTYPE html>
 <html lang="en">

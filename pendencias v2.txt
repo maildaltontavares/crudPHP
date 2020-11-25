@@ -1,8 +1,11 @@
+Gravar a Empresa e grupo de ususario do usuario; 
  
+Parametrizacao de tabelas nao esta mantendo o grupo de tabelas
+
+
 Parametrizar formato da data no banco
 Parametrizar dominio do email
-Parametrizar o id do perfil base;
-Gravar a Empresa e grupo de ususario do usuario; 
+Parametrizar o id do perfil base; 
 
 Por o campo bloqueado na tela;
 Alterar senha no proximo login;

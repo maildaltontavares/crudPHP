@@ -245,9 +245,9 @@
 
 			try{
 				Conexao::getConn()->beginTransaction();
-				$stmt->execute();
-				//$this->createItens($u); 	 
-				//$this->createFilial($u); 
+				$stmt->execute(); 
+				$this->createItens($u); 
+				$this->createFilial($u); 
 				Conexao::getConn()->commit(); 
 				return 'OK';
 			}
@@ -505,7 +505,7 @@
 
 				if($stmt->rowCount() > 0):
 					$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);  
-				endif; 
+				endif;   
 
 				Conexao::getConn()->commit(); 
 				return 'OK';

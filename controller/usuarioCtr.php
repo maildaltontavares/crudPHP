@@ -144,13 +144,13 @@
 			return  $r;  
 		 }	
 
-
-
-		 public function confirmaConta($p_usuario,$p_dtAlt){  
+		 public function confirmaConta($p_usuario,$p_dtAlt,$p_itens,$p_filial){  
 		 
 			$usuario = new Usuario();
 			$usuario->setId($p_usuario);			
-			$usuario->setDtAlteracao($p_dtAlt);   
+			$usuario->setDtAlteracao($p_dtAlt); 
+			$usuario->setItens($p_itens);  
+			$usuario->setFilial($p_filial);  
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->confirmaConta($usuario); 
 			return  $r;  

@@ -5,11 +5,10 @@ require_once '../config.php';
 
   session_start(); 
  
-?> 
-
+?>  
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 
     <header>
       <?php

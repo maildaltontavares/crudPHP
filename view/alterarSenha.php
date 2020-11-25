@@ -4,6 +4,7 @@ require_once '../config.php';
 require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
 require_once ROOT_PATH . '/bibliotecas/phpmailer/class.phpmailer.php';
 require_once ROOT_PATH . '/controller/usuarioCtr.php'; 
+require_once ROOT_PATH . '/controller/tabelaCtr.php'; 
 
   session_start();
   //session_unset();
@@ -50,7 +51,9 @@ if(isset($_POST["criarConta"])):
 
       if (empty($erros)):  
 
-            $dominio = "@santanatextiles.com"; 
+            $tabelaCtr = new TabelaCtr();    
+            $p_tabela = $tabelaCtr->buscaParametro('T',2); 
+            $dominio =  $p_tabela[0]['pt'];   
             $dominioValido = strpos($_POST["email"]  , $dominio);  
 
             if($dominioValido>0):   
@@ -61,11 +64,12 @@ if(isset($_POST["criarConta"])):
                           $p_usu = $usuarioCtr->validaUsuario($_POST["email"],''); 
 
                           if(!empty($p_usu)):    
-                                // Numvem  
-                                if ($usuarioCtr->alteraSenha($p_usu[0]['id_usu'],md5($_POST["senha"]), date("m/d/Y")  )!= 'OK'): 
 
-                                //Local
-                                //if ($usuarioCtr->alteraSenha($p_usu[0]['id_usu'],md5($_POST["senha"]), date("d/m/Y")  )!= 'OK'): 
+  
+                                $p_tabela = $tabelaCtr->buscaParametro('T',2); 
+                                $paramDt =  $p_tabela[0]['pt']; 
+                              
+                                if ($usuarioCtr->alteraSenha($p_usu[0]['id_usu'],md5($_POST["senha"]), date($paramDt)  )!= 'OK'): 
                                     echo '<br><br><br>';
                                     echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao alterar senha!!"  . '</li></div>';  
                                 else:       

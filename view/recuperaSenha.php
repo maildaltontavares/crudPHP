@@ -4,6 +4,7 @@
 require_once '../config.php';
 require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
 require_once ROOT_PATH . '/bibliotecas/phpmailer/class.phpmailer.php';
+require_once ROOT_PATH . '/controller/tabelaCtr.php';  
 require_once ROOT_PATH . '/controller/usuarioCtr.php'; 
 
   session_start();
@@ -24,7 +25,9 @@ if(isset($_POST["recuperaSenha"])):
 
       if (empty($erros)):  
 
-            $dominio = "@santanatextiles.com"; 
+            $tabelaCtr = new TabelaCtr();    
+            $p_tabela = $tabelaCtr->buscaParametro('T',2); 
+            $dominio =  $p_tabela[0]['pt'];   
             $dominioValido = strpos($_POST["email"]  , $dominio); 
 
             echo '<br><br><br>';
@@ -57,11 +60,11 @@ if(isset($_POST["recuperaSenha"])):
                                         $chave = $chave .  (string)random_int(100, 999);
                                     }  
 
-                                //Nuvem
-                                if ($usuarioCtr->createChaveAltSenha($p_usu[0]['id_usu'], $chave, date("m/d/Y") )!= 'OK'): 
+                        
+                                  $p_tabela = $tabelaCtr->buscaParametro('T',1); 
+                                  $paramDt =  $p_tabela[0]['pt'];   
 
-                                //Local 
-                                //if ($usuarioCtr->createChaveAltSenha($p_usu[0]['id_usu'], $chave, date("d/m/Y") )!= 'OK'): 
+                                if ($usuarioCtr->createChaveAltSenha($p_usu[0]['id_usu'], $chave, date($paramDt) )!= 'OK'): 
                                     echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao recuperar senha!!"  . '</li></div>';  
                                 else:  
      

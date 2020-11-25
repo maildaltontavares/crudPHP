@@ -12,7 +12,7 @@
 			$tabela->setId($p_id);
 
 			$TabelaDao = new TabelaDao();  
-			return $TabelaDao->delete($tabela); 
+			return $TabelaDao->delete($tabela);  
 
 
 		}		
@@ -148,6 +148,33 @@
 			
 
 		 } 
+
+
+
+
+		public function buscaParametro($p_tipo,$p_valor){
+
+			// Prepara Bean tabela
+			$tabela = new Tabela(); 
+			$tabela->setTpParam($p_tipo);
+			 
+
+			if($p_tipo=='T'){
+			   $tabela->setParamT($p_valor);
+			}			    
+			elseif ($p_tipo=='N') {
+			   $tabela->setParamN($p_valor);
+			}
+			elseif ($p_tipo=='D') {
+			   $tabela->setParamD($p_valor);			
+			};
+
+			$TabelaDao = new TabelaDao();
+			return $TabelaDao->buscaParametro($tabela);
+			
+
+		 } 
+
 
 
 

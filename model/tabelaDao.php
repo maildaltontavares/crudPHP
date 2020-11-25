@@ -133,6 +133,49 @@
 		 
 		}
 
+		public function buscaParametro(Tabela $t)
+		{
+   
+			$sql = 'select  d0004_string2 pT,d0004_num1 pN,d0004_data1 pD  from public."E0001_tabela_padrao" tp ';
+   			$sql = $sql . ' inner join public."E0004_tabela" t on tp.d0001_id = t.d0001_id ';
+			$sql = $sql . ' WHERE tp.D0001_SIGLA = ? ';
+			$sql = $sql . ' and d0004_num3 = ?';
+			 
+			$stmt = Conexao::getConn()->prepare($sql);  
+			//var_dump($sql);
+
+			if($t->getTpParam()=='T'){
+                  $stmt->bindValue(1,'sysparamT');
+			}
+			elseif($t->getTpParam()=='N') {
+				  $stmt->bindValue(1,'sysparamN');
+			}
+			elseif($t->getTpParam()=='D') {
+			 	  $stmt->bindValue(1,'sysparamD');
+			};			
+
+			if($t->getTpParam()=='T'){
+                  $stmt->bindValue(2,$t->getParamT());
+			}
+			elseif($t->getTpParam()=='N') {
+				  $stmt->bindValue(2,$t->getParamN());
+			}
+			elseif($t->getTpParam()=='D') {
+			 	  $stmt->bindValue(2,$t->getParamD());
+			};
+
+
+			$stmt->execute();  
+			
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);   
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
+		}
 
 
 

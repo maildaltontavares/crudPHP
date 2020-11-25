@@ -2,7 +2,8 @@
 
   //require_once './../../controller/usuarioCtsr.php';
 require_once '../config.php';
-require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
+require_once ROOT_PATH . '/bibliotecas/funcoes.php';  
+require_once ROOT_PATH . '/controller/tabelaCtr.php'; 
 require_once ROOT_PATH . '/bibliotecas/phpmailer/class.phpmailer.php';
 require_once ROOT_PATH . '/controller/usuarioCtr.php'; 
 
@@ -29,7 +30,11 @@ if(isset($_POST["criarConta"])):
 
       if (empty($erros)):  
 
-            $dominio = "@santanatextiles.com"; 
+            $tabelaCtr = new TabelaCtr();    
+            $p_tabela = $tabelaCtr->buscaParametro('T',2); 
+            $dominio =  $p_tabela[0]['pt'];             
+
+            //$dominio = "@santanatextiles.com"; 
             $dominioValido = strpos($_POST["email"]  , $dominio); 
 
             echo '<br><br><br>';
@@ -73,14 +78,13 @@ if(isset($_POST["criarConta"])):
                                 $txtAssunto = "Santana Textiles - Validacao de cadastro";
                                 $txtEmail = $_POST["email"];
                                 $txtSenha = $_POST["senha"];
-                                $txtMensagem = "";
+                                $txtMensagem = ""; 
 
-
-                                // Numvem  
-                                if ($usuarioCtr->createConta($txtNome,md5($txtSenha),$txtEmail,date("m/d/Y") ,1,$chave ,'S')!= 'OK'): 
-
-                                //Local
-                                //if ($usuarioCtr->createConta($txtNome,md5($txtSenha),$txtEmail,date("d/m/Y") ,1,$chave ,'S')!= 'OK'): 
+                              
+                               $p_tabela = $tabelaCtr->buscaParametro('T',1); 
+                               $paramDt =  $p_tabela[0]['pt'];  
+ 
+                                if ($usuarioCtr->createConta($txtNome,md5($txtSenha),$txtEmail,date($paramDt) ,1,$chave ,'S')!= 'OK'): 
                                     echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao criar conta!!"  . '</li></div>';  
                                 else:                      
                              
