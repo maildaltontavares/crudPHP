@@ -91,6 +91,8 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
                             $_SESSION['nomeFilial'] = $p_usu[0]['nome_filial'];
                             $_SESSION['grupoEmpresa'] = $p_usu[0]['idGrupo'];
                             $_SESSION['user'] = $p_usu[0]['nome']; 
+                            $_SESSION['id_usu'] = $p_usu[0]['id_usu']; 
+
 
                             header('Location:principal.php');   
    

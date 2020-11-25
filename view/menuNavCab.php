@@ -85,9 +85,10 @@
                                     </a>
                                     <div class="collapse" id="movimCollapseParam" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Operações</a>
-                                            <a class="nav-link" href="register.html">Tipos de Movimentos</a>
-                                            <a class="nav-link" href="password.html">Centros de Custos</a>
+
+                                            <a class="nav-link" href="#">Operações</a>
+                                            <a class="nav-link" href="#">Tipos de Movimentos</a>
+                                            <a class="nav-link" href="#">Centros de Custos</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -96,8 +97,7 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="#">Gerenciais</a>
-                                            <a class="nav-link" href="#">Notas Fiscais</a>  
+                                            <a class="nav-link" href="lista_leitura.php">Leituras</a>         
                                         </nav>
                                     </div>
                                 </nav>

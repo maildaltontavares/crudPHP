@@ -1,11 +1,8 @@
-Gravar a Empresa e grupo de ususario do usuario; 
+Corrigir a gravacao da senha no cadastro de usuario;
+Parametrizacao de tabelas nao esta mantendo o grupo de tabelas;
  
-Parametrizacao de tabelas nao esta mantendo o grupo de tabelas
 
-
-Parametrizar formato da data no banco
-Parametrizar dominio do email
-Parametrizar o id do perfil base; 
+Por os parametros de formato de data na sessao 
 
 Por o campo bloqueado na tela;
 Alterar senha no proximo login;
