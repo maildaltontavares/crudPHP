@@ -129,7 +129,7 @@
 				echo '<tr>' .
 	          		  '<td><a href="leituraCad.php?Id='  . $p_leitura['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
 				      '<td>' .  $p_leitura['tear']      . '</td> ' .
-				      '<td>' .  $p_leitura['dt_leitura']      . '</td> ' .
+				      '<td>' .  date_format(date_create($p_leitura['dt_leitura']),'d/m/Y') . '</td> ' .
 				      '<td>' .  $p_leitura['turno']      . '</td> ' . 
 				      '<th scope="row">' . $p_leitura['leitura'] . '</th>' . 
 	 
@@ -148,7 +148,7 @@
 		        	echo '<tr>' .
           		  '<td><a href="leituraCad.php?Id='  . $p_leitura['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
 			      '<td>' .  $p_leitura['tear']      . '</td> ' .
-				  '<td>' .  $p_leitura['dt_leitura']      . '</td> ' .
+				  '<td>' .  date_format(date_create($p_leitura['dt_leitura']),'d/m/Y')      . '</td> ' .
 				  '<td>' .  $p_leitura['turno']      . '</td> ' . 
 				  '<th scope="row">' . $p_leitura['leitura'] . '</th>' . 
 

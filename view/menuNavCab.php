@@ -86,7 +86,14 @@
                                     <div class="collapse" id="movimCollapseParam" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
 
-                                            <a class="nav-link" href="#">Operações</a>
+                                           <!-- <a class="nav-link" href="C:/xampp/htdocs/crudphp/bibliotecas/jQuery-Mask/test/test-for-jquery-3.0.0.html">
+                                            Operações</a> 
+                                             <a class="nav-link" href="C:\xampp\htdocs\crudphp\bibliotecas\jQuery-Mask\test\test-for-jquery-3.0.0.html">
+                                            Operações</a>
+                                        -->
+
+                                             <a class="nav-link" href="#">Operações</a>
+
                                             <a class="nav-link" href="#">Tipos de Movimentos</a>
                                             <a class="nav-link" href="#">Centros de Custos</a>
                                         </nav>

@@ -1,7 +1,8 @@
 Corrigir a gravacao da senha no cadastro de usuario;
 Parametrizacao de tabelas nao esta mantendo o grupo de tabelas;
- 
-
+Parametrizar o numero de registros da paginação
+Validar a troca de Empresa
+Parametrizar o BD em uso
 Por os parametros de formato de data na sessao 
 
 Por o campo bloqueado na tela;

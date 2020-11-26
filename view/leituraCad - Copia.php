@@ -205,14 +205,33 @@
 
   ?>
 
-  
-
  <script  src="https://code.jquery.com/jquery-3.5.1.js"  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="  crossorigin="anonymous"></script>
-   
- 
+  <script type="text/javascript" src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script> 
+
+
+  <script type="text/javascript" src="../bibliotecas/jQuery-Mask/test/sinon-1.10.3.js"></script>
+  <script type="text/javascript" src="../bibliotecas/jQuery-Mask/test/sinon-qunit-1.0.0.js"></script>
+
+  <script type="text/javascript" src="../bibliotecas/jQuery-Mask/src/jquery.mask.js"></script>
+  <script type="text/javascript" src="../bibliotecas/jQuery-Mask/test/jquery.mask.test.js"></script>
+
+ <link rel="stylesheet" type="text/css" href="estiloVirtuax.css">
+ <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css" type="text/css" media="all">
+
+
+
+  <input class="simple-field" type="text" />
+  <input class="simple-field-data-mask" type="text" data-mask="00/00/0000"/>
+  <input class="simple-field-data-mask-selectonfocus" type="text" data-mask="00/00/0000" data-mask-selectonfocus="true" />
+  <input class="simple-field-data-mask-reverse" type="text" data-mask="#.##0,00" data-mask-reverse="true" data-mask-maxlength="false"/>
+  <input class="simple-field-data-mask-clearifnotmatch" data-mask="000" type="text" data-mask-clearifnotmatch="true" />
+  <input class="simple-field-data-mask-clearifnotmatch-and-optional-mask" data-mask="009" type="text" data-mask-clearifnotmatch="true" />
+
+
+
 <form method="POST" > 
   <div class="limiteTela" >
- 
+  <!--<div class="container" >  -->
     
     <div id='modelo'>
         <div class="cabecalho">
@@ -224,95 +243,65 @@
             </div> 
 
         </div> 
-    </div>   
+    </div> 
+ 
+ 
+    <input class="simple-field-data-mask" type="text" data-mask="00/00/0000"/>
+
 
     <div class="form-row"> 
         <div class="form-group col-md-8">
           <label for="tear">Tear</label> 
-          <input id="tear" name ="tear" type="number" class="form-control simple-field-data-mask-selectonfocus" required data-mask="000000" type="text"  data-mask-selectonfocus="true"  value="<?php  echo $tear;  ?>" >
+          <input id="tear" name ="tear" type="text" class="form-control" required  value="<?php  echo $tear;  ?>" >
         </div> 
     </div>  
     
     <div class="form-row"> 
         <div class="form-group col-md-8">
           <label for="dt_leitura">Data da Leitura</label> 
-          <input id="dt_leitura" name ="dt_leitura" type="date" class="form-control" required  value="<?php  echo $dt_leitura;?>" >  
+          <input id="dt_leitura" name ="dt_leitura" type="text" class="form-control simple-field-data-mask" data-mask="00/00/0000" required  value="<?php  echo $dt_leitura;?>" >  
         </div> 
     </div>  
-
-
-
 
     <div class="form-row"> 
         <div class="form-group col-md-8">
           <label for="turno">Turno</label> 
-          <!--<input id="turno" name ="turno" type="text" class="form-control simple-field-data-mask-selectonfocus" data-mask="S" required  value="<?php  echo $turno;  ?>" > -->
-
-
-          <select class="form-control" id="selecioneTurno" name="turno" >  
-          
-          <?php 
-
-                if ($turno ==  'A' ):
-                   echo ' <option value="A" selected >A</option>';  
-                else:  
-                   echo ' <option value="A">A</option>';  
-                endif; 
-
-                if ($turno ==  'B' ):
-                   echo ' <option value="B" selected >B</option>';  
-                else:  
-                   echo ' <option value="B">B</option>';  
-                endif;     
-               
-                if ($turno ==  'C' ):
-                   echo ' <option value="C" selected >C</option>';  
-                else:  
-                   echo ' <option value="C">C</option>';  
-                endif;  
-              
-              
-          ?> 
-
-          </select> 
-
-
-
+          <input id="turno" name ="turno" type="text" class="form-control" required  value="<?php  echo $turno;  ?>" >
         </div> 
     </div>  
 
     <div class="form-row"> 
         <div class="form-group col-md-8">
-          <label for="leitura">Leitura</label>   
-          <input id="leitura" name ="leitura" type="number" class="form-control simple-field-data-mask-selectonfocus" data-mask="000"  required  value="<?php  echo $leitura;  ?>" >
+          <label for="leitura">Leitura</label> 
+          <input id="leitura" name ="leitura" type="number" class="form-control" required  value="<?php  echo $leitura;  ?>" >
         </div> 
     </div> 
 
     <div class="form-row"> 
         <div class="form-group col-md-8">
           <label for="rpm">RPM</label> 
-          <input id="rpm" name ="rpm" type="number" class="form-control simple-field-data-mask-selectonfocus" data-mask="000"  required  value="<?php  echo $rpm;  ?>" >
+          <input id="rpm" name ="rpm" type="number" class="form-control" required  value="<?php  echo $rpm;  ?>" >
         </div> 
     </div> 
 
     <div class="form-row"> 
         <div class="form-group col-md-8">
           <label for="par_trama">Num. paradas de trama</label> 
-          <input id="par_trama" name ="par_trama" type="number" class="form-control  simple-field-data-mask-selectonfocus" data-mask="000"  required  value="<?php  echo $par_trama;  ?>" >
+          <input id="par_trama" name ="par_trama" type="number" class="form-control" required  value="<?php  echo $par_trama;  ?>" >
         </div> 
     </div> 
 
     <div class="form-row"> 
         <div class="form-group col-md-8">
           <label for="par_urdume">Num. paradas de urdume</label> 
-          <input id="par_urdume" name ="par_trama" type="number" class="form-control  simple-field-data-mask-selectonfocus" data-mask="000"  required  value="<?php  echo $par_urdume;  ?>" >
+          <input id="par_urdume" name ="par_trama" type="number" class="form-control" required  value="<?php  echo $par_urdume;  ?>" >
         </div> 
     </div> 
 
     <div class="form-row"> 
         <div class="form-group col-md-8">
           <label for="par_outros">Num. paradas outros</label> 
-          <input id="par_outros" name ="par_outros" type="number" class="form-control  simple-field-data-mask-selectonfocus" data-mask="000"  required  value="<?php  echo $par_outros;  ?>" >
+          <input id="par_outros" name ="par_outros" type="number" class="form-control" required  value="<?php  echo $par_outros;  ?>" >
         </div> 
     </div>     
 
@@ -323,14 +312,6 @@
 
   //include_once "footer.php";
   include_once "menuNavRodape.php";
-?> 
-
+?>    
 </form>
-<!--
-  <script type="text/javascript" src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script> 
 
-  <script type="text/javascript" src="../bibliotecas/jQuery-Mask/test/sinon-1.10.3.js"></script>
-  <script type="text/javascript" src="../bibliotecas/jQuery-Mask/test/sinon-qunit-1.0.0.js"></script>
--->
-  <script type="text/javascript" src="../bibliotecas/jQuery-Mask/src/jquery.mask.js"></script>
-  <script type="text/javascript" src="../bibliotecas/jQuery-Mask/test/jquery.mask.test.js"></script>
