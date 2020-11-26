@@ -31,6 +31,7 @@
 
   $nome = '';
   $senha = '';
+  $senhaAnterior = '';
   $email = '';
   $tel = '';
   $id = 0;   
@@ -38,6 +39,7 @@
   $filPad = 0;
   $aFilialUsu = [];
   $filPad=0;
+
   $gravou = 'N'; // nova fucao seguranca
 
   if (isset($_GET['Altera'])):
@@ -51,6 +53,7 @@
       if(!empty($p_usuario)):
           $nome = $p_usuario[0]['nome'];
           $senha = $p_usuario[0]['senha'];
+          $senhaAnterior = $p_usuario[0]['senha'];
           $email = $p_usuario[0]['email'];
           $tel= $p_usuario[0]['tel'];
           $id = $_GET['Id'];   
@@ -162,12 +165,22 @@
                   $erros[] = "Senha inválida!";
               endif;
 
-     
+              if(($senha != $senhaAnterior) ):   
+
+                // Alterou a SENHA
+                   if($Altera == "S"):
+                      $senha = md5($senha);
+                   endif;   
+              endif;
+              
+
+
+     /*
               $tel = $_POST['tel'];  
               if (empty($tel) or is_null($tel)):
                   $erros[] = "Fone inválido!";
               endif;
-
+*/
                if (isset($_POST['FilialUsu'])):
                    $vFilUsu =  $_POST['FilialUsu'];  
                else:
@@ -400,8 +413,8 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="inputCity">Fone</label>
-          <input name ="tel" type="text" class="form-control" required  value="<?php echo $tel;?>"> 
+          
+          <input name ="tel" type="hidden" class="form-control" required  value="<?php echo $tel;?>"> 
         </div> 
       </div>
 

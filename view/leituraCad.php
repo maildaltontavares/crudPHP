@@ -22,11 +22,8 @@
   endif;    
 
   include_once "menuNavCab.php";
-  $Altera = "N";  
-
-  $tabelaCtr = new TabelaCtr();    
-  $p_tabela = $tabelaCtr->buscaParametro('T',1); 
-  $paramDt =  $p_tabela[0]['pt'];  
+  $Altera = "N";    
+  $paramDt =  $_SESSION['paramDt']; // Parametro de formato de data do banco de dados
 
   $id = 0;
   $tear = '';

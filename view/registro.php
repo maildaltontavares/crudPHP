@@ -81,9 +81,10 @@ if(isset($_POST["criarConta"])):
                                 $txtMensagem = ""; 
 
                               
-                               $p_tabela = $tabelaCtr->buscaParametro('T',1); 
-                               $paramDt =  $p_tabela[0]['pt'];  
- 
+                                $p_tabela = $tabelaCtr->buscaParametro('T',1); 
+                                $paramDt =  $p_tabela[0]['pt'];  
+                               
+                                
                                 if ($usuarioCtr->createConta($txtNome,md5($txtSenha),$txtEmail,date($paramDt) ,1,$chave ,'S')!= 'OK'): 
                                     echo '<div class="alert alert-primary" role="alert"><li>' . "Erro ao criar conta!!"  . '</li></div>';  
                                 else:                      

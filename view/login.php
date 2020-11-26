@@ -3,6 +3,7 @@
   //require_once './../../controller/usuarioCtsr.php';
 require_once '../config.php';
 require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
+require_once ROOT_PATH . '/controller/tabelaCtr.php'; 
 require_once ROOT_PATH . '/controller/usuarioCtr.php'; 
 
   session_start();
@@ -93,6 +94,9 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
                             $_SESSION['user'] = $p_usu[0]['nome']; 
                             $_SESSION['id_usu'] = $p_usu[0]['id_usu']; 
 
+                            $tabelaCtr = new TabelaCtr();    
+                            $p_tabela = $tabelaCtr->buscaParametro('T',1); 
+                            $_SESSION['paramDt'] =  $p_tabela[0]['pt'];    
 
                             header('Location:principal.php');   
    

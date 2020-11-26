@@ -8,7 +8,7 @@
 
 
 		public function delete(TabPad $t)
-		{
+		{ 
   
 		 
 			$sql = 'delete from public."E0001_tabela_padrao" where d0001_id = ? ';  

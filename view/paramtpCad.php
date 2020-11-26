@@ -654,8 +654,12 @@
   
   
   $(document).ready(function() { 
+         
+         var vAltera =  "<?=$Altera?>";   
 
- 
+         if(vAltera=='S'){
+            $('#grupoTabela').attr('disabled', true); 
+         }
 
   });  
  
@@ -693,14 +697,14 @@
 
               $tabpad = new tabpadCtr();
               if($Altera =='S' or isset($_POST['gravar'])):
-                  $aTab = $tabpad->lerTodas() ;
+                  $aTab = $tabpad->lerTodasGeral() ;
               else:
                   $aTab = $tabpad->lerNParam() ;
 
               endif;
               
-              foreach($aTab as $p_tabpad):
-               
+              foreach($aTab as $p_tabpad):  
+
                   if ($p_tabpad['id'] == $id_tp):
                     echo ' <option value=' . $p_tabpad['id']  . ' selected >' . $p_tabpad['descricao']  .'</option>';  
                   else:  

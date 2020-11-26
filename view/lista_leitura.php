@@ -35,8 +35,7 @@
 
    if (isset($_GET['pesquisa_todos'])):
    	   $_SESSION['arg1Tp'] = '';
-   endif;	   
- 
+   endif;	  
 
 ?>  
 
