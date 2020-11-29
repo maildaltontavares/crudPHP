@@ -93,7 +93,7 @@
                                             Operações</a>
                                         -->
 
-                                             <a class="nav-link" href="#">Operações</a>
+                                             <a class="nav-link" href="rptUsuario.php">Operações</a>
 
                                             <a class="nav-link" href="#">Tipos de Movimentos</a>
                                             <a class="nav-link" href="#">Centros de Custos</a>

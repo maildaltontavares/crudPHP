@@ -10,9 +10,15 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
   //session_unset();
   //session_destroy();
   //session_start(); 
-?> 
 
+//setcookie('email');
 
+  if(isset($_COOKIE['email'])):      
+      $email = $_COOKIE['email']; 
+  else:
+      $email =  '';
+  endif;      
+?>  
 
 <!DOCTYPE html>
 <html>  
@@ -78,11 +84,11 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
               if(!empty($p_usu)):  
  
                   if ($p_usu[0]['bloqueado']=='S'):
-                       echo '</br>';
+                       echo '</br><br>';
                        echo '<div class="alert alert-primary" role="alert"><li>' . "Aguardando confirmação da conta!"  . '</li></div>';   
                   else:
                         if (md5($pwd)!=$p_usu[0]['senha']):
-                             echo '</br>';
+                             echo '</br><br>';
                              echo '<div class="alert alert-primary" role="alert"><li>' . "Senha não confere!"  . '</li></div>';  
                         else: 
    
@@ -96,21 +102,28 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
 
                             $tabelaCtr = new TabelaCtr();    
                             $p_tabela = $tabelaCtr->buscaParametro('T',1); 
-                            $_SESSION['paramDt'] =  $p_tabela[0]['pt'];    
+                            $_SESSION['paramDt'] =  $p_tabela[0]['pt'];  
+
+
+                            if(isset($_POST['lembrar'])):
+                                setcookie('email',$email);
+                            endif;   
 
                             header('Location:principal.php');   
    
                        endif;
                   endif;    
                 else:  
-                    echo '</br>';
+                    echo '</br><br>';
+                    echo '<br><br>';
                     echo '<div class="alert alert-primary" role="alert"><li>' . "E-mail ou senha inválido!!"  . '</li></div>';                  
               endif;   
 
           else:
  
               foreach ($erros as $erro): 
-                  echo '</br>';                
+                  echo '</br><br>';        
+
                   echo '<div class="alert alert-primary" role="alert"><li>' . $erro  . '</li></div>';  
               endforeach;  
 
@@ -134,15 +147,40 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
                 <!--<img class="mb-4" src="../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
                 <h1 class="h3 mb-3 font-weight-normal">Login</h1>
                
-                <label for="email" class="sr-only">E-mail</label>
-                <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus>
-               
-                <label for="senha" class="sr-only">Senha</label>
-                <input type="password"  name="senha" class="form-control" placeholder="Senha" required>
+                <?php
                 
+                if(empty($email)):
+                      echo '
+
+                      <label for="email" class="sr-only">E-mail</label>
+                      <input type="email" name="email" class="form-control" placeholder="E-mail" required autofocus value="' . $email . '">
+
+                      
+                      <label for="senha" class="sr-only">Senha</label>
+                      <input type="password"  name="senha" class="form-control" placeholder="Senha" required>
+                      ';
+
+                 
+              else:
+
+                      echo '
+
+                      <label for="email" class="sr-only">E-mail</label>
+                      <input type="email" name="email" class="form-control" placeholder="E-mail" required  value="' . $email . '">
+
+                      
+                      <label for="senha" class="sr-only">Senha</label>
+                      <input type="password"  name="senha" class="form-control" placeholder="Senha"autofocus required>
+                      ';
+              endif;
+               ?>
+
+         
+
+
                 <div class="checkbox mb-3">
                   <label>
-                    <input type="checkbox" value=""> Lembrar de mim
+                    <input type="checkbox" name="lembrar" value=""> Lembrar de mim
                   </label>
                 </div>
             

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptUsuario" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f2a5e422-38bb-45e5-9b5f-f08653ddade8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from public."S0001_usuario"]]>
+	</queryString>
+	<field name="d0001_id" class="java.lang.Integer"/>
+	<field name="d0001_nome" class="java.lang.String"/>
+	<field name="d0001_email" class="java.lang.String"/>
+	<field name="d0001_senha" class="java.lang.String"/>
+	<field name="d0001_tel" class="java.lang.String"/>
+	<field name="d0001_chave" class="java.lang.String"/>
+	<field name="d0001_filial_default" class="java.lang.Long"/>
+	<field name="d0001_bloqueado" class="java.lang.String"/>
+	<field name="d0001_dt_inclusao" class="java.sql.Date"/>
+	<field name="d0001_dt_alteracao" class="java.sql.Date"/>
+	<field name="d0001_chave_atenticacao" class="java.lang.String"/>
+	<field name="d0001_alter_senha" class="java.lang.String"/>
+	<field name="d0001_chave_alt_senha" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="277" height="20" uuid="050b7d9c-4907-4613-87b8-3be9da87b776"/>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="0" width="277" height="20" uuid="dc533498-e66e-4fca-a376-4e774c189e44"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="277" height="20" uuid="d97614b7-6bc2-487a-a92a-eebd14ad5fec"/>
+				<textFieldExpression><![CDATA[$F{d0001_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="0" width="277" height="20" uuid="2e129736-bec4-4c11-899b-1e05210fd09c"/>
+				<textFieldExpression><![CDATA[$F{d0001_nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
