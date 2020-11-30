@@ -21,10 +21,10 @@ $options = [
     'format' => ['pdf', 'rtf']     
 ];
 
-
-
 $jasper = new PHPJasper;
-
+ 
+var_dump($jasper);
+/*
 $jasper->process(
     $input,
     $output,
@@ -39,7 +39,7 @@ header('Content-Disposition:; filename=' . $filename);
 readfile($output . '/' . $filename);
 unlink($output . '/' . $filename);
 flush();
-
+ */
 /*
 require_once '../config.php';
 require_once ROOT_PATH . '/vendor/autoload.php';
