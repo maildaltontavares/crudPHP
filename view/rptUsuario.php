@@ -24,13 +24,14 @@ $options = [
 $jasper = new PHPJasper;
  
 var_dump($jasper);
-/*
+
 $jasper->process(
     $input,
     $output,
     $options
 )->execute();
-
+var_dump('ZZZZZZZZ');
+/*
 $filename = 'hello_world.pdf';
 header('Content-Type: application/pdf');
 header('Content-Disposition:; filename=' . $filename);
