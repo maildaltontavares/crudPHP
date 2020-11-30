@@ -83,7 +83,6 @@ class ComposerStaticInit1a6dacb586469367a45acca98a443434
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
-            'PHPJasper\\' => 10,
         ),
         'M' => 
         array (
@@ -121,10 +120,6 @@ class ComposerStaticInit1a6dacb586469367a45acca98a443434
         'PhpOffice\\PhpSpreadsheet\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
-        ),
-        'PHPJasper\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/geekcom/phpjasper/src',
         ),
         'MyCLabs\\Enum\\' => 
         array (

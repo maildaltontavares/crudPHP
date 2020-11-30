@@ -2,18 +2,23 @@
 <?php
 
 
-require_once '../config.php';
+require_once '../config.php';   
 
-require_once ROOT_PATH . '/vendor/autoload.php';
+//require_once ROOT_PATH . '/vendor/autoload.php';
 
+//C:\xampp\htdocs\crudphp\bibliotecas\phpjasper\src
 
+require_once ROOT_PATH . '/bibliotecas/phpjasper/src/PHPJasper.php';  
 
 use PHPJasper\PHPJasper;
 
-$input =  ROOT_PATH .  '/vendor/geekcom/phpjasper/examples/hello_world.jrxml';  
-$output = ROOT_PATH .  '/vendor/geekcom/phpjasper/examples';    
+//$input =  ROOT_PATH .  '/vendor/geekcom/phpjasper/examples/hello_world.jrxml';  
+//$output = ROOT_PATH .  '/vendor/geekcom/phpjasper/examples';    
+
+$input =  ROOT_PATH . '/bibliotecas/phpjasper/examples/hello_world.jrxml';  
+$output = ROOT_PATH . '/bibliotecas/phpjasper/examples';   
 $options = [ 
-    'format' => ['pdf', 'rtf'] 
+    'format' => ['pdf', 'rtf']     
 ];
 
 

@@ -74,7 +74,7 @@ class PHPMailer {
   /**
    * Holds the most recent mailer error message.
    * @var string
-   */
+   */ 
   public $ErrorInfo         = '';
 
   /**
