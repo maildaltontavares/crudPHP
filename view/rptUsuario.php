@@ -26,9 +26,9 @@ $jasper = new PHPJasper;
 //shell_exec('java -version');
  
  
-$output = shell_exec('java -version');
-echo "<pre>$output</pre>";
-/*
+//$output = shell_exec('java -version');
+//echo "<pre>$output</pre>";
+
 $jasper->process(
     $input,
     $output,
@@ -43,7 +43,7 @@ header('Content-Disposition:; filename=' . $filename);
 readfile($output . '/' . $filename);
 unlink($output . '/' . $filename);
 flush();
- */
+ 
 /*
 require_once '../config.php';
 require_once ROOT_PATH . '/vendor/autoload.php';
