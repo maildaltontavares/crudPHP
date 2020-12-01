@@ -39,6 +39,8 @@ Como criar janela modal com formulário cadastrar com JavaScript - youtube
 Setar como administrador
 set HOMEDRIVE=C:\Program Files\heroku\client\node_modules\netrc-parser\lib
 
+git update-index --add --chmod=+x jasperstarter
+
 GIT PUSH HEROKU MASTER
 git push heroku master
  
