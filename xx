@@ -1,100 +1,100 @@
-2020-12-01T16:34:27.473450+00:00 heroku[router]: at=info method=GET path="/view/css/styles.css" host=virtuax.herokuapp.com request_id=99a8f7eb-67b3-4acb-819c-10907852c06e fwd="186.225.52.42" dyno=web.1 connect=0ms service=18ms status=200 bytes=188004 protocol=https
-2020-12-01T16:34:27.505562+00:00 app[web.1]: 10.30.214.102 - - [01/Dec/2020:16:34:27 +0000] "GET /view/js/scripts.js HTTP/1.1" 200 803 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T16:34:27.509772+00:00 heroku[router]: at=info method=GET path="/view/js/scripts.js" host=virtuax.herokuapp.com request_id=31e4bf74-7394-45e2-82ee-d8965b9d00da fwd="186.225.52.42" dyno=web.1 connect=22ms service=3ms status=200 bytes=1048 protocol=https
-2020-12-01T16:34:35.720057+00:00 app[web.1]: ./jasperstarter: 26: ./jasperstarter: java: not found
-2020-12-01T16:34:35.720478+00:00 app[web.1]: [01-Dec-2020 16:34:35 UTC] PHP Fatal error:  Uncaught Error: Class 'PHPJasper\Exception\ErrorCommandExecutable' not found in /app/bibliotecas/phpjasper/src/PHPJasper.php:250
-2020-12-01T16:34:35.720510+00:00 app[web.1]: Stack trace:
-2020-12-01T16:34:35.720632+00:00 app[web.1]: #0 /app/view/rptUsuario.php(32): PHPJasper\PHPJasper->execute()
-2020-12-01T16:34:35.720663+00:00 app[web.1]: #1 {main}
-2020-12-01T16:34:35.720791+00:00 app[web.1]: thrown in /app/bibliotecas/phpjasper/src/PHPJasper.php on line 250
-2020-12-01T16:34:35.721246+00:00 app[web.1]: 10.186.202.203 - - [01/Dec/2020:16:34:35 +0000] "GET /view/rptUsuario.php HTTP/1.1" 500 722 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T16:34:35.744946+00:00 heroku[router]: at=info method=GET path="/view/rptUsuario.php" host=virtuax.herokuapp.com request_id=c3c3c5b5-9ae6-4471-843e-cb34e92ca383 fwd="186.225.52.42" dyno=web.1 connect=2ms service=10ms status=500 bytes=912 protocol=https
-2020-12-01T16:35:34.943817+00:00 app[web.1]: 10.186.202.203 - - [01/Dec/2020:16:35:34 +0000] "GET /view/principal.php HTTP/1.1" 200 13993 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T16:35:34.945739+00:00 heroku[router]: at=info method=GET path="/view/principal.php" host=virtuax.herokuapp.com request_id=4363f288-c1f9-40ad-ba92-ff79199079c7 fwd="186.225.52.42" dyno=web.1 connect=0ms service=2ms status=200 bytes=14283 protocol=https
-2020-12-01T17:08:43.578110+00:00 heroku[web.1]: Idling
-2020-12-01T17:08:43.580576+00:00 heroku[web.1]: State changed from up to down
-2020-12-01T17:08:44.514120+00:00 heroku[web.1]: Stopping all processes with SIGTERM
-2020-12-01T17:08:44.540293+00:00 app[web.1]: SIGTERM received, attempting graceful shutdown...
-2020-12-01T17:08:44.540302+00:00 app[web.1]: Stopping httpd...
-2020-12-01T17:08:44.540523+00:00 app[web.1]: Stopping httpd gracefully...
-2020-12-01T17:08:44.541142+00:00 app[web.1]: Stopping php-fpm...
-2020-12-01T17:08:44.573607+00:00 app[web.1]: Shutdown complete.
-2020-12-01T17:08:44.616700+00:00 heroku[web.1]: Process exited with status 143
-2020-12-01T17:09:25.000000+00:00 app[api]: Build started by user dalton_tavares@bol.com.br
-2020-12-01T17:09:53.916602+00:00 app[api]: Release v136 created by user dalton_tavares@bol.com.br
-2020-12-01T17:09:53.916602+00:00 app[api]: Deploy ec583614 by user dalton_tavares@bol.com.br
-2020-12-01T17:09:54.000000+00:00 app[api]: Build succeeded
-2020-12-01T17:09:54.110181+00:00 heroku[web.1]: State changed from down to starting
-2020-12-01T17:10:02.615284+00:00 heroku[web.1]: Starting process with command `heroku-php-apache2`
-2020-12-01T17:10:05.091674+00:00 app[web.1]: Setting JAVA_TOOL_OPTIONS defaults based on dyno size. Custom settings will override them.
-2020-12-01T17:10:06.021594+00:00 app[web.1]: Detected 536870912 Bytes of RAM
-2020-12-01T17:10:06.056312+00:00 app[web.1]: PHP memory_limit is 128M Bytes
-2020-12-01T17:10:06.071383+00:00 app[web.1]: Starting php-fpm with 4 workers...
-2020-12-01T17:10:06.196804+00:00 app[web.1]: Starting httpd...
-2020-12-01T17:10:06.314291+00:00 heroku[web.1]: State changed from starting to up
-2020-12-01T17:10:16.071970+00:00 heroku[router]: at=info method=GET path="/view/login.php" host=virtuax.herokuapp.com request_id=b2cda994-b38d-4627-b0ac-4235a814b5c1 fwd="186.225.52.42" dyno=web.1 connect=0ms service=10ms status=200 bytes=5231 protocol=https
-2020-12-01T17:10:16.076736+00:00 app[web.1]: 10.45.47.90 - - [01/Dec/2020:17:10:16 +0000] "GET /view/login.php HTTP/1.1" 200 4949 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:16.192046+00:00 heroku[router]: at=info method=GET path="/view/signin.css" host=virtuax.herokuapp.com request_id=01547b98-19b1-4ce0-9d91-4c6ce965b0c9 fwd="186.225.52.42" dyno=web.1 connect=0ms service=1ms status=200 bytes=1370 protocol=https
-2020-12-01T17:10:16.195885+00:00 app[web.1]: 10.45.47.90 - - [01/Dec/2020:17:10:16 +0000] "GET /assets/dist/css/bootstrap.css HTTP/1.1" 200 198313 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:16.196386+00:00 app[web.1]: 10.45.153.152 - - [01/Dec/2020:17:10:16 +0000] "GET /view/signin.css HTTP/1.1" 200 1138 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:16.203825+00:00 heroku[router]: at=info method=GET path="/assets/dist/css/bootstrap.css" host=virtuax.herokuapp.com request_id=561217a0-2bf3-4b13-8842-e1125985e1ee fwd="186.225.52.42" dyno=web.1 connect=0ms service=14ms status=200 bytes=198549 protocol=https
-2020-12-01T17:10:16.305755+00:00 heroku[router]: at=info method=GET path="/view/carousel.css" host=virtuax.herokuapp.com request_id=5af2bc0e-143e-4a54-aeae-44290f459f54 fwd="186.225.52.42" dyno=web.1 connect=0ms service=1ms status=200 bytes=1864 protocol=https
-2020-12-01T17:10:16.310095+00:00 app[web.1]: 10.45.153.152 - - [01/Dec/2020:17:10:16 +0000] "GET /view/carousel.css HTTP/1.1" 200 1632 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:16.412126+00:00 heroku[router]: at=info method=GET path="/view/logoSantana2.jpg" host=virtuax.herokuapp.com request_id=9113403f-74e7-400c-aed4-0e771f934276 fwd="186.225.52.42" dyno=web.1 connect=0ms service=1ms status=200 bytes=7640 protocol=https
-2020-12-01T17:10:16.415960+00:00 app[web.1]: 10.11.162.79 - - [01/Dec/2020:17:10:16 +0000] "GET /view/logoSantana2.jpg HTTP/1.1" 200 7405 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:17.947539+00:00 app[web.1]: 10.45.47.90 - - [01/Dec/2020:17:10:17 +0000] "GET /view/login.php HTTP/1.1" 200 4949 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:17.950198+00:00 heroku[router]: at=info method=GET path="/view/login.php" host=virtuax.herokuapp.com request_id=290841df-5b2e-4e52-8365-0e5e64e8106d fwd="186.225.52.42" dyno=web.1 connect=0ms service=10ms status=200 bytes=5231 protocol=https
-2020-12-01T17:10:18.358596+00:00 app[web.1]: 10.37.168.207 - - [01/Dec/2020:17:10:18 +0000] "GET /assets/dist/js/bootstrap.bundle.js HTTP/1.1" 200 229201 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:18.388523+00:00 heroku[router]: at=info method=GET path="/assets/dist/js/bootstrap.bundle.js" host=virtuax.herokuapp.com request_id=13d61987-38d6-4a2e-a037-ba02f61216d1 fwd="186.225.52.42" dyno=web.1 connect=25ms service=14ms status=200 bytes=229451 protocol=https
-2020-12-01T17:10:19.690183+00:00 heroku[router]: at=info method=GET path="/favicon.ico" host=virtuax.herokuapp.com request_id=a9ae136b-936e-4037-bd80-8d1a26236c70 fwd="186.225.52.42" dyno=web.1 connect=0ms service=1ms status=404 bytes=360 protocol=https
-2020-12-01T17:10:19.694803+00:00 app[web.1]: 10.37.168.207 - - [01/Dec/2020:17:10:19 +0000] "GET /favicon.ico HTTP/1.1" 404 196 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:24.363141+00:00 app[web.1]: [01-Dec-2020 17:10:24 UTC] PHP Notice:  Undefined index: idGrupo in /app/view/login.php on line 99
-2020-12-01T17:10:24.364055+00:00 heroku[router]: at=info method=POST path="/view/login.php" host=virtuax.herokuapp.com request_id=d424b61c-c9b7-4eb0-9b1f-5959a3e3cddb fwd="186.225.52.42" dyno=web.1 connect=0ms service=42ms status=302 bytes=5276 protocol=https
-2020-12-01T17:10:24.368554+00:00 app[web.1]: 10.37.168.207 - - [01/Dec/2020:17:10:24 +0000] "POST /view/login.php HTTP/1.1" 302 4966 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:24.506015+00:00 app[web.1]: 10.45.47.90 - - [01/Dec/2020:17:10:24 +0000] "GET /view/principal.php HTTP/1.1" 200 13993 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:24.510728+00:00 heroku[router]: at=info method=GET path="/view/principal.php" host=virtuax.herokuapp.com request_id=aebe6331-1ec5-4f92-82b4-bf95002d6890 fwd="186.225.52.42" dyno=web.1 connect=0ms service=12ms status=200 bytes=14283 protocol=https
-2020-12-01T17:10:24.639058+00:00 heroku[router]: at=info method=GET path="/view/login2.png" host=virtuax.herokuapp.com request_id=c4bb48de-59ae-4aed-a5f8-5fb58388dcc3 fwd="186.225.52.42" dyno=web.1 connect=0ms service=1ms status=200 bytes=7198 protocol=https
-2020-12-01T17:10:24.641506+00:00 heroku[router]: at=info method=GET path="/view/estiloVirtuax.css" host=virtuax.herokuapp.com request_id=c8d2f5fb-1bc1-4ac2-bddd-148262766290 fwd="186.225.52.42" dyno=web.1 connect=1ms service=3ms status=200 bytes=2508 protocol=https
-2020-12-01T17:10:24.643057+00:00 heroku[router]: at=info method=GET path="/view/js/scripts.js" host=virtuax.herokuapp.com request_id=52183c63-a577-49cc-95cf-1e635f511e57 fwd="186.225.52.42" dyno=web.1 connect=0ms service=1ms status=200 bytes=1048 protocol=https
-2020-12-01T17:10:24.643247+00:00 app[web.1]: 10.45.153.152 - - [01/Dec/2020:17:10:24 +0000] "GET /view/login2.png HTTP/1.1" 200 6964 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:24.643811+00:00 app[web.1]: 10.11.162.79 - - [01/Dec/2020:17:10:24 +0000] "GET /view/logoSantana2.jpg HTTP/1.1" 304 - "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:24.644360+00:00 app[web.1]: 10.37.168.207 - - [01/Dec/2020:17:10:24 +0000] "GET /view/estiloVirtuax.css HTTP/1.1" 200 2276 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:24.647271+00:00 app[web.1]: 10.47.167.186 - - [01/Dec/2020:17:10:24 +0000] "GET /view/js/scripts.js HTTP/1.1" 200 803 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:24.647725+00:00 heroku[router]: at=info method=GET path="/view/logoSantana2.jpg" host=virtuax.herokuapp.com request_id=6f39cdff-3c54-4140-91a9-8125e4da7443 fwd="186.225.52.42" dyno=web.1 connect=0ms service=1ms status=304 bytes=129 protocol=https
-2020-12-01T17:10:24.648479+00:00 app[web.1]: 10.45.47.90 - - [01/Dec/2020:17:10:24 +0000] "GET /view/css/styles.css HTTP/1.1" 200 187768 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
-2020-12-01T17:10:24.650327+00:00 heroku[router]: at=info method=GET path="/view/css/styles.css" host=virtuax.herokuapp.com request_id=9b293ceb-9c87-4161-afb6-7338c55b3a98 fwd="186.225.52.42" dyno=web.1 connect=1ms service=7ms status=200 bytes=188004 protocol=https
-2020-12-01T17:10:28.862249+00:00 app[web.1]: Picked up JAVA_TOOL_OPTIONS: -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8
-2020-12-01T17:10:31.504412+00:00 app[web.1]: Exception in thread "main" net.sf.jasperreports.engine.util.JRFontNotFoundException: Font "Arial" is not available to the JVM. See the Javadoc for more details.
-2020-12-01T17:10:31.504628+00:00 app[web.1]: at net.sf.jasperreports.engine.fonts.FontUtil.checkAwtFont(FontUtil.java:604)
-2020-12-01T17:10:31.504914+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.SimpleTextLineWrapper.loadFont(SimpleTextLineWrapper.java:384)
-2020-12-01T17:10:31.505219+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.SimpleTextLineWrapper.getGeneralFontInfo(SimpleTextLineWrapper.java:354)
-2020-12-01T17:10:31.505545+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.SimpleTextLineWrapper.createFontInfo(SimpleTextLineWrapper.java:294)
-2020-12-01T17:10:31.505799+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.SimpleTextLineWrapper.start(SimpleTextLineWrapper.java:256)
-2020-12-01T17:10:31.505976+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.TextMeasurer.measure(TextMeasurer.java:543)
-2020-12-01T17:10:31.506208+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillTextElement.chopTextElement(JRFillTextElement.java:665)
-2020-12-01T17:10:31.506445+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillStaticText.prepare(JRFillStaticText.java:179)
-2020-12-01T17:10:31.506715+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillElementContainer.prepareElements(JRFillElementContainer.java:542)
-2020-12-01T17:10:31.506893+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillFrame.prepare(JRFillFrame.java:241)
-2020-12-01T17:10:31.507134+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillElementContainer.prepareElements(JRFillElementContainer.java:542)
-2020-12-01T17:10:31.507323+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillBand.fill(JRFillBand.java:453)
-2020-12-01T17:10:31.507493+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillBand.fill(JRFillBand.java:428)
-2020-12-01T17:10:31.507703+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillTitle(JRVerticalFiller.java:325)
-2020-12-01T17:10:31.507921+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportStart(JRVerticalFiller.java:256)
-2020-12-01T17:10:31.508131+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:110)
-2020-12-01T17:10:31.508310+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:615)
-2020-12-01T17:10:31.508507+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:432)
-2020-12-01T17:10:31.508666+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:162)
-2020-12-01T17:10:31.508837+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:145)
-2020-12-01T17:10:31.509028+00:00 app[web.1]: at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:758)
-2020-12-01T17:10:31.509233+00:00 app[web.1]: at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:1074)
-2020-12-01T17:10:31.509384+00:00 app[web.1]: at de.cenote.jasperstarter.Report.fillInternal(Report.java:306)
-2020-12-01T17:10:31.509556+00:00 app[web.1]: at de.cenote.jasperstarter.Report.fill(Report.java:282)
-2020-12-01T17:10:31.509695+00:00 app[web.1]: at de.cenote.jasperstarter.App.processReport(App.java:226)
-2020-12-01T17:10:31.509828+00:00 app[web.1]: at de.cenote.jasperstarter.App.main(App.java:109)
-2020-12-01T17:10:31.556368+00:00 heroku[router]: at=info method=GET path="/view/rptUsuario.php" host=virtuax.herokuapp.com request_id=073eea6d-ef3e-400e-ac63-4040e6103a99 fwd="186.225.52.42" dyno=web.1 connect=0ms service=2709ms status=500 bytes=912 protocol=https
-2020-12-01T17:10:31.556888+00:00 app[web.1]: [01-Dec-2020 17:10:31 UTC] PHP Fatal error:  Uncaught Error: Class 'PHPJasper\Exception\ErrorCommandExecutable' not found in /app/bibliotecas/phpjasper/src/PHPJasper.php:250
-2020-12-01T17:10:31.556890+00:00 app[web.1]: Stack trace:
-2020-12-01T17:10:31.557003+00:00 app[web.1]: #0 /app/view/rptUsuario.php(32): PHPJasper\PHPJasper->execute()
-2020-12-01T17:10:31.557022+00:00 app[web.1]: #1 {main}
-2020-12-01T17:10:31.557143+00:00 app[web.1]: thrown in /app/bibliotecas/phpjasper/src/PHPJasper.php on line 250
-2020-12-01T17:10:31.557720+00:00 app[web.1]: 10.45.47.90 - - [01/Dec/2020:17:10:28 +0000] "GET /view/rptUsuario.php HTTP/1.1" 500 722 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:18:22.645313+00:00 app[web.1]: Detected 536870912 Bytes of RAM
+2020-12-01T17:18:22.680592+00:00 app[web.1]: PHP memory_limit is 128M Bytes
+2020-12-01T17:18:22.690715+00:00 app[web.1]: Starting php-fpm with 4 workers...
+2020-12-01T17:18:22.808011+00:00 app[web.1]: Starting httpd...
+2020-12-01T17:18:22.979303+00:00 heroku[web.1]: State changed from starting to up
+2020-12-01T17:19:11.506380+00:00 app[web.1]: 10.31.72.133 - - [01/Dec/2020:17:19:11 +0000] "GET /view/principal.php HTTP/1.1" 302 13974 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:19:11.543381+00:00 heroku[router]: at=info method=GET path="/view/principal.php" host=virtuax.herokuapp.com request_id=d85cbb96-f41d-45b1-9046-16bf8f9c5523 fwd="186.225.52.42" dyno=web.1 connect=6ms service=39ms status=302 bytes=14288 protocol=https
+2020-12-01T17:19:11.680331+00:00 app[web.1]: 10.171.230.57 - - [01/Dec/2020:17:19:11 +0000] "GET /view/login.php HTTP/1.1" 200 4949 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:19:11.682017+00:00 heroku[router]: at=info method=GET path="/view/login.php" host=virtuax.herokuapp.com request_id=eedf31c5-971b-44c8-bf59-c937599e8ed1 fwd="186.225.52.42" dyno=web.1 connect=0ms service=11ms status=200 bytes=5231 protocol=https
+2020-12-01T17:22:52.000000+00:00 app[api]: Build started by user dalton_tavares@bol.com.br
+2020-12-01T17:23:20.000000+00:00 app[api]: Build succeeded
+2020-12-01T17:23:20.371274+00:00 app[api]: Deploy c61f3fbd by user dalton_tavares@bol.com.br
+2020-12-01T17:23:20.371274+00:00 app[api]: Release v138 created by user dalton_tavares@bol.com.br
+2020-12-01T17:23:20.811317+00:00 heroku[web.1]: Restarting
+2020-12-01T17:23:20.813461+00:00 heroku[web.1]: State changed from up to starting
+2020-12-01T17:23:22.078566+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2020-12-01T17:23:22.123548+00:00 app[web.1]: Stopping php-fpm...
+2020-12-01T17:23:22.123603+00:00 app[web.1]: Stopping httpd...
+2020-12-01T17:23:22.125827+00:00 app[web.1]: SIGTERM received, attempting graceful shutdown...
+2020-12-01T17:23:22.142273+00:00 app[web.1]: Shutdown complete.
+2020-12-01T17:23:22.189186+00:00 heroku[web.1]: Process exited with status 143
+2020-12-01T17:23:31.503448+00:00 heroku[web.1]: Starting process with command `heroku-php-apache2`
+2020-12-01T17:23:35.143756+00:00 app[web.1]: Setting JAVA_TOOL_OPTIONS defaults based on dyno size. Custom settings will override them.
+2020-12-01T17:23:37.534272+00:00 app[web.1]: Detected 536870912 Bytes of RAM
+2020-12-01T17:23:37.670067+00:00 app[web.1]: PHP memory_limit is 128M Bytes
+2020-12-01T17:23:37.687953+00:00 app[web.1]: Starting php-fpm with 4 workers...
+2020-12-01T17:23:38.023918+00:00 app[web.1]: Starting httpd...
+2020-12-01T17:23:38.336900+00:00 heroku[web.1]: State changed from starting to up
+2020-12-01T17:23:44.866931+00:00 app[web.1]: 10.33.187.161 - - [01/Dec/2020:17:23:44 +0000] "GET /view/login.php HTTP/1.1" 200 4949 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:44.867827+00:00 heroku[router]: at=info method=GET path="/view/login.php" host=virtuax.herokuapp.com request_id=9e645f01-9909-4036-b9d7-44a7ab60d7f0 fwd="186.225.52.42" dyno=web.1 connect=1ms service=19ms status=200 bytes=5231 protocol=https
+2020-12-01T17:23:45.014771+00:00 app[web.1]: 10.45.155.176 - - [01/Dec/2020:17:23:45 +0000] "GET /view/signin.css HTTP/1.1" 200 1138 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:45.015938+00:00 app[web.1]: 10.33.187.161 - - [01/Dec/2020:17:23:45 +0000] "GET /assets/dist/css/bootstrap.css HTTP/1.1" 200 198313 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:45.016464+00:00 heroku[router]: at=info method=GET path="/view/signin.css" host=virtuax.herokuapp.com request_id=0dc85b15-3c19-4c83-b5c2-8c2f343ceedc fwd="186.225.52.42" dyno=web.1 connect=0ms service=1ms status=200 bytes=1370 protocol=https
+2020-12-01T17:23:45.030830+00:00 heroku[router]: at=info method=GET path="/assets/dist/css/bootstrap.css" host=virtuax.herokuapp.com request_id=3de8c98b-9711-4334-a8cc-8d9007c79022 fwd="186.225.52.42" dyno=web.1 connect=1ms service=14ms status=200 bytes=198549 protocol=https
+2020-12-01T17:23:45.129310+00:00 heroku[router]: at=info method=GET path="/view/carousel.css" host=virtuax.herokuapp.com request_id=049007a3-1d83-4593-b163-9b8643a82bb1 fwd="186.225.52.42" dyno=web.1 connect=1ms service=5ms status=200 bytes=1864 protocol=https
+2020-12-01T17:23:45.131071+00:00 app[web.1]: 10.45.155.176 - - [01/Dec/2020:17:23:45 +0000] "GET /view/carousel.css HTTP/1.1" 200 1632 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:45.219004+00:00 app[web.1]: 10.45.185.241 - - [01/Dec/2020:17:23:45 +0000] "GET /assets/dist/js/bootstrap.bundle.js HTTP/1.1" 200 229201 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:45.222652+00:00 app[web.1]: 10.41.173.187 - - [01/Dec/2020:17:23:45 +0000] "GET /view/logoSantana2.jpg HTTP/1.1" 200 7405 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:45.224890+00:00 heroku[router]: at=info method=GET path="/view/logoSantana2.jpg" host=virtuax.herokuapp.com request_id=6273ad8a-c2ae-43d5-8b98-587080068757 fwd="186.225.52.42" dyno=web.1 connect=1ms service=7ms status=200 bytes=7640 protocol=https
+2020-12-01T17:23:45.235229+00:00 heroku[router]: at=info method=GET path="/assets/dist/js/bootstrap.bundle.js" host=virtuax.herokuapp.com request_id=9cbbc241-fb2c-4477-acd8-ad4bbc32e72c fwd="186.225.52.42" dyno=web.1 connect=0ms service=17ms status=200 bytes=229451 protocol=https
+2020-12-01T17:23:49.186815+00:00 app[web.1]: 10.45.185.241 - - [01/Dec/2020:17:23:49 +0000] "GET / HTTP/1.1" 302 3 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:49.190349+00:00 heroku[router]: at=info method=GET path="/" host=virtuax.herokuapp.com request_id=c472808e-c06b-4732-bf36-19971ea67ec5 fwd="186.225.52.42" dyno=web.1 connect=0ms service=7ms status=302 bytes=203 protocol=https
+2020-12-01T17:23:49.394860+00:00 app[web.1]: 10.45.185.241 - - [01/Dec/2020:17:23:49 +0000] "GET /view/login.php HTTP/1.1" 200 4949 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:49.396579+00:00 heroku[router]: at=info method=GET path="/view/login.php" host=virtuax.herokuapp.com request_id=d235ec8e-23b2-4f08-9554-0262d272d2aa fwd="186.225.52.42" dyno=web.1 connect=0ms service=6ms status=200 bytes=5231 protocol=https
+2020-12-01T17:23:59.104795+00:00 app[web.1]: [01-Dec-2020 17:23:59 UTC] PHP Notice:  Undefined index: idGrupo in /app/view/login.php on line 99
+2020-12-01T17:23:59.109310+00:00 app[web.1]: 10.45.185.241 - - [01/Dec/2020:17:23:59 +0000] "POST /view/login.php HTTP/1.1" 302 4966 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:59.112985+00:00 heroku[router]: at=info method=POST path="/view/login.php" host=virtuax.herokuapp.com request_id=cb8ccaa2-7803-40b1-92ee-6385af7b35d5 fwd="186.225.52.42" dyno=web.1 connect=0ms service=39ms status=302 bytes=5276 protocol=https
+2020-12-01T17:23:59.226124+00:00 app[web.1]: 10.45.185.241 - - [01/Dec/2020:17:23:59 +0000] "GET /view/principal.php HTTP/1.1" 200 13993 "https://virtuax.herokuapp.com/view/login.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:59.230634+00:00 heroku[router]: at=info method=GET path="/view/principal.php" host=virtuax.herokuapp.com request_id=62f569ab-80a2-4bae-a4b6-28a7ddc2e703 fwd="186.225.52.42" dyno=web.1 connect=0ms service=3ms status=200 bytes=14283 protocol=https
+2020-12-01T17:23:59.369197+00:00 app[web.1]: 10.30.121.23 - - [01/Dec/2020:17:23:59 +0000] "GET /view/login2.png HTTP/1.1" 200 6964 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:59.369673+00:00 app[web.1]: 10.45.155.176 - - [01/Dec/2020:17:23:59 +0000] "GET /view/logoSantana2.jpg HTTP/1.1" 304 - "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:59.370161+00:00 app[web.1]: 10.33.187.161 - - [01/Dec/2020:17:23:59 +0000] "GET /view/estiloVirtuax.css HTTP/1.1" 200 2276 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:59.370663+00:00 app[web.1]: 10.41.173.187 - - [01/Dec/2020:17:23:59 +0000] "GET /view/js/scripts.js HTTP/1.1" 200 803 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:59.371860+00:00 heroku[router]: at=info method=GET path="/view/logoSantana2.jpg" host=virtuax.herokuapp.com request_id=ff6f7d9d-48c0-45b2-85c4-19f06387353a fwd="186.225.52.42" dyno=web.1 connect=1ms service=1ms status=304 bytes=129 protocol=https
+2020-12-01T17:23:59.371964+00:00 app[web.1]: 10.45.185.241 - - [01/Dec/2020:17:23:59 +0000] "GET /view/css/styles.css HTTP/1.1" 200 187768 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:23:59.372452+00:00 heroku[router]: at=info method=GET path="/view/login2.png" host=virtuax.herokuapp.com request_id=f1becec0-76a9-418b-9fdd-7495c31e09e7 fwd="186.225.52.42" dyno=web.1 connect=0ms service=1ms status=200 bytes=7198 protocol=https
+2020-12-01T17:23:59.372710+00:00 heroku[router]: at=info method=GET path="/view/js/scripts.js" host=virtuax.herokuapp.com request_id=0c91924b-b92c-433d-bb57-d3cdad1e411b fwd="186.225.52.42" dyno=web.1 connect=1ms service=1ms status=200 bytes=1048 protocol=https
+2020-12-01T17:23:59.372856+00:00 heroku[router]: at=info method=GET path="/view/estiloVirtuax.css" host=virtuax.herokuapp.com request_id=6bb55d5c-af08-4c0d-91c9-3ca83273c8cf fwd="186.225.52.42" dyno=web.1 connect=1ms service=1ms status=200 bytes=2508 protocol=https
+2020-12-01T17:23:59.380337+00:00 heroku[router]: at=info method=GET path="/view/css/styles.css" host=virtuax.herokuapp.com request_id=87c6411d-c3af-4eec-bd12-fa20f5cd1bf4 fwd="186.225.52.42" dyno=web.1 connect=0ms service=6ms status=200 bytes=188004 protocol=https
+2020-12-01T17:24:05.094238+00:00 app[web.1]: Picked up JAVA_TOOL_OPTIONS: -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8
+2020-12-01T17:24:09.003137+00:00 app[web.1]: [01-Dec-2020 17:24:09] WARNING: [pool www] child 194, script '/app/view/rptUsuario.php' (request: "GET /view/rptUsuario.php") executing too slow (3.918880 sec), logging
+2020-12-01T17:24:09.008707+00:00 app[web.1]: 
+2020-12-01T17:24:09.008846+00:00 app[web.1]: [01-Dec-2020 17:24:09]  [pool www] pid 194
+2020-12-01T17:24:09.009010+00:00 app[web.1]: script_filename = /app/view/rptUsuario.php
+2020-12-01T17:24:09.009230+00:00 app[web.1]: [0x00007f7520813170] exec() /app/bibliotecas/phpjasper/src/PHPJasper.php:247
+2020-12-01T17:24:09.009422+00:00 app[web.1]: [0x00007f75208130e0] execute() /app/view/rptUsuario.php:36
+2020-12-01T17:24:09.149439+00:00 app[web.1]: Exception in thread "main" net.sf.jasperreports.engine.util.JRFontNotFoundException: Font "Arial" is not available to the JVM. See the Javadoc for more details.
+2020-12-01T17:24:09.149689+00:00 app[web.1]: at net.sf.jasperreports.engine.fonts.FontUtil.checkAwtFont(FontUtil.java:604)
+2020-12-01T17:24:09.149963+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.SimpleTextLineWrapper.loadFont(SimpleTextLineWrapper.java:384)
+2020-12-01T17:24:09.150261+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.SimpleTextLineWrapper.getGeneralFontInfo(SimpleTextLineWrapper.java:354)
+2020-12-01T17:24:09.150574+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.SimpleTextLineWrapper.createFontInfo(SimpleTextLineWrapper.java:294)
+2020-12-01T17:24:09.150908+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.SimpleTextLineWrapper.start(SimpleTextLineWrapper.java:256)
+2020-12-01T17:24:09.151158+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.TextMeasurer.measure(TextMeasurer.java:543)
+2020-12-01T17:24:09.151442+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillTextElement.chopTextElement(JRFillTextElement.java:665)
+2020-12-01T17:24:09.151703+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillStaticText.prepare(JRFillStaticText.java:179)
+2020-12-01T17:24:09.152044+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillElementContainer.prepareElements(JRFillElementContainer.java:542)
+2020-12-01T17:24:09.152287+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillFrame.prepare(JRFillFrame.java:241)
+2020-12-01T17:24:09.152589+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillElementContainer.prepareElements(JRFillElementContainer.java:542)
+2020-12-01T17:24:09.152810+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillBand.fill(JRFillBand.java:453)
+2020-12-01T17:24:09.153023+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFillBand.fill(JRFillBand.java:428)
+2020-12-01T17:24:09.153271+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillTitle(JRVerticalFiller.java:325)
+2020-12-01T17:24:09.153584+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportStart(JRVerticalFiller.java:256)
+2020-12-01T17:24:09.153853+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:110)
+2020-12-01T17:24:09.154092+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:615)
+2020-12-01T17:24:09.154352+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:432)
+2020-12-01T17:24:09.154588+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:162)
+2020-12-01T17:24:09.154813+00:00 app[web.1]: at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:145)
+2020-12-01T17:24:09.155060+00:00 app[web.1]: at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:758)
+2020-12-01T17:24:09.155315+00:00 app[web.1]: at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:1074)
+2020-12-01T17:24:09.155494+00:00 app[web.1]: at de.cenote.jasperstarter.Report.fillInternal(Report.java:306)
+2020-12-01T17:24:09.155645+00:00 app[web.1]: at de.cenote.jasperstarter.Report.fill(Report.java:282)
+2020-12-01T17:24:09.155821+00:00 app[web.1]: at de.cenote.jasperstarter.App.processReport(App.java:226)
+2020-12-01T17:24:09.155980+00:00 app[web.1]: at de.cenote.jasperstarter.App.main(App.java:109)
+2020-12-01T17:24:09.210027+00:00 app[web.1]: [01-Dec-2020 17:24:09 UTC] PHP Fatal error:  Uncaught Error: Class 'PHPJasper\Exception\ErrorCommandExecutable' not found in /app/bibliotecas/phpjasper/src/PHPJasper.php:250
+2020-12-01T17:24:09.210029+00:00 app[web.1]: Stack trace:
+2020-12-01T17:24:09.210164+00:00 app[web.1]: #0 /app/view/rptUsuario.php(36): PHPJasper\PHPJasper->execute()
+2020-12-01T17:24:09.210221+00:00 app[web.1]: #1 {main}
+2020-12-01T17:24:09.210566+00:00 app[web.1]: thrown in /app/bibliotecas/phpjasper/src/PHPJasper.php on line 250
+2020-12-01T17:24:09.211085+00:00 app[web.1]: 10.45.185.241 - - [01/Dec/2020:17:24:05 +0000] "GET /view/rptUsuario.php HTTP/1.1" 500 2 "https://virtuax.herokuapp.com/view/principal.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36
+2020-12-01T17:24:09.213514+00:00 heroku[router]: at=info method=GET path="/view/rptUsuario.php" host=virtuax.herokuapp.com request_id=92b950eb-9ec0-427d-88db-c232c8858ce0 fwd="186.225.52.42" dyno=web.1 connect=0ms service=4126ms status=500 bytes=190 protocol=https
