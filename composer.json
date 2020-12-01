@@ -2,7 +2,8 @@
     "name": "daltontavares/composer",
     "description": "Repositorio de Bibliotecas",
     "require": {
-        "phpoffice/phpspreadsheet": "^1.14" 
+        "phpoffice/phpspreadsheet": "^1.14",
+        "dompdf/dompdf": "^0.8.6" 
     }, 
     "authors": [
         {
