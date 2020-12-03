@@ -78,25 +78,11 @@
                                 Movimentações >
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+
                             <div class="collapse" id="collapseMovim" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#movimCollapseParam" aria-expanded="false" aria-controls="movimCollapseParam">
-                                        Parâmetros >
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="movimCollapseParam" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-
-                                           <!-- <a class="nav-link" href="C:/xampp/htdocs/crudphp/bibliotecas/jQuery-Mask/test/test-for-jquery-3.0.0.html">
-                                            Operações</a> 
-                                             <a class="nav-link" href="C:\xampp\htdocs\crudphp\bibliotecas\jQuery-Mask\test\test-for-jquery-3.0.0.html">
-                                            Operações</a>
-                                        -->
-
-                                             <a class="nav-link" href="#">Operações</a> 
-                                            
-                                        </nav>
-                                    </div>
+ 
+                 
                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
                                         Movimentos >
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -130,7 +116,7 @@
                                     </a>
                                     <div class="collapse" id="relatorios" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="rptLeitura.php">Leituras</a>         
+                                            <a class="nav-link" href="leituraParamRel.php">Leituras</a>         
                                         </nav>
                                     </div>
 

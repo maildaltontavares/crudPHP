@@ -11,6 +11,7 @@
   	header('Location:login.php');  
   endif;	
 
+  $filial = $_SESSION['filial'];
   //include_once "menuPrincipal.php";
   //include_once "menu.php"; 
 
@@ -117,9 +118,9 @@
 		if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ):   
 
             if($_SESSION['arg1Tp'] ==''):
-            	$aLeitura = $leituraCtr->listaLeitura($linha_inicial);
+            	$aLeitura = $leituraCtr->listaLeitura($linha_inicial,$filial);
             else:
-            	$aLeitura = $leituraCtr->listaLeituraF($_SESSION['arg1Tp'],$linha_inicial);
+            	$aLeitura = $leituraCtr->listaLeituraF($_SESSION['arg1Tp'],$linha_inicial,$filial);
             endif;
 
             
@@ -143,7 +144,7 @@
 		elseif(isset($_GET['pesquisar'])):
  		      
  
-				foreach($leituraCtr->listaLeituraF($_SESSION['arg1Tp'],$linha_inicial) as $p_leitura):
+				foreach($leituraCtr->listaLeituraF($_SESSION['arg1Tp'],$linha_inicial,$filial) as $p_leitura):
 		        	echo '<tr>' .
           		  '<td><a href="leituraCad.php?Id='  . $p_leitura['id'] . '&Altera=S'  . '"><img src="edit.png"width="32" height="32" placeholder="Editar" /></a> </td>' .
 			      '<td>' .  $p_leitura['tear']      . '</td> ' .
@@ -173,13 +174,13 @@
 			 if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ): 
 
 		         if($_SESSION['arg1Tp'] ==''):
-		          	$aValor = $leituraCtr->totRegistros(''); 
+		          	$aValor = $leituraCtr->totRegistros('',$filial); 
 		         else:
-		          	$aValor = $leituraCtr->totRegistros($_SESSION['arg1Tp']); 
+		          	$aValor = $leituraCtr->totRegistros($_SESSION['arg1Tp'],$filial); 
 		         endif;
 
 			 elseif(isset($_GET['pesquisar'])):  
-			     $aValor = $leituraCtr->totRegistros($_SESSION['arg1Tp']);  
+			     $aValor = $leituraCtr->totRegistros($_SESSION['arg1Tp'],$filial);  
 			 endif;
 
 			 include_once "paginas.php";

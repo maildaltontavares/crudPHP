@@ -91,31 +91,39 @@
 			return  $r;  
 		 }
  
-		public function lerTodas(){
+		public function lerTodas($p_fil){
 
+			$leitura = new Leitura();
+			$leitura->setFilial($p_fil);
 			
 			$leituraDao = new LeituraDao();  
-			return $leituraDao->lerTodas();
+			return $leituraDao->lerTodas($leitura);
 			
 
 		 } 
 
  
-		public function listaLeitura($numPg){
+		public function listaLeitura($numPg,$p_fil){
 
-			
+			$leitura = new Leitura();
+			$leitura->setFilial($p_fil);	
+
+
+
+
 			$leituraDao = new LeituraDao();  
-			return $leituraDao->read($numPg);
+			return $leituraDao->read($leitura,$numPg);
 			
 
 		 } 
 
 
-		public function listaLeituraF($p_tear,$numPg){
+		public function listaLeituraF($p_tear,$numPg,$p_fil){
 
 			// Prepara Bean tabpad
 			$leitura = new Leitura();
 			$leitura->setTear($p_tear);
+			$leitura->setFilial($p_fil);
 			 
 			$leituraDao = new LeituraDao();
 			return $leituraDao->readF($leitura,$numPg);
@@ -123,11 +131,12 @@
 
 		 } 
 
-		public function totRegistros($p_tear){ 
+		public function totRegistros($p_tear,$p_fil){ 
 
 			// Prepara Bean tabpad
 			$leitura = new Leitura();
 			$leitura->setTear($p_tear);
+			$leitura->setFilial($p_fil);
 			 
 			$leituraDao = new LeituraDao();
 			return $leituraDao->totRegistros($leitura);

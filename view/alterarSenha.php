@@ -18,7 +18,7 @@ require_once ROOT_PATH . '/controller/tabelaCtr.php';
 
           $nome =$p_usu[0]['nome'];
           $email=$p_usu[0]['email'];
- 
+  
           if(empty($p_usu)): 
               Header("location: emailInvalido.php"); 
           endif; 

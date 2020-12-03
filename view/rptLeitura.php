@@ -1,26 +1,32 @@
 <?php
 
-
+session_start();
 require_once '../config.php';   
-
-//require_once ROOT_PATH . '/vendor/autoload.php';
-
-//C:\xampp\htdocs\crudphp\bibliotecas\phpjasper\src
 
 require_once ROOT_PATH . '/bibliotecas/phpjasper/src/PHPJasper.php';  
 
-use PHPJasper\PHPJasper;
+use PHPJasper\PHPJasper; 
+//C:\xampp\htdocs\crudphp\reports
 
-//$input =  ROOT_PATH .  '/vendor/geekcom/phpjasper/examples/hello_world.jrxml';  
-//$output = ROOT_PATH .  '/vendor/geekcom/phpjasper/examples';    
+$input =  ROOT_PATH . '/reports/rptLeituras.jrxml';     
+$output = ROOT_PATH . '/reports'; 
 
-$input =  ROOT_PATH . '/bibliotecas/phpjasper/examples/rptHtml.jrxml';  
-$output = ROOT_PATH . '/bibliotecas/phpjasper/examples'; 
+
+if (isset($_POST['dt_leitura_inicial'])):
+
+endif;
+if (isset($_POST['dt_leitura_inicial'])):
+
+endif;
+
+
+//$input =  ROOT_PATH . '/bibliotecas/phpjasper/examples/rptLeituras.jrxml';  
+//$output = ROOT_PATH . '/bibliotecas/phpjasper/examples'; 
 
 /*
 $options = [ 
     'format' => ['pdf', 'rtf'] ,
-        'db_connection' => [
+     'db_connection' => [
         'driver' => 'postgres', //mysql, ....
         'username' => 'postgres',
         'password' => 'admin',
@@ -31,170 +37,149 @@ $options = [
 ];
 
 */
-
-$options = [ 
-    'format' => ['pdf', 'rtf'] ,
-        'db_connection' => [
-        'driver' => 'postgres', //mysql, ....
-        'username' => 'pfsutquhhyymuc',
-        'password' => 'ce5946f1f936ef51bf124faffcb3d65aafb886b4dcf321e15e7407a690e8069c',
-        'host' => 'ec2-3-211-48-92.compute-1.amazonaws.com',
-        'database' => 'd52bo506a9mii',
-        'port' => '5432'
-    ]
-];
-
-//pgsql:host=ec2-3-211-48-92.compute-1.amazonaws.com
- //       ;port=5432;dbname=d52bo506a9mii;user=pfsutquhhyymuc;password=ce5946f1f936ef51bf124faffcb3d65aafb886b4dcf321e15e7407a690e8069c"
-/*
-$options = [
-    'format' => ['pdf', 'rtf'] ,
-    //'locale' => 'en',
-    //'params' => [],
-    'db_connection' => [
-        'driver' => 'postgres', //mysql, ....
-        'username' => 'postgres',
-        'password' => 'admin',
-        'host' => '127.0.0.1',
-        'database' => 'Main',
-        'port' => '5432'
-    ]
-];
-*/
-$jasper = new PHPJasper;
- 
-//shell_exec('java -version');
+ //'P_DTINI'  => date_format(date_create($_POST['dt_leitura_inicial']),'m-d-Y'),
+  //if (isset($_GET['lista'])):
   
-//$output = shell_exec('java -version');
-//echo "<pre>$output</pre>";
+        $options = [ 
+            'format' => ['pdf'] ,
+            'params' => [
+                 'p_filial' => $_SESSION['filial'],
+                 'P_DTINI'  => date('d-m-Y'),
+                 'P_DTFIM'  => date_format(date_create($_POST['dt_leitura_final']),'m-d-Y')
+            ],
+            'db_connection' => [
+                'driver'   => 'postgres', //mysql, ....
+                'username' => K_USERNAME,
+                'password' => K_PASSWORD,
+                'host'     => K_HOST ,
+                'database' => K_DATABASE,
+                'port' => '5432'
+            ]
+        ];
 
-$jasper->process(
-    $input,
-    $output,
-    $options
-)->execute();
+         
+        $jasper = new PHPJasper; 
 
-$filename = 'rptHtml.pdf';
-header('Content-Type: application/pdf');
-header('Content-Disposition:; filename=' . $filename);
-//include_once "menuNavCab.php";
+        $jasper->process(
+            $input,
+            $output,
+            $options
+        )->execute();
 
-readfile($output . '/' . $filename);
-unlink($output . '/' . $filename);
-flush();
- 
-/*
-require_once '../config.php';
-require_once ROOT_PATH . '/vendor/autoload.php';
+        $filename = 'rptLeituras.pdf';
+        header('Content-Type: application/pdf');
+        //header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');  
+        header('Content-Disposition:; filename=' . $filename);
+        readfile($output . '/' . $filename);
+        unlink($output . '/' . $filename);
+        flush();
 
-use PHPJasper\PHPJasper;
-
-$input = ROOT_PATH . '/vendor/geekcom/phpjasper/examples/hello_world.jrxml';   
-
-$jasper = new PHPJasper;
-$jasper->compile($input)->execute();
-
- 
-session_start();
-
- 
-require_once '../config.php'; 
-
-
-
-require_once ROOT_PATH .  '/vendor/autoload.php';  
-
-use PHPJasper\PHPJasper;
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-$input =  ROOT_PATH . '/vendor/geekcom/phpjasper/examples/rptUsuario.jasper'; //hello_world.jasper'; 
-$output =  ROOT_PATH . '/vendor/geekcom/phpjasper/examples';  
- 
-$options = [ 
-    'format' => ['pdf', 'rtf'] 
-];
-
-$filename = $input;
-
-if (file_exists($filename)) {
-    echo " ------- The file $filename exists      ------ ";
-} else {
-    echo "The file $filename does not exist";
-}
-
-var_dump($input);
-var_dump($output);
+//endif;
 
 
-
-$jasper = new PHPJasper;
 
 /*
-$output = $jasper->listParameters($input)->execute();
 
-foreach($output as $parameter_description)
-    print $parameter_description . '<pre>';
+$mimes = array(
+    'hqx'   => 'application/mac-binhex40',
+    'cpt'   => 'application/mac-compactpro',
+    'csv'   => array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream'),
+    'bin'   => 'application/macbinary',
+    'dms'   => 'application/octet-stream',
+    'lha'   => 'application/octet-stream',
+    'lzh'   => 'application/octet-stream',
+    'exe'   => array('application/octet-stream', 'application/x-msdownload'),
+    'class' => 'application/octet-stream',
+    'psd'   => 'application/x-photoshop',
+    'so'    => 'application/octet-stream',
+    'sea'   => 'application/octet-stream',
+    'dll'   => 'application/octet-stream',
+    'oda'   => 'application/oda',
+    'pdf'   => array('application/pdf', 'application/x-download'),
+    'ai'    => 'application/postscript',
+    'eps'   => 'application/postscript',
+    'ps'    => 'application/postscript',
+    'smi'   => 'application/smil',
+    'smil'  => 'application/smil',
+    'mif'   => 'application/vnd.mif',
+    'xls'   => array('application/excel', 'application/vnd.ms-excel', 'application/msexcel'),
+    'ppt'   => array('application/powerpoint', 'application/vnd.ms-powerpoint'),
+    'wbxml' => 'application/wbxml',
+    'wmlc'  => 'application/wmlc',
+    'dcr'   => 'application/x-director',
+    'dir'   => 'application/x-director',
+    'dxr'   => 'application/x-director',
+    'dvi'   => 'application/x-dvi',
+    'gtar'  => 'application/x-gtar',
+    'gz'    => 'application/x-gzip',
+    'php'   => array('application/x-httpd-php', 'text/x-php'),
+    'php4'  => 'application/x-httpd-php',
+    'php3'  => 'application/x-httpd-php',
+    'phtml' => 'application/x-httpd-php',
+    'phps'  => 'application/x-httpd-php-source',
+    'js'    => 'application/x-javascript',
+    'swf'   => 'application/x-shockwave-flash',
+    'sit'   => 'application/x-stuffit',
+    'tar'   => 'application/x-tar',
+    'tgz'   => array('application/x-tar', 'application/x-gzip-compressed'),
+    'xhtml' => 'application/xhtml+xml',
+    'xht'   => 'application/xhtml+xml',
+    'zip'   => array('application/x-zip', 'application/zip', 'application/x-zip-compressed'),
+    'mid'   => 'audio/midi',
+    'midi'  => 'audio/midi',
+    'mpga'  => 'audio/mpeg',
+    'mp2'   => 'audio/mpeg',
+    'mp3'   => array('audio/mpeg', 'audio/mpg', 'audio/mpeg3', 'audio/mp3'),
+    'aif'   => 'audio/x-aiff',
+    'aiff'  => 'audio/x-aiff',
+    'aifc'  => 'audio/x-aiff',
+    'ram'   => 'audio/x-pn-realaudio',
+    'rm'    => 'audio/x-pn-realaudio',
+    'rpm'   => 'audio/x-pn-realaudio-plugin',
+    'ra'    => 'audio/x-realaudio',
+    'rv'    => 'video/vnd.rn-realvideo',
+    'wav'   => 'audio/x-wav',
+    'bmp'   => 'image/bmp',
+    'gif'   => 'image/gif',
+    'jpeg'  => array('image/jpeg', 'image/pjpeg'),
+    'jpg'   => array('image/jpeg', 'image/pjpeg'),
+    'jpe'   => array('image/jpeg', 'image/pjpeg'),
+    'png'   => 'image/png',
+    'tiff'  => 'image/tiff',
+    'tif'   => 'image/tiff',
+    'css'   => 'text/css',
+    'html'  => 'text/html',
+    'htm'   => 'text/html',
+    'shtml' => 'text/html',
+    'txt'   => 'text/plain',
+    'text'  => 'text/plain',
+    'log'   => array('text/plain', 'text/x-log'),
+    'rtx'   => 'text/richtext',
+    'rtf'   => 'text/rtf',
+    'xml'   => 'text/xml',
+    'xsl'   => 'text/xml',
+    'mpeg'  => 'video/mpeg',
+    'mpg'   => 'video/mpeg',
+    'mpe'   => 'video/mpeg',
+    'qt'    => 'video/quicktime',
+    'mov'   => 'video/quicktime',
+    'avi'   => 'video/x-msvideo',
+    'mp4'   => 'video/mp4',
+    'wmv'   => 'video/x-ms-asf',
+    'movie' => 'video/x-sgi-movie',
+    'doc'   => 'application/msword',
+    'docx'  => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'xlsx'  => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    'word'  => array('application/msword', 'application/octet-stream'),
+    'xl'    => 'application/excel',
+    'eml'   => 'message/rfc822',
+    'json'  => array('application/json', 'text/json'),
+);
+  
+ */
 
- 
-
-
-$jasper->process(
-    $input,
-    $output,
-    $options
-)->execute();
-
-$filename = 'hello_world.pdf';
-header('Content-Description: application/pdf');
-header('Content-Type: application/pdf');
-header('Content-Disposition:; filename=' . $filename);
-readfile($output . '/' . $filename);
-unlink($output . '/' . $filename);
-flush();
 
 ?>
 
-<?php
-/*
 
-session_start();
 
- 
-require_once '../config.php'; 
-require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
-require_once ROOT_PATH . '/vendor/autoload.php';
- 
-
-use PHPJasper\PHPJasper;
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-$input = ROOT_PATH .  '/reports/rptUsuario.jrxml';  
-//$output = __DIR__ . '/vendor/geekcom/phpjasper/examples';    
-$output = ROOT_PATH  . '/reports';
-$options = [ 
-    'format' => ['pdf', 'rtf'] 
-];
-
-$jasper = new PHPJasper;
-
-$jasper->process(
-    $input,
-    $output,
-    $options
-)->execute();
-
-$filename = 'rptUsuario.pdf';
-header('Content-Description: application/pdf');
-header('Content-Type: application/pdf');
-header('Content-Disposition:; filename=' . $filename);
-readfile($output . '/' . $filename);
-unlink($output . '/' . $filename);
-flush();
-*/
-?>
