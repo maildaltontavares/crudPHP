@@ -93,10 +93,8 @@
                                             Operações</a>
                                         -->
 
-                                             <a class="nav-link" href="rptUsuario.php">Operações</a>
-
-                                            <a class="nav-link" href="#">Tipos de Movimentos</a>
-                                            <a class="nav-link" href="#">Centros de Custos</a>
+                                             <a class="nav-link" href="#">Operações</a> 
+                                            
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -108,12 +106,39 @@
                                             <a class="nav-link" href="lista_leitura.php">Leituras</a>         
                                         </nav>
                                     </div>
+
+ 
+
                                 </nav>
                             </div>  
-                           <a class="nav-link" href="#" href="lista_tabelas">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+ 
+
+
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelat" aria-expanded="false" aria-controls="collapseRelat">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div> 
                                 Relatórios >
-                            </a>                            
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseRelat" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+ 
+
+
+                                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#relatorios" aria-expanded="false" aria-controls="relatorios">
+                                        Movimentos >
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="relatorios" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="rptLeitura.php">Leituras</a>         
+                                        </nav>
+                                    </div>
+
+                                </nav>
+                            </div>  
+
+
+    
 
 
                             <div class="sb-sidenav-menu-heading">Configurações</div>

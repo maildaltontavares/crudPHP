@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptLeituras" language="groovy" pageWidth="708" pageHeight="842" columnWidth="668" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa9ea55e-bd3a-47f9-bbb7-1250a0d15f6d">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from public."E0100_LEITURA"]]>
+	</queryString>
+	<field name="d0100_id_leitura" class="java.lang.Integer"/>
+	<field name="d0006_id_filial" class="java.lang.Integer"/>
+	<field name="d0100_tear" class="java.lang.String"/>
+	<field name="d0100_dt_leitura" class="java.sql.Date"/>
+	<field name="d0100_turno" class="java.lang.String"/>
+	<field name="d0100_leitura" class="java.math.BigDecimal"/>
+	<field name="d0100_rpm" class="java.math.BigDecimal"/>
+	<field name="d0100_par_trama" class="java.math.BigDecimal"/>
+	<field name="d0100_par_urdume" class="java.math.BigDecimal"/>
+	<field name="d0100_par_outros" class="java.math.BigDecimal"/>
+	<field name="d0100_dt_inclusao" class="java.sql.Date"/>
+	<field name="d0100_dt_alteracao" class="java.sql.Date"/>
+	<field name="d0100_id_usr_inclusao" class="java.lang.Integer"/>
+	<field name="d0100_id_usr_alteracao" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="74" height="20" uuid="e5e813f8-8584-416c-827e-55d9b1616b5c"/>
+				<text><![CDATA[Filial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="0" width="74" height="20" uuid="1e560bd1-1e88-4ddc-a0f0-fd4cb2f5a623"/>
+				<text><![CDATA[Tear]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="0" width="74" height="20" uuid="2d0f1fca-d5ab-499f-b1b3-020fd81bf442"/>
+				<text><![CDATA[Dt Leitura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="74" height="20" uuid="750aecc7-0b03-445d-9d6d-117a63de9256"/>
+				<text><![CDATA[Turno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="0" width="74" height="20" uuid="71bb661d-bcbb-4482-a431-16eb6ad90214"/>
+				<text><![CDATA[Leitura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="74" height="20" uuid="bb21fb92-524f-4da1-bb9a-908cdaa13236"/>
+				<text><![CDATA[RPM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="74" height="20" uuid="059b5d17-48ee-4038-a019-1366d59e00d8"/>
+				<text><![CDATA[Par Trama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="518" y="0" width="74" height="20" uuid="1e49e200-74a3-49de-9ad8-96095b62d15a"/>
+				<text><![CDATA[Par Urdume]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="592" y="0" width="74" height="20" uuid="36f4a1d6-732e-4699-ac21-06f46afda23a"/>
+				<text><![CDATA[Par Outros]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="74" height="20" uuid="285e2774-27a1-4e92-bfe4-e1b24abbdc1d"/>
+				<textFieldExpression><![CDATA[$F{d0006_id_filial}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="74" y="0" width="74" height="20" uuid="2e618671-9767-4449-9744-82c6545cddee"/>
+				<textFieldExpression><![CDATA[$F{d0100_tear}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="148" y="0" width="74" height="20" uuid="a1800b13-e23f-45f2-9e45-c874884f955e"/>
+				<textFieldExpression><![CDATA[$F{d0100_dt_leitura}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="222" y="0" width="74" height="20" uuid="af5dfaa1-223c-4eae-98fd-c29582449522"/>
+				<textFieldExpression><![CDATA[$F{d0100_turno}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="296" y="0" width="74" height="20" uuid="b5026970-5a35-4b10-88c4-e4b33c64f496"/>
+				<textFieldExpression><![CDATA[$F{d0100_leitura}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="370" y="0" width="74" height="20" uuid="5d784ee6-e6af-452e-980f-2c527ea5cfbb"/>
+				<textFieldExpression><![CDATA[$F{d0100_rpm}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="444" y="0" width="74" height="20" uuid="0abf0bf9-989e-428e-be57-b6283cffe34f"/>
+				<textFieldExpression><![CDATA[$F{d0100_par_trama}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="518" y="0" width="74" height="20" uuid="197b8eb2-6542-40ad-a82d-8dc4ec10d146"/>
+				<textFieldExpression><![CDATA[$F{d0100_par_urdume}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="592" y="0" width="74" height="20" uuid="188f77eb-2b26-4c69-ac42-a7e5e0c6e032"/>
+				<textFieldExpression><![CDATA[$F{d0100_par_outros}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

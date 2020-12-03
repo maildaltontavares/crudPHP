@@ -1,13 +1,12 @@
+Adicionar filtro por empresa nas leituras... hoje busca em todas as Empresas
 
 Validar a troca de Empresa
 Parametrizar o numero de registros da paginação
 
-Parametrizar o BD em uso
-
+Parametrizar o BD em uso;  
 
 Por o campo bloqueado na tela;
 Alterar senha no proximo login;
-Alterar senha;
 Criar o perfil do usuario - ramal / matrícula / fone empresa / fone particular / Unidade Padrão;
 Criar o módulo de agenda somente consulta;
 Cookies com usuario e senha; 
@@ -19,19 +18,10 @@ DBDesigner 4
 Por a cor vermelha nas mensagens de insucesso
  
 
-Por a impressao p primeira tela;
-Phpexcel ;
+Por a impressao p primeira tela; 
 
-
-Corrigir a visualizacao da mensagem de email ou senha invalida;
-Exibir o usuario logado;
-recuperar senha;
-
-divisao por loja;
-
- 
-
-
+Corrigir a visualizacao da mensagem de email ou senha invalida; 
+divisao por loja;  
 Como criar janela modal com formulário cadastrar com JavaScript - youtube 
 
 
@@ -45,6 +35,14 @@ GIT PUSH HEROKU MASTER
 git push heroku master
  
 git push -u crudphp master
+
+Liberando acesso a um arquivo: jasperstarter
+git update-index --add --chmod=+x jasperstarter
+
+-- Adicionar o java ao Heroku
+heroku buildpacks:add heroku/jvm
+$ git commit -m "redeploy" --allow-empty
+$ git push heroku master
 =====================================================================
 
 erro na chamada do aqrquivo .php - letra inicial minusvcula

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Characterset-Test" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="527ae3c1-c10e-4b41-b983-14305308c942">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from public."E0100_LEITURA"]]>
+	</queryString>
+	<field name="d0100_id_leitura" class="java.lang.Integer"/>
+	<field name="d0006_id_filial" class="java.lang.Integer"/>
+	<field name="d0100_tear" class="java.lang.String"/>
+	<field name="d0100_dt_leitura" class="java.sql.Date"/>
+	<field name="d0100_turno" class="java.lang.String"/>
+	<field name="d0100_leitura" class="java.math.BigDecimal"/>
+	<field name="d0100_rpm" class="java.math.BigDecimal"/>
+	<field name="d0100_par_trama" class="java.math.BigDecimal"/>
+	<field name="d0100_par_urdume" class="java.math.BigDecimal"/>
+	<field name="d0100_par_outros" class="java.math.BigDecimal"/>
+	<field name="d0100_dt_inclusao" class="java.sql.Date"/>
+	<field name="d0100_dt_alteracao" class="java.sql.Date"/>
+	<field name="d0100_id_usr_inclusao" class="java.lang.Integer"/>
+	<field name="d0100_id_usr_alteracao" class="java.lang.Integer"/>
+	<sortField name="d0006_id_filial"/>
+	<sortField name="d0100_dt_leitura"/>
+	<sortField name="d0100_tear"/>
+	<background>
+		<band/>
+	</background>
+	<columnHeader>
+		<band height="17">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="00066ef8-32b7-4f94-bd3c-9c5015be1b4c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Filial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="61" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="d7389a31-c1a3-40cc-bd43-100ea5413f8a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tear]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="122" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="7fe8f270-dd36-47b0-8265-4f4b3b2b2d17"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dt Leitura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="183" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="a842f2a3-814a-4b97-8447-91d5fce533ec"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Turno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="244" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="7928ee9e-23a7-49ac-a92c-2d97a1214ce8"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Leitura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="305" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="61c929aa-5736-4691-8b2e-9288cc0d0858"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RPM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="366" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="bfd82a83-b185-493f-95cc-2b2f0865b7c8"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Par. Trama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="427" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="4f061c63-4df0-4d36-97a0-a3e80b76b8d1"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Par. Urdume]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="488" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="08884259-f8b2-422a-b5c1-31845bc58459"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Par. Outros]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="61" height="15" uuid="78d1bd2c-100b-4417-9cda-41c65eb29076"/>
+				<textFieldExpression><![CDATA[$F{d0006_id_filial}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="61" y="0" width="61" height="15" uuid="65e7e294-d441-4901-ba9a-9ab8bd7a98cc"/>
+				<textFieldExpression><![CDATA[$F{d0100_tear}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="122" y="0" width="61" height="15" uuid="f78d2fe7-44a2-49f8-9389-6394397c265a"/>
+				<textFieldExpression><![CDATA[$F{d0100_dt_leitura}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="183" y="0" width="61" height="15" uuid="2b8ad9c0-f166-4239-87ea-a7e413c3098c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{d0100_turno}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="244" y="0" width="61" height="15" uuid="ce44109a-4013-44db-bf00-f53f179b31fa"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{d0100_leitura}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="305" y="0" width="61" height="15" uuid="25ae4e19-3b54-40c9-9b82-4c7c8ae0cbc0"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{d0100_rpm}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="366" y="0" width="61" height="15" uuid="b3c91ebc-eccc-46d1-8ad2-9a0b575e01ed"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{d0100_par_trama}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="427" y="0" width="61" height="15" uuid="ba7be824-a32c-4e22-bbea-6de4a1fe2665"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{d0100_par_urdume}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="488" y="0" width="61" height="15" uuid="b7d2609b-1a3e-468b-8dcb-a219f0adf4c3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{d0100_par_outros}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="470071d6-9789-41e5-b8f6-3e4340cc0ab2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="f64278b8-d5b7-41e6-a40d-0e8929c0b848"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="2696db9f-481e-441c-8557-40163e951201"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
