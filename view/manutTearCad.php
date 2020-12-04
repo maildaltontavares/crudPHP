@@ -74,31 +74,48 @@
          </div>        
     </div>   
 
-    <div class="form-row"> 
-        <div class="form-group col-md-8">
-            <label for="exampleFormControlSelect2">Motivo</label>
-            <select multiple class="form-control" id="exampleFormControlSelect2">
-                   <option value='1'>Troca de Trama</option>';  
-                   <option value='2'>Mancha de Óleo</option>'; 
-                   <option value='1'>Trama curta</option>';  
-                   <option value='2'>Cavalo</option>'; 
-
-            </select>
-         </div>        
-    </div>
-
+ 
 
     <div class="form-row"> 
-        <div class="form-group col-md-8">
-            <label for="exampleFormControlSelect2">Mecânicos</label>
-            <select multiple class="form-control" id="exampleFormControlSelect2">
-                   <option value='1'>Jose Maria</option>';  
-                   <option value='2'>Andre Sales</option>'; 
-                   <option value='1'>Antonio Alves</option>';  
-                   <option value='2'>Joao Carlos</option>'; 
+        <div class="form-group col-md-3"> 
+            <table class="table table-hover">    
+                <thead>
+                  <tr>
+                    <th scope="col-3">Motivos</th>  
+                    <th scope="col-1"></th>  
+                  </tr>
+                </thead>
+                <tbody>  
+ 
+                     <tr><td>Troca de Trama</td><td> <input type="checkbox"   ></td>''</tr>  
+                     <tr><td>Mancha de Óleo</td><td> <input type="checkbox"    ></td>''</tr> 
+                     <tr><td>Trama curta</td><td> <input type="checkbox"    ></td>''</tr> 
+                     <tr><td>Cavalo</td><td> <input type="checkbox"    ></td>''</tr> 
 
-            </select>
-         </div>        
+               </tbody> 
+            </table>   
+        </div> 
+    </div>  
+
+
+    <div class="form-row"> 
+        <div class="form-group col-md-3"> 
+            <table class="table table-hover">    
+                <thead>
+                  <tr>
+                    <th scope="col-3">Mecanicos</th>  
+                    <th scope="col-1"></th>  
+                  </tr>
+                </thead>
+                <tbody>  
+ 
+                     <tr><td>João Maria</td><td> <input type="checkbox"   ></td>''</tr>  
+                     <tr><td>Antonio Jose</td><td> <input type="checkbox"    ></td>''</tr> 
+                     <tr><td>Paulo Henrique</td><td> <input type="checkbox"    ></td>''</tr> 
+
+               </tbody> 
+            </table>   
+        </div> 
     </div>    
 
     <div class="form-row"> 
@@ -115,6 +132,11 @@
           <input id="dt_leitura" name ="dt_leitura_inicial" type="date"   class="form-control"   >  
         </div> 
     </div>
+
+
+
+
+
 
 
   </div> 
