@@ -92,6 +92,10 @@
           </select> 
         </div> 
     </div>   
+
+    <h1>Motivos de Parada</h1>
+    <br>
+
     <div class="form-row"> 
         <div class="form-group col-md-3  ComboSelect"> 
             <table class="table table-hover">    
@@ -117,6 +121,8 @@
         </div> 
     </div>  
 
+    <h1>Mecanicos</h1>
+    <br>
     <div class="form-row"> 
         <div class="form-group col-md-3 ComboSelect"> 
             <table class="table table-hover">    
