@@ -46,7 +46,7 @@
         </div> 
     </div> 
 
-
+<!--
     <div class="form-row"> 
         <div class="form-group col-md-8">
             <label for="exampleFormControlSelect2">Turno</label>
@@ -57,11 +57,30 @@
             </select>
          </div>        
     </div>  
+-->
 
     <div class="form-row"> 
         <div class="form-group col-md-8">
-            <label for="exampleFormControlSelect2">Teares</label>
-            <select multiple class="form-control" id="exampleFormControlSelect2">
+          <label for="turno">Turno</label>
+          <select class="form-control" id="selecioneTurno" name="turno" >             
+                 <option value="A">A</option>'                   
+                 <option value="B">B</option>'  
+                 <option value="C">C</option>'   
+          </select> 
+        </div> 
+    </div>  
+
+    <div class="form-row"> 
+        <div class="form-group col-md-1">
+          <label for="dt_leitura">Hora Início</label> 
+          <input id="dt_leitura" name ="dt_leitura_inicial" type="text"   class="form-control simple-field-data-mask-selectonfocus" data-mask="00:00"  >  
+        </div> 
+    </div>
+
+    <div class="form-row"> 
+        <div class="form-group col-md-8" >
+          <label for="turno">Tear</label>
+          <select class="form-control" id="selecioneTurno" name="turno" >             
                    <option value='1'>301</option>';  
                    <option value='2'>302</option>'; 
                    <option value='1'>303</option>';  
@@ -69,19 +88,16 @@
                    <option value='1'>305</option>';  
                    <option value='2'>306</option>'; 
                    <option value='1'>307</option>';  
-                   <option value='2'>308</option>';                    
-            </select>
-         </div>        
+                   <option value='2'>308</option>';  
+          </select> 
+        </div> 
     </div>   
-
- 
-
     <div class="form-row"> 
-        <div class="form-group col-md-3"> 
+        <div class="form-group col-md-3  ComboSelect"> 
             <table class="table table-hover">    
                 <thead>
                   <tr>
-                    <th scope="col-3">Motivos</th>  
+                    <th scope="col-3">Motivos da parada</th>  
                     <th scope="col-1"></th>  
                   </tr>
                 </thead>
@@ -91,15 +107,18 @@
                      <tr><td>Mancha de Óleo</td><td> <input type="checkbox"    ></td>''</tr> 
                      <tr><td>Trama curta</td><td> <input type="checkbox"    ></td>''</tr> 
                      <tr><td>Cavalo</td><td> <input type="checkbox"    ></td>''</tr> 
+                     <tr><td>Troca de Óleo</td><td> <input type="checkbox"   ></td>''</tr>  
+                     <tr><td>Fio Torto</td><td> <input type="checkbox"    ></td>''</tr> 
+                     <tr><td>Trama irreguar</td><td> <input type="checkbox"    ></td>''</tr> 
+                     <tr><td>Ruptura</td><td> <input type="checkbox"    ></td>''</tr>                      
 
                </tbody> 
             </table>   
         </div> 
     </div>  
 
-
     <div class="form-row"> 
-        <div class="form-group col-md-3"> 
+        <div class="form-group col-md-3 ComboSelect"> 
             <table class="table table-hover">    
                 <thead>
                   <tr>
@@ -111,7 +130,14 @@
  
                      <tr><td>João Maria</td><td> <input type="checkbox"   ></td>''</tr>  
                      <tr><td>Antonio Jose</td><td> <input type="checkbox"    ></td>''</tr> 
-                     <tr><td>Paulo Henrique</td><td> <input type="checkbox"    ></td>''</tr> 
+                     <tr><td>Paulo Henrique</td><td> <input type="checkbox"    ></td>''</tr>  
+                     <tr><td>João Paulo</td><td> <input type="checkbox"   ></td>''</tr>  
+                     <tr><td>Jose Claudio</td><td> <input type="checkbox"    ></td>''</tr> 
+                     <tr><td>Henrique Antunes</td><td> <input type="checkbox"    ></td>''</tr>                      
+                     <tr><td>Francisco Nildo</td><td> <input type="checkbox"   ></td>''</tr>  
+                     <tr><td>Paulo Alves</td><td> <input type="checkbox"    ></td>''</tr> 
+                     <tr><td>Carlos Silva</td><td> <input type="checkbox"    ></td>''</tr> 
+
 
                </tbody> 
             </table>   
@@ -134,7 +160,12 @@
     </div>
 
 
-
+    <div class="form-row"> 
+        <div class="form-group col-md-1">
+          <label for="dt_leitura">Hora Final</label> 
+          <input id="dt_leitura" name ="dt_leitura_inicial" type="text"   class="form-control simple-field-data-mask-selectonfocus" data-mask="00:00"  >  
+        </div> 
+    </div>
 
 
 
