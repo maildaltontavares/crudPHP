@@ -29,12 +29,11 @@
    
  
 <form method="POST"  action="rptLeitura.php" > 
-  <div class="container" >
- 
+  <div class="container" > 
     
     <div id='modelo'>
         <div class="cabecalho">
-            <h1 class="p-3 mb-2  text-dark cTitulo">Relatório de leitura dos teares</h1> 
+            <h1 class="p-3 mb-2  text-dark cTitulo">Rel. de leitura teares</h1> 
         </div> 
     </div>   
 

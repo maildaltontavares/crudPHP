@@ -84,12 +84,13 @@
  
                  
                                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Movimentos >
+                                        Produção >
                                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="lista_leitura.php">Leituras</a>         
+                                            <a class="nav-link" href="lista_leitura.php">Leituras Teares</a>         
+                                            <a class="nav-link" href="manutTearCad.php">OS Manutenção</a>  
                                         </nav>
                                     </div>
 

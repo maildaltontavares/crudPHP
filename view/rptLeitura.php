@@ -15,6 +15,7 @@ $output = ROOT_PATH . '/reports';
 if (isset($_POST['dt_leitura_inicial'])):
 
 endif;
+
 if (isset($_POST['dt_leitura_inicial'])):
 
 endif;
@@ -41,11 +42,13 @@ $options = [
   //if (isset($_GET['lista'])):
   
         $options = [ 
-            'format' => ['pdf'] ,
+            'format' => ['pdf','xlsx','csv','rtf'] ,
             'params' => [
                  'p_filial' => $_SESSION['filial'],
-                 'P_DTINI'  => date('d-m-Y'),
-                 'P_DTFIM'  => date_format(date_create($_POST['dt_leitura_final']),'m-d-Y')
+                 'P_DTINI'  => date_format(date_create($_POST['dt_leitura_inicial']),'Ymd'),
+                 'P_DTFIM'  => date_format(date_create($_POST['dt_leitura_final']),'Ymd'),
+                 'P_DTI'    => date_format(date_create($_POST['dt_leitura_inicial']),'d/m/Y'),
+                 'P_DTF'    => date_format(date_create($_POST['dt_leitura_final']),'d/m/Y')
             ],
             'db_connection' => [
                 'driver'   => 'postgres', //mysql, ....

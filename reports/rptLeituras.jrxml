@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Characterset-Test" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="527ae3c1-c10e-4b41-b983-14305308c942">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Characterset-Test" language="groovy" pageWidth="651" pageHeight="842" columnWidth="611" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="527ae3c1-c10e-4b41-b983-14305308c942">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="p_filial" class="java.lang.Long">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="P_DTINI" class="java.util.Date">
+	<parameter name="P_DTINI" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
-	<parameter name="P_DTFIM" class="java.util.Date">
+	<parameter name="P_DTFIM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_DTI" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_DTF" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select * from public."E0100_LEITURA"
+		<![CDATA[select L.* from public."E0100_LEITURA" L
 where d0006_id_filial = $P{p_filial}
+AND TO_CHAR(D0100_DT_LEITURA,'YYYYMMDD') >= $P{P_DTINI}
+AND TO_CHAR(D0100_DT_LEITURA,'YYYYMMDD') <= $P{P_DTFIM}
+
 ]]>
 	</queryString>
 	<field name="d0100_id_leitura" class="java.lang.Integer"/>
@@ -37,6 +46,26 @@ where d0006_id_filial = $P{p_filial}
 	<background>
 		<band/>
 	</background>
+	<pageHeader>
+		<band height="23">
+			<textField>
+				<reportElement x="0" y="0" width="61" height="15" uuid="53d1d1fd-4c87-43ac-8f34-a154870d2619"/>
+				<textFieldExpression><![CDATA["Período :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="0" width="37" height="15" uuid="43c2ee1f-b8fb-4793-9f9d-aaa3faff26b6"/>
+				<textFieldExpression><![CDATA["    a    "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="0" width="61" height="15" uuid="6ec8d95a-7dec-4f31-8983-945b5384b6ce"/>
+				<textFieldExpression><![CDATA[$P{P_DTI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="0" width="61" height="15" uuid="3689ba6a-7eee-46d6-87f9-020238938415"/>
+				<textFieldExpression><![CDATA[$P{P_DTF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
 	<columnHeader>
 		<band height="17">
 			<staticText>
@@ -82,21 +111,21 @@ where d0006_id_filial = $P{p_filial}
 				<text><![CDATA[RPM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="366" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="bfd82a83-b185-493f-95cc-2b2f0865b7c8"/>
+				<reportElement mode="Opaque" x="366" y="0" width="82" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="bfd82a83-b185-493f-95cc-2b2f0865b7c8"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Par. Trama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="427" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="4f061c63-4df0-4d36-97a0-a3e80b76b8d1"/>
+				<reportElement mode="Opaque" x="448" y="0" width="82" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="4f061c63-4df0-4d36-97a0-a3e80b76b8d1"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Par. Urdume]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="488" y="0" width="61" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="08884259-f8b2-422a-b5c1-31845bc58459"/>
+				<reportElement mode="Opaque" x="530" y="0" width="81" height="17" forecolor="#FFFFFF" backcolor="#003399" uuid="08884259-f8b2-422a-b5c1-31845bc58459"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
@@ -106,10 +135,6 @@ where d0006_id_filial = $P{p_filial}
 	</columnHeader>
 	<detail>
 		<band height="15">
-			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="0" width="61" height="15" uuid="78d1bd2c-100b-4417-9cda-41c65eb29076"/>
-				<textFieldExpression><![CDATA[$F{d0006_id_filial}]]></textFieldExpression>
-			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="61" y="0" width="61" height="15" uuid="65e7e294-d441-4901-ba9a-9ab8bd7a98cc"/>
 				<textFieldExpression><![CDATA[$F{d0100_tear}]]></textFieldExpression>
@@ -134,19 +159,23 @@ where d0006_id_filial = $P{p_filial}
 				<textFieldExpression><![CDATA[$F{d0100_rpm}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="366" y="0" width="61" height="15" uuid="b3c91ebc-eccc-46d1-8ad2-9a0b575e01ed"/>
+				<reportElement x="366" y="0" width="82" height="15" uuid="b3c91ebc-eccc-46d1-8ad2-9a0b575e01ed"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{d0100_par_trama}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="427" y="0" width="61" height="15" uuid="ba7be824-a32c-4e22-bbea-6de4a1fe2665"/>
+				<reportElement x="448" y="0" width="82" height="15" uuid="ba7be824-a32c-4e22-bbea-6de4a1fe2665"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{d0100_par_urdume}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="488" y="0" width="61" height="15" uuid="b7d2609b-1a3e-468b-8dcb-a219f0adf4c3"/>
+				<reportElement x="530" y="0" width="81" height="15" uuid="b7d2609b-1a3e-468b-8dcb-a219f0adf4c3"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{d0100_par_outros}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="61" height="15" uuid="c5b35581-d9b6-4bde-a60a-561b7076d938"/>
+				<textFieldExpression><![CDATA[$F{d0006_id_filial}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -156,12 +185,12 @@ where d0006_id_filial = $P{p_filial}
 	<pageFooter>
 		<band height="17">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="470071d6-9789-41e5-b8f6-3e4340cc0ab2"/>
+				<reportElement mode="Opaque" x="0" y="4" width="571" height="13" backcolor="#E6E6E6" uuid="470071d6-9789-41e5-b8f6-3e4340cc0ab2"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Pag "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="f64278b8-d5b7-41e6-a40d-0e8929c0b848"/>
+				<reportElement mode="Opaque" x="571" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="f64278b8-d5b7-41e6-a40d-0e8929c0b848"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">

@@ -1,0 +1,131 @@
+<?php
+ 
+  session_start();
+
+  require_once '../config.php'; 
+  require_once ROOT_PATH . '/bibliotecas/funcoes.php';  
+  
+  if(!isset($_SESSION['user'])):
+    header('Location:login.php');  
+  endif;  
+
+  //include_once "menuPrincipal.php";
+  //include_once "menu.php"; 
+
+  // Valida os acessos
+  $acesso = new Funcao();
+  $validaAcesso = $acesso->validaAcesso('00015');  
+  if (strlen($validaAcesso)==0): 
+     header('Location:semAcesso.php?tela="Leituras"'); 
+  endif;     
+
+  include_once "menuNavCab.php";
+   
+  $paramDt =  $_SESSION['paramDt']; // Parametro de formato de data do banco de dados
+ 
+  ?> 
+
+ <script  src="https://code.jquery.com/jquery-3.5.1.js"  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="  crossorigin="anonymous"></script>
+   
+ 
+<form method="POST"> 
+  <div class="limiteTela" > 
+    
+    <div id='modelo'>
+        <div class="cabecalho">
+            <h1 class="p-3 mb-2  text-dark cTitulo">OS Tecelagem</h1> 
+        </div> 
+    </div>   
+
+    <button type="submit" name= "listar" class="btn btn-primary paramBt" id="listar">Gerar</button>
+    
+    <div class="form-row"> 
+        <div class="form-group col-md-8">
+          <label for="dt_leitura">Data da abertura</label> 
+          <input id="dt_leitura" name ="dt_leitura_inicial" type="date" required class="form-control"   >  
+        </div> 
+    </div> 
+
+
+    <div class="form-row"> 
+        <div class="form-group col-md-8">
+            <label for="exampleFormControlSelect2">Turno</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+                   <option value='1'>A </option>';  
+                   <option value='2'>B</option>'; 
+                   <option value='2'>C</option>';
+            </select>
+         </div>        
+    </div>  
+
+    <div class="form-row"> 
+        <div class="form-group col-md-8">
+            <label for="exampleFormControlSelect2">Teares</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+                   <option value='1'>301</option>';  
+                   <option value='2'>302</option>'; 
+                   <option value='1'>303</option>';  
+                   <option value='2'>304</option>'; 
+                   <option value='1'>305</option>';  
+                   <option value='2'>306</option>'; 
+                   <option value='1'>307</option>';  
+                   <option value='2'>308</option>';                    
+            </select>
+         </div>        
+    </div>   
+
+    <div class="form-row"> 
+        <div class="form-group col-md-8">
+            <label for="exampleFormControlSelect2">Motivo</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+                   <option value='1'>Troca de Trama</option>';  
+                   <option value='2'>Mancha de Óleo</option>'; 
+                   <option value='1'>Trama curta</option>';  
+                   <option value='2'>Cavalo</option>'; 
+
+            </select>
+         </div>        
+    </div>
+
+
+    <div class="form-row"> 
+        <div class="form-group col-md-8">
+            <label for="exampleFormControlSelect2">Mecânicos</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+                   <option value='1'>Jose Maria</option>';  
+                   <option value='2'>Andre Sales</option>'; 
+                   <option value='1'>Antonio Alves</option>';  
+                   <option value='2'>Joao Carlos</option>'; 
+
+            </select>
+         </div>        
+    </div>    
+
+    <div class="form-row"> 
+        <div class="form-group col-md-8">
+          <label for="dt_leitura">Observação</label> 
+          <input id="dt_leitura" name ="dt_leitura_inicial" type="text"   class="form-control"   >  
+        </div> 
+    </div>
+
+
+    <div class="form-row"> 
+        <div class="form-group col-md-8">
+          <label for="dt_leitura">Data Encerramento</label> 
+          <input id="dt_leitura" name ="dt_leitura_inicial" type="date"   class="form-control"   >  
+        </div> 
+    </div>
+
+
+  </div> 
+
+<?php
+ 
+  include_once "menuNavRodape.php";
+?> 
+
+</form>
+ 
+ 
+  <script type="text/javascript" src="../bibliotecas/jQuery-Mask/src/jquery.mask.js"></script>
+  <script type="text/javascript" src="../bibliotecas/jQuery-Mask/test/jquery.mask.test.js"></script>
