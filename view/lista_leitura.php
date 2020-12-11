@@ -112,8 +112,7 @@
 			  </thead>
 			  <tbody>';
 
-		$leituraCtr = new LeituraCtr();	 
-
+		$leituraCtr = new LeituraCtr();	   
 
 		if( (isset($_GET['pesquisa_todos']) ) or (!isset($_GET['pesquisa_todos']) and !isset($_GET['pesquisar']) ) ):   
 
@@ -141,8 +140,7 @@
 
 			endforeach;
 
-		elseif(isset($_GET['pesquisar'])):
- 		      
+		elseif(isset($_GET['pesquisar'])): 
  
 				foreach($leituraCtr->listaLeituraF($_SESSION['arg1Tp'],$linha_inicial,$filial) as $p_leitura):
 		        	echo '<tr>' .
@@ -156,9 +154,7 @@
 
 					    '<input type="hidden"  name="Id" value='  . $p_leitura['id'] . '>';
 
-				endforeach;	 
-	 
-
+				endforeach;	  
 			 
 		endif;
 
@@ -188,6 +184,7 @@
          ?>
 
 		 <div class='box-paginacao'>     
+		 	
 			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light paramBtPagin ' href="lista_leitura.php?page=<?=$primeira_pagina?>&p_tear=<?=$_SESSION['arg1Tp']?>" title="Primeira Página"><<</a>    
 			   <a class='box-navegacao <?=$exibir_botao_inicio?> btn btn-light paramBtPagin ' href="lista_leitura.php?page=<?=$pagina_anterior?>&p_tear=<?=$_SESSION['arg1Tp']?>" title="Página Anterior"><</a>     
 

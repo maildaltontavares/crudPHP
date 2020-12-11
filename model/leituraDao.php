@@ -148,7 +148,7 @@
 		{
  		 
 			//$sql = 'Select * from usuario';
-			$sql = 'SELECT D0100_ID_LEITURA id, d0006_id_filial filial,d0100_tear tear,d0100_dt_leitura dt_leitura,d0100_turno turno,d0100_leitura leitura,d0100_rpm rpm,d0100_par_trama par_trama,d0100_par_urdume par_urdume,d0100_par_outros par_outros,d0100_dt_inclusao dt_inclusao,d0100_dt_alteracao dt_alteracao,d0100_id_usr_inclusao usr_inclusao,d0100_id_usr_alteracao usr_alteracao   FROM public."E0100_LEITURA"  where d0006_id_filial = ?   order by d0100_dt_leitura LIMIT ' .QTDE_REGISTROS . ' OFFSET ' . $numPg  ;
+			$sql = 'SELECT D0100_ID_LEITURA id, d0006_id_filial filial,d0100_tear tear,d0100_dt_leitura dt_leitura,d0100_turno turno,d0100_leitura leitura,d0100_rpm rpm,d0100_par_trama par_trama,d0100_par_urdume par_urdume,d0100_par_outros par_outros,d0100_dt_inclusao dt_inclusao,d0100_dt_alteracao dt_alteracao,d0100_id_usr_inclusao usr_inclusao,d0100_id_usr_alteracao usr_alteracao   FROM public."E0100_LEITURA"  where d0006_id_filial = ?   order by d0100_dt_leitura LIMIT ' . QTDE_REGISTROS . ' OFFSET ' . $numPg  ;
 			$stmt = Conexao::getConn()->prepare($sql); 
 
  
@@ -222,11 +222,9 @@
 			//$sql = 'Select * from usuario';
 			$prim_filtro = false;
 
-			$sql = 'SELECT count(*) totReg  FROM public."E0100_LEITURA"';
-
-			if (!empty($t->getTear()) and  $t->getTear() != ''    ):
-				$sql  = $sql . ' where  d0006_id_filial = ? ';
-			endif;
+			$sql = 'SELECT count(*) totReg  FROM public."E0100_LEITURA"'; 
+			$sql  = $sql . ' where  d0006_id_filial = ? ';
+		 
 
 			if(!empty($t->getTear()) and  $t->getTear() != '' ):
 				$sql =  $sql .  '  and d0100_tear  like ? ';

@@ -106,10 +106,7 @@
 		public function listaLeitura($numPg,$p_fil){
 
 			$leitura = new Leitura();
-			$leitura->setFilial($p_fil);	
-
-
-
+			$leitura->setFilial($p_fil); 
 
 			$leituraDao = new LeituraDao();  
 			return $leituraDao->read($leitura,$numPg);
