@@ -7,14 +7,27 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
 require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
 
 # verificando se estamos recebendo um POST. Não aceitamos GET
+//"http://localhost:8080"
+//"http://localhost:4200/"
+//header('Access-Control-Allow-Origin: *');
+//"http://localhost:4200/",
+header('Access-Control-Allow-Origin: *');
+
+$v=$_SERVER['HTTP_ORIGIN'];  
+if($v=="http://localhost:4200"): 
+     //$aUsu[0]['nome']=$_SERVER['HTTP_ORIGIN'] . ' - ' .  $_SERVER['HTTP_REFERER']; 
+endif;
+
 if( $_SERVER['REQUEST_METHOD'] !== "GET" )
     __output_header__( false, "Método de requisição POST não aceito.", null );  
  
+$usuario = new UsuarioCtr();	 
 
- $usuario = new UsuarioCtr();	 
- //$aUsu = $usuario->listaUsuario(1); 
- 
- $aUsu = $usuario->buscaUsuario($_GET['id']);
+if($v=="http://localhost:4200"): 
+     $aUsu = $usuario->listaUsuario(1);  
+else:
+     $aUsu = $usuario->buscaUsuario($_GET['id']); 
+endif;   
 
  __output_users__($aUsu);
 /*
