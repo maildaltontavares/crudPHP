@@ -527,10 +527,14 @@
 			$sql = 'SELECT  d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel   FROM public."S0001_usuario" order by d0001_nome LIMIT ' .QTDE_REGISTROS . ' OFFSET ' . $numPg  ; 
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
-			$stmt->execute();  
+			$stmt->execute();   
 			if($stmt->rowCount() > 0):
-				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);  
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);   
+
 				return $resultado;	
+
+
+
 			else: 
 				return [];				
 			endif;

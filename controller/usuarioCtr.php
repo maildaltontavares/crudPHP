@@ -2,7 +2,7 @@
 <?php
 
 	require_once "../model/usuario.php";
-	require_once "../model/usuarioDao.php";
+	require_once "../model/usuarioDao.php"; 
 	
 	class UsuarioCtr{
 

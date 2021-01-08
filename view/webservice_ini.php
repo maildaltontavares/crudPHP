@@ -50,6 +50,38 @@
 	    exit;
 
 	}	
+
+	function __output_users2__($_dados = array())
+	{
+	    header('Content-Type: application/json; charset=utf-8');
+	    echo json_encode($_dados[0], JSON_FORCE_OBJECT);
+	    # por ser a ultima funcao, podemos matar o processo aqui.
+	    exit;
+
+	}		
+
+	function __output_users1__( )
+	{
+	    header('Content-Type: application/json; charset=utf-8');
+	    echo json_encode(array("id"=> 10,"nome"=> "admin","senha"=> "c4ca","email"=> "dalton@bol.com.br","tel"=> "85 6658 22541","filpad"=> 1));
+
+	  
+	    # por ser a ultima funcao, podemos matar o processo aqui.
+	    exit;
+
+	}		
+
+
+	function __output_users3__($_dados = array())
+	{
+	    header('Content-Type: application/json; charset=utf-8');
+	    echo json_encode($_dados, JSON_FORCE_OBJECT);
+	    # por ser a ultima funcao, podemos matar o processo aqui.
+	    exit;
+
+	}	
+
+
   ?>
 
  

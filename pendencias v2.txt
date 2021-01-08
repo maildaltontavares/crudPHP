@@ -1,6 +1,6 @@
 Adicionar filtro por empresa nas leituras... hoje busca em todas as Empresas
 
-Validar a troca de Empresa
+Validar a troca de Empresa 
 Parametrizar o numero de registros da paginação
 
 Parametrizar o BD em uso;  

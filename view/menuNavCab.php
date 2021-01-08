@@ -69,6 +69,7 @@
                                     <!--<a class="nav-link" href="pastas.php">Ler Pastas Aplic</a> -->
                                     <a class="nav-link" href="selecioneFilial.php">Alternar Filial</a>
                                     <a class="nav-link" href="selecioneTb.php">Tabelas</a>
+                                    <a class="nav-link" href="webServiceGet.php">WebService</a>
                                 </nav>
                             </div>
 
