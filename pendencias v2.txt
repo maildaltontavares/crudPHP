@@ -16,6 +16,7 @@ Icones nos botoes - OK
 
 1. gravar todos campos -- ok
 b. md5
+
 autenticação
 12. Nuvem;
 1.  Rotas;
