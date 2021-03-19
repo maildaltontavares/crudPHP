@@ -61,6 +61,32 @@
 		 
 		}
 
+
+		public function buscaUsuarioItens(Usuario $u)
+		{
+ 
+			$sql = 'SELECT d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel,d0001_filial_default filPad   FROM public."S0001_usuario"  where d0001_id = ?';
+			$stmt = Conexao::getConn()->prepare($sql); 
+			$stmt->bindValue(1,$u->getId());
+			//$stmt->bindValue(2,$u->getSenha());
+			$stmt->execute();  
+			
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+
+
+
+
+		 
+		}
+
+
 		public function validaChaveAutenticacao(Usuario $u)
 		{
  		 
@@ -69,9 +95,6 @@
 			$sql = 'SELECT d0001_id id_usu,d0001_nome nome,d0001_senha senha, fil.D0006_id_filial filial,d0006_nome_filial nome_filial,D0005_grupo_empresa                 idGrupo,d0001_filial_default filPad , d0001_bloqueado bloqueado,d0001_chave_atenticacao chave_atenticacao 
 			    FROM    public."S0001_usuario" usu                     
                     INNER JOIN  public."E0006_FILIAL" fil on fil.d0006_id_filial = usu.d0001_filial_default  where d0001_chave_atenticacao = ?'; 
-               
-
-             
 
 
 			$stmt = Conexao::getConn()->prepare($sql); 
@@ -142,7 +165,48 @@
 			endif;
 
 		 
+		} 
+
+
+		public function buscaFiliaisValidasUsuario(Usuario $u)
+		{
+  
+			$sql = 'SELECT  f.d0006_NOME_FILIAL nome ,   
+				CASE
+				     WHEN uf.D0006_ID_FILIAL  is not null  THEN true
+				     ELSE  false
+				END todos, '  ;
+			$sql = $sql  .  '\'' . 'primary' . '\'';
+
+			$sql = $sql  .    ' cor,  
+			uf.d0001_id	id_usuario,f.D0006_ID_FILIAL id_filial
+                    FROM public."E0006_FILIAL" F LEFT outer JOIN public."S0012_USUARIO_FILIAL" UF ON  f.d0006_id_filial = uf.d0006_id_filial  and  uf."d0001_id" = ?
+                    order by uf.d0001_id'; 
+
+			$stmt = Conexao::getConn()->prepare($sql); 
+			$stmt->bindValue(1,$u->getId());  
+			try{
+				Conexao::getConn()->beginTransaction();
+				$stmt->execute();
+				Conexao::getConn()->commit();  
+			}
+			  catch (\PDOException $e) {
+			    Conexao::getConn()->rollBack(); 
+			    //throw $e;
+			    echo '<div class="alert alert-primary" role="alert"><li>' . "Erro na pesquisa: " . $e->getMessage() . '</li></div>'; 
+			 
+			}	
+			if($stmt->rowCount() > 0):
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);   
+				return $resultado;	
+			else:
+				return [];				
+			endif;
+
+		 
 		}
+
+
 
 
 		public function buscaChaveFilialUsuario(Usuario $u)
@@ -323,6 +387,7 @@
 			//$sql = 'Insert into usuario (nome,senha,d0001_email,d0001_tel) values(?,?,?,?)';
 
 			$stmt = Conexao::getConn()->prepare($sql); 
+ 
 		 
 			$stmt->bindValue(1,$u->getNome());
 			$stmt->bindValue(2,$u->getSenha());
@@ -524,7 +589,7 @@
 		{
  		 
 			//$sql = 'Select * from usuario';
-			$sql = 'SELECT  d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel   FROM public."S0001_usuario" order by d0001_nome LIMIT ' .QTDE_REGISTROS . ' OFFSET ' . $numPg  ; 
+			$sql = 'SELECT  d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel,d0001_filial_default filPad    FROM public."S0001_usuario" order by d0001_nome LIMIT ' .QTDE_REGISTROS . ' OFFSET ' . $numPg  ; 
 			$stmt = Conexao::getConn()->prepare($sql); 
 			
 			$stmt->execute();   
@@ -548,7 +613,7 @@
 			//$sql = 'Select * from usuario';
 			$prim_filtro = false;
 
-			$sql = 'SELECT  d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel   FROM public."S0001_usuario"';
+			$sql = 'SELECT  d0001_id id,d0001_nome nome,d0001_senha senha,d0001_email email,d0001_tel tel ,d0001_filial_default filPad   FROM public."S0001_usuario"';
 
  
 			if((!empty($u->getNome()) and  $u->getNome() != '') or (!empty($u->getEmail()) and  $u->getEmail() != '')  ):

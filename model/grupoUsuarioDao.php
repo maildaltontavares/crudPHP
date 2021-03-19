@@ -12,7 +12,7 @@
 			$stmt = Conexao::getConn()->prepare($sql); 
 			$stmt->bindValue(1,$g->getId());
 
-			$stmt->execute();  
+			$stmt->execute();   
 			
 			if($stmt->rowCount() > 0):
 				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
@@ -20,8 +20,7 @@
 				return $resultado;	
 			else:
 				return [];				
-			endif;
-
+			endif; 
 		 
 		}
 
@@ -61,7 +60,7 @@
 		 
 		} 
 
-		public function readItens(GrupoUsuario $g)
+		public function readItens(GrupoUsuario $g) 
 		{ 
 			 
 
@@ -241,8 +240,7 @@
 
 		public function readF(GrupoUsuario $g,$numPg)
 		{
- 		 
- 
+ 		  
 
 			//$sql = 'Select * from usuario';
 			$prim_filtro = false;
@@ -260,6 +258,9 @@
 
             $sql  = $sql . ' order by d0006_desc_grupo  LIMIT ' . QTDE_REGISTROS . ' OFFSET ' . $numPg;
 
+
+
+
 			$stmt = Conexao::getConn()->prepare($sql);
 
 	 
@@ -275,9 +276,9 @@
 
 			$stmt->execute();  
 			if($stmt->rowCount() > 0):
-				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC); 
+				$resultado=$stmt->fetchAll(\PDO::FETCH_ASSOC);  
 				return $resultado;	
-			else:
+			else: 
 				return [];				
 			endif;
 

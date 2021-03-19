@@ -25,7 +25,7 @@
 	   * @param  string  $__message - uma mensagem opcional
 	   * @param  array   $_dados    - dados a serem retornados
        * @return JSON REST
-	 */
+	 */ 
 
 	function __output_header__( $__success = true, $__message = null, $_dados = array() )
 	{
@@ -58,7 +58,16 @@
 	    # por ser a ultima funcao, podemos matar o processo aqui.
 	    exit;
 
-	}		
+	}	
+
+	function __output_users5__($_dados = array())
+	{
+	    header('Content-Type: application/json; charset=utf-8');
+	    echo json_encode($_dados, JSON_FORCE_OBJECT);
+	    # por ser a ultima funcao, podemos matar o processo aqui.
+	    exit;
+
+	}	
 
 	function __output_users1__( )
 	{

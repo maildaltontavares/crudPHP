@@ -1,6 +1,6 @@
 <?php 
  
-  session_start(); 
+  session_start();  
 
   require_once '../config.php';
   require_once ROOT_PATH . '/controller/usuarioCtr.php';  
@@ -27,7 +27,7 @@
   //include_once "menu.php"; 
   include_once "menuNavCab.php";
 
-  $Altera = "N";
+  $Altera = "N"; 
 
   $nome = '';
   $senha = '';
@@ -309,6 +309,11 @@
        endif;  
   endif;
    
+
+
+  //$usuarioCtr11 = new UsuarioCtr();   
+  //$usuarioCtr11->buscaUsuarioItens(10);
+
 
   ?>  
 

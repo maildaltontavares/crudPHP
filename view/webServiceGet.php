@@ -27,7 +27,8 @@ if (isset($_GET['id'])):
       __output_users2__($aUsu);
 
 else:
-     $aUsu = $usuario->listaUsuario(0);   
+     $aUsu = $usuario->listaUsuario(0); 
+    // var_dump($aUsu ) ;
      __output_users__($aUsu);
 endif;   
 

@@ -1,3 +1,58 @@
+            
+11. Menus; ok
+1.  Confirmação da exclusão; ok
+0. Pesquisa - ok
+Excluir no cadastro - ok
+11. Menus; ok
+Icones nos botoes - OK
+6.  Mensagem de sucesso ou erro; - OK
+0.  Por o grid em uma tabela ok
+10. Paginação; ok
+4.  Modal - ok
+5. lostFocus do codigo do grupo;
+7.  Mestre Detalhe;
+0.  Sidenav
+==========================
+
+1. gravar todos campos -- ok
+b. md5
+autenticação
+12. Nuvem;
+1.  Rotas;
+3.  Relatórios;
+
+a. Melhorar o pop up de busca com a paginação;
+
+c. Mascaras
+9.  Validação de campos; Ex. CNPJ;
+2.  Responsividade;
+
+
+================================================
+B@visaTele
+B@visaHbo21
+ (keyup.enter)="addHero(box.value); box.value=''"
+
+Transforming Data Using Pipes
+
+1.Instalando o bootstrap no angular 
+
+npm i bootstrap --save
+
+
+2.Instalando o ngx-bootstrap no Angular
+
+
+ng add ngx-bootstrap
+$ ng g module modules/ngxbootstrap
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown'; 
+
+npm i ngx-bootstrap --save
+npm install ngx-bootstrap bootstrap --save
+ 
+
+=========================================================================================
+
 Adicionar filtro por empresa nas leituras... hoje busca em todas as Empresas
 
 Validar a troca de Empresa 
@@ -69,4 +124,11 @@ Melhorar layouts;
 
 
 
-
+<div *ngFor="let prod of p.controls; let i = index" class="list-group list-group-flush">
+<div class="list-group-item">
+<h5 class="card-title">Product Feature {{i + 1}}</h5>
+<div [formGroup]="prod" >
+<div class="row required-field">
+<div class="col-md-4">
+<label class="cus-form-label">Feature Name</label>
+<input class="form-control minimal" id="{{'name' + i}}" formControlName="featureName">

@@ -6,7 +6,7 @@
 	
 	class GrupoUsuarioCtr{
 
-		public function buscaGrupoUsuario($p_id){
+		public function buscaGrupoUsuario($p_id){ 
 
 			$grupoUsuario = new GrupoUsuario();
 			$grupoUsuario->setId($p_id);

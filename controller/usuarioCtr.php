@@ -1,7 +1,7 @@
 
-<?php
+<?php 
 
-	require_once "../model/usuario.php";
+	require_once "../model/usuario.php"; 
 	require_once "../model/usuarioDao.php"; 
 	
 	class UsuarioCtr{
@@ -24,8 +24,41 @@
 			$usuario->setId($p_id);
 			$usuarioDao = new UsuarioDao();  
 			return $usuarioDao->buscaUsuario($usuario);  
+
  
 		 } 
+
+
+		public function buscaUsuarioItens($p_id){
+
+			$usuario = new Usuario();
+			$usuario->setId($p_id);
+			$usuarioDao = new UsuarioDao();  
+			
+            $aFiliais = $usuarioDao->buscaFilialUsuario($usuario);        
+            $aGrupos  = $usuarioDao->readItens($usuario);
+            $aUser    = $usuarioDao->buscaUsuario($usuario);
+            array_push($aUser[0],$aGrupos);
+            array_push($aUser[0],$aFiliais); 
+
+
+            //var_dump($aUser);
+
+
+			return $aUser;  
+
+ 
+		 } 
+
+		public function buscaFiliaisValidasUsuario($p_id){
+
+			$usuario = new Usuario();
+			$usuario->setId($p_id);
+			$usuarioDao = new UsuarioDao();  
+			return $usuarioDao->buscaFiliaisValidasUsuario($usuario);  
+ 
+		 } 	
+
 
 		public function buscaFilialUsuario($p_id){
 
@@ -39,7 +72,7 @@
 
 		public function update($p_id,$p_usuario,$p_senha,$p_email,$p_fone,$p_itens,$p_filial,$p_filPad){ 
 
-			// Prepara Bean usuario
+			// Prepara Bean usuario 
 			$usuario = new Usuario();
 			$usuario->setId($p_id);
 			$usuario->setNome($p_usuario);
@@ -48,7 +81,10 @@
 			$usuario->setTel($p_fone);
 			$usuario->setItens($p_itens);  
 			$usuario->setFilial($p_filial);  
-			$usuario->setFilialPad($p_filPad); 
+			$usuario->setFilialPad($p_filPad);  
+
+           //var_dump('$usuario');
+			//var_dump($usuario);			
 
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->update($usuario); 
@@ -69,6 +105,11 @@
 			$usuario->setChave($p_chave);    
 			$usuario->setFilial($p_filial);  
 			$usuario->setFilialPad($p_filPad); 
+
+
+           //var_dump('$usuario');
+			//var_dump($usuario);
+
 
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->create($usuario); 
@@ -227,11 +268,15 @@
 		 } 
 
 		public function listaItens($p_id){
-
+ 
 			$usuario = new Usuario();
 			$usuario->setId($p_id); 
 
-			$usuarioDao = new UsuarioDao();  
+			$usuarioDao = new UsuarioDao(); 
+
+			//var_dump('expression');
+            // var_dump($usuarioDao->readItens($usuario));
+
 			return $usuarioDao->readItens($usuario);
 			
 

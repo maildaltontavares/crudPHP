@@ -16,7 +16,7 @@ if (isset($_POST['dt_leitura_inicial'])):
 
 endif;
 
-if (isset($_POST['dt_leitura_inicial'])):
+if (isset($_POST['dt_leitura_final'])):
 
 endif;
 
@@ -41,6 +41,10 @@ $options = [
  //'P_DTINI'  => date_format(date_create($_POST['dt_leitura_inicial']),'m-d-Y'),
   //if (isset($_GET['lista'])):
   
+
+        //var_dump( $_POST['dt_leitura_inicial'] );
+        //var_dump(date_format(date_create($_POST['dt_leitura_inicial']),'Ymd'));
+ 
         $options = [ 
             'format' => ['pdf','xlsx','csv','rtf'] ,
             'params' => [
