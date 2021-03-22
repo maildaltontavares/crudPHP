@@ -30,7 +30,7 @@ if( $_SERVER['REQUEST_METHOD'] === "GET" ):
    endif;   
  
 else:
-	    __output_header__( false, 'Usuário GET não encontrado  1.', null);
+       __output_header__( false, 'Usuário GET não encontrado.', null);
 
 endif;  
   

@@ -70,6 +70,7 @@
                                     <a class="nav-link" href="selecioneFilial.php">Alternar Filial</a>
                                     <a class="nav-link" href="selecioneTb.php">Tabelas</a>
                                     <a class="nav-link" href="solicitaWS.php">WebService</a>
+                                    <a class="nav-link" href="solicitaWS2.php">WebService2</a> 
                                     
                                 </nav>
                             </div>
@@ -93,7 +94,8 @@
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="lista_leitura.php">Leituras Teares</a>         
                                             <a class="nav-link" href="manutTearCad.php">OS Manutenção</a> 
-                                            <a class="nav-link" href="solicitaWS.php">WebService</a> 
+                                 
+                                            
                                         </nav>
                                     </div>
 
