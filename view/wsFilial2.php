@@ -17,7 +17,8 @@ if( $_SERVER['REQUEST_METHOD'] === "GET" ):
 
 	$filial = new FilialCtr();	       
     $aFilial = $filial->listaFilial(0);   
-    __output_users__($aFilial); 
+    //__output_users__($aFilial); 
+    __output_users1__();
  
 /*
 
