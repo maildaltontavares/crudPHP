@@ -50,12 +50,12 @@
                         <div class="nav">
 
                             <div class="sb-sidenav-menu-heading">Industrial</div>
-
+  
                             <!--
                             <a class="nav-link" href="index.html" href="lista_tabelas">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Cadastros
-                            </a>-->
+                            </a>-->  
 
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastros" aria-expanded="false" aria-controls="collapseCadastros">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
