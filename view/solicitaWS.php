@@ -9,8 +9,8 @@ $ci = curl_init();
 //curl_setopt( $ci, CURLOPT_POSTFIELDS, array('id' => 44 ));
 
 //GET
-//curl_setopt( $ci, CURLOPT_URL, "https://virtuax.herokuapp.com/view/webServiceGet.php?id=44" ); 
-curl_setopt( $ci,CURLOPT_URL,    "https://virtuax.herokuapp.com/view/wsFilial.php?wscd=1");    
+curl_setopt( $ci, CURLOPT_URL, "https://virtuax.herokuapp.com/view/wsFilial2.php?id=44" ); 
+//curl_setopt( $ci,CURLOPT_URL,    "https://virtuax.herokuapp.com/view/wsFilial.php?wscd=1");    
 
 curl_setopt( $ci, CURLOPT_HEADER, false );
 curl_setopt( $ci, CURLOPT_RETURNTRANSFER, 1 );

@@ -10,7 +10,8 @@ $ci = curl_init();
 
 //GET
 //curl_setopt( $ci, CURLOPT_URL, "https://virtuax.herokuapp.com/view/webServiceGet.php?id=44" ); 
-curl_setopt( $ci,CURLOPT_URL,    "http://virtuax.herokuapp.com/view/wsFilial.php?wscd=1");    
+curl_setopt( $ci, CURLOPT_URL, "http://virtuax.herokuapp.com/view/wsFilial2.php?id=44" ); 
+//curl_setopt( $ci,CURLOPT_URL,    "http://virtuax.herokuapp.com/view/wsFilial.php?wscd=1");    
 
 curl_setopt( $ci, CURLOPT_HEADER, false );
 curl_setopt( $ci, CURLOPT_RETURNTRANSFER, 1 );
@@ -24,4 +25,4 @@ var_dump($_retorno);
 
 ?>
 
- 
+  
