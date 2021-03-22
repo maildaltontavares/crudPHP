@@ -5,6 +5,7 @@ require_once 'webservice_ini.php';
 require_once '../config.php';  
 require_once ROOT_PATH . '/controller/usuarioCtr.php';  
 require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
+require_once ROOT_PATH . '/controller/FilialCtr.php';    
 
 
 header('Access-Control-Allow-Origin: *');
