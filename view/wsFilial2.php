@@ -14,12 +14,18 @@ header('Access-Control-Allow-Methods: POST, GET , PUT, DELETE');
 
 if( $_SERVER['REQUEST_METHOD'] === "GET" ):
 
-
+/*
 	$filial = new FilialCtr();	       
     $aFilial = $filial->listaFilial(0);   
     //__output_users__($aFilial); 
     __output_users1__();
- 
+ */
+
+     $usuario = new UsuarioCtr();	 
+     $aUsu = $usuario->listaUsuario(0);   
+     __output_users__($aUsu);  
+
+
 /*
 
     $usuario = new UsuarioCtr();	 
