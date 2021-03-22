@@ -11,10 +11,11 @@ header('Access-Control-Allow-Origin: *');
 //header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
 //header('Access-Control-Allow-Methods: POST, GET , PUT, DELETE'); 
 
-if( $_SERVER['REQUEST_METHOD'] === "GET" ):
+if( $_SERVER['REQUEST_METHOD'] !== "GET" )
+    __output_header__( false, "Método de requisição POST não aceito.", null );  
 
    var_dump('a'); 
- 
+
 
 	$filial = new FilialCtr();	    
    if (isset($_GET['wscd'])):  
@@ -29,9 +30,9 @@ if( $_SERVER['REQUEST_METHOD'] === "GET" ):
       //__output_users__($aFilial); 
    endif;   
  
-else:
-	    __output_header__( false, 'Usuário GET não encontrado  1.', null);
+//else:
+//	    __output_header__( false, 'Usuário GET não encontrado  1.', null);
 
-endif;  
+//endif;  
   
 ?> 
