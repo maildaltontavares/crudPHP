@@ -13,16 +13,20 @@ header('Access-Control-Allow-Origin: *');
 
 if( $_SERVER['REQUEST_METHOD'] === "GET" ):
 
+   var_dump('a'); 
+ 
 
 	$filial = new FilialCtr();	    
    if (isset($_GET['wscd'])):  
+      var_dump('b'); 
 
       if ($_GET['wscd']=='1'):
       	     //var_dump('expression');
-            $aFilial = $filial->listaFilial(0);                                
+            var_dump('c'); 
+            //$aFilial = $filial->listaFilial(0);                                
       endif; 
       //var_dump($aDetalhe);
-      __output_users__($aFilial); 
+      //__output_users__($aFilial); 
    endif;   
  
 else:
