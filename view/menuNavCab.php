@@ -56,14 +56,14 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Cadastros
                             </a>-->  
-
+   
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastros" aria-expanded="false" aria-controls="collapseCadastros">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> 
                                 Cadastros >
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseCadastros" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
+                                <nav class="sb-sidenav-menu-nested nav"> 
                                     
                                   
                                     <!--<a class="nav-link" href="pastas.php">Ler Pastas Aplic</a> -->
@@ -92,7 +92,8 @@
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
                                             <a class="nav-link" href="lista_leitura.php">Leituras Teares</a>         
-                                            <a class="nav-link" href="manutTearCad.php">OS Manutenção</a>  
+                                            <a class="nav-link" href="manutTearCad.php">OS Manutenção</a> 
+                                            <a class="nav-link" href="solicitaWS.php">WebService</a> 
                                         </nav>
                                     </div>
 
