@@ -14,6 +14,12 @@ header('Access-Control-Allow-Methods: POST, GET , PUT, DELETE');
 if( $_SERVER['REQUEST_METHOD'] === "GET" ):
 
 
+	$filial = new FilialCtr();	       
+    $aFilial = $filial->listaFilial(0);   
+    __output_users__($aFilial); 
+ 
+/*
+
     $usuario = new UsuarioCtr();	 
     if (isset($_GET['nome'])):   
         $aUsu = $usuario->listaUsuarioF($_GET['nome'],$_GET['email'],$_GET['pagina']) ; 
@@ -44,7 +50,7 @@ if( $_SERVER['REQUEST_METHOD'] === "GET" ):
 		     __output_users__($aUsu);  
 		endif;   
     endif;
-
+*/
 elseif ( $_SERVER['REQUEST_METHOD'] === "POST" ): 
 
 	$postdata = file_get_contents("php://input");  
