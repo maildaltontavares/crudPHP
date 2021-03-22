@@ -7,7 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Santana Textiles</title>
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" /> 
         <link href="estiloVirtuax.css" rel="stylesheet" /> 
 
         <!--<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />-->
@@ -69,6 +69,7 @@
                                     <!--<a class="nav-link" href="pastas.php">Ler Pastas Aplic</a> -->
                                     <a class="nav-link" href="selecioneFilial.php">Alternar Filial</a>
                                     <a class="nav-link" href="selecioneTb.php">Tabelas</a>
+                                    <a class="nav-link" href="solicitaWS.php">WebService</a>
                                     
                                 </nav>
                             </div>
