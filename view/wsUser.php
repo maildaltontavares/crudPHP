@@ -2,7 +2,7 @@
 #
 
 require_once 'webservice_ini.php'; 
-require_once '../config.php'; 
+require_once '../config.php';  
 require_once ROOT_PATH . '/controller/usuarioCtr.php';  
 require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
 
@@ -28,7 +28,7 @@ if( $_SERVER['REQUEST_METHOD'] === "GET" ):
               elseif ($_GET['wscd']=='2'):   
                    $aDetalhe = $usuario->buscaFilialUsuario($_GET['id']); 
               elseif ($_GET['wscd']=='3'):   
-                   $aDetalhe  = $usuario->buscaFiliaisValidasUsuario($_GET['id']);                                
+                   $aDetalhe  = $usuario->buscaFiliaisValidasUsuario($_GET['id']);                                 
               endif; 
 
               //var_dump($aDetalhe);

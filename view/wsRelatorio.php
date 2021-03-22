@@ -23,7 +23,7 @@ if( $_SERVER['REQUEST_METHOD'] === "GET" ):
 	
 	  // Extract the data.     
 //		$request = json_decode($postdata,true); 
-	//    $usr = $request;  
+	//    $usr = $request;   
 
 /*
         $options = [ 
@@ -45,7 +45,7 @@ if( $_SERVER['REQUEST_METHOD'] === "GET" ):
             ]
         ];
 
-  */       
+  */        
 
 
         $options = [ 
