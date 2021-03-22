@@ -5,7 +5,6 @@ require_once 'webservice_ini.php';
 require_once '../config.php';  
 require_once ROOT_PATH . '/controller/usuarioCtr.php';  
 require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
-require_once ROOT_PATH . '/controller/FilialCtr.php';    
 
 
 header('Access-Control-Allow-Origin: *');
@@ -14,20 +13,7 @@ header('Access-Control-Allow-Methods: POST, GET , PUT, DELETE');
 
 if( $_SERVER['REQUEST_METHOD'] === "GET" ):
 
-/*
-	$filial = new FilialCtr();	       
-    $aFilial = $filial->listaFilial(0);   
-    __output_users__($aFilial); 
-    //__output_users1__();
 
-
-     $usuario = new UsuarioCtr();	 
-     $aUsu = $usuario->buscaUsuario(44); 
-     __output_users2__($aUsu);
-
- */
- 
- 
     $usuario = new UsuarioCtr();	 
     if (isset($_GET['nome'])):   
         $aUsu = $usuario->listaUsuarioF($_GET['nome'],$_GET['email'],$_GET['pagina']) ; 
@@ -58,7 +44,7 @@ if( $_SERVER['REQUEST_METHOD'] === "GET" ):
 		     __output_users__($aUsu);  
 		endif;   
     endif;
- 
+
 elseif ( $_SERVER['REQUEST_METHOD'] === "POST" ): 
 
 	$postdata = file_get_contents("php://input");  
