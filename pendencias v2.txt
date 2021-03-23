@@ -80,6 +80,12 @@ Corrigir a visualizacao da mensagem de email ou senha invalida;
 divisao por loja;  
 Como criar janela modal com formulário cadastrar com JavaScript - youtube 
 
+===============================================
+
+ng build --prod
+firebase login
+
+
 
 ================================================================ 
 Setar como administrador
