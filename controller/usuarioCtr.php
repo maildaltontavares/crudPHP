@@ -191,7 +191,7 @@
 			$usuario->setId($p_usuario);			
 			$usuario->setDtAlteracao($p_dtAlt); 
 			$usuario->setItens($p_itens);  
-			$usuario->setFilial($p_filial);  
+			$usuario->setFilial($p_filial);   
 			$usuarioDao = new UsuarioDao();
 			$r = $usuarioDao->confirmaConta($usuario); 
 			return  $r;  

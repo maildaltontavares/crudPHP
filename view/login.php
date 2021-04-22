@@ -4,7 +4,7 @@
 require_once '../config.php';
 require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 
 require_once ROOT_PATH . '/controller/tabelaCtr.php'; 
-require_once ROOT_PATH . '/controller/usuarioCtr.php'; 
+require_once ROOT_PATH . '/controller/usuarioCtr.php';  
 
   session_start();
   //session_unset();
@@ -77,7 +77,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
               $erros[] = "Senha inválida!";
           endif; 
 
-
+ 
           if (empty($erros)):  // Nao tem erros de digitacao
 
               $usuarioCtr = new UsuarioCtr();   

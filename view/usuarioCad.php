@@ -130,7 +130,7 @@
                                //var_dump($vIt);
 
                   if (isset($_POST['fItem' . $vIt])):                     
-                      $aIt[$nInd] = $_POST['fItem' . $vIt]; 
+                      $aIt[$nInd] = $_POST['fItem' . $vIt];  
                       if($aIt[$nInd]!=""):
                          $nInd = $nInd + 1 ;
                     endif;
