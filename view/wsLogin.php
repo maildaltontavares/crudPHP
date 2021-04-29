@@ -18,14 +18,16 @@ if ( $_SERVER['REQUEST_METHOD'] === "POST" ):
 	
 	  // Extract the data.     
 		$request = json_decode($postdata,true); 
-	    $usr = $request;
-	     
-	    var_dump($usr);  
-	    //$usuario = new UsuarioCtr(); 
+	    $usr = $request; 
+	    $usuario = new UsuarioCtr(); 
+	    $vUsu = $usuario->validaUsuario($usr["email"],'');
 
-        //$usuario->create( $usr['d']["nome"],$usr['d']["senha"],$usr['d']["email"],"9999",$usr['d']["grupos"] ,$chave ,$filial,$usr['d']["filpad"]);  
+	    //$aUsu[] = $vUsu["senha"];
 
-		__output_users3__($request); 
+        //var_dump($vUsu);  
+
+ 
+		__output_users3__(["nome"=>$vUsu[0]["nome"],"email"=>$usr["email"],"senha"=>$vUsu[0]["senha"]]); 
 		
 	endif;  
 
