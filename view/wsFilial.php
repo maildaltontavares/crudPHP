@@ -1,7 +1,7 @@
 <?php
 #
 
-require_once 'webservice_ini.php';   
+require_once 'webservice_ini.php';    
 require_once '../config.php';  
 require_once ROOT_PATH . '/controller/filialCtr.php';    
 require_once ROOT_PATH . '/bibliotecas/funcoes.php'; 

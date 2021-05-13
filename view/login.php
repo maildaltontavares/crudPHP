@@ -88,11 +88,11 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
                        echo '</br><br>';
                        echo '<div class="alert alert-primary" role="alert"><li>' . "Aguardando confirmação da conta!"  . '</li></div>';   
                   else:
-                        //if (md5($pwd)!=$p_usu[0]['senha']):
+                        if (md5($pwd)!=$p_usu[0]['senha']):
                              
-                        //     echo '</br><br>';
-                        //     echo '<div class="alert alert-primary" role="alert"><li>' . "Senha não confere!"  . '</li></div>';  
-                        //else: 
+                             echo '</br><br>';
+                             echo '<div class="alert alert-primary" role="alert"><li>' . "Senha não confere!"  . '</li></div>';  
+                        else: 
    
                             $_SESSION['email'] = $email;
                             $_SESSION['perfil'] = $usuarioCtr->montaPerfil($email);  
@@ -113,7 +113,7 @@ require_once ROOT_PATH . '/controller/usuarioCtr.php';
 
                             header('Location:principal.php');   
    
-                    //   endif;
+                        endif;
                   endif;    
                 else:  
                     echo '</br><br>';
