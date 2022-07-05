@@ -3,7 +3,7 @@
     "description": "Repositorio de Bibliotecas",
     "require": {
         "phpoffice/phpspreadsheet": "^1.14",
-        "dompdf/dompdf": "^0.8.6" 
+        "dompdf/dompdf": "^2.0.0" 
     }, 
     "authors": [
         {
